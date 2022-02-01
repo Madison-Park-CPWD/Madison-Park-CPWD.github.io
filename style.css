@@ -2,3 +2,7 @@
 .font{
     font-family: 'Oxygen', sans-serif;
     }
+a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
