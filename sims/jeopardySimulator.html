@@ -12,7 +12,7 @@
             --table-column-width: 17%;
             --table-blue: #1502c6;
         }
-        table {
+        #boardTable {
             border: 5px black solid;
             border-collapse: collapse;
         }
@@ -20,7 +20,7 @@
             background-color: black;
             padding:1.5em;
         }
-        #r1 th {
+        #boardTable th {
             text-transform: uppercase;
             padding: 0.5em;
             text-align: center;
@@ -72,18 +72,21 @@
 
             //DOM elements and other constants
             const boardTable = document.getElementById("boardTable");
+            const questionTable = document.getElementById("questionTable");
             const answerModal = new bootstrap.Modal(document.getElementById('answerModal'), {
                 keyboard: false
             });
             const answerModalElement = document.getElementById('answerModal');
             const answerModalTitle = document.querySelector("#answerModal .modal-title");
             const answerModalText = document.getElementById("modal-text");
+            const answerModalAnswerText = document.getElementById("answerText");
             const saveCategoryNumBtn = document.getElementById("saveCategoryNumber");
             const saveCategoryBtn = document.getElementById("saveCategories");
             const categoryTableRow = document.getElementById("catTableRow");
             const saveRowNumBtn = document.getElementById("saveRowNumber");
             const prizeTableRow = document.getElementById("prizeTableRow");
             const savePrizesBtn = document.getElementById("savePrizes");
+            const saveQuestionsBtn = document.getElementById("saveQuestions");
             const createBoardBtn = document.getElementById("createBoard");
 
             //global variables
@@ -91,7 +94,9 @@
             let rowNum = 0;
             let colNum = 0;
             let cats = [];
-            let rowContent = [];
+            let prizeValues = [];
+            let questions = {};
+            let answers = {};
 
             //event listeners
             boardTable.addEventListener("click",function(event){
@@ -99,7 +104,7 @@
                     eventTarget = event.target;
                     let rowNum = event.target.getAttribute("data-row");
                     let category = event.target.getAttribute("data-category");
-                    answerModalTitle.textContent =  category + " for " + rowContent[rowNum];
+                    answerModalTitle.textContent =  category + " for " + prizeValues[rowNum];
                     answerModalText.textContent = "This HTML tag creates an numbered list";
                     answerModal.show();
                 }
@@ -139,15 +144,43 @@
             //saves prizes in rowContent
             savePrizesBtn.addEventListener("click",function(event){
                 for(let i = 0;i<rowNum;i++){
-                    rowContent.push(document.getElementById("prizeRow" + i).value)
+                    prizeValues.push(document.getElementById("prizeRow" + i).value)
                 }
-                console.log(rowContent)
-                document.getElementById("createSection").style.display = "block"
+                console.log(prizeValues);
+                const questionTableText = buildQuestionTable(rowNum,colNum,cats,prizeValues);
+                const questionTableHeader = buildQuestionTableHeader(cats);
+                console.log(questionTableHeader + questionTableText);
+                questionTable.innerHTML = questionTableHeader + questionTableText;
+                document.getElementById("questions").style.display = "block";
             });
+            //stores questions from question table into questions 2D array
+            saveQuestionsBtn.addEventListener("click",function (event) {
+                let qaNodeList = document.querySelectorAll("#questionTable input");
+                let qaNodeArray = Array.from(qaNodeList);
+
+                qaNodeList.forEach(function(item){
+                    let rowVal = item.getAttribute("data-row");
+                    console.log(rowVal)
+                    let rowCat = item.getAttribute("data-category");
+                    console.log(rowCat)
+                    let rowCatLastLetter = rowCat.charAt(rowCat.length -1);
+                    console.log(rowCatLastLetter)
+                    if (rowCatLastLetter === "Q") {
+                        questions[rowCat] = {'row':rowVal, "value": item.value}
+                    } else {
+                        answers[rowCat] = {"category": rowCat.slice(0,rowCat.length-1), "value": item.value}
+                    }
+                });
+                console.log(questions)
+                console.log(answers)
+
+                document.getElementById("createSection").style.display = "block";
+            });
+
             //creates board based on data from above
             createBoardBtn.addEventListener("click",function(event){
                 let headerHTML = buildTableHeader(cats);
-                let rowsHTML = buildTableRows(rowNum,colNum,rowContent,cats);
+                let rowsHTML = buildTableRows(rowNum,colNum,prizeValues,cats);
                 let tableHTML = headerHTML + rowsHTML;
                 // console.log(rowsHTML);
                 boardTable.innerHTML = tableHTML;
@@ -155,6 +188,18 @@
 
 
             //functions
+            function buildTableHeader(categories) {
+                //for admin table, add a blank td
+                let tableHeaderText = "<tr id='r1'>";
+                for (let i=0;i < categories.length;i++) {
+                    tableHeaderText +="<th>";
+                    tableHeaderText += categories[i];
+                    tableHeaderText += "</th>";
+                }
+                tableHeaderText +="</tr>";
+                return tableHeaderText;
+            }
+
             function buildTableRows(rows,cols,rowText,categories) {
                 let tableRowText = "";
                 for(let i = 0; i < rows;i++) {
@@ -169,19 +214,40 @@
                 return tableRowText;
             }
 
-            function buildTableHeader(categories) {
-                let tableHeaderText = "<tr id='r1'>";
+            function buildQuestionTableHeader(categories) {
+                //for admin table, add a blank td
+                let tableHeaderText = "<tr id='r1'><th></th>";
+
                 for (let i=0;i < categories.length;i++) {
                     tableHeaderText +="<th>";
-                    tableHeaderText += categories[i];
+                    tableHeaderText += categories[i] + " Question";
+                    tableHeaderText += "</th>";
+                    tableHeaderText +="<th>";
+                    tableHeaderText += categories[i] + " Answer";
                     tableHeaderText += "</th>";
                 }
                 tableHeaderText +="</tr>";
                 return tableHeaderText;
             }
 
-
-
+            function buildQuestionTable(rows, cols,categories,prizeValues){
+                let tableRowText = "";
+                for(let i = 0; i < rows;i++) {
+                    tableRowText += "<tr id='q" + (i + 1) + "'>";
+                    for (let j = 0;j< cols;j++) {
+                        if (j==0) {
+                            tableRowText += "<th>" + prizeValues[i];  + "</th>";
+                        }
+                        tableRowText += "<td>";
+                        tableRowText += "<input data-row='" + i + "' data-category='" + categories[j] + "Q'>";
+                        tableRowText += "</td><td>";
+                        tableRowText += "<input data-row='" + i + "' data-category='" + categories[j] + "A'>";
+                        tableRowText += "</td>"
+                    }
+                    tableRowText +="</tr>";
+                }
+                return tableRowText;
+            }
 
         })
     </script>
@@ -199,11 +265,13 @@
             <h2>Admin Screen to Create Categories, Row Amounts and Questions</h2>
             <hr>
             <div class="buttonRow">
+                <h3>Step 1: Number of Categories</h3>
                 <label for="categoryNum">Number of Categories?</label>
                 <input type="number" id="categoryNum">
-                <button type="button" id="saveCategoryNumber" class="btn btn-primary">Save Category Number</button><br>
+                <button type="button" id="saveCategoryNumber" class="btn btn-primary">Save Category Number</button>
             </div>
             <div class="buttonRow hide" id="catSection">
+                <h3>Step 2: Category Names</h3>
                 <label>Please Type category names and click Save Categories button</label>
                 <table>
                     <tr id="catTableRow">
@@ -212,20 +280,29 @@
                 <button type="button" id="saveCategories" class="btn btn-primary">Save Categories</button>
             </div>
             <div class="buttonRow hide" id="rowNumSection">
+                <h3>Step 3: Number of Rows</h3>
                 <label for="categoryNum">Number of Rows Per Category?</label>
                 <input type="number" id="rowNum">
-                <button type="button" id="saveRowNumber" class="btn btn-primary">Save Row Number</button><br>
+                <button type="button" id="saveRowNumber" class="btn btn-primary">Save Row Number</button>
             </div>
             <div class="buttonRow hide" id="prizeSection">
+                <h3>Step 4: Row Values</h3>
                 <label>Please Type prize row values and click Save Prize Values button</label>
                 <table>
                     <tr id="prizeTableRow">
                     </tr>
                 </table>
-                <button type="button" id="savePrizes" class="btn btn-primary">Save Prizes</button><br>
+                <button type="button" id="savePrizes" class="btn btn-primary">Save Prizes</button>
+            </div>
+            <div class="buttonRow hide" id="questions">
+                <h3>Step 5: Category Questions</h3>
+                <table id="questionTable">
+                </table>
+                <button type="button" id="saveQuestions" class="btn btn-warning">Save Questions</button>
             </div>
             <div class="buttonRow hide" id="createSection">
-                <button type="button" id="createBoard">Create Jeopardy Board</button>
+                <h3>Step 6: Create Jeopardy Board</h3>
+                <button type="button" id="createBoard" class="btn btn-warning">Create Board</button>
             </div>
 
         </section>
@@ -239,6 +316,11 @@
                 </div>
                 <div class="modal-body">
                     <p id="modal-text">Modal body text goes here.</p>
+                    <button type="button" class="">Show Answer</button>
+                </div>
+                <div class="hide">
+                    <h4>Suggested Answer</h4>
+                    <p id="answerText"></p>
                 </div>
             </div>
         </div>
