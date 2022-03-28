@@ -88,6 +88,7 @@
             const savePrizesBtn = document.getElementById("savePrizes");
             const saveQuestionsBtn = document.getElementById("saveQuestions");
             const createBoardBtn = document.getElementById("createBoard");
+            const showAnswerBtn = document.getElementById("showAnswer");
 
             //global variables
             let eventTarget = "";
@@ -105,7 +106,9 @@
                     let rowNum = event.target.getAttribute("data-row");
                     let category = event.target.getAttribute("data-category");
                     answerModalTitle.textContent =  category + " for " + prizeValues[rowNum];
-                    answerModalText.textContent = "This HTML tag creates an numbered list";
+                    answerModalText.textContent = questions[category+"Q"][rowNum].value;
+                    answerModalAnswerText.textContent = answers[category + "A"][rowNum].value;
+                    document.getElementById("answserTextContainer").style.display = "none";
                     answerModal.show();
                 }
             });
@@ -117,7 +120,6 @@
             //makes category table
             saveCategoryNumBtn.addEventListener("click",function(event){
                 colNum = parseInt(document.getElementById("categoryNum").value);
-                console.log()
                 for (let i = 0;i<colNum;i++) {
                     let rowHTML = `<td><input id="cat${i}" type="text"></td>`;
                     categoryTableRow.insertAdjacentHTML('beforeend',rowHTML);
@@ -129,8 +131,8 @@
                 for(let i = 0;i<colNum;i++){
                     cats.push(document.getElementById("cat" + i).value)
                 }
-                document.getElementById("rowNumSection").style.display = "block"
-                console.log(cats)
+                document.getElementById("rowNumSection").style.display = "block";
+                // console.log(cats)
             });
             //saves row number and creates row prize table
             saveRowNumBtn.addEventListener("click",function(event){
@@ -156,23 +158,24 @@
             //stores questions from question table into questions 2D array
             saveQuestionsBtn.addEventListener("click",function (event) {
                 let qaNodeList = document.querySelectorAll("#questionTable input");
-                let qaNodeArray = Array.from(qaNodeList);
-
                 qaNodeList.forEach(function(item){
                     let rowVal = item.getAttribute("data-row");
-                    console.log(rowVal)
                     let rowCat = item.getAttribute("data-category");
-                    console.log(rowCat)
                     let rowCatLastLetter = rowCat.charAt(rowCat.length -1);
-                    console.log(rowCatLastLetter)
                     if (rowCatLastLetter === "Q") {
-                        questions[rowCat] = {'row':rowVal, "value": item.value}
+                        if (questions[rowCat] === undefined) {
+                            questions[rowCat] = []
+                        }
+                        questions[rowCat].push({'row':rowVal, "value": item.value})
                     } else {
-                        answers[rowCat] = {"category": rowCat.slice(0,rowCat.length-1), "value": item.value}
+                        if (answers[rowCat]=== undefined){
+                            answers[rowCat] = [];
+                        }
+                        answers[rowCat].push({'row':rowVal, "value": item.value})
                     }
                 });
-                console.log(questions)
-                console.log(answers)
+                console.log(questions);
+                console.log(answers);
 
                 document.getElementById("createSection").style.display = "block";
             });
@@ -181,9 +184,11 @@
             createBoardBtn.addEventListener("click",function(event){
                 let headerHTML = buildTableHeader(cats);
                 let rowsHTML = buildTableRows(rowNum,colNum,prizeValues,cats);
-                let tableHTML = headerHTML + rowsHTML;
-                // console.log(rowsHTML);
-                boardTable.innerHTML = tableHTML;
+                boardTable.innerHTML = headerHTML + rowsHTML;
+            });
+            //shows answer
+            showAnswerBtn.addEventListener("click",function(event){
+                document.getElementById("answserTextContainer").style.display = "block";
             });
 
 
@@ -235,8 +240,8 @@
                 for(let i = 0; i < rows;i++) {
                     tableRowText += "<tr id='q" + (i + 1) + "'>";
                     for (let j = 0;j< cols;j++) {
-                        if (j==0) {
-                            tableRowText += "<th>" + prizeValues[i];  + "</th>";
+                        if (j===0) {
+                            tableRowText += "<th>" + prizeValues[i]  + "</th>";
                         }
                         tableRowText += "<td>";
                         tableRowText += "<input data-row='" + i + "' data-category='" + categories[j] + "Q'>";
@@ -280,19 +285,19 @@
                 <button type="button" id="saveCategories" class="btn btn-primary">Save Categories</button>
             </div>
             <div class="buttonRow hide" id="rowNumSection">
-                <h3>Step 3: Number of Rows</h3>
-                <label for="categoryNum">Number of Rows Per Category?</label>
+                <h3>Step 3: Number of Point Rows</h3>
+                <label for="rowNum">Number of Point Rows Per Category?</label>
                 <input type="number" id="rowNum">
                 <button type="button" id="saveRowNumber" class="btn btn-primary">Save Row Number</button>
             </div>
             <div class="buttonRow hide" id="prizeSection">
-                <h3>Step 4: Row Values</h3>
-                <label>Please Type prize row values and click Save Prize Values button</label>
+                <h3>Step 4: Point Row Values</h3>
+                <label>Please Type point row values and click Save Point Values button</label>
                 <table>
                     <tr id="prizeTableRow">
                     </tr>
                 </table>
-                <button type="button" id="savePrizes" class="btn btn-primary">Save Prizes</button>
+                <button type="button" id="savePrizes" class="btn btn-primary">Save Point Values</button>
             </div>
             <div class="buttonRow hide" id="questions">
                 <h3>Step 5: Category Questions</h3>
@@ -316,9 +321,9 @@
                 </div>
                 <div class="modal-body">
                     <p id="modal-text">Modal body text goes here.</p>
-                    <button type="button" class="">Show Answer</button>
+                    <button type="button" class="" id="showAnswer">Show Answer</button>
                 </div>
-                <div class="hide">
+                <div id="answserTextContainer" class="hide">
                     <h4>Suggested Answer</h4>
                     <p id="answerText"></p>
                 </div>
