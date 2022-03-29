@@ -90,7 +90,7 @@
             const createBoardBtn = document.getElementById("createBoard");
             const showAnswerBtn = document.getElementById("showAnswer");
 
-            //global variables
+            //global state variables
             let eventTarget = "";
             let rowNum = 0;
             let colNum = 0;
@@ -99,7 +99,8 @@
             let questions = {};
             let answers = {};
 
-            //event listeners
+            //EVENT LISTENERS
+            //handles game board clicks
             boardTable.addEventListener("click",function(event){
                 if (event.target.matches('td')) {
                     eventTarget = event.target;
@@ -143,7 +144,7 @@
                 }
                 document.getElementById("prizeSection").style.display = "block"
             });
-            //saves prizes in rowContent
+            //saves prizes in rowContent and calls functions to create Question table
             savePrizesBtn.addEventListener("click",function(event){
                 for(let i = 0;i<rowNum;i++){
                     prizeValues.push(document.getElementById("prizeRow" + i).value)
@@ -155,7 +156,7 @@
                 questionTable.innerHTML = questionTableHeader + questionTableText;
                 document.getElementById("questions").style.display = "block";
             });
-            //stores questions from question table into questions 2D array
+            //stores questions from question table into questions and answers objects
             saveQuestionsBtn.addEventListener("click",function (event) {
                 let qaNodeList = document.querySelectorAll("#questionTable input");
                 qaNodeList.forEach(function(item){
