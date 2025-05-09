@@ -1,188 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", (ev) => {
-      const savebutton = document.getElementById("saveBtn")
-      const output = document.getElementById("output")
-      // console.log(savebutton)
-      const items = Array.from(document.getElementsByTagName("input"))
-      savebutton.addEventListener("click", (event) => {
-        let checkedItems = []
-        items.forEach((element) => {
-          if (element.checked) {
-            const checked = {}
-            checked["id"] = element.id
-            checkedItems.push(checked)
-          }
-          // console.log(checkedItems)
-          output.textContent = JSON.stringify(checkedItems)
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", (ev) => {
+        const savebutton = document.getElementById("saveBtn")
+        const output = document.getElementById("output")
+        // console.log(savebutton)
+        const items = Array.from(document.getElementsByTagName("input"))
+        savebutton.addEventListener("click", (event) => {
+          let checkedItems = []
+          items.forEach((element) => {
+            if (element.checked) {
+              const checked = {}
+              checked["id"] = element.id
+              checkedItems.push(checked)
+            }
+            // console.log(checkedItems)
+            output.textContent = JSON.stringify(checkedItems)
+          })
         })
       })
-    })
-  </script>
-</head>
-<body>
-<h1>Standard 6: Fundamentals of UX and UI Design</h1>
-<p>Students will be able to evaluate user needs, system requirements and design options to produce a high-quality user
-  experience model.</p>
-<table border="2">
-  <tr>
-    <th>Exposed</th>
-    <th>Competent</th>
-    <th>Proficient</th>
-    <th>Advanced</th>
-  </tr>
-  <tr>
-    <td>Students can recall the basic idea of the standards.</td>
-    <td>Student can explain the standard correctly.</td>
-    <td>Student can apply or demonstrate the standard correctly.</td>
-    <td>Student can evaluate the strengths and weakness of the standard and conclude when to use it.</td>
-  </tr>
-</table>
-<article>
-  <p>6.a Research and identify the reasons for making software accessible.</p>
-  <label for="6ae">exposed</label>
-  <input type="radio" id="6ae" name="6a" value="exposed">
-  <label for="6ac">competent</label>
-  <input type="radio" id="6ac" name="6a" value="competent">
-  <label for="6ap">proficient</label>
-  <input type="radio" id="6ap" name="6a" value="proficient">
-  <label for="6aa">advanced</label>
-  <input type="radio" id="6aa" name="6a" value="advanced">
-</article>
-<article>
-  <p> 6.b Research and identify methods for implementing software accessibility.</p>
-  <label for="6be">exposed</label>
-  <input type="radio" id="6be" name="6b" value="exposed">
-  <label for="6bc">competent</label>
-  <input type="radio" id="6bc" name="6b" value="competent">
-  <label for="6bp">proficient</label>
-  <input type="radio" id="6bp" name="6b" value="proficient">
-  <label for="6ba">advanced</label>
-  <input type="radio" id="6ba" name="6b" value="advanced">
-</article>
-<article>
-  <p>6.c Document the user goals, needs, behaviors, and preferences.</p>
-  <label for="6ce">exposed</label>
-  <input type="radio" id="6ce" name="6c" value="exposed">
-  <label for="6cc">competent</label>
-  <input type="radio" id="6cc" name="6c" value="competent">
-  <label for="6cp">proficient</label>
-  <input type="radio" id="6cp" name="6c" value="proficient">
-  <label for="6ca">advanced</label>
-  <input type="radio" id="6ca" name="6c" value="advanced">
-</article>
-<article>
-  <p>6.d Develop personas, research demographics, and identify user types for software.</p>
-  <label for="6de">exposed</label>
-  <input type="radio" id="6de" name="6d" value="exposed">
-  <label for="6dc">competent</label>
-  <input type="radio" id="6dc" name="6d" value="competent">
-  <label for="6dp">proficient</label>
-  <input type="radio" id="6dp" name="6d" value="proficient">
-  <label for="6da">advanced</label>
-  <input type="radio" id="6da" name="6d" value="advanced">
-</article>
-<article>
-  <p>6.e Develop user experience models that demonstrate an understanding of different audiences.</p>
-  <label for="6ee">exposed</label>
-  <input type="radio" id="6ee" name="6e" value="exposed">
-  <label for="6ec">competent</label>
-  <input type="radio" id="6ec" name="6e" value="competent">
-  <label for="6ep">proficient</label>
-  <input type="radio" id="6ep" name="6e" value="proficient">
-  <label for="6ea">advanced</label>
-  <input type="radio" id="6ea" name="6e" value="advanced">
-</article>
-<article>
-  <p>6.f Research and define where the software will provide feedback on defaults, status, error, validation, and
-    instructions to the user.</p>
-  <label for="6fe">exposed</label>
-  <input type="radio" id="6fe" name="6f" value="exposed">
-  <label for="6fc">competent</label>
-  <input type="radio" id="6fc" name="6f" value="competent">
-  <label for="6fp">proficient</label>
-  <input type="radio" id="6fp" name="6f" value="proficient">
-  <label for="6ea">advanced</label>
-  <input type="radio" id="6fa" name="6f" value="advanced">
-</article>
-<article>
-  <p>6.g Research and identify user research methodologies such as usability tests, user interviews, contextual
-    inquiries, and user observations.</p>
-  <label for="6ge">exposed</label>
-  <input type="radio" id="6ge" name="6g" value="exposed">
-  <label for="6gc">competent</label>
-  <input type="radio" id="6gc" name="6g" value="competent">
-  <label for="6gp">proficient</label>
-  <input type="radio" id="6gp" name="6g" value="proficient">
-  <label for="6ga">advanced</label>
-  <input type="radio" id="6ga" name="6g" value="advanced">
-</article>
-<article>
-  <p>6.h Describe design considerations for different display form factors.</p>
-  <label for="6he">exposed</label>
-  <input type="radio" id="6he" name="6h" value="exposed">
-  <label for="6hc">competent</label>
-  <input type="radio" id="6hc" name="6h" value="competent">
-  <label for="6hp">proficient</label>
-  <input type="radio" id="6hp" name="6h" value="proficient">
-  <label for="6ha">advanced</label>
-  <input type="radio" id="6ha" name="6h" value="advanced">
-</article>
-<article>
-  <p>6.i Define different user interface modalities.</p>
-  <label for="6ie">exposed</label>
-  <input type="radio" id="6ie" name="6i" value="exposed">
-  <label for="6ic">competent</label>
-  <input type="radio" id="6ic" name="6i" value="competent">
-  <label for="6ip">proficient</label>
-  <input type="radio" id="6ip" name="6i" value="proficient">
-  <label for="6ia">advanced</label>
-  <input type="radio" id="6ia" name="6i" value="advanced">
-</article>
-<article>
-  <p>6.j Create a simplified interface layout for part of a software application using an appropriate graphic design
-    tool.</p>
-  <label for="6je">exposed</label>
-  <input type="radio" id="6je" name="6j" value="exposed">
-  <label for="6jc">competent</label>
-  <input type="radio" id="6jc" name="6j" value="competent">
-  <label for="6jp">proficient</label>
-  <input type="radio" id="6jp" name="6j" value="proficient">
-  <label for="6ja">advanced</label>
-  <input type="radio" id="6ja" name="6j" value="advanced">
-</article>
-<article>
-  <p>6.k Build a storyboard of the user interface for a software application.</p>
-  <label for="6ke">exposed</label>
-  <input type="radio" id="6ke" name="6k" value="exposed">
-  <label for="6kc">competent</label>
-  <input type="radio" id="6kc" name="6k" value="competent">
-  <label for="6kp">proficient</label>
-  <input type="radio" id="6kp" name="6k" value="proficient">
-  <label for="6ka">advanced</label>
-  <input type="radio" id="6ka" name="6k" value="advanced">
-</article>
-<article>
-  <p>6.l Create a prototype from an interface layout and storyboard.</p>
-  <label for="6le">exposed</label>
-  <input type="radio" id="6le" name="6l" value="exposed">
-  <label for="6lc">competent</label>
-  <input type="radio" id="6lc" name="6k" value="competent">
-  <label for="6lp">proficient</label>
-  <input type="radio" id="6lp" name="6l" value="proficient">
-  <label for="6la">advanced</label>
-  <input type="radio" id="6la" name="6l" value="advanced">
-</article>
+    </script>
+  </head>
+  <body>
+  <header>
+    <nav>
+      <a href="standards3.html">Standard 3</a><br>
+    </nav>
+  </header>
+  <h1>Standard 6: Fundamentals of UX and UI Design</h1>
+  <p>Students will be able to evaluate user needs, system requirements and design options to produce a high-quality user
+    experience model.</p>
+  <table border="2">
+    <tr>
+      <th>Exposed</th>
+      <th>Competent</th>
+      <th>Proficient</th>
+      <th>Advanced</th>
+    </tr>
+    <tr>
+      <td>Students can recall the basic idea of the standards.</td>
+      <td>Student can explain the standard correctly.</td>
+      <td>Student can apply or demonstrate the standard correctly.</td>
+      <td>Student can evaluate the strengths and weakness of the standard and conclude when to use it.</td>
+    </tr>
+  </table>
+  <article>
+    <p>6.a Research and identify the reasons for making software accessible.</p>
+    <label for="6ae">exposed</label>
+    <input type="radio" id="6ae" name="6a" value="exposed">
+    <label for="6ac">competent</label>
+    <input type="radio" id="6ac" name="6a" value="competent">
+    <label for="6ap">proficient</label>
+    <input type="radio" id="6ap" name="6a" value="proficient">
+    <label for="6aa">advanced</label>
+    <input type="radio" id="6aa" name="6a" value="advanced">
+  </article>
+  <article>
+    <p> 6.b Research and identify methods for implementing software accessibility.</p>
+    <label for="6be">exposed</label>
+    <input type="radio" id="6be" name="6b" value="exposed">
+    <label for="6bc">competent</label>
+    <input type="radio" id="6bc" name="6b" value="competent">
+    <label for="6bp">proficient</label>
+    <input type="radio" id="6bp" name="6b" value="proficient">
+    <label for="6ba">advanced</label>
+    <input type="radio" id="6ba" name="6b" value="advanced">
+  </article>
+  <article>
+    <p>6.c Document the user goals, needs, behaviors, and preferences.</p>
+    <label for="6ce">exposed</label>
+    <input type="radio" id="6ce" name="6c" value="exposed">
+    <label for="6cc">competent</label>
+    <input type="radio" id="6cc" name="6c" value="competent">
+    <label for="6cp">proficient</label>
+    <input type="radio" id="6cp" name="6c" value="proficient">
+    <label for="6ca">advanced</label>
+    <input type="radio" id="6ca" name="6c" value="advanced">
+  </article>
+  <article>
+    <p>6.d Develop personas, research demographics, and identify user types for software.</p>
+    <label for="6de">exposed</label>
+    <input type="radio" id="6de" name="6d" value="exposed">
+    <label for="6dc">competent</label>
+    <input type="radio" id="6dc" name="6d" value="competent">
+    <label for="6dp">proficient</label>
+    <input type="radio" id="6dp" name="6d" value="proficient">
+    <label for="6da">advanced</label>
+    <input type="radio" id="6da" name="6d" value="advanced">
+  </article>
+  <article>
+    <p>6.e Develop user experience models that demonstrate an understanding of different audiences.</p>
+    <label for="6ee">exposed</label>
+    <input type="radio" id="6ee" name="6e" value="exposed">
+    <label for="6ec">competent</label>
+    <input type="radio" id="6ec" name="6e" value="competent">
+    <label for="6ep">proficient</label>
+    <input type="radio" id="6ep" name="6e" value="proficient">
+    <label for="6ea">advanced</label>
+    <input type="radio" id="6ea" name="6e" value="advanced">
+  </article>
+  <article>
+    <p>6.f Research and define where the software will provide feedback on defaults, status, error, validation, and
+      instructions to the user.</p>
+    <label for="6fe">exposed</label>
+    <input type="radio" id="6fe" name="6f" value="exposed">
+    <label for="6fc">competent</label>
+    <input type="radio" id="6fc" name="6f" value="competent">
+    <label for="6fp">proficient</label>
+    <input type="radio" id="6fp" name="6f" value="proficient">
+    <label for="6ea">advanced</label>
+    <input type="radio" id="6fa" name="6f" value="advanced">
+  </article>
+  <article>
+    <p>6.g Research and identify user research methodologies such as usability tests, user interviews, contextual
+      inquiries, and user observations.</p>
+    <label for="6ge">exposed</label>
+    <input type="radio" id="6ge" name="6g" value="exposed">
+    <label for="6gc">competent</label>
+    <input type="radio" id="6gc" name="6g" value="competent">
+    <label for="6gp">proficient</label>
+    <input type="radio" id="6gp" name="6g" value="proficient">
+    <label for="6ga">advanced</label>
+    <input type="radio" id="6ga" name="6g" value="advanced">
+  </article>
+  <article>
+    <p>6.h Describe design considerations for different display form factors.</p>
+    <label for="6he">exposed</label>
+    <input type="radio" id="6he" name="6h" value="exposed">
+    <label for="6hc">competent</label>
+    <input type="radio" id="6hc" name="6h" value="competent">
+    <label for="6hp">proficient</label>
+    <input type="radio" id="6hp" name="6h" value="proficient">
+    <label for="6ha">advanced</label>
+    <input type="radio" id="6ha" name="6h" value="advanced">
+  </article>
+  <article>
+    <p>6.i Define different user interface modalities.</p>
+    <label for="6ie">exposed</label>
+    <input type="radio" id="6ie" name="6i" value="exposed">
+    <label for="6ic">competent</label>
+    <input type="radio" id="6ic" name="6i" value="competent">
+    <label for="6ip">proficient</label>
+    <input type="radio" id="6ip" name="6i" value="proficient">
+    <label for="6ia">advanced</label>
+    <input type="radio" id="6ia" name="6i" value="advanced">
+  </article>
+  <article>
+    <p>6.j Create a simplified interface layout for part of a software application using an appropriate graphic design
+      tool.</p>
+    <label for="6je">exposed</label>
+    <input type="radio" id="6je" name="6j" value="exposed">
+    <label for="6jc">competent</label>
+    <input type="radio" id="6jc" name="6j" value="competent">
+    <label for="6jp">proficient</label>
+    <input type="radio" id="6jp" name="6j" value="proficient">
+    <label for="6ja">advanced</label>
+    <input type="radio" id="6ja" name="6j" value="advanced">
+  </article>
+  <article>
+    <p>6.k Build a storyboard of the user interface for a software application.</p>
+    <label for="6ke">exposed</label>
+    <input type="radio" id="6ke" name="6k" value="exposed">
+    <label for="6kc">competent</label>
+    <input type="radio" id="6kc" name="6k" value="competent">
+    <label for="6kp">proficient</label>
+    <input type="radio" id="6kp" name="6k" value="proficient">
+    <label for="6ka">advanced</label>
+    <input type="radio" id="6ka" name="6k" value="advanced">
+  </article>
+  <article>
+    <p>6.l Create a prototype from an interface layout and storyboard.</p>
+    <label for="6le">exposed</label>
+    <input type="radio" id="6le" name="6l" value="exposed">
+    <label for="6lc">competent</label>
+    <input type="radio" id="6lc" name="6k" value="competent">
+    <label for="6lp">proficient</label>
+    <input type="radio" id="6lp" name="6l" value="proficient">
+    <label for="6la">advanced</label>
+    <input type="radio" id="6la" name="6l" value="advanced">
+  </article>
 
 
-<button type="button" id="saveBtn">save</button>
-<button type="button" id="setBtn">set</button>
-<p id="output">text out put goes here</p>
+  <button type="button" id="saveBtn">save</button>
+  <button type="button" id="setBtn">set</button>
+  <p id="output">text out put goes here</p>
 
 
-</body>
+  </body>
 </html>
