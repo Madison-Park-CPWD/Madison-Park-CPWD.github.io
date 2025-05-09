@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+         document.addEventListener("DOMContentLoaded",(event)=> {
+             const buttonSave = document.getElementById("btnSave")
+             const right = document.getElementById("correct")
+             // console.log("buttonSave")
+             const items = Array.from (document.getElementsByTagName("input"))
+             const checkedItems = []
+             // console.log(items)
+             buttonSave.addEventListener("click",(event)=>{
+                 items.forEach((element) => {
+                     if (element.checked) {
+                         let check = {}
+                         check["id"] = element.id;
+                         checkedItems.push(check)
+                     }
+                 })
+                 right.textContent=JSON.stringify(checkedItems)
+             })
+
+
+         })
+    </script>
+
+
+  </head>
+  <body>
+    <header>
+      <h1> Standard 10: Employability Skills </h1>
+    </header>
+    <main>
+      <p> Students will understand and demonstrate the roles of professional communication, critical thinking, problem solving, professionalism, teamwork and collaboration within the context of programming and web development. </p>
+      <table border="1">
+        <tr>
+          <th> Exposed </th>
+          <th> Competent </th>
+          <th> Proficient </th>
+          <th> advanced </th>
+        </tr>
+        <tr>
+          <td> Student can recall the basic idea of the standard. </td>
+          <td> Student can explain the standard correctly </td>
+          <td> Student can apply or demonstrate the standard correctly. </td>
+          <td> Student can evaluate the strengths and weaknesses of the standard and conclude when to use correctly. </td>
+        </tr>
+      </table>
+      <p> 10.a Describe the impact of advances in software applications on equal access to information and economic opportunity. </p>
+    </main>
+    <label for="10ae">Exposed</label>
+    <input type="radio" id="10ae" name="10.a" value="exposed">
+    <label for="10ap">proficient</label>
+    <input type="radio" id="10ap" name="10.a" value="proficient">
+    <label for="10ac">competent</label>
+    <input type="radio" id="10ac" name="10.a" value="competent">
+    <label for="10aa">advanced</label>
+    <input type="radio" id="10aa" name="10.a" value="advanced">
+
+<p> 10.b Evaluate the positive and negative impacts of communication skills on the needs identification process. </p>
+    <label for="10be">Exposed</label>
+    <input type="radio" id="10be" name="10.b" value="exposed">
+    <label for="10bp">proficient</label>
+    <input type="radio" id="10bp" name="10.b" value="proficient">
+    <label for="10bc">competent</label>
+    <input type="radio" id="10bc" name="10.b" value="competent">
+    <label for="10ba">advanced</label>
+    <input type="radio" id="10ba" name="10.b" value="advanced">
+
+<p> 10.c Evaluate the positive and negative impacts of communication skills on the project planning process, especially in the translation of customer needs into a development plan. </p>
+    <label for="10ce">Exposed</label>
+    <input type="radio" id="10ce" name="10.c" value="exposed">
+    <label for="10cp">proficient</label>
+    <input type="radio" id="10cp" name="10.c" value="proficient">
+    <label for="10cc">competent</label>
+    <input type="radio" id="10cc" name="10.c" value="competent">
+    <label for="10ca">advanced</label>
+    <input type="radio" id="10ca" name="10.c" value="advanced">
+
+<p> 10.d Identify and describe factors that could cause undesired outcomes in a development project. </p>
+    <label for="10de">Exposed</label>
+    <input type="radio" id="10de" name="10.d" value="exposed">
+    <label for="10dp">proficient</label>
+    <input type="radio" id="10dp" name="10.d" value="proficient">
+    <label for="10dc">competent</label>
+    <input type="radio" id="10dc" name="10.d" value="competent">
+    <label for="10da">advanced</label>
+    <input type="radio" id="10da" name="10.d" value="advanced">
+
+<p> 10.e Create a hypothetical project team with multiple roles. </p>
+    <label for="10ee">Exposed</label>
+    <input type="radio" id="10ee" name="10.e" value="exposed">
+    <label for="10ep">proficient</label>
+    <input type="radio" id="10ep" name="10.e" value="proficient">
+    <label for="10ec">competent</label>
+    <input type="radio" id="10ec" name="10.e" value="competent">
+    <label for="10ea">advanced</label>
+    <input type="radio" id="10ea" name="10.e" value="advanced">
+  <br>
+    <br>
+  <button id="btnSave">Save</button>
+  <br>
+  <h2 id="correct"></h2>
+  </body>
+</html>

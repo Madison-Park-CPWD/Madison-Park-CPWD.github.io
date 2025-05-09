@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" herf="Standards.2.css">
+    <script>
+        document.addEventListener("DOMContentLoaded",(event)=>{
+            const buttonsave = document.getElementById("buttonsave")
+            console.log(buttonsave)
+            let checkedInputs = [];
+            const output = document.getElementById("output")
+
+        buttonsave.addEventListener("click" ,(event)=>{
+            checkedInputs = [];
+            const inputs = Array.from(document.getElementsByTagName('input'))
+            inputs.forEach((element)=>{
+                if(element.checked) {
+                    let checked = {}
+                    checked["id"] = element.id
+                    console.log(checked)
+                    checkedInputs.push(checked)
+                }
+
+            })
+            output.textContent = JSON.stringify(checkedInputs)
+
+        })
+            reset.addEventListener("click",(event)=>{
+                const checked = output.textContent
+                const checked_array = JSON.parse(checked)
+                console.log(checked_array)
+                checked_array.forEach((element)=>{
+                    let el = document.getElementById(element.id)
+                    el.checked = true
+                })
+            })
+
+    })
+    </script>
+
+
+    <title>Title</title>
+</head>
+<body>
+<header>
+<h1> Standard 2: Software Development in the workplace and the community</h1>
+    <p>Students will be able to explain the role of software applications in the workplace and the community, including the impacts of software development on commerce and culture and its potential to advance equity.</p>
+</header>
+<table border="1">
+    <tr>
+        <th>Exposed</th>
+        <th>competent</th>
+        <th>Proficient</th>
+        <th>Advanced</th>
+    </tr>
+    <td>student can recall the basic idea of the standard.</td>
+    <td>student can explain the standard correctly.</td>
+    <td>student can apply or demonstrate the standard correctly.</td>
+    <td>student can evaluate the strengths and weaknesses of the standard and conclude when to use it.</td>
+</table>
+<p>2.A Describe the history of the software industry, including the contributions of traditionally underrepresented groups.</p>
+<label for="2AE">Exposed</label>
+<input type="radio" id="2AE" name="2A" value="Exposed">
+<label for="2AC">Competent</label>
+<input type="radio" id="2AC" name="2A" value="Competent">
+<label for="2AP">Proficient</label>
+<input type="radio" id="2AP" name="2A" value="Proficient">
+<label for="2AA">Advanced</label>
+<input type="radio" id="2AA" name="2A" value="Advanced">
+
+<p>2.B Describe the history of the software industry, including the contributions of traditionally underrepresented groups.</p>
+<label for="2BE">Exposed</label>
+<input type="radio" id="2BE" name="2B" value="Exposed">
+<label for="2BC">Competent</label>
+<input type="radio" id="2BC" name="2B" value="Competent">
+<label for="2BP">Proficient</label>
+<input type="radio" id="2BP" name="2B" value="Proficient">
+<label for="2BA">Advanced</label>
+<input type="radio" id="2BA" name="2B" value="Advanced">
+
+<p>2.C Research and classify professional certifications.</p>
+<label for="2CE">Exposed</label>
+<input type="radio" id="2CE" name="2C" value="Exposed">
+<label for="2CC">Competent</label>
+<input type="radio" id="2CC" name="2C" value="Competent">
+<label for="2CP">Proficient</label>
+<input type="radio" id="2CP" name="2C" value="Proficient">
+<label for="2CA">Advanced</label>
+<input type="radio" id="2CA" name="2C" value="Advanced">
+
+<p>2.D Analyze the harmful and beneficial impacts that software applications have on society.</p>
+<label for="2DE">Exposed</label>
+<input type="radio" id="2DE" name="2D" value="Exposed">
+<label for="2DC">Competent</label>
+<input type="radio" id="2DC" name="2D" value="Competent">
+<label for="2DP">Proficient</label>
+<input type="radio" id="2DP" name="2D" value="Proficient">
+<label for="2DA">Advanced</label>
+<input type="radio" id="2DA" name="2D" value="Advanced">
+
+<p>2.E Describe ways that software can make workplaces and communities more equitable.</p>
+<label for="2EE">Exposed</label>
+<input type="radio" id="2EE" name="2E" value="Exposed">
+<label for="2EC">Competent</label>
+<input type="radio" id="2EC" name="2E" value="Competent">
+<label for="2EP">Proficient</label>
+<input type="radio" id="2EP" name="2E" value="Proficient">
+<label for="2EA">Advanced</label>
+<input type="radio" id="2EA" name="2E" value="Advanced">
+
+
+<p>2.F Research and identify the harmful and beneficial uses of social media in workplaces and communities.</p>
+<label for="2FE">Exposed</label>
+<input type="radio" id="2FE" name="2F" value="Exposed">
+<label for="2FC">Competent</label>
+<input type="radio" id="2FC" name="2F" value="Competent">
+<label for="2FP">Proficient</label>
+<input type="radio" id="2FP" name="2F" value="Proficient">
+<label for="2FA">Advanced</label>
+<input type="radio" id="2FA" name="2F" value="Advanced">
+
+
+<p>2.G Research and identify uses of new and evolving technologies affecting the industry.</p>
+<label for="2GE">Exposed</label>
+<input type="radio" id="2GE" name="2G" value="Exposed">
+<label for="2GC">Competent</label>
+<input type="radio" id="2GC" name="2G" value="Competent">
+<label for="2GP">Proficient</label>
+<input type="radio" id="2GP" name="2G" value="Proficient">
+<label for="2GA">Advanced</label>
+<input type="radio" id="2GA" name="2G" value="Advanced">
+
+<p>2.H Explain the impact of the digital divide on access to critical information. </p>
+<label for="2HE">Exposed</label>
+<input type="radio" id="2HE" name="2H" value="Exposed">
+<label for="2HC">Competent</label>
+<input type="radio" id="2HC" name="2H" value="Competent">
+<label for="2HP">Proficient</label>
+<input type="radio" id="2HP" name="2H" value="Proficient">
+<label for="2HA">Advanced</label>
+<input type="radio" id="2HA" name="2H" value="Advanced">
+
+
+<p>2.I Research and identify the attributes of a digital footprint and its extent and impact on one’s reputation.</p>
+<label for="2IE">Exposed</label>
+<input type="radio" id="2IE" name="2I" value="Exposed">
+<label for="2IC">Competent</label>
+<input type="radio" id="2IC" name="2I" value="Competent">
+<label for="2IP">Proficient</label>
+<input type="radio" id="2IP" name="2I" value="Proficientd">
+<label for="2IA">Advanced</label>
+<input type="radio" id="2IA" name="2I" value="Advanced">
+<button type="submit" id="buttonsave">save</button>
+<p id="output"></p>
+</body>
+</html>
