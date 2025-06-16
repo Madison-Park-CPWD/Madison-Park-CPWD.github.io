@@ -14,23 +14,27 @@
         </style>
         <script>
             document.addEventListener("DOMContentLoaded", (ev) => {
-            const savebutton = document.getElementById("saveBtn")
-            const output = document.getElementById("output")
-            // console.log(savebutton)
-            const items = Array.from(document.getElementsByTagName("input"))
-            savebutton.addEventListener("click", (event) => {
-              let checkedItems = []
-              items.forEach((element) => {
-                if (element.checked) {
-                  const checked = {}
-                  checked["id"] = element.id
-                  checkedItems.push(checked)
-                }
-                // console.log(checkedItems)
-                output.textContent = JSON.stringify(checkedItems)
-              })
+                const savebutton = document.getElementById("saveBtn")
+                const output = document.getElementById("output")
+                // console.log(savebutton)
+                const items = Array.from(document.getElementsByTagName("input"))
+                savebutton.addEventListener("click", (event) => {
+                    let checkedItems = []
+                    items.forEach((element) => {
+                        if (element.checked) {
+                            const checked = {}
+                            checked["id"] = element.id
+                            checkedItems.push(checked)
+                            checked["rating"] = element.value
+                        }
+                        // console.log(checkedItems)
+                        localStorage.setItem("standards8", JSON.stringify(checkedItems));
+                        localStorage.getItem("standards8")
+                        const standard8 = localStorage.getItem("standards8")
+                        output.textContent = "You have submitted your results"
+                    })
+                })
             })
-          })
         </script>
 
     </head>
@@ -44,6 +48,7 @@
                 <a href="standard6.html">Standard 6</a><br>
                 <a href="standard7.html">Standard 7</a><br>
                 <a href="standard10.html">Standard 10</a><br>
+                <a href="result.html">Results</a>
             </nav>
         </header>
         <main>
@@ -203,7 +208,7 @@
                 <label for="8ka">Advanced</label>
                 <input type="radio" id="8ka" value="Advanced" name="8k">
             </article>
-            <button id="btnsave">Save</button>
+            <button id="saveBtn">Save</button>
             <h3 id="output"></h3>
         </main>
         <footer></footer>

@@ -16,9 +16,13 @@
               const checked = {}
               checked["id"] = element.id
               checkedItems.push(checked)
+              checked["rating"] = element.value
             }
             // console.log(checkedItems)
-            output.textContent = JSON.stringify(checkedItems)
+            localStorage.setItem("standards6", JSON.stringify(checkedItems));
+            localStorage.getItem("standards6")
+            const standard6 = localStorage.getItem("standards6")
+            output.textContent = "You have submitted your results"
           })
         })
       })
@@ -34,6 +38,7 @@
       <a href="standard7.html">Standard 7</a><br>
       <a href="standard8.html">Standard 8</a><br>
       <a href="standard10.html">Standard 10</a><br>
+      <a href="result.html">Results</a>
     </nav>
   </header>
   <h1>Standard 6: Fundamentals of UX and UI Design</h1>

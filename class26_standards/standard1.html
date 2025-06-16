@@ -18,9 +18,13 @@
                   const checked = {}
                   checked["id"] = element.id
                   checkedItems.push(checked)
+                    checked["rating"] = element.value
                 }
                 // console.log(checkedItems)
-                output.textContent = JSON.stringify(checkedItems)
+                  localStorage.setItem("standards1", JSON.stringify(checkedItems));
+                localStorage.getItem("standards1")
+                  const standard1 = localStorage.getItem("standards1")
+                  output.textContent = "You have submitted your results"
               })
             })
           })
@@ -36,6 +40,7 @@
         <a href="standard7.html">Standard 7</a><br>
         <a href="standard8.html">Standard 8</a><br>
         <a href="standard10.html">Standard 10</a><br>
+        <a href="result.html">Results</a>
     </nav>
     <h1>Safety and Health in a Computer Environment</h1>
 </header>

@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
-         document.addEventListener("DOMContentLoaded", (ev) => {
-        const savebutton = document.getElementById("saveBtn")
-        const output = document.getElementById("output")
-        // console.log(savebutton)
-        const items = Array.from(document.getElementsByTagName("input"))
-        savebutton.addEventListener("click", (event) => {
-          let checkedItems = []
-          items.forEach((element) => {
-            if (element.checked) {
-              const checked = {}
-              checked["id"] = element.id
-              checkedItems.push(checked)
-            }
-            // console.log(checkedItems)
-            output.textContent = JSON.stringify(checkedItems)
-          })
+        document.addEventListener("DOMContentLoaded", (ev) => {
+            const savebutton = document.getElementById("saveBtn")
+            const output = document.getElementById("output")
+            // console.log(savebutton)
+            const items = Array.from(document.getElementsByTagName("input"))
+            savebutton.addEventListener("click", (event) => {
+                let checkedItems = []
+                items.forEach((element) => {
+                    if (element.checked) {
+                        const checked = {}
+                        checked["id"] = element.id
+                        checkedItems.push(checked)
+                        checked["rating"] = element.value
+                    }
+                    // console.log(checkedItems)
+                    localStorage.setItem("standards10", JSON.stringify(checkedItems));
+                    localStorage.getItem("standards10")
+                    const standard10 = localStorage.getItem("standards10")
+                    output.textContent = "You have submitted your results"
+                })
+            })
         })
-      })
     </script>
 
 
@@ -36,6 +40,7 @@
             <a href="standard6.html">Standard 6</a><br>
             <a href="standard7.html">Standard 7</a><br>
             <a href="standard8.html">Standard 8</a><br>
+            <a href="result.html">Results</a>
         </nav>
       <h1> Standard 10: Employability Skills </h1>
     </header>
@@ -107,8 +112,8 @@
     <input type="radio" id="10ea" name="10.e" value="advanced">
   <br>
     <br>
-  <button id="btnSave">Save</button>
+  <button id="saveBtn">Save</button>
   <br>
-  <h2 id="correct"></h2>
+  <h2 id="output"></h2>
   </body>
 </html>

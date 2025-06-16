@@ -4,24 +4,27 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-                document.addEventListener("DOMContentLoaded", (ev) => {
-        const savebutton = document.getElementById("saveBtn")
-        const output = document.getElementById("output")
-        // console.log(savebutton)
-        const items = Array.from(document.getElementsByTagName("input"))
-        savebutton.addEventListener("click", (event) => {
-          let checkedItems = []
-          items.forEach((element) => {
-            if (element.checked) {
-              const checked = {}
-              checked["id"] = element.id
-              checkedItems.push(checked)
-            }
-            // console.log(checkedItems)
-            output.textContent = JSON.stringify(checkedItems)
-          })
-        })
-      })
+            document.addEventListener("DOMContentLoaded", (ev) => {
+                const buttonsave = document.getElementById("saveBtn")
+                const output = document.getElementById("output")
+                // console.log(buttonsave)
+                const items = Array.from(document.getElementsByTagName("input"))
+                buttonsave.addEventListener("click", (event) => {
+                    let checkedItems = []
+                    items.forEach((element) => {
+                        if (element.checked) {
+                            const checked = {}
+                            checked["id"] = element.id
+                            checkedItems.push(checked)
+                            checked["rating"] = element.value
+                        }
+                        localStorage.setItem("standards3", JSON.stringify(checkedItems));
+                        // localStorage.getItem("standards2")
+                        const standard3 = localStorage.getItem("standards3")
+                        output.textContent = "You have submitted your results"
+                    })
+                })
+            })
         </script>
     </head>
     <body>
@@ -34,6 +37,7 @@
                 <a href="standard7.html">Standard 7</a><br>
                 <a href="standard8.html">Standard 8</a><br>
                 <a href="standard10.html">Standard 10</a><br>
+                <a href="result.html">Results</a>
             </nav>
         </header>
         <main>
@@ -62,7 +66,7 @@
                 <label for="3ap">Proficient</label>
                 <input type="radio" id="3ap" name="3a" value="proficient">
                 <label for="3aa">Advanced</label>
-                <input type="radio" id="3aa" name="3a" value="exposed">
+                <input type="radio" id="3aa" name="3a" value="advanced">
 
                 <h2>3.b Identify security principles, vulnerability, and threats in software</h2>
                 <label for="3be">Exposed</label>
@@ -72,17 +76,17 @@
                 <label for="3bp">Proficient</label>
                 <input type="radio" id="3bp" name="3b" value="proficient">
                 <label for="3ba">Advanced</label>
-                <input type="radio" id="3ba" name="3b" value="exposed">
+                <input type="radio" id="3ba" name="3b" value="advanced">
 
                 <h2>3.c Identify security principles, vulnerability, and threats in network infrastructure</h2>
                 <label for="3ce">Exposed</label>
                 <input type="radio" id="3ce" name="3c" value="exposed">
                 <label for="3bc">Competent</label>
-                <input type="radio" id="3bc" name="3c" value="competent">
+                <input type="radio" id="3cc" name="3c" value="competent">
                 <label for="3bp">Proficient</label>
                 <input type="radio" id="3cp" name="3c" value="proficient">
                 <label for="3ba">Advanced</label>
-                <input type="radio" id="3ca" name="3c" value="exposed">
+                <input type="radio" id="3ca" name="3c" value="advanced">
 
                 <h2>3.d Analyze threat maps to identify cyberattack targets and origins.</h2>
                 <label for="3de">Exposed</label>
@@ -92,7 +96,7 @@
                 <label for="3dp">Proficient</label>
                 <input type="radio" id="3dp" name="3d" value="proficient">
                 <label for="3da">Advanced</label>
-                <input type="radio" id="3da" name="3d" value="exposed">
+                <input type="radio" id="3da" name="3d" value="advanced">
 
                 <h2>3.e Explain what secure systems are from a Confidentiality, Integrity, availability (CIA triad) perspective.</h2>
                 <label for="3ee">Exposed</label>
@@ -102,7 +106,7 @@
                 <label for="3ep">Proficient</label>
                 <input type="radio" id="3ep" name="3e" value="proficient">
                 <label for="3ba">Advanced</label>
-                <input type="radio" id="3ba" name="3e" value="exposed">
+                <input type="radio" id="3ea" name="3e" value="advanced">
 
                 <h2>3.f Research and identify components of access control such as Identification, authentication, and authorization</h2>
                 <label for="3fe">Exposed</label>
@@ -112,7 +116,7 @@
                 <label for="3fp">Proficient</label>
                 <input type="radio" id="3fp" name="3f" value="proficient">
                 <label for="3fa">Advanced</label>
-                <input type="radio" id="3fa" name="3f" value="exposed">
+                <input type="radio" id="3fa" name="3f" value="advanced">
 
                 <h2>3.g Identify and demonstrate the basics of cryptography and research and describe topics in cryptology, cryptography, and cryptanalysis</h2>
                 <label for="3ge">Exposed</label>
@@ -122,7 +126,7 @@
                 <label for="3gp">Proficient</label>
                 <input type="radio" id="3gp" name="3g" value="proficient">
                 <label for="3ga">Advanced</label>
-                <input type="radio" id="3ga" name="3g" value="exposed">
+                <input type="radio" id="3ga" name="3g" value="advanced">
 
                 <h2>3.h Research and describe penetration testing methods in the context of ethical hacking.</h2>
                 <label for="3he">Exposed</label>
@@ -132,7 +136,7 @@
                 <label for="3hp">Proficient</label>
                 <input type="radio" id="3hp" name="3h" value="proficient">
                 <label for="3ha">Advanced</label>
-                <input type="radio" id="3ha" name="3h" value="exposed">
+                <input type="radio" id="3ha" name="3h" value="advanced">
 
                 <h2>3.i Classify hardware components, their functions, and relationships and analyze different hardware components required for software applications for a specific use.</h2>
                 <label for="3ie">Exposed</label>
@@ -142,7 +146,7 @@
                 <label for="3ip">Proficient</label>
                 <input type="radio" id="3ip" name="3i" value="proficient">
                 <label for="3ia">Advanced</label>
-                <input type="radio" id="3ia" name="3i" value="exposed">
+                <input type="radio" id="3ia" name="3i" value="advanced">
 
                 <h2>3.j Demonstrate programming a physical computing device.</h2>
                 <label for="3je">Exposed</label>
@@ -152,7 +156,7 @@
                 <label for="3jp">Proficient</label>
                 <input type="radio" id="3jp" name="3j" value="proficient">
                 <label for="3ja">Advanced</label>
-                <input type="radio" id="3ja" name="3j" value="exposed">
+                <input type="radio" id="3ja" name="3j" value="advanced">
 
                 <h2>3.k Explain concepts fundamental to networking.</h2>
                 <label for="3ke">Exposed</label>
@@ -162,7 +166,7 @@
                 <label for="3kp">Proficient</label>
                 <input type="radio" id="3kp" name="3k" value="proficient">
                 <label for="3ka">Advanced</label>
-                <input type="radio" id="3ka" name="3k" value="exposed">
+                <input type="radio" id="3ka" name="3k" value="advanced">
 
                 <h2>3.l Describe the purpose of a network and identify and explain the functions of network hardware components.</h2>
                 <label for="3le">Exposed</label>
@@ -172,7 +176,7 @@
                 <label for="3lp">Proficient</label>
                 <input type="radio" id="3lp" name="3l" value="proficient">
                 <label for="3la">Advanced</label>
-                <input type="radio" id="3la" name="3l" value="exposed">
+                <input type="radio" id="3la" name="3l" value="advanced">
 
                 <h2>3.m Explain cloud computing and its components. Explain how network topologies and protocols enable users, devices, and systems to communicate with each other.</h2>
                 <label for="3me">Exposed</label>
@@ -182,7 +186,7 @@
                 <label for="3mp">Proficient</label>
                 <input type="radio" id="3mp" name="3m" value="proficient">
                 <label for="3ma">Advanced</label>
-                <input type="radio" id="3ma" name="3m" value="exposed">
+                <input type="radio" id="3ma" name="3m" value="advanced">
 
                 <h2>3.n Research and identify server-side networking software components. (Firewalls, Domain Name System (DNS), Visual Private Network (VPN), Proxy Servers, Dynamic Host Configuration Protocol (DHCP), File Transfer Protocol (FTP), Data Center (DC), and Active Directory (AD)).</h2>
                 <label for="3ne">Exposed</label>
@@ -192,7 +196,7 @@
                 <label for="3np">Proficient</label>
                 <input type="radio" id="3np" name="3n" value="proficient">
                 <label for="3na">Advanced</label>
-                <input type="radio" id="3na" name="3n" value="exposed">
+                <input type="radio" id="3na" name="3n" value="advanced">
 
                 <h2>3.o Identify security risks associated with storing information on network devices.</h2>
                 <label for="3oe">Exposed</label>
@@ -202,7 +206,7 @@
                 <label for="3op">Proficient</label>
                 <input type="radio" id="3op" name="3o" value="proficient">
                 <label for="3oa">Advanced</label>
-                <input type="radio" id="3oa" name="3o" value="exposed">
+                <input type="radio" id="3oa" name="3o" value="advanced">
 
                 <h2>3.p Describe the purpose of an operating system.</h2>
                 <label for="3pe">Exposed</label>
@@ -212,7 +216,7 @@
                 <label for="3pp">Proficient</label>
                 <input type="radio" id="3pp" name="3p" value="proficient">
                 <label for="3pa">Advanced</label>
-                <input type="radio" id="3pa" name="3p" value="exposed">
+                <input type="radio" id="3pa" name="3p" value="advanced">
 
                 <h2>3.q Differentiate between desktop, server, and mobile device operating systems.</h2>
                 <label for="3qe">Exposed</label>
@@ -222,7 +226,7 @@
                 <label for="3qp">Proficient</label>
                 <input type="radio" id="3qp" name="3q" value="proficient">
                 <label for="3qa">Advanced</label>
-                <input type="radio" id="3qa" name="3q" value="exposed">
+                <input type="radio" id="3qa" name="3q" value="advanced">
 
                 <h2>3.r Differentiate between a Command Line Interface and a Graphical User Interface.</h2>
                 <label for="3re">Exposed</label>
@@ -232,7 +236,7 @@
                 <label for="3rp">Proficient</label>
                 <input type="radio" id="3rp" name="3r" value="proficient">
                 <label for="3ra">Advanced</label>
-                <input type="radio" id="3ra" name="3r" value="exposed">
+                <input type="radio" id="3ra" name="3r" value="advanced">
 
                 <h2>3.s Demonstrate the ability to navigate a file system at the Command Line Interface.</h2>
                 <label for="3se">Exposed</label>
@@ -242,7 +246,7 @@
                 <label for="3bp">Proficient</label>
                 <input type="radio" id="3sp" name="3s" value="proficient">
                 <label for="3ba">Advanced</label>
-                <input type="radio" id="3sa" name="3s" value="exposed">
+                <input type="radio" id="3sa" name="3s" value="advanced">
 
                 <h2>3.t Identify the content associated with different file types and why different file types exist (e.g., formats for word processing, images, video, sound, and three-dimensional objects).</h2>
                 <label for="3te">Exposed</label>
@@ -252,7 +256,7 @@
                 <label for="3tp">Proficient</label>
                 <input type="radio" id="3tp" name="3t" value="proficient">
                 <label for="3ta">Advanced</label>
-                <input type="radio" id="3ta" name="3t" value="exposed">
+                <input type="radio" id="3ta" name="3t" value="advanced">
 
                 <h2>3.u Research and compare data compression algorithms and their applicability to different contexts.</h2>
                 <label for="3ue">Exposed</label>
@@ -262,7 +266,7 @@
                 <label for="3up">Proficient</label>
                 <input type="radio" id="3up" name="3u" value="proficient">
                 <label for="3ua">Advanced</label>
-                <input type="radio" id="3ua" name="3u" value="exposed">
+                <input type="radio" id="3ua" name="3u" value="advanced">
 
                 <h2>3.v Research and identify data management concepts and explain the purpose of data management systems.</h2>
                 <label for="3ve">Exposed</label>
@@ -272,7 +276,7 @@
                 <label for="3vp">Proficient</label>
                 <input type="radio" id="3vp" name="3v" value="proficient">
                 <label for="3va">Advanced</label>
-                <input type="radio" id="3va" name="3v" value="exposed">
+                <input type="radio" id="3va" name="3v" value="advanced">
 
                 <h2>3.w Demonstrate the planning, designing and creation and use of a relational database.</h2>
                 <label for="3we">Exposed</label>
@@ -282,7 +286,7 @@
                 <label for="3wp">Proficient</label>
                 <input type="radio" id="3wp" name="3w" value="proficient">
                 <label for="3wa">Advanced</label>
-                <input type="radio" id="3wa" name="3w" value="exposed">
+                <input type="radio" id="3wa" name="3w" value="advanced">
 
                 <h2>3.x Research and describe the relationship between tables such as one-to-one and one-to-many.</h2>
                 <label for="3xe">Exposed</label>
@@ -292,7 +296,7 @@
                 <label for="3xp">Proficient</label>
                 <input type="radio" id="3xp" name="3x" value="proficient">
                 <label for="3xa">Advanced</label>
-                <input type="radio" id="3xa" name="3x" value="exposed">
+                <input type="radio" id="3xa" name="3x" value="advanced">
 
                 <h2>3.y Explain the purpose of data analysis.</h2>
                 <label for="3ye">Exposed</label>
@@ -302,9 +306,9 @@
                 <label for="3yp">Proficient</label>
                 <input type="radio" id="3yp" name="3y" value="proficient">
                 <label for="3ya">Advanced</label>
-                <input type="radio" id="3ya" name="3y" value="exposed">
-                <button type="submit" id="btnSave">
-                <button type="reset" id="btnReset"
+                <input type="radio" id="3ya" name="3y" value="advanced">
+                <button type="button" id="saveBtn">Save</button>
+                <button type="reset" id="btnReset">reset</button>
 
                     <h2 id="output">You Entered:</h2>
             </form>

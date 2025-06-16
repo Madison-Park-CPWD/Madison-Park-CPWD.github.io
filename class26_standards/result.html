@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="standard1.html">Standard 1</a><br>
+        <a href="standard2.html">Standard 2</a><br>
+        <a href="standard3.html">Standard 3</a><br>
+        <a href="standard4.html">Standard 4</a><br>
+        <a href="standard6.html">Standard 6</a><br>
+        <a href="standard8.html">Standard 8</a><br>
+        <a href="standard7.html">Standard 7</a>
+        <a href="standard10.html">Standard 10</a><br>
+    </nav>
+    <h1>Ratings Report</h1>
+</header>
+<main></main>
+<footer></footer>
+</body>
+</html>
+<script>
+    const standard1 = JSON.parse(localStorage.getItem("standards1"))
+    const standard2 = JSON.parse(localStorage.getItem("standards2"))
+    const standard3 = JSON.parse(localStorage.getItem("standards3"))
+    const standard4 = JSON.parse(localStorage.getItem("standards4"))
+    const standard6 = JSON.parse(localStorage.getItem("standards6"))
+    const standard7 = JSON.parse(localStorage.getItem("standards7"))
+    const standard8 = JSON.parse(localStorage.getItem("standards8"))
+    const standard10 = JSON.parse(localStorage.getItem("standards10"))
+    const combined = standard1.concat(standard2, standard3, standard4, standard6, standard7, standard8, standard10)
+    const main = document.getElementsByTagName("main")[0]
+    combined.forEach((standard) => {
+        let p = document.createElement("p")
+        let result = ""
+        if (standard.id[1] == "0"){
+            result = document.createTextNode(standard.id[0] + standard.id[1] + standard.id[2] +": " + standard.rating)
+        } else {
+            result = document.createTextNode(standard.id[0] + standard.id[1] + ": " + standard.rating)
+        }
+        // let result = document.createTextNode(standard.id[0] + standard.id[1] + ": " + standard.rating)
+        p.appendChild(result)
+        main.appendChild(p)
+    })
+</script>

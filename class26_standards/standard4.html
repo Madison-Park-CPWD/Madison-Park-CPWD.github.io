@@ -2,24 +2,28 @@
 <html lang="en">
     <head>
         <script>
-           document.addEventListener("DOMContentLoaded", (ev) => {
-        const savebutton = document.getElementById("saveBtn")
-        const output = document.getElementById("output")
-        // console.log(savebutton)
-        const items = Array.from(document.getElementsByTagName("input"))
-        savebutton.addEventListener("click", (event) => {
-          let checkedItems = []
-          items.forEach((element) => {
-            if (element.checked) {
-              const checked = {}
-              checked["id"] = element.id
-              checkedItems.push(checked)
-            }
-            // console.log(checkedItems)
-            output.textContent = JSON.stringify(checkedItems)
-          })
-        })
-      })
+            document.addEventListener("DOMContentLoaded", (ev) => {
+                const savebutton = document.getElementById("saveBtn")
+                const output = document.getElementById("output")
+                // console.log(savebutton)
+                const items = Array.from(document.getElementsByTagName("input"))
+                savebutton.addEventListener("click", (event) => {
+                    let checkedItems = []
+                    items.forEach((element) => {
+                        if (element.checked) {
+                            const checked = {}
+                            checked["id"] = element.id
+                            checkedItems.push(checked)
+                            checked["rating"] = element.value
+                        }
+                        // console.log(checkedItems)
+                        localStorage.setItem("standards4", JSON.stringify(checkedItems));
+                        localStorage.getItem("standards4")
+                        const standard4 = localStorage.getItem("standards4")
+                        output.textContent = "You have submitted your results"
+                    })
+                })
+            })
         </script>
         <meta charset="UTF-8">
         <title>Title</title>
@@ -34,6 +38,7 @@
                 <a href="standard7.html">Standard 7</a><br>
                 <a href="standard8.html">Standard 8</a><br>
                 <a href="standard10.html">Standard 10</a><br>
+                <a href="result.html">Results</a>
             </nav>
         </header>
         <main>
@@ -85,8 +90,8 @@
                 <label for="4ca">Advanced</label>
                 <input type="radio" id="4ca" name="4c" Value="Advanced">
             </article>
-            <button id="btnsave">Save</button>
-            <h2 id="art"></h2>
+            <button id="saveBtn">Save</button>
+            <h2 id="output"></h2>
         </main>
         <footer></footer>
     </body>

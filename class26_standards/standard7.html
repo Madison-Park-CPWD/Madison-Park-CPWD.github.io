@@ -3,23 +3,27 @@
 <head>
     <script>
         document.addEventListener("DOMContentLoaded", (ev) => {
-        const savebutton = document.getElementById("saveBtn")
-        const output = document.getElementById("output")
-        // console.log(savebutton)
-        const items = Array.from(document.getElementsByTagName("input"))
-        savebutton.addEventListener("click", (event) => {
-          let checkedItems = []
-          items.forEach((element) => {
-            if (element.checked) {
-              const checked = {}
-              checked["id"] = element.id
-              checkedItems.push(checked)
-            }
-            // console.log(checkedItems)
-            output.textContent = JSON.stringify(checkedItems)
-          })
+            const savebutton = document.getElementById("saveBtn")
+            const output = document.getElementById("output")
+            // console.log(savebutton)
+            const items = Array.from(document.getElementsByTagName("input"))
+            savebutton.addEventListener("click", (event) => {
+                let checkedItems = []
+                items.forEach((element) => {
+                    if (element.checked) {
+                        const checked = {}
+                        checked["id"] = element.id
+                        checkedItems.push(checked)
+                        checked["rating"] = element.value
+                    }
+                    // console.log(checkedItems)
+                    localStorage.setItem("standards7", JSON.stringify(checkedItems));
+                    localStorage.getItem("standards7")
+                    const standard7 = localStorage.getItem("standards7")
+                    output.textContent = "You have submitted your results"
+                })
+            })
         })
-      })
     </script>
 
     <title>Page</title>
@@ -36,6 +40,7 @@
         <a href="standard6.html">Standard 6</a><br>
         <a href="standard8.html">Standard 8</a><br>
         <a href="standard10.html">Standard 10</a><br>
+        <a href="result.html">Results</a>
     </nav>
 </header>
 <main>
@@ -213,8 +218,8 @@
     <input type="radio" id="7pc" name="7p" value="competent">
     <label for="7pa">advanced</label>
     <input type="radio" id="7pa" name="7p" value="Advanced">
-    <button id = "saveBtn"> Saved
-    </button>
+    <button id="saveBtn">Save</button>
+    <p id="output"></p>
 </main>
 <footer>
 
