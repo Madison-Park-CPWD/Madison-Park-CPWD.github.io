@@ -4,38 +4,24 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" herf="Standards.2.css">
         <script>
-            document.addEventListener("DOMContentLoaded",(event)=>{
-                const buttonsave = document.getElementById("buttonsave")
-                console.log(buttonsave)
-                let checkedInputs = [];
-                const output = document.getElementById("output")
-
-            buttonsave.addEventListener("click" ,(event)=>{
-                checkedInputs = [];
-                const inputs = Array.from(document.getElementsByTagName('input'))
-                inputs.forEach((element)=>{
-                    if(element.checked) {
-                        let checked = {}
-                        checked["id"] = element.id
-                        console.log(checked)
-                        checkedInputs.push(checked)
-                    }
-
-                })
-                output.textContent = JSON.stringify(checkedInputs)
-
+           document.addEventListener("DOMContentLoaded", (ev) => {
+            const savebutton = document.getElementById("saveBtn")
+            const output = document.getElementById("output")
+            // console.log(savebutton)
+            const items = Array.from(document.getElementsByTagName("input"))
+            savebutton.addEventListener("click", (event) => {
+              let checkedItems = []
+              items.forEach((element) => {
+                if (element.checked) {
+                  const checked = {}
+                  checked["id"] = element.id
+                  checkedItems.push(checked)
+                }
+                // console.log(checkedItems)
+                output.textContent = JSON.stringify(checkedItems)
+              })
             })
-                reset.addEventListener("click",(event)=>{
-                    const checked = output.textContent
-                    const checked_array = JSON.parse(checked)
-                    console.log(checked_array)
-                    checked_array.forEach((element)=>{
-                        let el = document.getElementById(element.id)
-                        el.checked = true
-                    })
-                })
-
-        })
+          })
         </script>
 
 
@@ -161,6 +147,7 @@
             <label for="2IA">Advanced</label>
             <input type="radio" id="2IA" name="2I" value="Advanced">
             <button type="submit" id="buttonsave">save</button>
+            <button type="reset" id="reset">reset</button>
             <p id="output"></p>
         </main>
         <footer></footer>

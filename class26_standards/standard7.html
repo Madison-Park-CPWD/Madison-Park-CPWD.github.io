@@ -2,24 +2,24 @@
 <html>
 <head>
     <script>
-        document.addEventListener("DOMContentLoaded",(ev)=>{
-            const save_button = document.getElementById("saveBtn");
-            console.log(save_button);
-            const items=Array.from(document.getElementsByTagName("input"))
-            console.log(items)
-            const checkeditems=[]
-
-            items.forEach((element)=> {
-                if (element.checked) {
-                    let checked = {}
-                    checked["id"] = element.id;
-                    checkeditems.push(checked)
-                }
-            })
-
-
-
+        document.addEventListener("DOMContentLoaded", (ev) => {
+        const savebutton = document.getElementById("saveBtn")
+        const output = document.getElementById("output")
+        // console.log(savebutton)
+        const items = Array.from(document.getElementsByTagName("input"))
+        savebutton.addEventListener("click", (event) => {
+          let checkedItems = []
+          items.forEach((element) => {
+            if (element.checked) {
+              const checked = {}
+              checked["id"] = element.id
+              checkedItems.push(checked)
+            }
+            // console.log(checkedItems)
+            output.textContent = JSON.stringify(checkedItems)
+          })
         })
+      })
     </script>
 
     <title>Page</title>

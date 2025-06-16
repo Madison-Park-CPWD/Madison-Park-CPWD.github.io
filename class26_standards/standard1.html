@@ -5,38 +5,26 @@
     <title>Title</title>
     <link rel="stylesheet" href="standards1.css">
 
-    <script>
-        document.addEventListener("DOMContentLoaded",(event)=>{
-            const buttonsave = document.getElementById("saveBtn")
-            let checkedInputs = [];
+        <script>
+           document.addEventListener("DOMContentLoaded", (ev) => {
+            const savebutton = document.getElementById("saveBtn")
             const output = document.getElementById("output")
-            const reset = document.getElementById("resetBtn")
-
-            buttonsave.addEventListener("click",(event)=>{
-                checkedInputs = [];
-                const inputs = Array.from(document.getElementsByTagName("input"))
-                inputs.forEach((element)=>{
-                    if(element.checked) {
-                        let checked = {}
-                        checked["id"] = element.id
-                        console.log(checked)
-                        checkedInputs.push(checked)
-                    }
-                })
-                output.textContent = JSON.stringify(checkedInputs)
+            // console.log(savebutton)
+            const items = Array.from(document.getElementsByTagName("input"))
+            savebutton.addEventListener("click", (event) => {
+              let checkedItems = []
+              items.forEach((element) => {
+                if (element.checked) {
+                  const checked = {}
+                  checked["id"] = element.id
+                  checkedItems.push(checked)
+                }
+                // console.log(checkedItems)
+                output.textContent = JSON.stringify(checkedItems)
+              })
             })
-
-            reset.addEventListener("click",(event)=>{
-                const checked = output.textContent
-                const checked_array = JSON.parse(checked)
-                console.log(checked_array)
-                checked_array.forEach((element)=>{
-                    let El = document.getElementById(element.id)
-                    El.checked = true
-                })
-            })
-        })
-    </script>
+          })
+        </script>
 </head>
 <body>
 <header>

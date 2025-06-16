@@ -2,26 +2,24 @@
 <html lang="en">
     <head>
         <script>
-            document.addEventListener("DOMContentLoaded", (ev) => {
-
-                const buttonSave = document.getElementById("btnsave")
-                console.log(buttonSave)
-                let checkInputs = [];
-                    let art= document.getElementById("art")
-                buttonSave.addEventListener("click", (event) => {
-                    const checkedinput = [];
-                    const input = Array.from(document.getElementsByTagName("input"))
-                    input.forEach((element) => {
-                        if (element.checked) {
-                            let checked = {}
-                            checked["id"] = element.id
-                            console.log(checked)
-                            checkedinput.push(checked)
-                        }
-                    })
-                    art.textContent =JSON.stringify(checkedinput)
-                })
-            })
+           document.addEventListener("DOMContentLoaded", (ev) => {
+        const savebutton = document.getElementById("saveBtn")
+        const output = document.getElementById("output")
+        // console.log(savebutton)
+        const items = Array.from(document.getElementsByTagName("input"))
+        savebutton.addEventListener("click", (event) => {
+          let checkedItems = []
+          items.forEach((element) => {
+            if (element.checked) {
+              const checked = {}
+              checked["id"] = element.id
+              checkedItems.push(checked)
+            }
+            // console.log(checkedItems)
+            output.textContent = JSON.stringify(checkedItems)
+          })
+        })
+      })
         </script>
         <meta charset="UTF-8">
         <title>Title</title>

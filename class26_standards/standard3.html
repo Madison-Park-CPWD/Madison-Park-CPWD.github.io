@@ -4,35 +4,24 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-            document.addEventListener("DOMContentLoaded",(event)=> {
-
-                const buttonSave = document.getElementById("btnSave")
-                console.log(buttonSave)
-                let checkedInputs = [];
-                const output = document.getElementById("output")
-
-                buttonSave.addEventListener("click", (event) => {
-                    event.preventDefault()
-                    checkedInputs = [];
-                    const inputs = Array.from(document.getElementsByTagName('input'))
-                    inputs.forEach((element) => {
-                        if (element.checked) {
-                            let checked = {}
-                            checked["id"] = element.id
-                            console.log(checked)
-                            checkedInputs.push(checked)
-                        }
-                    })
-                    output.textContent = JSON.stringify(checkedInputs)
-
-                })
-                buttonReset.addEventListener("click", (event) => {
-                    const checked = output.textContent
-                    const checked_array = JSON.parse(checked)
-                    console.log(checked_array)
-                    checked_array.forEach()
-                })
-            })
+                document.addEventListener("DOMContentLoaded", (ev) => {
+        const savebutton = document.getElementById("saveBtn")
+        const output = document.getElementById("output")
+        // console.log(savebutton)
+        const items = Array.from(document.getElementsByTagName("input"))
+        savebutton.addEventListener("click", (event) => {
+          let checkedItems = []
+          items.forEach((element) => {
+            if (element.checked) {
+              const checked = {}
+              checked["id"] = element.id
+              checkedItems.push(checked)
+            }
+            // console.log(checkedItems)
+            output.textContent = JSON.stringify(checkedItems)
+          })
+        })
+      })
         </script>
     </head>
     <body>

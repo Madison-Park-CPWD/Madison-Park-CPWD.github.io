@@ -13,29 +13,24 @@
             }
         </style>
         <script>
-
-            document.addEventListener('DOMContentLoaded',(event)=> {
-                const buttonsave=document.getElementById('btnsave')
-                console.log(buttonsave)
-                const checked=[]
-                const output=document.getElementById("output")
-                buttonsave.addEventListener('click',(evt)=>{
-                    let radios= Array.from(document.querySelectorAll( "input[type='radio']"))
-                    radios.forEach((radio)=>{
-                        if(radio.checked){
-                            let val={}
-                            val["id"]=radio.id
-                            checked.push(val)
-                        }
-                    })
-                    output.textContent=JSON.stringify(checked)
-                })
-
-
-
-
-
+            document.addEventListener("DOMContentLoaded", (ev) => {
+            const savebutton = document.getElementById("saveBtn")
+            const output = document.getElementById("output")
+            // console.log(savebutton)
+            const items = Array.from(document.getElementsByTagName("input"))
+            savebutton.addEventListener("click", (event) => {
+              let checkedItems = []
+              items.forEach((element) => {
+                if (element.checked) {
+                  const checked = {}
+                  checked["id"] = element.id
+                  checkedItems.push(checked)
+                }
+                // console.log(checkedItems)
+                output.textContent = JSON.stringify(checkedItems)
+              })
             })
+          })
         </script>
 
     </head>
