@@ -27,11 +27,12 @@
     const standard2 = JSON.parse(localStorage.getItem("standards2"))
     const standard3 = JSON.parse(localStorage.getItem("standards3"))
     const standard4 = JSON.parse(localStorage.getItem("standards4"))
+    const standard5 = JSON.parse(localStorage.getItem("standards5"))
     const standard6 = JSON.parse(localStorage.getItem("standards6"))
     const standard7 = JSON.parse(localStorage.getItem("standards7"))
     const standard8 = JSON.parse(localStorage.getItem("standards8"))
     const standard10 = JSON.parse(localStorage.getItem("standards10"))
-    const combined = standard1.concat(standard2, standard3, standard4, standard6, standard7, standard8, standard10)
+    const combined = standard1.concat(standard2, standard3, standard4, standard5, standard6, standard7, standard8, standard10)
     const main = document.getElementsByTagName("main")[0]
     combined.forEach((standard) => {
         let p = document.createElement("p")
