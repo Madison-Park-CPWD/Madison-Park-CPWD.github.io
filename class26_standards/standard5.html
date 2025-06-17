@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    document.addEventListener("DOMContentLoaded", (ev) => {
+      const savebutton = document.getElementById("saveBtn")
+      const output = document.getElementById("output")
+      // console.log(savebutton)
+      const items = Array.from(document.getElementsByTagName("input"))
+      savebutton.addEventListener("click", (event) => {
+        let checkedItems = []
+        items.forEach((element) => {
+          if (element.checked) {
+            const checked = {}
+            checked["id"] = element.id
+            checkedItems.push(checked)
+            checked["rating"] = element.value
+          }
+          // console.log(checkedItems)
+          localStorage.setItem("standards4", JSON.stringify(checkedItems));
+          localStorage.getItem("standards4")
+          const standard4 = localStorage.getItem("standards4")
+          output.textContent = "You have submitted your results"
+        })
+      })
+    })
+  </script>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="standard1.html">Standard 1</a><br>
+    <a href="standard2.html">Standard 2</a><br>
+    <a href="standard3.html">Standard 3</a><br>
+    <a href="standard6.html">Standard 6</a><br>
+    <a href="standard7.html">Standard 7</a><br>
+    <a href="standard8.html">Standard 8</a><br>
+    <a href="standard10.html">Standard 10</a><br>
+    <a href="result.html">Results</a>
+  </nav>
+</header>
+<main>
+  <h1>Standard 5: Concepts of Software Development</h1>
+  <table border="1">
+    <Tr>
+      <th>Exposed</th>
+      <th>Competent</th>
+      <th>Proficient</th>
+      <th>Advanced</th>
+    </tr>
+    <tr>
+      <td>student can recall the basic idea of the standard.</td>
+      <td>student can explain the standard correctly.</td>
+      <td>student can apply or demonstrate the standard correctly.</td>
+      <td>student can evaluate the strengths and weaknesses of the standard and conclude when to use it.</td>
+    </tr>
+  </table>
+  <article>
+    <p>5a Collaborate with potential users or customers to determine software requirements.</p>
+    <label for="5ae">Exposed</label>
+    <input type="radio" id="5ae" name="5a" value="Exposed">
+    <label for="5ac">Competent</label>
+    <input type="radio" id="5ac" name="5a" value="Competent">
+    <label for="5ap">Proficient</label>
+    <input type="radio" id="5ap" name="5a" value="Proficient">
+    <label for="5aa">Advanced</label>
+    <input type="radio" id="5aa" name="5a" value="Advanced">
+  </article>
+  <article>
+    <p>5b Produce a prioritized list of features to meet the functional software requirements.</p>
+    <label for="5be">Exposed</label>
+    <input type="radio" id="5be" name="5b" value="Exposed">
+    <label for="5bc">Competent</label>
+    <input type="radio" id="5bc" name="5b" value="Competent">
+    <label for="5bp">Proficient</label>
+    <input type="radio" id="5bp" name="5b" value="Proficient">
+    <label for="5ba">Advanced</label>
+    <input type="radio" id="5ba" name="5b" value="Advanced">
+  </article>
+  <article>
+  <p>5c Research and identify appropriate technologies to meet software requirements.</p>
+  <label for="5ce">Exposed</label>
+  <input type="radio" id="5ce" name="5c" value="Exposed">
+  <label for="5cc">Competent</label>
+  <input type="radio" id="5cc" name="5c" value="Competent">
+  <label for="5cp">Proficient</label>
+  <input type="radio" id="5cp" name="5c" value="Proficient">
+  <label for="5ca">Advanced</label>
+  <input type="radio" id="5ca" name="5c" value="Advanced">
+</article>
+  <article>
+    <p>5d Evaluate project resources, create a time and cost analysis.</p>
+    <label for="5de">Exposed</label>
+    <input type="radio" id="5de" name="5d" value="Exposed">
+    <label for="5dc">Competent</label>
+    <input type="radio" id="5dc" name="5d" value="Competent">
+    <label for="5dp">Proficient</label>
+    <input type="radio" id="5dp" name="5d" value="Proficient">
+    <label for="5da">Advanced</label>
+    <input type="radio" id="5da" name="5d" value="Advanced">
+  </article>
+  <article>
+    <p>5e Define and structure a project scope of work.</p>
+    <label for="5ee">Exposed</label>
+    <input type="radio" id="5ee" name="5e" value="Exposed">
+    <label for="5ec">Competent</label>
+    <input type="radio" id="5ec" name="5e" value="Competent">
+    <label for="5ep">Proficient</label>
+    <input type="radio" id="5ep" name="5e" value="Proficient">
+    <label for="5ea">Advanced</label>
+    <input type="radio" id="5ea" name="5e" value="Advanced">
+  </article>
+  <article>
+    <p>5f Demonstrate team collaboration during software development.</p>
+    <label for="5fe">Exposed</label>
+    <input type="radio" id="5fe" name="5f" value="Exposed">
+    <label for="5fc">Competent</label>
+    <input type="radio" id="5fc" name="5f" value="Competent">
+    <label for="5fp">Proficient</label>
+    <input type="radio" id="5fp" name="5f" value="Proficient">
+    <label for="5fa">Advanced</label>
+    <input type="radio" id="5fa" name="5f" value="Advanced">
+  </article>
+  <p>5g Create a technical design document.</p>
+  <label for="5ge">Exposed</label>
+  <input type="radio" id="5ge" name="5g" value="Exposed">
+  <label for="5gc">Competent</label>
+  <input type="radio" id="5gc" name="5g" value="Competent">
+  <label for="5gp">Proficient</label>
+  <input type="radio" id="5gp" name="5g" value="Proficient">
+  <label for="5ga">Advanced</label>
+  <input type="radio" id="5ga" name="5g" value="Advanced">
+  </article>
+  <article>
+  <p>5h Devise pseudocode algorithms for software to be developed.</p>
+  <label for="5he">Exposed</label>
+  <input type="radio" id="5he" name="5h" value="Exposed">
+  <label for="5hc">Competent</label>
+  <input type="radio" id="5hc" name="5h" value="Competent">
+  <label for="5hp">Proficient</label>
+  <input type="radio" id="5hp" name="5h" value="Proficient">
+  <label for="5ha">Advanced</label>
+  <input type="radio" id="5ha" name="5h" value="Advanced">
+  </article>
+
+
+
+
+
+
+
+
+
+
+  <button id="saveBtn">Save</button>
+  <h2 id="output"></h2>
+</main>
+<footer></footer>
+</body>
+</html>
