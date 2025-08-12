@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming Certificate Pathway</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 20px;
+        }
+        .certificate {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .prerequisites {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+        .duration {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .learning-targets {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .proof {
+            margin: 15px 0;
+        }
+        .proof ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .proof li {
+            margin: 8px 0;
+        }
+        .mastery {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .success-indicators {
+            background-color: #d1ecf1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .success-indicators ul {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Python Programming Certificate Pathway</h1>
+
+<p><strong>Final Goal:</strong> Students write clean, modular, and functional Python programs using core language features and object-oriented design.</p>
+<p><strong>Total Duration:</strong> 8–10 weeks (30–40 class periods)</p>
+<p><strong>Structure:</strong> 24 Mini-Certificates → 3 Themed Certificates → Full Python Certificate</p>
+
+<h2>Pathway Roll-Up Structure</h2>
+<table>
+    <tr>
+        <th>Themed Certificate</th>
+        <th>Mini-Certificates Included</th>
+        <th>Prerequisites</th>
+    </tr>
+    <tr>
+        <td><strong>Python Basics Certificate</strong></td>
+        <td>1–7 (Foundations & Data Types)</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td><strong>Data & Logic Certificate</strong></td>
+        <td>8–16 (Complex Types, Control Flow)</td>
+        <td>Python Basics</td>
+    </tr>
+    <tr>
+        <td><strong>Functions & OOP Certificate</strong></td>
+        <td>17–24 (Functions, Classes)</td>
+        <td>Data & Logic</td>
+    </tr>
+    <tr>
+        <td><strong>Full Python Programming Certificate</strong></td>
+        <td>All 24 Mini-Certs</td>
+        <td>All three themed certificates</td>
+    </tr>
+</table>
+
+<div class="highlight">
+    <p><strong>✅ Accelerated Path:</strong> Combine Mini-Certs 1–3 and 4–7 for experienced learners</p>
+    <p><strong>🛑 Extended Support:</strong> Allow extra time for Mini-Certs 16, 19, 23 (Loop Control, Return Values, Inheritance)</p>
+    <p><strong>🔗 Skills Integration:</strong> Teach Mini-Certs 12–16 (Control Flow) and 17–20 (Functions) as integrated units</p>
+    <p><strong>💡 Optional Advanced:</strong> Mini-Certs 21–24 can be enriched with @property, decorators, or dataclass for advanced learners</p>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 1: <code>import this</code> & The Zen of Python</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> None</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Access and interpret <em>The Zen of Python</em></li>
+            <li>Apply philosophical principles to code structure and readability</li>
+            <li>Explain how design philosophy influences programming decisions</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Run and Recite</strong> – Execute <code>import this</code> in the Python interpreter and transcribe all 19 principles accurately</li>
+            <li><input type="checkbox"> <strong>Explain 8 Principles</strong> – Choose 8 lines (e.g., "Simple is better than complex") and write a 2–3 sentence explanation of their meaning in code</li>
+            <li><input type="checkbox"> <strong>Code Example for Each</strong> – For each of 8 explained principles, write a short code snippet that <em>follows</em> and one that <em>violates</em> the principle</li>
+            <li><input type="checkbox"> <strong>Refactor with Zen</strong> – Take a poorly written script and refactor it to align with at least 5 Zen principles, annotating changes</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Demonstrates deep understanding of Python's design philosophy and applies it to improve code clarity, simplicity, and maintainability.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 2: Variables & Dynamic Typing</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 1</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Declare and reassign variables across types</li>
+            <li>Use <code>type()</code> and <code>isinstance()</code> to inspect types</li>
+            <li>Follow naming conventions and understand dynamic binding</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Declare & Reassign</strong> – Create a variable and reassign it to <code>int</code>, <code>str</code>, <code>list</code>, and <code>bool</code>; explain why this is allowed in Python</li>
+            <li><input type="checkbox"> <strong>Type Inspection Lab</strong> – Use <code>type()</code> and <code>isinstance()</code> to verify types in 10+ scenarios with literals and variables</li>
+            <li><input type="checkbox"> <strong>Naming Practice</strong> – Write 10 variables using <code>snake_case</code>, avoiding invalid names (e.g., <code>class</code>, <code>1var</code>), and explain naming rules</li>
+            <li><input type="checkbox"> <strong>Dynamic Behavior Demo</strong> – Write a function that accepts any type and prints its type, proving dynamic typing in action</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Explains dynamic typing and uses variables correctly with proper naming and type awareness.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 3: Comments & PEP 8 Style</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 1–2</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Write readable, well-formatted code following PEP 8</li>
+            <li>Use comments and docstrings effectively</li>
+            <li>Audit and refactor unstyled code</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Comment Use</strong> – Add meaningful inline and block comments to 5 scripts explaining logic flow</li>
+            <li><input type="checkbox"> <strong>PEP 8 Formatting</strong> – Format a messy script to follow PEP 8 (indentation, spacing, line length ≤79)</li>
+            <li><input type="checkbox"> <strong>Docstring Practice</strong> – Write docstrings for 3 functions using triple quotes and describe parameters/return values</li>
+            <li><input type="checkbox"> <strong>Style Audit</strong> – Use a linter (e.g., <code>pylint</code> or VS Code) to identify and fix 10+ PEP 8 violations in a provided script</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Writes clean, well-documented code that follows Python style standards and enhances readability.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 4: Strings</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 2–3</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Create, access, and manipulate strings using built-in methods</li>
+            <li>Use f-strings and formatting tools</li>
+            <li>Demonstrate string immutability</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>String Creation</strong> – Create strings using single, double, and triple quotes; explain use cases for each</li>
+            <li><input type="checkbox"> <strong>Indexing & Slicing</strong> – Access characters and substrings using <code>[ ]</code> and <code>[:]</code> in 8+ examples (positive/negative indices)</li>
+            <li><input type="checkbox"> <strong>Method Mastery</strong> – Use <code>.upper()</code>, <code>.lower()</code>, <code>.strip()</code>, <code>.replace()</code>, <code>.split()</code> in real tasks (e.g., clean user input)</li>
+            <li><input type="checkbox"> <strong>f-String Practice</strong> – Use f-strings to insert variables into 6+ dynamic messages (e.g., <code>f"Hello {name}"</code>)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Manipulates strings confidently and uses formatting tools effectively while respecting immutability.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 5: Integers & Floats</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 4</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Perform arithmetic and understand numeric precision</li>
+            <li>Convert between types and handle edge cases</li>
+            <li>Validate numeric input</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Integer Operations Lab</strong> – Perform <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, <code>**</code> in 10+ calculations with integers and floats</li>
+            <li><input type="checkbox"> <strong>Float Precision Workshop</strong> – Show a case where <code>0.1 + 0.2 != 0.3</code>, explain why, and use <code>round()</code> or <code>decimal</code> to fix</li>
+            <li><input type="checkbox"> <strong>Number Method Mastery</strong> – Use <code>int()</code>, <code>float()</code>, <code>str()</code> to convert between types in 8+ input-handling cases</li>
+            <li><input type="checkbox"> <strong>Mathematical Validation</strong> – Create functions that verify number inputs and handle edge cases like non-numeric strings or <code>None</code></li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Performs accurate mathematical operations with integers and floats, handles type conversion safely, and manages precision and edge cases.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 6: Booleans & Truthiness</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 5</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Predict boolean evaluation in conditions</li>
+            <li>Use logical operators (<code>and</code>, <code>or</code>, <code>not</code>)</li>
+            <li>Understand truthiness and falsiness</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Boolean Creation Practice</strong> – Generate <code>True</code>/<code>False</code> using comparisons (e.g., <code>5 > 3</code>) and <code>bool()</code> conversion</li>
+            <li><input type="checkbox"> <strong>Truthiness Investigation</strong> – Document which values (<code>0</code>, <code>""</code>, <code>[]</code>, <code>None</code>, <code>1</code>, <code>"hello"</code>) evaluate to <code>True</code>/<code>False</code> in 12+ examples</li>
+            <li><input type="checkbox"> <strong>Logical Operators</strong> – Use <code>and</code>, <code>or</code>, <code>not</code> in 6+ compound conditions (e.g., <code>age >= 18 and has_id</code>)</li>
+            <li><input type="checkbox"> <strong>Short-Circuit Demo</strong> – Write code showing how <code>and</code>/<code>or</code> skip evaluation when possible (e.g., <code>safe_check and risky_operation()</code>)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Predicts truthiness and uses boolean logic correctly in conditions, avoiding common pitfalls.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 7: None & Identity</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 6</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Use <code>None</code> as a sentinel value</li>
+            <li>Understand <code>is</code> vs <code>==</code> and object identity</li>
+            <li>Handle <code>None</code> in functions and comparisons</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Use <code>None</code> Correctly</strong> – Assign <code>None</code> to indicate absence of value in 5+ functions (e.g., <code>find_user()</code> returns <code>None</code> if not found)</li>
+            <li><input type="checkbox"> <strong>Compare with <code>is</code></strong> – Use <code>is None</code> and <code>is not None</code> instead of <code>== None</code> in 8+ validation checks</li>
+            <li><input type="checkbox"> <strong>Identity vs Equality</strong> – Explain the difference between <code>is</code> and <code>==</code> using <code>id()</code> and examples (e.g., <code>[] == []</code> but <code>[] is []</code> is <code>False</code>)</li>
+            <li><input type="checkbox"> <strong>Function Return Analysis</strong> – Write a function that returns <code>None</code> implicitly and explain when this happens</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Uses <code>None</code> and identity checks properly, avoiding common pitfalls like <code>== None</code> and misunderstanding object identity.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 8: Lists</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 7</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Create and manipulate ordered, mutable sequences</li>
+            <li>Use slicing, methods, and list comprehensions</li>
+            <li>Handle index errors and bounds checking</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>List Creation & Indexing</strong> – Create lists and access elements with <code>[index]</code> in 10+ scenarios, including nested lists</li>
+            <li><input type="checkbox"> <strong>Modify In Place</strong> – Use <code>.append()</code>, <code>.remove()</code>, <code>.pop()</code>, <code>.insert()</code>, <code>.clear()</code> to alter a list in 8+ data tasks</li>
+            <li><input type="checkbox"> <strong>Slicing & Sublists</strong> – Use slicing (<code>[start:stop:step]</code>) to extract, reverse, and clone sublists in 6+ examples</li>
+            <li><input type="checkbox"> <strong>Error Handling & Bounds Checking</strong> – Write code that checks list length before accessing index and handles <code>IndexError</code> gracefully</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Creates and manipulates lists with proper syntax, uses slicing and methods effectively, and prevents runtime errors.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 9: Tuples</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 8</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Use immutable sequences for fixed data</li>
+            <li>Apply tuple unpacking and understand use cases</li>
+            <li>Compare tuples vs lists</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Create & Use Tuples</strong> – Build tuples for coordinates, RGB values, or function returns (5+ examples)</li>
+            <li><input type="checkbox"> <strong>Tuple Unpacking</strong> – Use <code>x, y = point</code> to unpack 6+ tuples in assignments and function returns</li>
+            <li><input type="checkbox"> <strong>Immutability Proof</strong> – Attempt to modify a tuple and catch the <code>TypeError</code>, explaining why it's immutable</li>
+            <li><input type="checkbox"> <strong>When to Use</strong> – Write a reflection comparing tuples vs lists and justifying use cases (e.g., database records)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Applies immutability appropriately and uses unpacking effectively in real-world contexts.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 10: Sets</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 9</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Use unordered, unique collections for fast lookups</li>
+            <li>Perform set operations and understand hashability</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Remove Duplicates</strong> – Convert a list with duplicates to a set and back to deduplicate</li>
+            <li><input type="checkbox"> <strong>Set Operations Lab</strong> – Use <code>.union()</code>, <code>.intersection()</code>, <code>.difference()</code> in 5+ logic puzzles</li>
+            <li><input type="checkbox"> <strong>Membership Speed</strong> – Compare <code>in</code> lookup speed between list and set using <code>time.time()</code></li>
+            <li><input type="checkbox"> <strong>Immutable Elements Only</strong> – Try adding a list to a set, catch the error, and explain why only hashable types are allowed</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Uses sets for uniqueness and fast membership testing, understanding performance and immutability constraints.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 11: Dictionaries</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 10</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Use key-value mappings for structured data</li>
+            <li>Loop through keys/values/items and handle nested data</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Create & Access</strong> – Build a dictionary and access values with <code>dict[key]</code> and <code>.get()</code> in 10+ cases</li>
+            <li><input type="checkbox"> <strong>Modify & Delete</strong> – Add, update, and remove keys using assignment and <code>.pop()</code></li>
+            <li><input type="checkbox"> <strong>Loop Through</strong> – Use <code>for key in dict:</code>, <code>dict.keys()</code>, <code>dict.values()</code>, <code>dict.items()</code> in 6+ loops</li>
+            <li><input type="checkbox"> <strong>Nested Dicts</strong> – Create and access a nested dictionary (e.g., <code>student['grades']['math']</code>)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Uses dictionaries for flexible, associative data storage with proper error handling and iteration.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 12: Branching (<code>if</code>, <code>elif</code>, <code>else</code>)</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 11</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Implement decision-making logic</li>
+            <li>Use <code>if</code>, <code>elif</code>, <code>else</code> chains and handle edge cases</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Simple <code>if</code></strong> – Write 5 <code>if</code> statements for conditions like age check or login</li>
+            <li><input type="checkbox"> <strong>Chained <code>elif</code></strong> – Use <code>if/elif/else</code> to categorize data (e.g., grades A–F)</li>
+            <li><input type="checkbox"> <strong>Nested Conditions</strong> – Build a 2-level decision tree (e.g., "Is adult? → Does have license?")</li>
+            <li><input type="checkbox"> <strong>Input Validation</strong> – Prompt user and use <code>if</code> to reject invalid input (e.g., negative numbers)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Writes clear, logical branching code without unreachable paths or logic errors.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 13: Ternary Operator</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 12</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Use concise conditional expressions</li>
+            <li>Avoid overuse and maintain readability</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Basic Ternary</strong> – Use <code>x if condition else y</code> in 5+ simple cases (e.g., <code>status = "Adult" if age >= 18 else "Minor"</code>)</li>
+            <li><input type="checkbox"> <strong>Assign Result</strong> – Store ternary result in a variable and use it in output</li>
+            <li><input type="checkbox"> <strong>Avoid Overuse</strong> – Rewrite a ternary as a full <code>if/else</code> to show when clarity matters</li>
+            <li><input type="checkbox"> <strong>Nested Ternary Caution</strong> – Write a nested ternary and explain why it's hard to read</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Uses ternary operator appropriately for simple conditions while prioritizing readability.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 14: For Loops</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 13</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Iterate over sequences and ranges</li>
+            <li>Use <code>range()</code>, <code>enumerate()</code>, and nested loops</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Loop Over List</strong> – Print each item in a list of 10+ elements</li>
+            <li><input type="checkbox"> <strong>Loop Over String</strong> – Iterate through characters in a word and count vowels</li>
+            <li><input type="checkbox"> <strong><code>range()</code> Mastery</code></strong> – Use <code>range(start, stop, step)</code> to generate sequences (e.g., even numbers 0–20)</li>
+            <li><input type="checkbox"> <strong>Loop with <code>enumerate()</code></strong> – Use <code>for i, val in enumerate(list)</code> to get index and value</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Iterates efficiently over sequences with proper syntax and control.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 15: While Loops</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 14</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Use condition-based repetition</li>
+            <li>Prevent infinite loops and validate input</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Counter Loop</strong> – Use <code>while counter < 10:</code> to count and print numbers</li>
+            <li><input type="checkbox"> <strong>User Input Loop</strong> – Repeat until user types "quit"</li>
+            <li><input type="checkbox"> <strong>Infinite Loop Prevention</strong> – Ensure loop variable updates to avoid infinite loops</li>
+            <li><input type="checkbox"> <strong>Validation Loop</strong> – Keep asking for input until valid (e.g., positive number)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Implements <code>while</code> loops safely with proper termination and input validation.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 16: Loop Control (<code>break</code>, <code>continue</code>, <code>else</code>)</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 15</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Control loop execution flow</li>
+            <li>Use <code>break</code>, <code>continue</code>, and <code>else</code> clauses</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong><code>break</code> Usage</strong> – Exit loop early when condition met (e.g., find first even number)</li>
+            <li><input type="checkbox"> <strong><code>continue</code> Usage</strong> – Skip iteration (e.g., skip negative numbers)</li>
+            <li><input type="checkbox"> <strong><code>else</code> Clause</strong> – Use <code>else</code> after <code>for</code>/<code>while</code> to run when loop completes normally (not broken)</li>
+            <li><input type="checkbox"> <strong>Debug a Loop</strong> – Fix a loop with incorrect <code>break</code> placement causing early exit</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Controls loop flow precisely and avoids logic errors like infinite or premature termination.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 17: Defining Functions</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 16</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define and call functions using <code>def</code></li>
+            <li>Use proper syntax and scope</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong><code>def</code> Syntax</strong> – Write 5+ functions with correct <code>def name():</code> syntax</li>
+            <li><input type="checkbox"> <strong>Call Functions</strong> – Call each function and verify output</li>
+            <li><input type="checkbox"> <strong>Scope Demo</strong> – Show a local variable not accessible outside function</li>
+            <li><input type="checkbox"> <strong>Function Reuse</strong> – Use one function in two different contexts (e.g., <code>greet()</code> for user and admin)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Defines and calls functions with proper syntax and scope awareness.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 18: Parameters & Arguments</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 17</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Pass data into functions using parameters</li>
+            <li>Use default, keyword, and variable arguments</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Positional Args</strong> – Define and call function with 2+ parameters</li>
+            <li><input type="checkbox"> <strong>Default Args</strong> – Use <code>def func(x=5):</code> and show override behavior</li>
+            <li><input type="checkbox"> <strong>Keyword Args</strong> – Call function with <code>name=value</code> syntax</li>
+            <li><input type="checkbox"> <strong><code>*args</code> Practice</strong> – Write function that accepts variable arguments and sums them</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Uses parameters flexibly and understands argument types and order.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 19: Return Values & Scope</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 18</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Return data from functions</li>
+            <li>Understand <code>global</code>, <code>nonlocal</code>, and <code>return None</code></li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Return Data</strong> – Write functions that return strings, numbers, lists</li>
+            <li><input type="checkbox"> <strong>Use Return Value</strong> – Assign return to variable or use in condition</li>
+            <li><input type="checkbox"> <strong>Global vs Local</strong> – Demonstrate <code>global</code> keyword and explain risks</li>
+            <li><input type="checkbox"> <strong>No Return = <code>None</code></strong> – Show function with no <code>return</code> returns <code>None</code></li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Returns values correctly and understands scope implications.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 20: Lambda & Built-in Functions</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 19</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Use anonymous and built-in functions</li>
+            <li>Apply <code>map()</code>, <code>filter()</code>, <code>len()</code>, <code>sum()</code></li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Lambda Expression</strong> – Write 5 lambda functions (e.g., <code>lambda x: x*2</code>)</li>
+            <li><input type="checkbox"> <strong>Use with <code>map()</code>/<code>filter()</code></strong> – Apply lambda to transform or filter a list</li>
+            <li><input type="checkbox"> <strong>Built-in Practice</strong> – Use <code>len()</code>, <code>sum()</code>, <code>max()</code>, <code>min()</code>, <code>sorted()</code> in 10+ scenarios</li>
+            <li><input type="checkbox"> <strong><code>type()</code> & <code>isinstance()</code></strong> – Use to validate input before processing</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Uses lambda and built-ins effectively for functional programming.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 21: Classes & <code>__init__</code></h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 20</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define classes and initialize objects</li>
+            <li>Use <code>__init__</code> and instance attributes</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Class Definition</strong> – Write 3+ classes (e.g., <code>Dog</code>, <code>Book</code>) with <code>class Name:</code></li>
+            <li><input type="checkbox"> <strong><code>__init__</code> Method</strong> – Add constructor to set instance attributes (e.g., <code>self.name = name</code>)</li>
+            <li><input type="checkbox"> <strong>Create Instances</strong> – Instantiate objects with different data</li>
+            <li><input type="checkbox"> <strong>Attribute Access</strong> – Print and modify instance attributes</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Creates classes and initializes objects with state.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 22: Methods & <code>self</code></h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 21</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Add behavior to classes using methods</li>
+            <li>Use <code>self</code> to access instance data</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Instance Method</strong> – Add a method that uses <code>self</code> (e.g., <code>dog.bark()</code>)</li>
+            <li><input type="checkbox"> <strong>Modify State</strong> – Write method that changes an attribute (e.g., <code>account.deposit(100)</code>)</li>
+            <li><input type="checkbox"> <strong>Call from Instance</strong> – Invoke method on object and verify behavior</li>
+            <li><input type="checkbox"> <strong>Pass <code>self</code> Automatically</strong> – Explain why <code>self</code> is required but not passed manually</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Adds methods that interact with object state.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 23: Inheritance & <code>super()</code></h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 22</p>
+    <p class="duration"><strong>Duration:</strong> 1–2 class periods</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Extend classes and reuse code</li>
+            <li>Use <code>super()</code> and method overriding</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Child Class</strong> – Create subclass (e.g., <code>ElectricCar(Car)</code>)</li>
+            <li><input type="checkbox"> <strong>Override Method</strong> – Redefine a parent method in child (e.g., <code>charge()</code> vs <code>refuel()</code>)</li>
+            <li><input type="checkbox"> <strong>Use <code>super()</code></strong> – Call parent <code>__init__()</code> from child to extend initialization</li>
+            <li><input type="checkbox"> <strong>Polymorphism Demo</strong> – Call same method on different objects and get different results</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Implements inheritance and method overriding correctly.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 24: Special Methods (<code>__str__</code>, <code>__repr__</code>)</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 23</p>
+    <p class="duration"><strong>Duration:</strong> 1 class period</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Customize object behavior</li>
+            <li>Use <code>__str__</code>, <code>__repr__</code>, <code>__eq__</code></li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong><code>__str__</code> Implementation</strong> – Add <code>__str__</code> to return readable string (e.g., <code>"Book: Python 101"</code>)</li>
+            <li><input type="checkbox"> <strong><code>__repr__</code> Implementation</strong> – Add <code>__repr__</code> for debugging (e.g., <code>"Book('Python 101', 'Smith')"</code>)</li>
+            <li><input type="checkbox"> <strong>Print Object</strong> – Verify <code>print(obj)</code> uses <code>__str__</code></li>
+            <li><input type="checkbox"> <strong>Compare Objects</strong> – Use <code>__eq__</code> to define equality (e.g., <code>book1 == book2</code> by title)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Customizes object representation and behavior using special methods.
+    </div>
+</div>
+
+<h2>Pathway Progression & Assessment</h2>
+
+<h3>Suggested Learning Sequence</h3>
+<ul>
+    <li><strong>Mini-Certs 1–7 (Foundations & Data Types)</strong> → <em>Setup & Literals</em></li>
+    <li><strong>Mini-Certs 8–11 (Complex Types)</strong> → <em>Data Structures</em></li>
+    <li><strong>Mini-Certs 12–16 (Control Flow)</strong> → <em>Logic & Loops</em></li>
+    <li><strong>Mini-Certs 17–20 (Functions)</strong> → <em>Modularity</em></li>
+    <li><strong>Mini-Certs 21–24 (OOP)</strong> → <em>Abstraction & Design</em></li>
+</ul>
+
+<h3>Accelerated Path</h3>
+<p>Combine Mini-Certs 1–3 and 4–7 for experienced learners. Allow skip-ahead after passing diagnostic quiz.</p>
+
+<h3>Extended Support</h3>
+<p>Add debugging labs for <strong>Mini-Certs 16 (Loop Control)</strong> and <strong>19 (Return Values)</strong>. Provide visual aids for <strong>scope</strong> and <strong><code>self</code></strong>.</p>
+
+<h3>Skills Integration</h3>
+<p>Teach <strong>Mini-Certs 12–16</strong> as a unit – logic is cumulative. Pair <strong>Mini-Certs 17–20</strong> with <strong>21–24</strong> to show modularity → OOP progression.</p>
+
+<h3>Common Student Challenges</h3>
+<ul>
+    <li><strong>Syntax Precision</strong>: Emphasize colons, indentation, parentheses</li>
+    <li><strong>Scope Confusion</strong>: Use <code>print()</code> tracing to show variable reach</li>
+    <li><strong>Truthiness Misunderstanding</strong>: Practice with <code>bool()</code> on edge cases</li>
+    <li><strong>Mutable vs Immutable</strong>: Demonstrate list vs tuple reassignment</li>
+    <li><strong><code>self</code> in Classes</strong>: Use analogies like "this object's data"</li>
+    <li><strong>Infinite Loops</strong>: Require <code>counter += 1</code> in <code>while</code> loop drills</li>
+</ul>
+
+<div class="success-indicators">
+    <h2>Success Indicators</h2>
+    <p>Students are ready for advanced Python (web dev, data science, automation) when they can:</p>
+    <ul>
+        <li>Write clean, properly formatted code following PEP 8 and <em>The Zen of Python</em></li>
+        <li>Choose the right data type (list, tuple, set, dict) for the task and justify their choice</li>
+        <li>Control program flow using <code>if</code>, <code>for</code>, and <code>while</code> with proper logic and termination</li>
+        <li>Create reusable functions with parameters, return values, and error handling</li>
+        <li>Design classes with attributes, methods, and inheritance to model real-world systems</li>
+        <li>Debug systematically using <code>print()</code>, <code>type()</code>, and step-by-step reasoning</li>
+        <li>Handle user input safely, validate data, and prevent crashes</li>
+        <li>Explain their code design, variable naming, and function logic clearly</li>
+        <li>Use <code>try/except</code> for robust error handling in functions and input processing</li>
+        <li>Demonstrate understanding of scope, mutability, and object identity (<code>is</code> vs <code>==</code>)</li>
+    </ul>
+</div>
+
+<div class="highlight">
+    <p><strong>This comprehensive certificate system</strong> provides a structured pathway through Python fundamentals while maintaining flexibility for different learning styles, prior experience levels, and career goals in software development. The enhanced assessment language and structured progression ensure students build solid foundations before moving to advanced concepts.</p>
+</div>
+</body>
+</html>
