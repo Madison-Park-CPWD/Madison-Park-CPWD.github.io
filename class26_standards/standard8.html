@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <title></title>
+        <style>
+            input[type="radio"] {
+                border:2px solid green;
+            }
+            #8aa {
+                border:2px solid green;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", (ev) => {
+                const savebutton = document.getElementById("saveBtn")
+                const output = document.getElementById("output")
+                // console.log(savebutton)
+                const items = Array.from(document.getElementsByTagName("input"))
+                savebutton.addEventListener("click", (event) => {
+                    let checkedItems = []
+                    items.forEach((element) => {
+                        if (element.checked) {
+                            const checked = {}
+                            checked["id"] = element.id
+                            checkedItems.push(checked)
+                            checked["rating"] = element.value
+                        }
+                        // console.log(checkedItems)
+                        localStorage.setItem("standards8", JSON.stringify(checkedItems));
+                        localStorage.getItem("standards8")
+                        const standard8 = localStorage.getItem("standards8")
+                        output.textContent = "You have submitted your results"
+                    })
+                })
+            })
+        </script>
+
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="standard1.html">Standard 1</a><br>
+                <a href="standard2.html">Standard 2</a><br>
+                <a href="standard3.html">Standard 3</a><br>
+                <a href="standard4.html">Standard 4</a><br>
+                <a href="standard5.html">Standard 5</a><br>
+                <a href="standard6.html">Standard 6</a><br>
+                <a href="standard7.html">Standard 7</a><br>
+                <a href="standard10.html">Standard 10</a><br>
+                <a href="result.html">Results</a>
+            </nav>
+        </header>
+        <main>
+            <h1>Standard 8: Fundamental Concepts of Web Design and Development</h1>
+            <p>Students will be able to describe, demonstrate and evaluate fundamental elements front-end and back-end development.</p>
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <th>
+                        Exposed
+                    </th>
+                    <th>
+                        Competent
+                    </th>
+                    <th>
+                        Proficient
+                    </th>
+                    <th>
+                        Advanced
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Student can recall the basic idea of the standard
+                    </td>
+                    <td>
+                        Student can explain the standard correctly.
+                    </td>
+
+                    <td valign="middle" class="td5">
+                        Student can apply or demonstrate the standard correctly
+                    </td>
+
+                    <td valign="middle" class="td7">
+                        Students can evaluate the strengths and weakness of the standard and conclude when to use it
+                    </td>
+                </tr>
+                </body>
+            </table>
+            <article>
+                <p>8.a Research and identify components of the current Hyper Text Markup Language (HTML) standard for identification, processing, and presentation of information on web pages.</p>
+                <label for="8ae">Exposed</label>
+                <input type="radio" id="8ae" value="exposed" name="8a">
+                <label for="8ac">Competent</label>
+                <input type="radio" id="8ac" value="COMPETENT" name="8a">
+                <label for="8ap">Proficient</label>
+                <input type="radio" id="8ap" value="Proficient" name="8a">
+                <label for="8aa">Advanced</label>
+                <input type="radio" id="8aa" value="Advanced" name="8a">
+            </article>
+            <article>
+                <p>8.b Research and identify current front-end tool kits used in industry and their role in web development.</p>
+                <label for="8be">Exposed</label>
+                <input type="radio" id="8be" value="exposed" name="8b">
+                <label for="8bc">Competent</label>
+                <input type="radio" id="8bc" value="COMPETENT" name="8b">
+                <label for="8bp">Proficient</label>
+                <input type="radio" id="8bp" value="Proficient" name="8b">
+                <label for="8ba">Advanced</label>
+                <input type="radio" id="8ba" value="Advanced" name="8b">
+            </article>
+            <article>
+                <p>8.c Research and identify current web standards bodies.</p>
+                <label for="8ce">Exposed</label>
+                <input type="radio" id="8ce" value="exposed" name="8c">
+                <label for="8cc">Competent</label>
+                <input type="radio" id="8cc" value="COMPETENT" name="8c">
+                <label for="8ap">Proficient</label>
+                <input type="radio" id="8c" value="Proficient" name="8c">
+                <label for="8ca">Advanced</label>
+                <input type="radio" id="8ca" value="Advanced" name="8c">
+            </article>
+            <article>
+                <p>8.d Demonstrate creation of a static web page using the current HTML standard.</p>
+                <label for="8de">Exposed</label>
+                <input type="radio" id="8de" value="exposed" name="8d">
+                <label for="8dc">Competent</label>
+                <input type="radio" id="8dc" value="COMPETENT" name="8d">
+                <label for="8dp">Proficient</label>
+                <input type="radio" id="8dp" value="Proficient" name="8d">
+                <label for="8da">Advanced</label>
+                <input type="radio" id="8da" value="Advanced" name="8d">
+            </article>
+            <article>
+                <p>8.e Demonstrate the use of the current Cascading Style Sheets (CSS) standard for style selectors and declarations including id, class, nested selectors, multiple selectors, and pseudo selectors.</p>
+                <label for="8ee">Exposed</label>
+                <input type="radio" id="8ee" value="exposed" name="8e">
+                <label for="8ec">Competent</label>
+                <input type="radio" id="8ec" value="COMPETENT" name="8e">
+                <label for="8ep">Proficient</label>
+                <input type="radio" id="8ep" value="Proficient" name="8e">
+                <label for="8ea">Advanced</label>
+                <input type="radio" id="8ea" value="Advanced" name="8e">
+            </article>
+            <article>
+                <p>8.f Demonstrate the manipulation of elements in a web page using the box model.</p>
+                <label for="8fe">Exposed</label>
+                <input type="radio" id="8fe" value="exposed" name="8f">
+                <label for="8fc">Competent</label>
+                <input type="radio" id="8fc" value="COMPETENT" name="8f">
+                <label for="8fp">Proficient</label>
+                <input type="radio" id="8fp" value="Proficient" name="8f">
+                <label for="8fa">Advanced</label>
+                <input type="radio" id="8fa" value="Advanced" name="8f">
+            </article>
+            <article>
+                <p>8.g Demonstrate various element positioning methods, such as the CSS position property.</p>
+                <label for="8ge">Exposed</label>
+                <input type="radio" id="8ge" value="exposed" name="8g">
+                <label for="8gc">Competent</label>
+                <input type="radio" id="8gc" value="COMPETENT" name="8g">
+                <label for="8gp">Proficient</label>
+                <input type="radio" id="8gp" value="Proficient" name="8g">
+                <label for="8ga">Advanced</label>
+                <input type="radio" id="8ga" value="Advanced" name="8g">
+            </article>
+            <article>
+                <p>8.h Research and identify current web page layout models.</p>
+                <label for="8he">Exposed</label>
+                <input type="radio" id="8he" value="exposed" name="8h">
+                <label for="8hc">Competent</label>
+                <input type="radio" id="8hc" value="COMPETENT" name="8h">
+                <label for="8hp">Proficient</label>
+                <input type="radio" id="8hp" value="Proficient" name="8h">
+                <label for="8ha">Advanced</label>
+                <input type="radio" id="8ha" value="Advanced" name="8h">
+            </article>
+            <article>
+                <p>8.i Demonstrate a responsive web page using a fluid design and media queries.</p>
+                <label for="8ie">Exposed</label>
+                <input type="radio" id="8ie" value="exposed" name="8i">
+                <label for="8ic">Competent</label>
+                <input type="radio" id="8ic" value="COMPETENT" name="8i">
+                <label for="8ip">Proficient</label>
+                <input type="radio" id="8ip" value="Proficient" name="8i">
+                <label for="8ia">Advanced</label>
+                <input type="radio" id="8ia" value="Advanced" name="8i">
+            </article>
+            <article>
+                <p>8.j Identify page loading efficiency best practices.</p>
+                <label for="8je">Exposed</label>
+                <input type="radio" id="8je" value="exposed" name="8j">
+                <label for="8jc">Competent</label>
+                <input type="radio" id="8jc" value="COMPETENT" name="8j">
+                <label for="8jp">Proficient</label>
+                <input type="radio" id="8jp" value="Proficient" name="8j">
+                <label for="8ja">Advanced</label>
+                <input type="radio" id="8ja" value="Advanced" name="8j">
+            </article>
+            <article>
+                <p>8.k Demonstrate implementing a web page using a front-end toolkit.</p>
+                <label for="8ke">Exposed</label>
+                <input type="radio" id="8ke" value="exposed" name="8k">
+                <label for="8kc">Competent</label>
+                <input type="radio" id="8kc" value="COMPETENT" name="8k">
+                <label for="8kp">Proficient</label>
+                <input type="radio" id="8kp" value="Proficient" name="8k">
+                <label for="8ka">Advanced</label>
+                <input type="radio" id="8ka" value="Advanced" name="8k">
+            </article>
+            <button id="saveBtn">Save</button>
+            <h3 id="output"></h3>
+        </main>
+        <footer></footer>
+    </body>
+</html>

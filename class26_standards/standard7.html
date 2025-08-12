@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        document.addEventListener("DOMContentLoaded", (ev) => {
+            const savebutton = document.getElementById("saveBtn")
+            const output = document.getElementById("output")
+            // console.log(savebutton)
+            const items = Array.from(document.getElementsByTagName("input"))
+            savebutton.addEventListener("click", (event) => {
+                let checkedItems = []
+                items.forEach((element) => {
+                    if (element.checked) {
+                        const checked = {}
+                        checked["id"] = element.id
+                        checkedItems.push(checked)
+                        checked["rating"] = element.value
+                    }
+                    // console.log(checkedItems)
+                    localStorage.setItem("standards7", JSON.stringify(checkedItems));
+                    localStorage.getItem("standards7")
+                    const standard7 = localStorage.getItem("standards7")
+                    output.textContent = "You have submitted your results"
+                })
+            })
+        })
+    </script>
+
+    <title>Page</title>
+</head>
+<body>
+<header>
+    <h1>Standard 7: Fundamental Concepts of Programming</h1>
+
+    <nav>
+        <a href="standard1.html">Standard 1</a><br>
+        <a href="standard2.html">Standard 2</a><br>
+        <a href="standard3.html">Standard 3</a><br>
+        <a href="standard4.html">Standard 4</a><br>
+        <a href="standard5.html">Standard 5</a><br>
+        <a href="standard6.html">Standard 6</a><br>
+        <a href="standard8.html">Standard 8</a><br>
+        <a href="standard10.html">Standard 10</a><br>
+        <a href="result.html">Results</a>
+    </nav>
+</header>
+<main>
+    <p>Students will be able to describe, demonstrate and evaluate fundamental elements and concepts of programming.</p>
+    <table border="2">
+        <tr>
+            <th>Exposed</th>
+            <th>Competent</th>
+            <th>Proficient</th>
+            <th>Advanced</th>
+        </tr>
+        <tr>
+            <td>Students can recall the basic idea of the standard.</td>
+            <td>Student can explain the standard correctly.</td>
+            <td>Student can apply or demonstrate the standard correctly.</td>
+            <td>Student can evaluate the strengths and weakness of the standard and conclude when to use it. </td>
+        </tr>
+    </table>
+    <h2>7a.  Implement concepts fundamental to programming. </h2>
+    <label for="7ae">Exposed</label>
+    <input type="radio" id="7ae" name="7a" value="Exposed">
+    <label for="7ap">Proficient</label>
+    <input type="radio" id="7ap" name="7a" value="Proficient">
+    <label for="7ac">Competent</label>
+    <input type="radio" id="7ac" name="7a" value="competent">
+    <label for="7aa">advanced</label>
+    <input type="radio" id="7aa" name="7a" value="Advanced">
+
+    <h2>7b. Research and describe what programs are and how they run.</h2>
+    <label for="7be">Exposed</label>
+    <input type="radio" id="7be" name="7b" value="Exposed">
+    <label for="7bp">Proficient</label>
+    <input type="radio" id="7bp" name="7b" value="Proficient">
+    <label for="7bc">Competent</label>
+    <input type="radio" id="7bc" name="7b" value="competent">
+    <label for="7ba">advanced</label>
+    <input type="radio" id="7ba" name="7b" value="Advanced">
+
+    <h2>7c.Research and describe the four parts of computational thinking: Decomposition, Abstraction, Pattern Recognition, and Algorithm Design.</h2>
+    <label for="7ce">Exposed</label>
+    <input type="radio" id="7ce" name="7c" value="Exposed">
+    <label for="7cp">Proficient</label>
+    <input type="radio" id="7cp" name="7c" value="Proficient">
+    <label for="7cc">Competent</label>
+    <input type="radio" id="7cc" name="7c" value="competent">
+    <label for="7ca">advanced</label>
+    <input type="radio" id="7ca" name="7c" value="Advanced">
+
+    <h2>7d.Utilize Integrated Development Environments.</h2>
+    <label for="7de">Exposed</label>
+    <input type="radio" id="7de" name="7d" value="Exposed">
+    <label for="7dp">Proficient</label>
+    <input type="radio" id="7dp" name="7d" value="Proficient">
+    <label for="7dc">Competent</label>
+    <input type="radio" id="7dc" name="7d" value="competent">
+    <label for="7da">advanced</label>
+    <input type="radio" id="7da" name="7d" value="Advanced">
+
+    <h2>7e.Demonstrate the use of arithmetic operators.</h2>
+    <label for="7ee">Exposed</label>
+    <input type="radio" id="7ee" name="7e" value="Exposed">
+    <label for="7ep">Proficient</label>
+    <input type="radio" id="7ep" name="7e" value="Proficient">
+    <label for="7ec">Competent</label>
+    <input type="radio" id="7ec" name="7e" value="competent">
+    <label for="7ea">advanced</label>
+    <input type="radio" id="7ea" name="7e" value="Advanced">
+
+    <h2>7f.Demonstrate the use of a debugger.</h2>
+    <label for="7fe">Exposed</label>
+    <input type="radio" id="7fe" name="7f" value="Exposed">
+    <label for="7fp">Proficient</label>
+    <input type="radio" id="7fp" name="7f" value="Proficient">
+    <label for="7fc">Competent</label>
+    <input type="radio" id="7fc" name="7f" value="competent">
+    <label for="7fa">advanced</label>
+    <input type="radio" id="7fa" name="7f" value="Advanced">
+
+    <h2> 7g.Demonstrate the use of logical operators.</h2>
+    <label for="7ge">Exposed</label>
+    <input type="radio" id="7ge" name="7g" value="Exposed">
+    <label for="7gp">Proficient</label>
+    <input type="radio" id="7gp" name="7g" value="Proficient">
+    <label for="7gc">Competent</label>
+    <input type="radio" id="7gc" name="7g" value="competent">
+    <label for="7ga">advanced</label>
+    <input type="radio" id="7ga" name="7g" value="Advanced">
+
+    <h2>7h.Demonstrate the use of relational operators.</h2>
+    <label for="7he">Exposed</label>
+    <input type="radio" id="7he" name="7h" value="Exposed">
+    <label for="7hp">Proficient</label>
+    <input type="radio" id="7hp" name="7h" value="Proficient">
+    <label for="7hc">Competent</label>
+    <input type="radio" id="7hc" name="7h" value="competent">
+    <label for="7ha">advanced</label>
+    <input type="radio" id="7ha" name="7h" value="Advanced">
+
+    <h2>7i.Demonstrate the use of compound conditions.</h2>
+    <label for="7ie">Exposed</label>
+    <input type="radio" id="7ie" name="7i" value="Exposed">
+    <label for="7ip">Proficient</label>
+    <input type="radio" id="7ip" name="7i" value="Proficient">
+    <label for="7ic">Competent</label>
+    <input type="radio" id="7ic" name="7i" value="competent">
+    <label for="7ia">advanced</label>
+    <input type="radio" id="7ia" name="7i" value="Advanced">
+
+    <h2>7j.Demonstrate the use of conditional branching operators.</h2>
+    <label for="7je">Exposed</label>
+    <input type="radio" id="7je" name="7j" value="Exposed">
+    <label for="7jp">Proficient</label>
+    <input type="radio" id="7jp" name="7j" value="Proficient">
+    <label for="7jc">Competent</label>
+    <input type="radio" id="7jc" name="7j" value="competent">
+    <label for="7ja">advanced</label>
+    <input type="radio" id="7ja" name="7j" value="Advanced">
+
+    <h2>7k.Demonstrate iterative loops.</h2>
+    <label for="7ke">Exposed</label>
+    <input type="radio" id="7ke" name="7k" value="Exposed">
+    <label for="7kp">Proficient</label>
+    <input type="radio" id="7kp" name="7k" value="Proficient">
+    <label for="7kc">Competent</label>
+    <input type="radio" id="7kc" name="7k" value="competent">
+    <label for="7ka">advanced</label>
+    <input type="radio" id="7ka" name="7k" value="Advanced">
+
+    <h2>7l. Demonstrate user defined functions, methods, or procedures with and without return values including parameter passing.</h2>
+    <label for="7le">Exposed</label>
+    <input type="radio" id="7le" name="7l" value="Exposed">
+    <label for="7lp">Proficient</label>
+    <input type="radio" id="7lp" name="7l" value="Proficient">
+    <label for="7lc">Competent</label>
+    <input type="radio" id="7lc" name="7l" value="competent">
+    <label for="7la">advanced</label>
+    <input type="radio" id="7la" name="7l" value="Advanced">
+
+    <h2>7m. Implement comments, formatting conventions, and naming conventions.</h2>
+    <label for="7me">Exposed</label>
+    <input type="radio" id="7me" name="7m" value="Exposed">
+    <label for="7mp">Proficient</label>
+    <input type="radio" id="7mp" name="7m" value="Proficient">
+    <label for="7mc">Competent</label>
+    <input type="radio" id="7mc" name="7m" value="competent">
+    <label for="7ma">advanced</label>
+    <input type="radio" id="7ma" name="7m" value="Advanced">
+
+    <h2>7n.Differentiate between different types of programming paradigms.</h2>
+    <label for="7ne">Exposed</label>
+    <input type="radio" id="7ne" name="7n" value="Exposed">
+    <label for="7np">Proficient</label>
+    <input type="radio" id="7np" name="7n" value="Proficient">
+    <label for="7nc">Competent</label>
+    <input type="radio" id="7nc" name="7n" value="competent">
+    <label for="7na">advanced</label>
+    <input type="radio" id="7na" name="7n" value="Advanced">
+
+    <h2>7o.Differentiate between compilers and interpreters and describe their role in the use of programming languages.</h2>
+    <label for="7oe">Exposed</label>
+    <input type="radio" id="7oe" name="7o" value="Exposed">
+    <label for="7op">Proficient</label>
+    <input type="radio" id="7op" name="7o" value="Proficient">
+    <label for="7oc">Competent</label>
+    <input type="radio" id="7oc" name="7o" value="competent">
+    <label for="7oa">advanced</label>
+    <input type="radio" id="7oa" name="7o" value="Advanced">
+
+    <h2>7p.Differentiate between and demonstrate the use of variable type declarations and casting in various programming languages.</h2>
+    <label for="7pe">Exposed</label>
+    <input type="radio" id="7pe" name="7p" value="Exposed">
+    <label for="7pp">Proficient</label>
+    <input type="radio" id="7pp" name="7p" value="Proficient">
+    <label for="7pc">Competent</label>
+    <input type="radio" id="7pc" name="7p" value="competent">
+    <label for="7pa">advanced</label>
+    <input type="radio" id="7pa" name="7p" value="Advanced">
+    <button id="saveBtn">Save</button>
+    <p id="output"></p>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>
