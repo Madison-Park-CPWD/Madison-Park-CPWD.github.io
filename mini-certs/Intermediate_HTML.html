@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Intermediate Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        h1 {
+            color: #d63384;
+            text-align: center;
+            border-bottom: 4px solid #d63384;
+            padding-bottom: 15px;
+            background: linear-gradient(135deg, #d63384, #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            color: #d63384;
+            background: linear-gradient(135deg, #fff5f8, #ffeaa7);
+            padding: 15px;
+            border-left: 6px solid #d63384;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            color: #c0392b;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Hide bullets from list items containing checkboxes */
+        li:has(input[type="checkbox"]) {
+            list-style: none;
+        }
+
+        /* Alternative for browsers that don't support :has() */
+        .checkbox-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checkbox-list li {
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.1);
+        }
+
+        input[type="text"] {
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+
+        .certificate {
+            /*background: linear-gradient(135deg, #ffffff, #f8f9fa);*/
+            /*border: 2px solid #e74c3c;*/
+            /*border-radius: 12px;*/
+            /*padding: 25px;*/
+            /*margin: 25px 0;*/
+            /*box-shadow: 0 4px 8px rgba(0,0,0,0.1);*/
+        }
+
+        .learning-goal {
+            background: linear-gradient(135deg, #fff1f2, #fef7f0);
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            margin-bottom: 20px;
+            border-left: 4px solid #d63384;
+            font-weight: 500;
+        }
+
+        .proficiency-section {
+            margin-bottom: 25px;
+        }
+
+        .standard-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffffff, #fdfdfd);
+            border-radius: 8px;
+            border: 1px solid #f1f1f1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .master-cert {
+            background: linear-gradient(135deg, #fff3cd, #ffeeba);
+            border: 3px solid #e67e22;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .master-cert h2 {
+            color: #e67e22;
+            background: none;
+            padding: 0;
+            border: none;
+            margin-top: 0;
+            box-shadow: none;
+        }
+
+        .assessment-notes {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 6px solid #28a745;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .prerequisite-note {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 2px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            .certificate {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Intermediate HTML Certificate</h1>
+
+<div class="prerequisite-note">
+    <strong>Prerequisites:</strong> Students must complete all Basic HTML certificates before attempting Intermediate level.
+</div>
+
+<div class="certificate">
+    <h2>Certificate 1: Multimedia Integration Expert</h2>
+    <div class="learning-goal">
+        <strong>Learning Goal:</strong> Successfully embed and configure multimedia elements in HTML
+    </div>
+
+    <div class="proficiency-section">
+        <h3>Proficiency Standards:</h3>
+
+        <div class="standard-item">
+            <h4>Multimedia tags - audio: Implements audio with essential attributes (src, controls, autoplay, loop)</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="audio1-1"> Media Tag Reference</li>
+                <li><input type="checkbox" id="audio1-2"> Attribute Function Quiz</li>
+                <li><input type="checkbox" id="audio1-3"> Tag Selection Challenge</li>
+                <li><input type="checkbox" id="audio1-4"> Media Flowchart</li>
+                <li><input type="checkbox" id="audio1-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="audio1-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Multimedia tags - video: Uses video with essential attributes (src, controls, width, height, poster)</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="video1-1"> Media Tag Reference</li>
+                <li><input type="checkbox" id="video1-2"> Attribute Function Quiz</li>
+                <li><input type="checkbox" id="video1-3"> Tag Selection Challenge</li>
+                <li><input type="checkbox" id="video1-4"> Media Flowchart</li>
+                <li><input type="checkbox" id="video1-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="video1-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Multimedia tags - picture: Creates responsive images using picture element</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="pic1-1"> Media Tag Reference</li>
+                <li><input type="checkbox" id="pic1-2"> Attribute Function Quiz</li>
+                <li><input type="checkbox" id="pic1-3"> Tag Selection Challenge</li>
+                <li><input type="checkbox" id="pic1-4"> Media Flowchart</li>
+                <li><input type="checkbox" id="pic1-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="pic1-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Multimedia tags - source, srcset: Implements multiple source options and responsive images</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="src1-1"> Media Tag Reference</li>
+                <li><input type="checkbox" id="src1-2"> Attribute Function Quiz</li>
+                <li><input type="checkbox" id="src1-3"> Tag Selection Challenge</li>
+                <li><input type="checkbox" id="src1-4"> Media Flowchart</li>
+                <li><input type="checkbox" id="src1-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="src1-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="proficiency-section">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox" id="b1-1"> <strong>Media Tag Reference:</strong> Create a quick reference showing each multimedia tag and its essential attributes</li>
+            <li><input type="checkbox" id="b1-2"> <strong>Attribute Function Quiz:</strong> Explain what each multimedia attribute does (controls, autoplay, poster, etc.)</li>
+            <li><input type="checkbox" id="b1-3"> <strong>Tag Selection Challenge:</strong> Choose appropriate multimedia tags for different scenarios</li>
+            <li><input type="checkbox" id="b1-4"> <strong>Media Flowchart:</strong> Create visual flowchart showing when to use each multimedia element (suitable for MLLs)</li>
+            <li><input type="checkbox" id="b1-5"> <strong>Oral Explanation:</strong> Verbally describe multimedia tags and attributes to teacher</li>
+        </ul>
+    </div>
+
+    <div class="proficiency-section">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox" id="proj1-1"> <strong>Media Gallery:</strong> Create a webpage featuring properly configured audio, video, and responsive images</li>
+            <li><input type="checkbox" id="proj1-2"> <strong>Accessibility Champion:</strong> Build multimedia content with full accessibility features (captions, alt text, etc.)</li>
+            <li><input type="checkbox" id="proj1-3"> <strong>Performance Optimizer:</strong> Compare and implement different image formats and responsive techniques</li>
+            <li><input type="checkbox" id="proj1-4"> <strong>Interactive Media Demo:</strong> Create a presentation explaining when and how to use each multimedia tag</li>
+        </ul>
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Certificate 2: Form Builder Pro</h2>
+    <div class="learning-goal">
+        <strong>Learning Goal:</strong> Design and implement functional HTML forms with proper structure and accessibility
+    </div>
+
+    <div class="proficiency-section">
+        <h3>Proficiency Standards:</h3>
+
+        <div class="standard-item">
+            <h4>Forms - fieldset, legend, action, method: Creates organized forms with proper grouping and submission handling</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="form2-1"> Form Element Identification</li>
+                <li><input type="checkbox" id="form2-2"> Attribute Matching</li>
+                <li><input type="checkbox" id="form2-3"> Input Type Catalog</li>
+                <li><input type="checkbox" id="form2-4"> Form Layout Sketch</li>
+                <li><input type="checkbox" id="form2-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="form2-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Input tags: Implements various input types with essential attributes</h4>
+            <div style="margin-left: 20px; margin-top: 10px;">
+                <h4>id, name, for, list, value: Uses proper form labeling and data handling attributes</h4>
+            </div>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="input2-1"> Form Element Identification</li>
+                <li><input type="checkbox" id="input2-2"> Attribute Matching</li>
+                <li><input type="checkbox" id="input2-3"> Input Type Catalog</li>
+                <li><input type="checkbox" id="input2-4"> Form Layout Sketch</li>
+                <li><input type="checkbox" id="input2-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="input2-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Button tags: Creates functional buttons with proper types</h4>
+            <div style="margin-left: 20px; margin-top: 10px;">
+                <h4>submit, button, reset: Understands different button purposes and implementations</h4>
+            </div>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="btn2-1"> Form Element Identification</li>
+                <li><input type="checkbox" id="btn2-2"> Attribute Matching</li>
+                <li><input type="checkbox" id="btn2-3"> Input Type Catalog</li>
+                <li><input type="checkbox" id="btn2-4"> Form Layout Sketch</li>
+                <li><input type="checkbox" id="btn2-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="btn2-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Textarea: Uses textarea with essential attributes</h4>
+            <div style="margin-left: 20px; margin-top: 10px;">
+                <h4>cols, rows: Controls textarea dimensions appropriately</h4>
+            </div>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="txt2-1"> Form Element Identification</li>
+                <li><input type="checkbox" id="txt2-2"> Attribute Matching</li>
+                <li><input type="checkbox" id="txt2-3"> Input Type Catalog</li>
+                <li><input type="checkbox" id="txt2-4"> Form Layout Sketch</li>
+                <li><input type="checkbox" id="txt2-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="txt2-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Select and option tags: Creates dropdown menus and selection lists</h4>
+            <div style="margin-left: 20px; margin-top: 10px;">
+                <h4>optgroup, selected, value: Groups options and sets default selections</h4>
+            </div>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="sel2-1"> Form Element Identification</li>
+                <li><input type="checkbox" id="sel2-2"> Attribute Matching</li>
+                <li><input type="checkbox" id="sel2-3"> Input Type Catalog</li>
+                <li><input type="checkbox" id="sel2-4"> Form Layout Sketch</li>
+                <li><input type="checkbox" id="sel2-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="sel2-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+
+        <div class="standard-item">
+            <h4>Form validation attributes: Implements HTML5 validation (required, pattern, min, max, etc.)</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox" id="val2-1"> Form Element Identification</li>
+                <li><input type="checkbox" id="val2-2"> Attribute Matching</li>
+                <li><input type="checkbox" id="val2-3"> Input Type Catalog</li>
+                <li><input type="checkbox" id="val2-4"> Form Layout Sketch</li>
+                <li><input type="checkbox" id="val2-5"> Oral Explanation</li>
+                <li><input type="checkbox" id="val2-6"> Other: <input type="text" placeholder="Specify other method"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="proficiency-section">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox" id="b2-1"> <strong>Form Element Identification:</strong> Identify and explain the purpose of each form element and its attributes</li>
+            <li><input type="checkbox" id="b2-2"> <strong>Attribute Matching:</strong> Match form attributes (id, name, for, etc.) to their functions and use cases</li>
+            <li><input type="checkbox" id="b2-3"> <strong>Input Type Catalog:</strong> List and describe different HTML5 input types and when to use each</li>
+            <li><input type="checkbox" id="b2-4"> <strong>Form Layout Sketch:</strong> Draw and label a complete form showing all elements and attributes (suitable for MLLs)</li>
+            <li><input type="checkbox" id="b2-5"> <strong>Oral Explanation:</strong> Verbally describe form elements and their attributes to teacher</li>
+        </ul>
+    </div>
+
+    <div class="proficiency-section">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox" id="proj2-1"> <strong>Complete Form Project:</strong> Build a multi-section form using all required elements (fieldset, legend, various inputs, buttons, select menus)</li>
+            <li><input type="checkbox" id="proj2-2"> <strong>Form Usability Expert:</strong> Create forms that demonstrate understanding of labels, accessibility, and user experience</li>
+            <li><input type="checkbox" id="proj2-3"> <strong>Input Type Showcase:</strong> Build a demonstration page showing all HTML5 input types in action</li>
+            <li><input type="checkbox" id="proj2-4"> <strong>Form Validation Master:</strong> Create forms with comprehensive HTML5 validation attributes and error handling</li>
+            <li><input type="checkbox" id="proj2-5"> <strong>Progressive Form Enhancement:</strong> Build a form that works without JavaScript but is enhanced with it</li>
+        </ul>
+    </div>
+</div>
+
+<div class="master-cert">
+    <h2>Master Intermediate HTML Certification Requirements</h2>
+    <p><strong>To earn the Master Intermediate HTML Certification, students must:</strong></p>
+    <ul class="checkbox-list">
+        <li><input type="checkbox" id="master-1"> Successfully complete BOTH intermediate certificates</li>
+        <li><input type="checkbox" id="master-2"> <strong>Prerequisites:</strong> Must have completed all Basic HTML certificates first</li>
+        <li><input type="checkbox" id="master-3"> <strong>Advanced Capstone Project:</strong> Build a complete website featuring:</li>
+    </ul>
+    <ul style="margin-left: 30px;">
+        <li>Multiple multimedia elements (audio, video, responsive images)</li>
+        <li>Complex, multi-step forms with validation</li>
+        <li>Professional-level accessibility features</li>
+        <li>Performance optimization techniques</li>
+    </ul>
+    <ul class="checkbox-list">
+        <li><input type="checkbox" id="master-4"> <strong>Code Review Portfolio:</strong> Review and provide detailed feedback on 3 peer projects</li>
+        <li><input type="checkbox" id="master-5"> <strong>Advanced Tutorial:</strong> Create and present a comprehensive tutorial on multimedia or forms for other students</li>
+    </ul>
+</div>
+
+<div class="assessment-notes">
+    <h2>Assessment Notes for Teachers</h2>
+
+    <h3>Prerequisites:</h3>
+    <p>Students should complete all Basic HTML certificates before attempting Intermediate level.</p>
+
+    <h3>Enhanced Evaluation Criteria:</h3>
+    <ul>
+        <li><strong>Advanced Functionality:</strong> Code demonstrates sophisticated understanding of multimedia and form features</li>
+        <li><strong>Performance Awareness:</strong> Shows consideration for file sizes, loading times, and optimization</li>
+        <li><strong>Professional Accessibility:</strong> Implements WCAG guidelines and best practices</li>
+        <li><strong>User Experience Focus:</strong> Demonstrates understanding of how features affect end users</li>
+        <li><strong>Code Documentation:</strong> Includes comments and clear organization for complex implementations</li>
+    </ul>
+
+    <h3>Real-World Applications:</h3>
+    <ul>
+        <li>Encourage students to build projects that solve actual problems</li>
+        <li>Connect multimedia skills to content creation and storytelling</li>
+        <li>Relate form skills to data collection and user interaction</li>
+        <li>Emphasize professional web development practices</li>
+    </ul>
+</div>
+</body>
+</html>

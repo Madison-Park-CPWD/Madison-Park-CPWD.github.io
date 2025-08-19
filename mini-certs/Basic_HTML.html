@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Basic Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .certificate {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #2c3e50;
+        }
+
+        .certificate:nth-child(odd) {
+            border-left-color: #3498db;
+        }
+
+        .certificate:nth-child(even) {
+            border-left-color: #e74c3c;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 3px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin-top: 25px;
+        }
+
+        h4 {
+            color: #27ae60;
+            margin: 15px 0 10px 0;
+        }
+
+        .learning-goal {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        /* Hide bullets for lists containing checkboxes */
+        ul li:has(input[type="checkbox"]) {
+            list-style: none;
+        }
+
+        /* Fallback for browsers that don't support :has() */
+        .checkbox-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .checkbox-list li {
+            margin: 8px 0;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+
+        .proficiency-standards {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .demonstrations {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .project-based {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .master-cert {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .master-cert h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .assessment-notes {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .other-input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            padding: 2px 5px;
+            width: 150px;
+        }
+
+        .nested-list {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .certificate {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>HTML Basic Certificate</h1>
+<div class="certificate">
+    <h2>Certificate 1: HTML Foundation & Structure</h2>
+    <div class="learning-goal">Learning Goal: Demonstrate understanding of HTML document structure and proper code formatting</div>
+
+    <div class="proficiency-standards">
+        <h3>Proficiency Standards:</h3>
+
+        <h4><strong>Parsing HTML:</strong> Can read and interpret HTML code structure</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> HTML Reading Quiz</li>
+            <li><input type="checkbox"> Structure Matching</li>
+            <li><input type="checkbox"> Skeleton Assembly</li>
+            <li><input type="checkbox"> Visual Diagram Creation</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Structure of HTML/Correct indentation:</strong> Demonstrates proper nesting and indentation practices</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> HTML Reading Quiz</li>
+            <li><input type="checkbox"> Structure Matching</li>
+            <li><input type="checkbox"> Skeleton Assembly</li>
+            <li><input type="checkbox"> Visual Diagram Creation</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>HTML 5 Skeleton:</strong> Can create complete HTML5 document structure (DOCTYPE, html, head, body)</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> HTML Reading Quiz</li>
+            <li><input type="checkbox"> Structure Matching</li>
+            <li><input type="checkbox"> Skeleton Assembly</li>
+            <li><input type="checkbox"> Visual Diagram Creation</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+    </div>
+
+    <div class="demonstrations">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> <strong>HTML Reading Quiz:</strong> Identify and label the parts of HTML document structure in sample code</li>
+            <li><input type="checkbox"> <strong>Structure Matching:</strong> Match HTML elements to their proper nesting levels and indentation</li>
+            <li><input type="checkbox"> <strong>Skeleton Assembly:</strong> Arrange scrambled HTML5 skeleton elements in correct order</li>
+            <li><input type="checkbox"> <strong>Visual Diagram Creation:</strong> Draw and label HTML document structure (suitable for MLLs)</li>
+            <li><input type="checkbox"> <strong>Oral Explanation:</strong> Verbally describe HTML structure components to teacher</li>
+        </ul>
+    </div>
+
+    <div class="project-based">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul>
+            <li><strong>Code Review Challenge:</strong> Fix 5 HTML documents with indentation and structure errors</li>
+            <li><strong>Build from Scratch:</strong> Create a properly structured HTML5 skeleton with correct indentation</li>
+            <li><strong>Peer Teaching:</strong> Explain HTML structure to a classmate using a diagram or presentation</li>
+            <li><strong>Code Analysis:</strong> Identify and explain structural problems in sample HTML code</li>
+        </ul>
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Certificate 2: HTML Tag Mastery</h2>
+    <div class="learning-goal">Learning Goal: Show proficiency with HTML tag anatomy and basic tag usage</div>
+
+    <div class="proficiency-standards">
+        <h3>Proficiency Standards:</h3>
+
+        <h4><strong>Tags:</strong> Understands the concept and purpose of HTML tags</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Anatomy of an HTML tag:</strong> Can identify and explain all parts of HTML tags</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <div class="nested-list">
+            <h4><strong>Opening tag:</strong> Recognizes and creates proper opening tags</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+                <li><input type="checkbox"> Attribute Sorting</li>
+                <li><input type="checkbox"> Tag Identification</li>
+                <li><input type="checkbox"> Visual Tag Map</li>
+                <li><input type="checkbox"> Oral Explanation</li>
+                <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+            </ul>
+
+            <h4><strong>Closing tag:</strong> Understands when and how to close tags properly</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+                <li><input type="checkbox"> Attribute Sorting</li>
+                <li><input type="checkbox"> Tag Identification</li>
+                <li><input type="checkbox"> Visual Tag Map</li>
+                <li><input type="checkbox"> Oral Explanation</li>
+                <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+            </ul>
+
+            <div class="nested-list">
+                <h4><strong>Self-closing tags:</strong> Knows which tags are self-closing (br, img, hr, etc.)</h4>
+                <ul class="checkbox-list">
+                    <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+                    <li><input type="checkbox"> Attribute Sorting</li>
+                    <li><input type="checkbox"> Tag Identification</li>
+                    <li><input type="checkbox"> Visual Tag Map</li>
+                    <li><input type="checkbox"> Oral Explanation</li>
+                    <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+                </ul>
+            </div>
+
+            <h4><strong>Attributes:</strong> Can implement and explain HTML attributes</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+                <li><input type="checkbox"> Attribute Sorting</li>
+                <li><input type="checkbox"> Tag Identification</li>
+                <li><input type="checkbox"> Visual Tag Map</li>
+                <li><input type="checkbox"> Oral Explanation</li>
+                <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+            </ul>
+
+            <div class="nested-list">
+                <h4><strong>Key-value vs unary/boolean attributes:</strong> Understands the difference (class="value" vs disabled)</h4>
+                <ul class="checkbox-list">
+                    <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+                    <li><input type="checkbox"> Attribute Sorting</li>
+                    <li><input type="checkbox"> Tag Identification</li>
+                    <li><input type="checkbox"> Visual Tag Map</li>
+                    <li><input type="checkbox"> Oral Explanation</li>
+                    <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+                </ul>
+            </div>
+
+            <h4><strong>Content:</strong> Knows what goes between opening and closing tags</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+                <li><input type="checkbox"> Attribute Sorting</li>
+                <li><input type="checkbox"> Tag Identification</li>
+                <li><input type="checkbox"> Visual Tag Map</li>
+                <li><input type="checkbox"> Oral Explanation</li>
+                <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+            </ul>
+        </div>
+
+        <h4><strong>Basic Tags - h1-h6:</strong> Can use all heading levels appropriately</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <div class="nested-list">
+            <h4><strong>One h1 per page:</strong> Understands semantic hierarchy and accessibility</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+                <li><input type="checkbox"> Attribute Sorting</li>
+                <li><input type="checkbox"> Tag Identification</li>
+                <li><input type="checkbox"> Visual Tag Map</li>
+                <li><input type="checkbox"> Oral Explanation</li>
+                <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+            </ul>
+        </div>
+
+        <h4><strong>Basic Tags - a:</strong> Creates functional links with href and other essential attributes (target, rel)</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Basic Tags - p:</strong> Uses paragraphs for proper text structure</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Basic Tags - br:</strong> Applies line breaks appropriately (not for layout)</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Basic Tags - img:</strong> Implements images with essential attributes (src, alt)</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Basic Tags - hr:</strong> Uses horizontal rules for thematic breaks</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Basic Tags - div:</strong> Understands generic container usage</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Basic Tags - span:</strong> Uses inline containers appropriately</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Tag Anatomy Flashcards</li>
+            <li><input type="checkbox"> Attribute Sorting</li>
+            <li><input type="checkbox"> Tag Identification</li>
+            <li><input type="checkbox"> Visual Tag Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+    </div>
+
+    <div class="demonstrations">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> <strong>Tag Anatomy Flashcards:</strong> Create and demonstrate understanding of tag parts using flashcards or digital quiz</li>
+            <li><input type="checkbox"> <strong>Attribute Sorting:</strong> Sort attributes into key-value vs boolean categories and explain the difference</li>
+            <li><input type="checkbox"> <strong>Tag Identification:</strong> Label the opening tag, closing tag, attributes, and content in 10 sample tags</li>
+            <li><input type="checkbox"> <strong>Visual Tag Map:</strong> Create illustrated poster showing tag anatomy with color coding (suitable for MLLs)</li>
+            <li><input type="checkbox"> <strong>Oral Explanation:</strong> Verbally describe tag components and basic tags to teacher</li>
+        </ul>
+    </div>
+
+    <div class="project-based">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul>
+            <li><strong>Tag Dissection Lab:</strong> Break down 10 different HTML tags, labeling opening/closing tags, attributes, and content</li>
+            <li><strong>Interactive Webpage:</strong> Build a single page using all required basic tags (h1-h6, p, br, img, hr, div, span, a)</li>
+            <li><strong>Tag Reference Guide:</strong> Create a visual cheat sheet explaining tag anatomy with examples</li>
+            <li><strong>Debug Detective:</strong> Fix a webpage where all tags are broken or incorrectly formatted</li>
+        </ul>
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Certificate 3: Semantic HTML Specialist</h2>
+    <div class="learning-goal">Learning Goal: Apply semantic HTML tags appropriately to create meaningful document structure</div>
+
+    <div class="proficiency-standards">
+        <h3>Proficiency Standards:</h3>
+
+        <h4><strong>Semantic tags - header:</strong> Uses header for introductory content and navigation</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Semantic Tag Matching</li>
+            <li><input type="checkbox"> Tag Purpose Quiz</li>
+            <li><input type="checkbox"> Code Snippet Analysis</li>
+            <li><input type="checkbox"> Website Blueprint</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Semantic tags - footer:</strong> Implements footer for page/section conclusions and metadata</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Semantic Tag Matching</li>
+            <li><input type="checkbox"> Tag Purpose Quiz</li>
+            <li><input type="checkbox"> Code Snippet Analysis</li>
+            <li><input type="checkbox"> Website Blueprint</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Semantic tags - main:</strong> Applies main for primary page content (one per page)</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Semantic Tag Matching</li>
+            <li><input type="checkbox"> Tag Purpose Quiz</li>
+            <li><input type="checkbox"> Code Snippet Analysis</li>
+            <li><input type="checkbox"> Website Blueprint</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Semantic tags - article:</strong> Uses article for standalone, reusable content</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Semantic Tag Matching</li>
+            <li><input type="checkbox"> Tag Purpose Quiz</li>
+            <li><input type="checkbox"> Code Snippet Analysis</li>
+            <li><input type="checkbox"> Website Blueprint</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Semantic tags - aside:</strong> Implements aside for tangentially related content</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Semantic Tag Matching</li>
+            <li><input type="checkbox"> Tag Purpose Quiz</li>
+            <li><input type="checkbox"> Code Snippet Analysis</li>
+            <li><input type="checkbox"> Website Blueprint</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Semantic tags - figure:</strong> Uses figure with figcaption for images, diagrams, code snippets</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Semantic Tag Matching</li>
+            <li><input type="checkbox"> Tag Purpose Quiz</li>
+            <li><input type="checkbox"> Code Snippet Analysis</li>
+            <li><input type="checkbox"> Website Blueprint</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Semantic tags - nav:</strong> Creates navigation sections with appropriate links</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Semantic Tag Matching</li>
+            <li><input type="checkbox"> Tag Purpose Quiz</li>
+            <li><input type="checkbox"> Code Snippet Analysis</li>
+            <li><input type="checkbox"> Website Blueprint</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+    </div>
+
+    <div class="demonstrations">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> <strong>Semantic Tag Matching:</strong> Match semantic tags to their appropriate use cases and content types</li>
+            <li><input type="checkbox"> <strong>Tag Purpose Quiz:</strong> Explain the specific purpose and proper usage of each semantic tag</li>
+            <li><input type="checkbox"> <strong>Code Snippet Analysis:</strong> Identify where semantic tags should be used in sample content</li>
+            <li><input type="checkbox"> <strong>Website Blueprint:</strong> Draw a website layout showing where each semantic tag belongs (suitable for MLLs)</li>
+            <li><input type="checkbox"> <strong>Oral Explanation:</strong> Verbally describe semantic tags and their purposes to teacher</li>
+        </ul>
+    </div>
+
+    <div class="project-based">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul>
+            <li><strong>Website Makeover:</strong> Convert a div-heavy webpage into properly semantic HTML</li>
+            <li><strong>Content Architecture:</strong> Plan and build a multi-section webpage using all semantic tags</li>
+            <li><strong>Accessibility Audit:</strong> Review and improve the semantic structure of existing webpages</li>
+            <li><strong>Before/After Showcase:</strong> Demonstrate the difference between semantic and non-semantic HTML</li>
+        </ul>
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Certificate 4: List & Navigation Creator</h2>
+    <div class="learning-goal">Learning Goal: Create various types of lists and navigation structures</div>
+
+    <div class="proficiency-standards">
+        <h3>Proficiency Standards:</h3>
+
+        <h4><strong>Lists - Unordered Lists:</strong> Creates bulleted lists using ul and li elements</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> List Type Comparison</li>
+            <li><input type="checkbox"> List Attribute Demo</li>
+            <li><input type="checkbox"> Nesting Rules Quiz</li>
+            <li><input type="checkbox"> List Structure Diagram</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Lists - Ordered Lists:</strong> Creates numbered lists using ol and li elements</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> List Type Comparison</li>
+            <li><input type="checkbox"> List Attribute Demo</li>
+            <li><input type="checkbox"> Nesting Rules Quiz</li>
+            <li><input type="checkbox"> List Structure Diagram</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <div class="nested-list">
+            <h4><strong>type, value, start:</strong> Uses attributes to customize list numbering and starting points</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> List Type Comparison</li>
+                <li><input type="checkbox"> List Attribute Demo</li>
+                <li><input type="checkbox"> Nesting Rules Quiz</li>
+                <li><input type="checkbox"> List Structure Diagram</li>
+                <li><input type="checkbox"> Oral Explanation</li>
+                <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="demonstrations">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> <strong>List Type Comparison:</strong> Explain when to use ordered vs unordered lists with examples</li>
+            <li><input type="checkbox"> <strong>List Attribute Demo:</strong> Show understanding of list attributes (type, value, start) through simple examples</li>
+            <li><input type="checkbox"> <strong>Nesting Rules Quiz:</strong> Demonstrate knowledge of proper list nesting and structure</li>
+            <li><input type="checkbox"> <strong>List Structure Diagram:</strong> Create visual representation of different list types and nesting (suitable for MLLs)</li>
+            <li><input type="checkbox"> <strong>Oral Explanation:</strong> Verbally describe list types and attributes to teacher</li>
+        </ul>
+    </div>
+
+    <div class="project-based">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul>
+            <li><strong>Navigation System:</strong> Build a multi-level website navigation using appropriate list structures</li>
+            <li><strong>Content Organization:</strong> Create a webpage that uses both ordered and unordered lists appropriately with custom styling attributes</li>
+            <li><strong>Interactive Menu:</strong> Design a functional dropdown or multi-level menu using HTML lists</li>
+            <li><strong>List Styling Demo:</strong> Show mastery of list attributes (type, value, start) through practical examples</li>
+        </ul>
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Certificate 5: Table Layout Master</h2>
+    <div class="learning-goal">Learning Goal: Create complex, accessible tables with proper structure and spanning</div>
+
+    <div class="proficiency-standards">
+        <h3>Proficiency Standards:</h3>
+
+        <h4><strong>Tables - Simple Tables:</strong> Creates basic tables with proper table, tr, td, th structure</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Table Structure Quiz</li>
+            <li><input type="checkbox"> Spanning Concept Check</li>
+            <li><input type="checkbox"> Table Planning Exercise</li>
+            <li><input type="checkbox"> Table Grid Drawing</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Tables using rowspans:</strong> Implements rowspan attribute to merge cells vertically</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Table Structure Quiz</li>
+            <li><input type="checkbox"> Spanning Concept Check</li>
+            <li><input type="checkbox"> Table Planning Exercise</li>
+            <li><input type="checkbox"> Table Grid Drawing</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Tables with colspans:</strong> Uses colspan attribute to merge cells horizontally</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Table Structure Quiz</li>
+            <li><input type="checkbox"> Spanning Concept Check</li>
+            <li><input type="checkbox"> Table Planning Exercise</li>
+            <li><input type="checkbox"> Table Grid Drawing</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Tables with both rowspans and colspans:</strong> Combines spanning techniques for complex layouts</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Table Structure Quiz</li>
+            <li><input type="checkbox"> Spanning Concept Check</li>
+            <li><input type="checkbox"> Table Planning Exercise</li>
+            <li><input type="checkbox"> Table Grid Drawing</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+    </div>
+
+    <div class="demonstrations">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> <strong>Table Structure Quiz:</strong> Identify table elements (table, tr, td, th) and their relationships</li>
+            <li><input type="checkbox"> <strong>Spanning Concept Check:</strong> Explain how rowspan and colspan attributes work with simple examples</li>
+            <li><input type="checkbox"> <strong>Table Planning Exercise:</strong> Plan a complex table layout on paper before coding</li>
+            <li><input type="checkbox"> <strong>Table Grid Drawing:</strong> Create visual grid showing table structure with spanning cells (suitable for MLLs)</li>
+            <li><input type="checkbox"> <strong>Oral Explanation:</strong> Verbally describe table elements and spanning concepts to teacher</li>
+        </ul>
+    </div>
+
+    <div class="project-based">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul>
+            <li><strong>Progressive Table Challenge:</strong> Build 4 tables of increasing complexity (simple → rowspan → colspan → both spans)</li>
+            <li><strong>Data Visualization:</strong> Create a meaningful data table (sports stats, class schedule, etc.) using appropriate spanning</li>
+            <li><strong>Table Accessibility Audit:</strong> Improve existing tables with proper headers, captions, and semantic structure</li>
+            <li><strong>Responsive Table Design:</strong> Create tables that work well on different screen sizes</li>
+        </ul>
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Certificate 6: Link & Resource Integration</h2>
+    <div class="learning-goal">Learning Goal: Implement various types of links and external resource connections</div>
+
+    <div class="proficiency-standards">
+        <h3>Proficiency Standards:</h3>
+
+        <h4><strong>Links - for css:</strong> Properly links external CSS files using link element with rel="stylesheet"</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Link Attribute Quiz</li>
+            <li><input type="checkbox"> Link Type Identification</li>
+            <li><input type="checkbox"> Resource Linking Basics</li>
+            <li><input type="checkbox"> Link Connection Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <h4><strong>Links - for html:</strong> Creates internal and external HTML links</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Link Attribute Quiz</li>
+            <li><input type="checkbox"> Link Type Identification</li>
+            <li><input type="checkbox"> Resource Linking Basics</li>
+            <li><input type="checkbox"> Link Connection Map</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+
+        <div class="nested-list">
+            <h4><strong>href, target, rel:</strong> Uses essential link attributes for navigation, targeting, and relationships</h4>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Link Attribute Quiz</li>
+                <li><input type="checkbox"> Link Type Identification</li>
+                <li><input type="checkbox"> Resource Linking Basics</li>
+                <li><input type="checkbox"> Link Connection Map</li>
+                <li><input type="checkbox"> Oral Explanation</li>
+                <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="demonstrations">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> <strong>Link Attribute Quiz:</strong> Explain the purpose and usage of href, target, and rel attributes</li>
+            <li><input type="checkbox"> <strong>Link Type Identification:</strong> Distinguish between different link types (internal, external, email, CSS, etc.)</li>
+            <li><input type="checkbox"> <strong>Resource Linking Basics:</strong> Demonstrate understanding of how to link CSS files and other resources</li>
+            <li><input type="checkbox"> <strong>Link Connection Map:</strong> Create visual diagram showing different types of links and connections (suitable for MLLs)</li>
+            <li><input type="checkbox"> <strong>Oral Explanation:</strong> Verbally describe link types and attributes to teacher</li>
+        </ul>
+    </div>
+
+    <div class="project-based">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul>
+            <li><strong>Multi-Page Website:</strong> Create a small website with internal navigation, external links, and CSS/resource linking</li>
+            <li><strong>Link Strategy Portfolio:</strong> Demonstrate different link types (internal, external, email, phone) with appropriate attributes</li>
+            <li><strong>Resource Management:</strong> Build a webpage that properly links to CSS files, other HTML pages, and external resources</li>
+            <li><strong>Advanced Linking:</strong> Show mastery of link attributes (href, target, rel) through practical implementation</li>
+        </ul>
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Certificate 7: Image Integration Specialist</h2>
+    <div class="learning-goal">Learning Goal: Implement images with proper attributes for accessibility and performance</div>
+
+    <div class="proficiency-standards">
+        <h3>Proficiency Standards:</h3>
+
+        <h4><strong>Image tags - src, alt:</strong> Uses img element with essential attributes for functionality and accessibility</h4>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> Image Attribute Quiz</li>
+            <li><input type="checkbox"> Alt Text Writing Practice</li>
+            <li><input type="checkbox"> Image Implementation Basics</li>
+            <li><input type="checkbox"> Image Description Gallery</li>
+            <li><input type="checkbox"> Oral Explanation</li>
+            <li><input type="checkbox"> Other: <input type="text" class="other-input"></li>
+        </ul>
+    </div>
+
+    <div class="demonstrations">
+        <h3>Basic Proficiency Demonstrations (Choose 1):</h3>
+        <ul class="checkbox-list">
+            <li><input type="checkbox"> <strong>Image Attribute Quiz:</strong> Explain the purpose and importance of src and alt attributes</li>
+            <li><input type="checkbox"> <strong>Alt Text Writing Practice:</strong> Write appropriate alt text for various types of images</li>
+            <li><input type="checkbox"> <strong>Image Implementation Basics:</strong> Show understanding of proper image tag structure and syntax</li>
+            <li><input type="checkbox"> <strong>Image Description Gallery:</strong> Create visual collection showing good vs poor alt text examples (suitable for MLLs)</li>
+            <li><input type="checkbox"> <strong>Oral Explanation:</strong> Verbally describe image attributes and accessibility to teacher</li>
+        </ul>
+    </div>
+
+    <div class="project-based">
+        <h3>Project-Based Proficiency Demonstrations (Choose 2):</h3>
+        <ul>
+            <li><strong>Image Gallery Project:</strong> Create a photo gallery demonstrating proper use of src, alt, and responsive techniques</li>
+            <li><strong>Accessibility Champion:</strong> Audit and improve image accessibility across multiple webpages</li>
+            <li><strong>Performance Comparison:</strong> Test and demonstrate different image optimization techniques</li>
+            <li><strong>Visual Storytelling:</strong> Use images effectively to enhance content while maintaining accessibility standards</li>
+        </ul>
+    </div>
+</div>
+
+<div class="master-cert">
+    <h2>Master HTML Certification Requirements</h2>
+    <p><strong>To earn the Master HTML Certification, students must:</strong></p>
+    <ul>
+        <li>Complete ALL 7 mini-certificates</li>
+        <li><strong>Capstone Project:</strong> Build a complete, multi-page website that demonstrates proficiency in all areas</li>
+        <li><strong>Peer Review:</strong> Successfully review and provide feedback on 2 classmates' HTML projects</li>
+        <li><strong>Teaching Moment:</strong> Lead a mini-lesson or tutorial for other students on any HTML topic</li>
+    </ul>
+</div>
+
+<div class="assessment-notes">
+    <h2>Assessment Notes for Teachers</h2>
+
+    <h3>Evaluation Criteria:</h3>
+    <ul>
+        <li><strong>Functionality:</strong> Code works as intended</li>
+        <li><strong>Standards Compliance:</strong> Proper HTML5 structure and semantics</li>
+        <li><strong>Accessibility:</strong> Appropriate use of alt text, labels, and semantic elements</li>
+        <li><strong>Code Quality:</strong> Clean, well-indented, readable code</li>
+        <li><strong>Creativity:</strong> Thoughtful application of skills to solve real problems</li>
+    </ul>
+
+    <h3>Flexible Assessment Options:</h3>
+    <ul>
+        <li>Students can demonstrate proficiency through multiple pathways</li>
+        <li>Projects can be individual or collaborative</li>
+        <li>Allow resubmission after feedback for improvement</li>
+        <li>Consider real-world applications and student interests</li>
+    </ul>
+
+    <h3>Documentation:</h3>
+    <ul>
+        <li>Students should maintain a portfolio of their work</li>
+        <li>Encourage reflection on learning and problem-solving process</li>
+        <li>Include peer feedback and self-assessment components</li>
+    </ul>
+</div>
+</body>
+</html>

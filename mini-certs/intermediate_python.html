@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Python Mini-Certificate</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #2980b9;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        .certificate {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .prerequisites {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .learning-targets {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+        .learning-targets ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        .proof {
+            margin: 15px 0;
+        }
+        .proof ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .proof li {
+            margin: 8px 0;
+            list-style-type: none;
+        }
+        /* Remove bullets from list items containing checkboxes */
+        .proof ul li {
+            list-style-type: none;
+        }
+        .proof ul li::before {
+            content: "";
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            margin-right: 0.5em;
+            vertical-align: -0.2em;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .mastery {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+            border-left: 4px solid #28a745;
+        }
+        .success-indicators {
+            background-color: #d1ecf1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        .success-indicators h2 {
+            margin-top: 0;
+            color: #0c5460;
+        }
+        .success-indicators ul {
+            padding-left: 20px;
+        }
+        .integration-notes {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .integration-notes h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+        .final-note {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<h1>Intermediate Python Mini-Certificate</h1>
+
+<div class="certificate">
+    <p class="prerequisites"><strong>Prerequisites:</strong> Completion of Mini-Certificates 1–19 (Foundations through Functions)</p>
+    <p><strong>Final Goal:</strong> Students will write modular, reusable, and well-structured Python code using functional, object-oriented, and file-based programming techniques.</p>
+
+    <h2>Learning Targets</h2>
+    <div class="learning-targets">
+        <ul>
+            <li>Use <strong>lambda functions</strong> and <strong>built-in functions</strong> (<code>map</code>, <code>filter</code>, <code>sorted</code>) for functional programming</li>
+            <li>Apply <strong>list comprehensions</strong> to create lists concisely and efficiently</li>
+            <li>Perform <strong>basic file I/O</strong> operations including reading and writing text files</li>
+            <li>Define <strong>classes</strong> and create <strong>objects</strong> with <code>__init__</code> and instance attributes</li>
+            <li>Add <strong>methods</strong> that use <code>self</code> to manipulate object state</li>
+            <li>Implement <strong>inheritance</strong> and use <code>super()</code> to extend parent behavior</li>
+            <li>Customize object behavior with <strong>special methods</strong> like <code>__str__</code>, <code>__repr__</code>, and <code>__eq__</code></li>
+            <li>Choose between <strong>functional</strong> and <strong>OOP</strong> approaches based on problem requirements</li>
+        </ul>
+    </div>
+
+    <h2>Proof</h2>
+    <p><em>Each checkbox represents a proof of understanding. Students must demonstrate mastery through creation, explanation, or application.</em></p>
+
+    <h3>Lambda & Built-in Functions</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Lambda Expression Mastery</strong> – Write 5+ lambda functions (e.g., <code>lambda x: x*2</code>, <code>lambda s: s.upper()</code>) and use them in appropriate contexts</li>
+            <li><input type="checkbox"> <strong>Use with <code>map()</code> and <code>filter()</code></strong> – Apply <code>map()</code> and <code>filter()</code> with lambda to transform and filter a list (e.g., double numbers, extract evens)</li>
+            <li><input type="checkbox"> <strong>Built-in Function Lab</strong> – Use <code>len()</code>, <code>sum()</code>, <code>max()</code>, <code>min()</code>, <code>sorted()</code>, <code>type()</code>, and <code>isinstance()</code> in 10+ real-world data processing scenarios</li>
+            <li><input type="checkbox"> <strong>Functional Data Pipeline</strong> – Chain <code>map()</code>, <code>filter()</code>, and <code>sorted()</code> to process a list of dictionaries (e.g., student records) and extract filtered, sorted results</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>List Comprehensions</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Basic List Comprehension</strong> – Write list comprehensions to transform lists (e.g., <code>[x**2 for x in range(10)]</code>) in 8+ examples</li>
+            <li><input type="checkbox"> <strong>Conditional Filtering</strong> – Use <code>if</code> conditions in list comprehensions to filter elements (e.g., <code>[x for x in numbers if x % 2 == 0]</code>)</li>
+            <li><input type="checkbox"> <strong>Nested Comprehensions</strong> – Create nested list comprehensions for 2D data processing (e.g., flattening a matrix)</li>
+            <li><input type="checkbox"> <strong>String Processing</strong> – Use list comprehensions to process strings (e.g., extract vowels, convert to uppercase)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Basic File I/O</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>File Reading</strong> – Open and read text files using <code>with open()</code> context manager, processing content line by line</li>
+            <li><input type="checkbox"> <strong>File Writing</strong> – Create and write to text files, handling both write and append modes safely</li>
+            <li><input type="checkbox"> <strong>Error Handling</strong> – Implement try/except blocks to handle <code>FileNotFoundError</code> and other I/O exceptions</li>
+            <li><input type="checkbox"> <strong>Data Processing Pipeline</strong> – Read data from a file, process it (e.g., filter, transform), and write results to a new file</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Classes & <code>__init__</code></h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Class Definition Practice</strong> – Define 3+ classes (e.g., <code>Student</code>, <code>BankAccount</code>, <code>Product</code>) using <code>class Name:</code> syntax with proper docstrings</li>
+            <li><input type="checkbox"> <strong><code>__init__</code> Method Implementation</strong> – Add a constructor that sets instance attributes (e.g., <code>self.name</code>, <code>self.balance</code>) from parameters</li>
+            <li><input type="checkbox"> <strong>Object Creation & Initialization</strong> – Instantiate objects with different data and verify attributes are set correctly</li>
+            <li><input type="checkbox"> <strong>Attribute Access & Modification</strong> – Print and modify instance attributes after creation, demonstrating object state</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Methods & <code>self</code></h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Instance Method Creation</strong> – Add methods that use <code>self</code> to access or modify object data (e.g., <code>account.deposit(100)</code>, <code>student.get_grade()</code>)</li>
+            <li><input type="checkbox"> <strong>Method Call & Behavior</strong> – Call methods on instances and verify correct behavior and state changes</li>
+            <li><input type="checkbox"> <strong><code>self</code> Understanding</strong> – Explain why <code>self</code> is required in method definitions and demonstrate that it refers to the instance</li>
+            <li><input type="checkbox"> <strong>Method Chaining (Optional)</strong> – Design methods that return <code>self</code> to enable chaining (e.g., <code>builder.set_name("Alice").set_age(25)</code>)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Inheritance & <code>super()</code></h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Child Class Definition</strong> – Create a subclass (e.g., <code>SavingsAccount(BankAccount)</code>, <code>Teacher(Person)</code>) that inherits from a parent class</li>
+            <li><input type="checkbox"> <strong>Method Overriding</strong> – Redefine a parent method in the child class (e.g., <code>calculate_interest()</code>, <code>get_role()</code>)</li>
+            <li><input type="checkbox"> <strong><code>super()</code> Usage</strong> – Use <code>super().__init__()</code> to extend parent initialization and avoid code duplication</li>
+            <li><input type="checkbox"> <strong>Polymorphism Demonstration</strong> – Call the same method on different objects (parent and child) and show different behavior</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Special Methods (<code>__str__</code>, <code>__repr__</code>, <code>__eq__</code>)</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong><code>__str__</code> Implementation</strong> – Add <code>__str__</code> to return a human-readable string (e.g., <code>"Student: Alice, Grade: A"</code>)</li>
+            <li><input type="checkbox"> <strong><code>__repr__</code> Implementation</strong> – Add <code>__repr__</code> to return a detailed, unambiguous string for debugging (e.g., <code>"Student('Alice', 'A')"</code>)</li>
+            <li><input type="checkbox"> <strong>Print Object Behavior</strong> – Verify that <code>print(obj)</code> uses <code>__str__</code> and interactive mode uses <code>__repr__</code></li>
+            <li><input type="checkbox"> <strong><code>__eq__</code> Custom Comparison</strong> – Implement <code>__eq__</code> to define equality (e.g., two <code>Student</code> objects are equal if names match)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Demonstrates intermediate-level proficiency in Python by combining functional and object-oriented programming techniques. Creates reusable classes with proper initialization, methods, inheritance, and special methods. Uses lambda, list comprehensions, and built-in functions for clean, expressive code. Performs basic file I/O operations safely and efficiently. Understands when to use OOP vs functional approaches.
+    </div>
+</div>
+
+<div class="success-indicators">
+    <h2>Success Indicators</h2>
+    <p>Students are ready for advanced Python (web frameworks, data science, automation) when they can:</p>
+    <ul>
+        <li>Design classes that model real-world entities with attributes and behaviors</li>
+        <li>Use inheritance to extend functionality and avoid code duplication</li>
+        <li>Customize object representation and comparison with special methods</li>
+        <li>Apply functional programming tools (<code>lambda</code>, <code>map</code>, <code>filter</code>, list comprehensions) to process data</li>
+        <li>Perform basic file reading and writing operations with proper error handling</li>
+        <li>Choose between procedural, functional, and OOP styles based on problem context</li>
+        <li>Debug object state and method calls using <code>print()</code> and <code>type()</code></li>
+        <li>Explain the purpose of <code>self</code>, <code>super()</code>, and special methods in their own words</li>
+    </ul>
+</div>
+
+<div class="integration-notes">
+    <h3>Integration Notes</h3>
+    <ul>
+        <li><strong>Teach After:</strong> Functions (Mini-Cert 17–20) and basic data structures</li>
+        <li><strong>Pair With:</strong> Final project work (e.g., building a student management system that reads/writes data to files)</li>
+        <li><strong>Optional Extension:</strong> Introduce <code>@property</code>, <code>@staticmethod</code>, or <code>dataclass</code> for advanced learners</li>
+    </ul>
+</div>
+
+<div class="final-note">
+    <p>This Intermediate Python Mini-Certificate serves as a bridge between foundational syntax and advanced application development, preparing students for real-world programming tasks and deeper study in Python-based frameworks. The addition of list comprehensions and basic file I/O enhances students' ability to process data efficiently and work with persistent storage.</p>
+</div>
+</body>
+</html>
