@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Development Concepts Certificate</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 20px;
+        }
+        .certificate {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .prerequisites {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .learning-targets {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .proof {
+            margin: 15px 0;
+        }
+        .proof ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .proof li {
+            margin: 8px 0;
+        }
+        /* Remove bullets from list items containing checkboxes */
+        .proof-checkbox-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .proof-checkbox-list li {
+            list-style-type: none;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .competency {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Software Development Concepts Certificate</h1>
+
+<div class="certificate">
+    <h2>Mini-Certificate 1: Software Development Life Cycle (SDLC)</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> None</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the Software Development Life Cycle (SDLC)</li>
+            <li>Explain why SDLC is necessary for software projects</li>
+            <li>Understand why software development work is divided into phases</li>
+            <li>Identify the benefits of structured software development processes</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>SDLC Definition</strong> – Define SDLC in your own words and explain its purpose in software development</li>
+            <li><input type="checkbox"> <strong>Why We Need SDLC</strong> – Explain at least 3 reasons why organizations use SDLC (e.g., risk reduction, quality assurance, predictability)</li>
+            <li><input type="checkbox"> <strong>Work Division Rationale</strong> – Explain why dividing software development into phases improves project outcomes</li>
+            <li><input type="checkbox"> <strong>SDLC Benefits Analysis</strong> – Create a table comparing projects with SDLC vs without SDLC across dimensions like cost, quality, and timeline</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines SDLC clearly, explains its necessity, and articulates the benefits of dividing software development work into structured phases.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 2: Agile Methodology</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 1</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define Agile software development</li>
+            <li>Explain the four values of the Agile Manifesto</li>
+            <li>Distinguish between Agile and non-Agile approaches</li>
+            <li>Apply Agile principles to real-world scenarios</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Agile Definition</strong> – Define Agile in your own words and explain its iterative nature</li>
+            <li><input type="checkbox"> <strong>Agile Manifesto Values</strong> – List and explain all four values of the Agile Manifesto with real examples</li>
+            <li><input type="checkbox"> <strong>What is Not Agile</strong> – Identify 5 practices that contradict Agile principles and explain why they conflict</li>
+            <li><input type="checkbox"> <strong>Agile Scenario Application</strong> – Analyze a software project scenario and explain how Agile would approach it differently than traditional methods</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Clearly defines Agile, articulates the Agile Manifesto values, distinguishes Agile from non-Agile approaches, and applies Agile thinking to practical scenarios.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 3: Waterfall Methodology</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 1</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the Waterfall model of software development</li>
+            <li>Explain the sequential nature of Waterfall</li>
+            <li>Identify where Waterfall is actually iterative in practice</li>
+            <li>Understand the strengths and limitations of Waterfall</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Waterfall Definition</strong> – Define the Waterfall model and explain its linear, sequential nature</li>
+            <li><input type="checkbox"> <strong>Sequential Process Diagram</strong> – Create a diagram showing the flow from Requirements → Design → Implementation → Verification → Maintenance</li>
+            <li><input type="checkbox"> <strong>Waterfall Iteration Analysis</strong> – Explain how Waterfall projects often include iteration in practice despite being theoretically sequential</li>
+            <li><input type="checkbox"> <strong>Waterfall Case Study</strong> – Analyze a real-world project and explain when Waterfall would be appropriate vs when it would be problematic</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines Waterfall clearly, diagrams its stages, explains its practical iteration, and evaluates its appropriate use cases.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 4: Iterative SDLC Models</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 2–3</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Compare different iterative SDLC models</li>
+            <li>Map the stages of iterative development</li>
+            <li>Understand the cyclical nature of modern software development</li>
+            <li>Apply iterative thinking to software projects</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Iterative Model Comparison</strong> – Compare three iterative models (e.g., Concept→Inception→Iteration→Testing→Production→Review) and explain their similarities</li>
+            <li><input type="checkbox"> <strong>Requirements to Feedback Cycle</strong> – Map the cycle from Requirements Gathering → Design → Coding → Testing → Deployment → Feedback and explain how it repeats</li>
+            <li><input type="checkbox"> <strong>Idea to Maintenance Flow</strong> – Diagram the flow from Idea → Resources → Design → Code → Test → Deploy → Maintenance and explain each stage</li>
+            <li><input type="checkbox"> <strong>Iteration Justification</strong> – Explain why software development benefits from iterative approaches rather than single-pass development</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Compares iterative models, maps development cycles, and articulates the value of iterative approaches in software development.
+    </div>
+</div>
+
+<!-- Software Architecture Concepts -->
+<div class="certificate">
+    <h2>Mini-Certificate 5: Monolithic Architecture</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 1–4</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define monolithic architecture</li>
+            <li>Explain the characteristics of monolithic applications</li>
+            <li>Identify advantages and disadvantages of monolithic design</li>
+            <li>Recognize real-world examples of monolithic systems</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Monolith Definition</strong> – Define monolithic architecture in your own words and explain its "all-in-one" nature</li>
+            <li><input type="checkbox"> <strong>Architecture Diagram</strong> – Create a diagram showing how components (UI, business logic, data access) are tightly coupled in a monolith</li>
+            <li><input type="checkbox"> <strong>Pros and Cons Analysis</strong> – List and explain at least 4 advantages and 4 disadvantages of monolithic architecture</li>
+            <li><input type="checkbox"> <strong>Real-World Examples</strong> – Research and present 3 real-world applications that use monolithic architecture</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines monolithic architecture, diagrams its structure, analyzes its trade-offs, and identifies real-world implementations.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 6: Tiered Web Application Architecture</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 5</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Explain 3-tier architecture (presentation, business, data)</li>
+            <li>Understand N-tier architecture concepts</li>
+            <li>Diagram tiered application structure</li>
+            <li>Identify benefits of separation of concerns in tiered systems</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>3-Tier Explanation</strong> – Define and explain the presentation, business logic, and data access tiers with specific examples</li>
+            <li><input type="checkbox"> <strong>Architecture Diagram</strong> – Create a detailed diagram showing data flow between the three tiers</li>
+            <li><input type="checkbox"> <strong>Separation of Concerns</strong> – Explain how tiered architecture separates concerns and improves maintainability</li>
+            <li><input type="checkbox"> <strong>N-Tier Extension</strong> – Explain how 3-tier can evolve into N-tier architecture with additional service layers</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Explains tiered architecture clearly, diagrams its components, and articulates the benefits of separation of concerns in web applications.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 7: Microservices and Cloud Architecture</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 6</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define microservices architecture</li>
+            <li>Explain how microservices relate to cloud computing</li>
+            <li>Understand service independence and communication</li>
+            <li>Compare microservices to monolithic and tiered approaches</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Microservices Definition</strong> – Define microservices architecture and explain its decentralized nature</li>
+            <li><input type="checkbox"> <strong>Architecture Diagram</strong> – Create a diagram showing multiple independent services communicating via APIs</li>
+            <li><input type="checkbox"> <strong>Cloud Integration</strong> – Explain how microservices leverage cloud infrastructure for scalability and deployment</li>
+            <li><input type="checkbox"> <strong>Comparison Analysis</strong> – Compare microservices with monolithic and tiered architectures across dimensions like scalability, complexity, and deployment</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines microservices architecture, diagrams its structure, explains cloud integration, and compares it effectively with other architectural approaches.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 8: Cross-Cutting Concerns</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 5–7</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Identify cross-cutting concerns in software systems</li>
+            <li>Explain how concerns like security and logging affect multiple components</li>
+            <li>Understand strategies for handling cross-cutting concerns</li>
+            <li>Recognize implementation patterns like AOP</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Concern Identification</strong> – List and define at least 6 cross-cutting concerns (security, logging, error handling, etc.)</li>
+            <li><input type="checkbox"> <strong>Impact Analysis</strong> – Explain how each concern affects multiple parts of a software system</li>
+            <li><input type="checkbox"> <strong>Implementation Strategies</strong> – Research and explain different approaches to handling cross-cutting concerns (AOP, middleware, service layers)</li>
+            <li><input type="checkbox"> <strong>Real-World Examples</strong> – Provide examples of how cross-cutting concerns are implemented in actual software projects</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Identifies cross-cutting concerns, explains their system-wide impact, and understands various implementation strategies.
+    </div>
+</div>
+
+<!-- Software Development Job Roles -->
+<div class="certificate">
+    <h2>Mini-Certificate 9: Business Owner/Sponsor</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 1–4</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the role of business owner/sponsor</li>
+            <li>Explain their responsibilities in software projects</li>
+            <li>Understand their influence on project direction</li>
+            <li>Identify decision-making authority and accountability</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the business owner/sponsor role and explain their strategic importance</li>
+            <li><input type="checkbox"> <strong>Responsibility Mapping</strong> – List and explain at least 5 key responsibilities (budget approval, scope definition, priority setting)</li>
+            <li><input type="checkbox"> <strong>Decision Authority</strong> – Explain what types of decisions a business owner typically makes and approves</li>
+            <li><input type="checkbox"> <strong>Stakeholder Analysis</strong> – Create a diagram showing how the business owner interacts with other project stakeholders</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the business owner/sponsor role, explains responsibilities, and understands their strategic influence on software projects.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 10: Business Analyst</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 9</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the business analyst role</li>
+            <li>Explain requirements gathering techniques</li>
+            <li>Understand translation of business needs to technical specifications</li>
+            <li>Identify documentation and communication responsibilities</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the business analyst role and explain how they bridge business and technical teams</li>
+            <li><input type="checkbox"> <strong>Requirements Gathering</strong> – Describe at least 4 techniques for gathering requirements (interviews, surveys, observation, workshops)</li>
+            <li><input type="checkbox"> <strong>User Story Creation</strong> – Write 5 user stories using the "As a [role], I want [feature] so that [benefit]" format</li>
+            <li><input type="checkbox"> <strong>Specification Documentation</strong> – Create a simple requirements document for a small feature with functional and non-functional requirements</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the business analyst role, demonstrates requirements gathering techniques, and creates proper user stories and specifications.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 11: Usability Tester</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 10</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the usability tester role</li>
+            <li>Explain usability testing methods</li>
+            <li>Understand user-centered evaluation techniques</li>
+            <li>Identify common usability issues and heuristics</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the usability tester role and explain their focus on user experience</li>
+            <li><input type="checkbox"> <strong>Testing Methods</strong> – Describe at least 3 usability testing methods (think-aloud protocol, A/B testing, heuristic evaluation)</li>
+            <li><input type="checkbox"> <strong>Usability Heuristics</strong> – List and explain Nielsen's 10 usability heuristics with real examples</li>
+            <li><input type="checkbox"> <strong>Test Report</strong> – Conduct a simple usability test on a website and create a report identifying 5 usability issues</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the usability tester role, understands testing methods, applies usability heuristics, and creates effective test reports.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 12: UX/UI Designer</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 11</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define UX and UI design roles</li>
+            <li>Understand user research and persona development</li>
+            <li>Explain wireframing and prototyping</li>
+            <li>Identify principles of visual design and interaction design</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Differentiation</strong> – Explain the difference between UX (user experience) and UI (user interface) design</li>
+            <li><input type="checkbox"> <strong>User Personas</strong> – Create 2 user personas for a specific application with demographics, goals, and pain points</li>
+            <li><input type="checkbox"> <strong>Wireframe Creation</strong> – Create wireframes for 3 key screens of an application using paper or digital tools</li>
+            <li><input type="checkbox"> <strong>Design Principles</strong> – Apply design principles (consistency, hierarchy, feedback) to improve a poorly designed interface</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines UX/UI roles, creates user personas, produces wireframes, and applies design principles to improve user interfaces.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 13: Technical Architect</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 5–8</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the technical architect role</li>
+            <li>Explain technology selection and system design</li>
+            <li>Understand non-functional requirements</li>
+            <li>Identify scalability, performance, and security considerations</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the technical architect role and explain their strategic technical leadership</li>
+            <li><input type="checkbox"> <strong>System Design</strong> – Create a high-level architecture diagram for a web application including components and data flow</li>
+            <li><input type="checkbox"> <strong>Technology Selection</strong> – Justify technology choices for a project based on requirements, team skills, and constraints</li>
+            <li><input type="checkbox"> <strong>Non-Functional Requirements</strong> – Address scalability, performance, security, and reliability in a system design document</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the technical architect role, creates system designs, justifies technology choices, and addresses non-functional requirements.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 14: Front End Developer</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 12</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the front end developer role</li>
+            <li>Explain implementation of UI designs</li>
+            <li>Understand client-side technologies</li>
+            <li>Identify browser compatibility and performance considerations</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the front end developer role and explain their focus on client-side implementation</li>
+            <li><input type="checkbox"> <strong>HTML/CSS Implementation</strong> – Convert a design mockup into HTML and CSS code with proper semantic structure</li>
+            <li><input type="checkbox"> <strong>JavaScript Integration</strong> – Add interactive elements using JavaScript to enhance user experience</li>
+            <li><input type="checkbox"> <strong>Browser Testing</strong> – Test a web page across different browsers and devices, documenting and fixing compatibility issues</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the front end developer role, implements UI designs, integrates JavaScript, and ensures cross-browser compatibility.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 15: Back End Developer</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 13</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the back end developer role</li>
+            <li>Explain server-side programming and APIs</li>
+            <li>Understand database integration</li>
+            <li>Identify security, performance, and scalability considerations</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the back end developer role and explain their focus on server-side logic</li>
+            <li><input type="checkbox"> <strong>API Implementation</strong> – Design and document a simple REST API with endpoints, methods, and data structures</li>
+            <li><input type="checkbox"> <strong>Database Integration</strong> – Connect an application to a database and implement basic CRUD operations</li>
+            <li><input type="checkbox"> <strong>Security Practices</strong> – Implement basic security measures like input validation, authentication, and error handling</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the back end developer role, implements APIs, integrates databases, and applies security best practices.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 16: Full Stack Developer</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 14–15</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the full stack developer role</li>
+            <li>Explain integration of front end and back end components</li>
+            <li>Understand end-to-end application development</li>
+            <li>Identify coordination between client and server</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the full stack developer role and explain their comprehensive technical scope</li>
+            <li><input type="checkbox"> <strong>End-to-End Implementation</strong> – Build a simple application with both front end and back end components that communicate properly</li>
+            <li><input type="checkbox"> <strong>Integration Challenges</strong> – Identify and solve common integration issues between front end and back end systems</li>
+            <li><input type="checkbox"> <strong>Development Workflow</strong> – Document the development process for a full stack application from concept to deployment</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the full stack developer role, implements end-to-end applications, solves integration challenges, and understands full development workflows.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 17: Database Developer</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 15</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the database developer role</li>
+            <li>Explain database design and optimization</li>
+            <li>Understand data modeling and schema creation</li>
+            <li>Identify performance tuning and data integrity considerations</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the database developer role and explain their focus on data storage and retrieval</li>
+            <li><input type="checkbox"> <strong>Data Modeling</strong> – Create an ER diagram for a business domain with entities, attributes, and relationships</li>
+            <li><input type="checkbox"> <strong>Schema Implementation</strong> – Write SQL to create tables, define constraints, and establish relationships</li>
+            <li><input type="checkbox"> <strong>Query Optimization</strong> – Write efficient SQL queries and explain optimization techniques like indexing</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the database developer role, creates data models, implements schemas, and optimizes database queries.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 18: Mobile Developer (iOS/Android)</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 14</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define mobile developer roles for iOS and Android</li>
+            <li>Explain platform-specific development considerations</li>
+            <li>Understand native vs cross-platform approaches</li>
+            <li>Identify device-specific constraints and capabilities</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define iOS and Android developer roles and explain their platform-specific focus</li>
+            <li><input type="checkbox"> <strong>Platform Comparison</strong> – Compare iOS and Android development in terms of languages, tools, and ecosystems</li>
+            <li><input type="checkbox"> <strong>Native vs Cross-Platform</strong> – Explain the trade-offs between native development and cross-platform frameworks</li>
+            <li><input type="checkbox"> <strong>Mobile Constraints</strong> – Address mobile-specific considerations like screen size, touch input, battery life, and connectivity</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines mobile developer roles, compares platforms, understands development approaches, and addresses mobile-specific constraints.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 19: QA Tester / Automation Tester</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 11, 15</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define QA and automation testing roles</li>
+            <li>Explain manual vs automated testing</li>
+            <li>Understand test case development and execution</li>
+            <li>Identify bug reporting and quality assurance processes</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define QA tester and automation tester roles and explain their quality assurance focus</li>
+            <li><input type="checkbox"> <strong>Test Case Development</strong> – Write detailed test cases for a feature with preconditions, steps, and expected results</li>
+            <li><input type="checkbox"> <strong>Manual Testing</strong> – Execute test cases and document results, identifying and reporting bugs with proper detail</li>
+            <li><input type="checkbox"> <strong>Automation Basics</strong> – Explain the benefits of test automation and describe basic automated testing frameworks</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines QA roles, develops test cases, performs manual testing, and understands test automation principles.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 20: DevOps Engineer</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 13, 15</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Define the DevOps engineer role</li>
+            <li>Explain CI/CD pipeline concepts</li>
+            <li>Understand infrastructure as code</li>
+            <li>Identify monitoring, deployment, and collaboration practices</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Role Definition</strong> – Define the DevOps engineer role and explain their focus on development and operations integration</li>
+            <li><input type="checkbox"> <strong>CI/CD Pipeline</strong> – Diagram a CI/CD pipeline showing code commit, build, test, and deployment stages</li>
+            <li><input type="checkbox"> <strong>Infrastructure as Code</strong> – Explain the concept and benefits of managing infrastructure through code</li>
+            <li><input type="checkbox"> <strong>Monitoring and Logging</strong> – Describe tools and practices for system monitoring, logging, and incident response</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Defines the DevOps role, understands CI/CD pipelines, explains infrastructure as code, and identifies monitoring practices.
+    </div>
+</div>
+
+<!-- Remaining concepts from original structure -->
+<div class="certificate">
+    <h2>Mini-Certificate 21: Programming Languages</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 1–20</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Distinguish between compiled and interpreted languages</li>
+            <li>Compare procedural, object-oriented, functional, and declarative paradigms</li>
+            <li>Understand hybrid languages and approaches</li>
+            <li>Identify UI languages and event handling concepts</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Compiled vs Interpreted</strong> – Compare compiled and interpreted languages, providing 3 examples of each and explaining performance implications</li>
+            <li><input type="checkbox"> <strong>Paradigm Comparison</strong> – Explain procedural, OOP, functional, and declarative programming with code examples</li>
+            <li><input type="checkbox"> <strong>Hybrid Languages</strong> – Research and explain how modern languages (like Python, JavaScript) combine multiple paradigms</li>
+            <li><input type="checkbox"> <strong>UI Languages & Events</strong> – Explain how UI languages work and demonstrate understanding of event handling in user interfaces</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Distinguishes language compilation approaches, compares programming paradigms, understands hybrid languages, and explains UI language concepts.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 22: General Purpose Languages</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 21</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Identify major general-purpose programming languages</li>
+            <li>Understand the characteristics of each language</li>
+            <li>Compare language use cases and ecosystems</li>
+            <li>Recognize domain-specific languages like SQL</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Language Identification</strong> – List and describe 7+ general-purpose languages (Java, Python, C, C++, C#, Rust, Go)</li>
+            <li><input type="checkbox"> <strong>Language Characteristics</strong> – For each language, identify key characteristics (speed, memory management, use cases, etc.)</li>
+            <li><input type="checkbox"> <strong>Use Case Analysis</strong> – Match programming languages to appropriate application domains (web, systems, data science, etc.)</li>
+            <li><input type="checkbox"> <strong>SQL & DSLs</strong> – Explain SQL as a domain-specific language and identify other DSLs used in software development</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Identifies major programming languages, understands their characteristics, matches them to use cases, and recognizes domain-specific languages.
+    </div>
+</div>
+
+<div class="certificate">
+    <h2>Mini-Certificate 23: Technology Stacks</h2>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Mini-Cert 5–8, 21–22</p>
+
+    <h3>Learning Targets</h3>
+    <div class="learning-targets">
+        <ul>
+            <li>Identify common technology stacks</li>
+            <li>Explain the components of each stack</li>
+            <li>Compare different stack approaches</li>
+            <li>Understand full-stack development concepts</li>
+        </ul>
+    </div>
+
+    <h3>Proof</h3>
+    <div class="proof">
+        <ul class="proof-checkbox-list">
+            <li><input type="checkbox"> <strong>Stack Identification</strong> – List and explain WAMP, LAMP, MAMP stacks and their components</li>
+            <li><input type="checkbox"> <strong>MEAN/MERN Analysis</strong> – Compare MEAN (MongoDB, Express, Angular, Node) and MERN (MongoDB, Express, React, Node) stacks</li>
+            <li><input type="checkbox"> <strong>ASP.NET & Spring</strong> – Explain ASP.NET and Java Spring as enterprise development stacks</li>
+            <li><input type="checkbox"> <strong>Stack Comparison</strong> – Create a comparison chart of at least 5 technology stacks, showing components, use cases, and trade-offs</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="competency">
+        ✅ <strong>Overall Competency</strong><br>
+        Identifies technology stacks, explains their components, compares different approaches, and understands full-stack development concepts.
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 40px; color: #666; font-size: 0.9em;">
+    <p>This comprehensive Software Development Concepts Certificate provides a structured pathway through essential software engineering knowledge, with detailed exploration of architectural patterns and specialized job roles, preparing learners for advanced study and career development in technology fields.</p>
+</div>
+</body>
+</html>
