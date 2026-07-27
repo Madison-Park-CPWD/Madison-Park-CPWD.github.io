@@ -13,6 +13,9 @@ const runBtn = document.getElementById("run-btn");
 const resetBtn = document.getElementById("reset-btn");
 const statusDot = document.getElementById("status-dot");
 const statusText = document.getElementById("status-text");
+const studentNameEl = document.getElementById("student-name");
+const changeNameBtn = document.getElementById("change-name-btn");
+const downloadBtn = document.getElementById("download-btn");
 
 // Fetches units/manifest.json (an ordered list of unit ids), then fetches
 // units/<id>.json for each one, in that order. Reordering lessons only ever
@@ -47,6 +50,50 @@ function loadSolvedForUnit() {
 }
 function saveSolved() {
   localStorage.setItem(solvedKey(), JSON.stringify([...solved]));
+}
+
+// --- Attempt history: every "Run Tests" click gets logged (code + timestamp +
+// pass/fail), not just the final solved status, so a downloaded export shows
+// the whole trail of attempts, not just a snapshot of the end state. ---
+
+function historyKey(unitId, exerciseId) {
+  return `history-${unitId}-${exerciseId}`;
+}
+
+function loadHistory(unitId, exerciseId) {
+  return JSON.parse(localStorage.getItem(historyKey(unitId, exerciseId)) || "[]");
+}
+
+function appendHistory(unitId, exerciseId, entry) {
+  const key = historyKey(unitId, exerciseId);
+  const hist = loadHistory(unitId, exerciseId);
+  hist.push(entry);
+  localStorage.setItem(key, JSON.stringify(hist));
+}
+
+// --- Student name, used to label the downloaded export. Asked once, editable
+// any time via the "change" link next to the name in the header. ---
+
+function getStudentName() {
+  return localStorage.getItem("student-name") || "";
+}
+
+function setStudentName(name) {
+  localStorage.setItem("student-name", name.trim());
+}
+
+function promptForStudentName() {
+  const current = getStudentName();
+  const entered = window.prompt("What's your name? (used to label your downloaded work)", current);
+  if (entered && entered.trim()) {
+    setStudentName(entered);
+    renderStudentName();
+  }
+}
+
+function renderStudentName() {
+  const name = getStudentName();
+  studentNameEl.textContent = name ? name : "Set your name";
 }
 
 function renderUnitSelect() {
@@ -222,6 +269,12 @@ async function runTests() {
     renderSidebar();
   }
 
+  appendHistory(currentUnit().id, ex.id, {
+    timestamp: new Date().toISOString(),
+    code,
+    passed: allPass,
+  });
+
   runBtn.disabled = false;
   runBtn.textContent = "Run Tests";
 }
@@ -232,6 +285,137 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
+
+// --- Export: grouped by calendar day (most recent day first), matching a
+// daily-assignment workflow. Whenever an exercise shows up on a given day,
+// its full prior history (from earlier days) is pulled in right there too,
+// so you never have to hunt across days to see if this is a repeat struggle
+// on the same problem. ---
+
+// Local calendar-day key, e.g. "2026-07-27" — sorts correctly as a string
+// and is used purely for grouping/comparison, never shown to the reader.
+function localDayKey(isoTimestamp) {
+  const d = new Date(isoTimestamp);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function localDayLabel(isoTimestamp) {
+  return new Date(isoTimestamp).toLocaleDateString(undefined, {
+    weekday: "long", year: "numeric", month: "long", day: "numeric",
+  });
+}
+
+function buildExportMarkdown() {
+  const name = getStudentName() || "(name not set)";
+  const generatedAt = new Date().toLocaleString();
+  const lines = [`# Python Practice — ${name}`, "", `Exported ${generatedAt}`, ""];
+
+  // Flatten every attempt across every unit/exercise into one list, each
+  // tagged with where it came from, then sort chronologically so grouping
+  // by day (and by exercise-within-a-day) comes out in the order things
+  // actually happened.
+  const allEntries = [];
+  UNITS.forEach(unit => {
+    unit.exercises.forEach(ex => {
+      loadHistory(unit.id, ex.id).forEach(attempt => {
+        allEntries.push({
+          unitId: unit.id,
+          unitTitle: unit.title,
+          exerciseId: ex.id,
+          exerciseTitle: ex.title,
+          timestamp: attempt.timestamp,
+          code: attempt.code,
+          passed: attempt.passed,
+          dayKey: localDayKey(attempt.timestamp),
+        });
+      });
+    });
+  });
+
+  if (allEntries.length === 0) {
+    lines.push("_No attempts recorded yet._");
+    return lines.join("\n");
+  }
+
+  allEntries.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+
+  const todayKey = localDayKey(new Date().toISOString());
+  const dayKeys = [...new Set(allEntries.map(e => e.dayKey))].sort().reverse(); // most recent day first
+
+  dayKeys.forEach(dayKey => {
+    const entriesThisDay = allEntries.filter(e => e.dayKey === dayKey);
+    const dayLabel = localDayLabel(entriesThisDay[0].timestamp);
+    lines.push(`## ${dayLabel}${dayKey === todayKey ? " (Today)" : ""}`, "");
+
+    // Group this day's entries by exercise, preserving the chronological
+    // order in which each exercise was first touched that day.
+    const exerciseOrder = [];
+    const byExercise = new Map();
+    entriesThisDay.forEach(e => {
+      const key = `${e.unitId}::${e.exerciseId}`;
+      if (!byExercise.has(key)) {
+        byExercise.set(key, []);
+        exerciseOrder.push(key);
+      }
+      byExercise.get(key).push(e);
+    });
+
+    exerciseOrder.forEach(key => {
+      const attemptsToday = byExercise.get(key);
+      const { unitTitle, exerciseId, exerciseTitle, unitId } = attemptsToday[0];
+      lines.push(`### ${unitTitle} — ${exerciseId}. ${exerciseTitle}`, "");
+
+      lines.push("**Attempts this day:**", "");
+      attemptsToday.forEach(a => {
+        const when = new Date(a.timestamp).toLocaleTimeString();
+        lines.push(`- ${when} — ${a.passed ? "PASSED" : "did not pass"}`, "", "```python", a.code, "```", "");
+      });
+
+      // Pull in any attempts on this same exercise from earlier days, so a
+      // repeat struggle (or a since-resolved one) is visible right here.
+      const earlier = allEntries
+        .filter(e => e.unitId === unitId && e.exerciseId === exerciseId && e.dayKey < dayKey);
+      if (earlier.length > 0) {
+        lines.push("**Earlier attempts on this exercise (for context):**", "");
+        earlier.forEach(a => {
+          const when = new Date(a.timestamp).toLocaleString();
+          lines.push(`- ${when} — ${a.passed ? "PASSED" : "did not pass"}`, "", "```python", a.code, "```", "");
+        });
+      }
+    });
+  });
+
+  return lines.join("\n");
+}
+
+function downloadExport() {
+  const name = getStudentName();
+  if (!name) {
+    promptForStudentName();
+    if (!getStudentName()) return; // user cancelled the prompt; nothing to label the file with
+  }
+
+  const markdown = buildExportMarkdown();
+  const safeName = getStudentName().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "student";
+  const dateStamp = new Date().toISOString().slice(0, 10);
+  const filename = `python-practice-${safeName}-${dateStamp}.md`;
+
+  const blob = new Blob([markdown], { type: "text/markdown" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+changeNameBtn.addEventListener("click", promptForStudentName);
+downloadBtn.addEventListener("click", downloadExport);
 
 runBtn.addEventListener("click", runTests);
 
@@ -256,6 +440,11 @@ async function boot() {
   renderSidebar();
   selectExercise(0);
   initPyodide();
+
+  renderStudentName();
+  if (!getStudentName()) {
+    promptForStudentName();
+  }
 }
 
 boot();

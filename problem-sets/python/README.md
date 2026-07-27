@@ -32,9 +32,21 @@ else needs to change:
 ```json
 [
   "print-input-fstrings",
-  "int-math"
+  "int-math",
+  "float-math"
 ]
 ```
+
+## Linking directly to a unit
+Add `#<unit-id>` to the URL to open the site straight into that lesson, e.g.:
+```
+https://<your-username>.github.io/<repo-name>/python/#float-math
+```
+This works for sharing a specific lesson's link in Google Classroom, and also
+means browser back/forward and bookmarks behave correctly when moving between
+units. If the id after `#` doesn't match any unit (typo, or a unit that's been
+removed), the site just falls back to the first lesson in the list rather than
+showing an error.
 
 ## Adding a new unit
 1. Create a new file `units/<your-unit-id>.json` shaped like this:
@@ -84,11 +96,36 @@ else needs to change:
 out of `manifest.json` — it can sit in the `units/` folder unfinished, and
 won't show up on the site until you add it to the list.
 
+## Student names and the "Download My Work" button
+Every student is asked for their name the first time they open the site
+(saved in their browser, editable any time via the "change" link next to
+their name in the header). Every click of **Run Tests** — not just the final
+successful one — is logged in that student's browser: the code they
+submitted, a timestamp, and whether it passed. Clicking **Download My Work**
+exports all of it as a single Markdown file — something a student hands in
+themselves, rather than something you have to go collect.
+
+This is intentionally a manual, student-initiated action rather than an
+automatic one — turning submission into something the student is responsible
+for, the same way handing in any other assignment works.
+
+**Report format:** the export is organized by calendar day, most recent day
+first — built for a daily-assignment workflow, so today's work is always at
+the top rather than buried under older material. Within a day, each exercise
+they touched shows every attempt made that day. If they'd also worked on that
+same exercise on an earlier day, that prior history is pulled in right below,
+under an "Earlier attempts on this exercise" heading — so if a student is
+still stuck on something from three days ago, you'll see that the moment you
+look at today's entry for it, without having to go dig through older days
+yourself.
+
 ## Limitations to know about
-- **No teacher dashboard.** There's no backend, so there's no way to see who's
-  solved what remotely. If you need to check completion, a simple manual
-  checkpoint (e.g., a Google Form where students paste their "all tests
-  passed" screenshot) covers the gap without adding a dependency.
+- **Work only exists in the student's own browser until they download it.**
+  Since there's no backend, attempt history lives in `localStorage` — if a
+  student clears their browser data, switches browsers/devices, or uses
+  private/incognito mode, that history is gone. Worth a heads-up to students
+  that they should download their work periodically rather than only at the
+  very end of a unit.
 - **No protection against infinite loops.** Pyodide runs in the main browser
   tab, so a stray `while True:` could freeze a student's own tab (it can't
   affect anyone else, since there's no server). Not a risk yet since no
