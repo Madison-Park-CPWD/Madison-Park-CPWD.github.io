@@ -377,8 +377,7 @@
       "description": [
         "<p>This code is <em>supposed</em> to print a greeting like",
         "<code>Hello, Ava!</code>, but it has a bug \u2014 run it and see what it actually",
-        "prints. Find the missing piece and fix it.</p>",
-        "<p><strong>Hint:</strong> what turns a regular string into an f-string?</p>"
+        "prints. Find the missing piece and fix it.</p>"
       ],
       "starter": [
         "name = input()",
