@@ -1,0 +1,559 @@
+{
+  "id": "float-math",
+  "title": "Float Math",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "float-math",
+      "title": "Sum of Two Floats",
+      "sidebar_tag": "+",
+      "description": [
+        "<p>Read two floating-point numbers from input, one per line, and print",
+        "their <strong>sum</strong> using the <code>+</code> operator.</p>",
+        "<p>Use <code>float(input())</code> instead of <code>int(input())</code> to",
+        "read a number that can have a decimal point.</p>",
+        "<pre>&gt; python program.py",
+        "2.5",
+        "1.5",
+        "4.0</pre>"
+      ],
+      "starter": [
+        "a = float(input())",
+        "b = float(input())",
+        "",
+        "# TODO: print the sum of a and b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2.5",
+            "1.5"
+          ],
+          "expected": "4.0"
+        },
+        {
+          "stdin": [
+            "10.5",
+            "4.25"
+          ],
+          "expected": "14.75"
+        },
+        {
+          "stdin": [
+            "0.5",
+            "0.5"
+          ],
+          "expected": "1.0"
+        },
+        {
+          "stdin": [
+            "100.25",
+            "50.75"
+          ],
+          "expected": "151.0"
+        },
+        {
+          "stdin": [
+            "3.75",
+            "1.25"
+          ],
+          "expected": "5.0"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "float-math",
+      "title": "Difference of Two Floats",
+      "sidebar_tag": "-",
+      "description": [
+        "<p>Read two floats, one per line, and print <code>a - b</code> using the",
+        "<code>-</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "10.5",
+        "4.25",
+        "6.25</pre>"
+      ],
+      "starter": [
+        "a = float(input())",
+        "b = float(input())",
+        "",
+        "# TODO: print a - b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10.5",
+            "4.25"
+          ],
+          "expected": "6.25"
+        },
+        {
+          "stdin": [
+            "20.0",
+            "7.5"
+          ],
+          "expected": "12.5"
+        },
+        {
+          "stdin": [
+            "1.5",
+            "0.5"
+          ],
+          "expected": "1.0"
+        },
+        {
+          "stdin": [
+            "100.0",
+            "33.25"
+          ],
+          "expected": "66.75"
+        },
+        {
+          "stdin": [
+            "5.0",
+            "2.5"
+          ],
+          "expected": "2.5"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "float-math",
+      "title": "Product of Two Floats",
+      "sidebar_tag": "*",
+      "description": [
+        "<p>Read two floats, one per line, and print their product using the",
+        "<code>*</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "2.5",
+        "2.0",
+        "5.0</pre>"
+      ],
+      "starter": [
+        "a = float(input())",
+        "b = float(input())",
+        "",
+        "# TODO: print a * b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2.5",
+            "2.0"
+          ],
+          "expected": "5.0"
+        },
+        {
+          "stdin": [
+            "1.5",
+            "1.5"
+          ],
+          "expected": "2.25"
+        },
+        {
+          "stdin": [
+            "0.5",
+            "0.5"
+          ],
+          "expected": "0.25"
+        },
+        {
+          "stdin": [
+            "3.5",
+            "2.0"
+          ],
+          "expected": "7.0"
+        },
+        {
+          "stdin": [
+            "1.25",
+            "4.0"
+          ],
+          "expected": "5.0"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "float-math",
+      "title": "Quotient of Two Floats",
+      "sidebar_tag": "/",
+      "description": [
+        "<p>Read two floats, one per line, and print <code>a / b</code> using the",
+        "<code>/</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "7.5",
+        "2.5",
+        "3.0</pre>"
+      ],
+      "starter": [
+        "a = float(input())",
+        "b = float(input())",
+        "",
+        "# TODO: print a / b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "7.5",
+            "2.5"
+          ],
+          "expected": "3.0"
+        },
+        {
+          "stdin": [
+            "10.0",
+            "4.0"
+          ],
+          "expected": "2.5"
+        },
+        {
+          "stdin": [
+            "5.0",
+            "2.0"
+          ],
+          "expected": "2.5"
+        },
+        {
+          "stdin": [
+            "1.0",
+            "8.0"
+          ],
+          "expected": "0.125"
+        },
+        {
+          "stdin": [
+            "100.0",
+            "8.0"
+          ],
+          "expected": "12.5"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "float-math",
+      "title": "Floor Division with Floats",
+      "sidebar_tag": "//",
+      "description": [
+        "<p>Read two floats, one per line, and print <code>a // b</code> using the",
+        "floor division operator <code>//</code>. With floats, the result still",
+        "rounds down to a whole number &mdash; but stays a <strong>float</strong>",
+        "instead of becoming an int.</p>",
+        "<pre>&gt; python program.py",
+        "7.5",
+        "2.0",
+        "3.0</pre>"
+      ],
+      "starter": [
+        "a = float(input())",
+        "b = float(input())",
+        "",
+        "# TODO: print a // b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "7.5",
+            "2.0"
+          ],
+          "expected": "3.0"
+        },
+        {
+          "stdin": [
+            "10.0",
+            "3.0"
+          ],
+          "expected": "3.0"
+        },
+        {
+          "stdin": [
+            "9.5",
+            "4.0"
+          ],
+          "expected": "2.0"
+        },
+        {
+          "stdin": [
+            "23.0",
+            "5.0"
+          ],
+          "expected": "4.0"
+        },
+        {
+          "stdin": [
+            "100.0",
+            "7.0"
+          ],
+          "expected": "14.0"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "float-math",
+      "title": "Modulo with Floats",
+      "sidebar_tag": "%",
+      "description": [
+        "<p>Read two floats, one per line, and print <code>a % b</code> using the",
+        "modulo operator <code>%</code>. Just like with ints, this gives the",
+        "<strong>remainder</strong> left over after dividing &mdash; it just isn't",
+        "always a whole number this time.</p>",
+        "<pre>&gt; python program.py",
+        "7.5",
+        "2.0",
+        "1.5</pre>"
+      ],
+      "starter": [
+        "a = float(input())",
+        "b = float(input())",
+        "",
+        "# TODO: print a % b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "7.5",
+            "2.0"
+          ],
+          "expected": "1.5"
+        },
+        {
+          "stdin": [
+            "10.0",
+            "3.0"
+          ],
+          "expected": "1.0"
+        },
+        {
+          "stdin": [
+            "9.5",
+            "4.0"
+          ],
+          "expected": "1.5"
+        },
+        {
+          "stdin": [
+            "23.0",
+            "5.0"
+          ],
+          "expected": "3.0"
+        },
+        {
+          "stdin": [
+            "100.0",
+            "7.0"
+          ],
+          "expected": "2.0"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "float-math",
+      "title": "Power of a Float",
+      "sidebar_tag": "**",
+      "description": [
+        "<p>Read a <code>base</code> and an <code>exponent</code>, one per line, and",
+        "print <code>base ** exponent</code> using Python's exponentiation operator",
+        "<code>**</code>.</p>",
+        "<pre>&gt; python program.py",
+        "2.0",
+        "3.0",
+        "8.0</pre>"
+      ],
+      "starter": [
+        "base = float(input())",
+        "exponent = float(input())",
+        "",
+        "# TODO: print base ** exponent"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2.0",
+            "3.0"
+          ],
+          "expected": "8.0"
+        },
+        {
+          "stdin": [
+            "1.5",
+            "2.0"
+          ],
+          "expected": "2.25"
+        },
+        {
+          "stdin": [
+            "10.0",
+            "2.0"
+          ],
+          "expected": "100.0"
+        },
+        {
+          "stdin": [
+            "2.5",
+            "2.0"
+          ],
+          "expected": "6.25"
+        },
+        {
+          "stdin": [
+            "3.0",
+            "3.0"
+          ],
+          "expected": "27.0"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "float-math",
+      "title": "Rounding a Float",
+      "sidebar_tag": "round()",
+      "description": [
+        "<p>Read a float and a whole number of decimal places, and print the float",
+        "<strong>rounded</strong> to that many decimal places using the built-in",
+        "<code>round()</code> function.</p>",
+        "<pre>&gt; python program.py",
+        "3.14159",
+        "2",
+        "3.14</pre>",
+        "<p><code>round(value, places)</code> takes two arguments: the number to",
+        "round, and how many digits to keep after the decimal point.</p>"
+      ],
+      "starter": [
+        "value = float(input())",
+        "places = int(input())",
+        "",
+        "# TODO: print round(value, places)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3.14159",
+            "2"
+          ],
+          "expected": "3.14"
+        },
+        {
+          "stdin": [
+            "2.71828",
+            "3"
+          ],
+          "expected": "2.718"
+        },
+        {
+          "stdin": [
+            "12.3456",
+            "1"
+          ],
+          "expected": "12.3"
+        },
+        {
+          "stdin": [
+            "0.6667",
+            "2"
+          ],
+          "expected": "0.67"
+        },
+        {
+          "stdin": [
+            "9.8765",
+            "3"
+          ],
+          "expected": "9.877"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "float-math",
+      "title": "Mixing Int and Float",
+      "sidebar_tag": "int + float",
+      "description": [
+        "<p>Read a whole number (as an <code>int</code>) and a decimal number (as a",
+        "<code>float</code>), and print their sum.</p>",
+        "<p>In Python, combining an <code>int</code> and a <code>float</code> in the",
+        "same expression automatically produces a <code>float</code> &mdash; even",
+        "though only one of the two values had a decimal point to begin with.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "2.5",
+        "5.5</pre>"
+      ],
+      "starter": [
+        "whole_number = int(input())",
+        "decimal_number = float(input())",
+        "",
+        "# TODO: print whole_number + decimal_number"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "2.5"
+          ],
+          "expected": "5.5"
+        },
+        {
+          "stdin": [
+            "10",
+            "0.5"
+          ],
+          "expected": "10.5"
+        },
+        {
+          "stdin": [
+            "0",
+            "4.25"
+          ],
+          "expected": "4.25"
+        },
+        {
+          "stdin": [
+            "100",
+            "0.75"
+          ],
+          "expected": "100.75"
+        },
+        {
+          "stdin": [
+            "5",
+            "5.0"
+          ],
+          "expected": "10.0"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "float-math",
+      "title": "The Floating-Point Precision Quirk",
+      "sidebar_tag": "quirk",
+      "description": [
+        "<p>Use <code>print()</code> to output exactly the result of the following",
+        "expression, with no input needed:</p>",
+        "<pre>0.1 + 0.2</pre>",
+        "<p>You might expect this to print <code>0.3</code> &mdash; run it and see",
+        "what actually happens.</p>",
+        "<p>Computers store floats in binary, and most decimal fractions (like 0.1)",
+        "can't be represented <em>exactly</em> in binary, the same way 1/3 can't be",
+        "written exactly as a decimal. The tiny error is usually too small to",
+        "notice, but it shows up here because we're printing the full, unrounded",
+        "value.</p>"
+      ],
+      "starter": [
+        "# TODO: print the result of 0.1 + 0.2"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "0.30000000000000004"
+        }
+      ]
+    }
+  ]
+}

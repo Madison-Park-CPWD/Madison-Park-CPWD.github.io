@@ -1,4 +1,5 @@
 [
   "print-input-fstrings",
-  "int-math"
+  "int-math",
+  "float-math"
 ]
