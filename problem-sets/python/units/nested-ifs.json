@@ -1,0 +1,633 @@
+{
+  "id": "nested-ifs",
+  "title": "Nested Ifs",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "nested-ifs",
+      "title": "Voting Eligibility with Registration",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read an <code>age</code>. If it's 18 or older, also read whether the",
+        "person is registered (<code>yes</code> or <code>no</code>), and print",
+        "<code>Can vote</code> or <code>Must register first</code> accordingly. If",
+        "they're under 18, print <code>Too young to vote</code> without asking",
+        "about registration at all.</p>",
+        "<pre>&gt; python program.py",
+        "20",
+        "yes",
+        "Can vote</pre>",
+        "<pre>&gt; python program.py",
+        "16",
+        "Too young to vote</pre>",
+        "<p>Notice the second example only provides <strong>one</strong> line of",
+        "input &mdash; the registration question should only be asked (and only",
+        "read with <code>input()</code>) when the age check inside it is true. An",
+        "<code>if</code> written inside another <code>if</code> like this is called",
+        "a <strong>nested if</strong>.</p>"
+      ],
+      "starter": [
+        "age = int(input())",
+        "",
+        "# TODO: if age >= 18, read whether they're registered (\"yes\"/\"no\")",
+        "# and print \"Can vote\" or \"Must register first\".",
+        "# If age < 18, print \"Too young to vote\" (and don't ask about registration)."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20",
+            "yes"
+          ],
+          "expected": "Can vote"
+        },
+        {
+          "stdin": [
+            "20",
+            "no"
+          ],
+          "expected": "Must register first"
+        },
+        {
+          "stdin": [
+            "16",
+            "yes"
+          ],
+          "expected": "Too young to vote"
+        },
+        {
+          "stdin": [
+            "18",
+            "no"
+          ],
+          "expected": "Must register first"
+        },
+        {
+          "stdin": [
+            "17",
+            "no"
+          ],
+          "expected": "Too young to vote"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "nested-ifs",
+      "title": "Movie Ticket Discount",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read an <code>age</code>. If it's under 12, print",
+        "<code>Child price</code>. Otherwise, also read whether they're a student",
+        "(<code>yes</code>/<code>no</code>), and print <code>Student price</code> or",
+        "<code>Regular price</code> accordingly.</p>",
+        "<pre>&gt; python program.py",
+        "25",
+        "yes",
+        "Student price</pre>",
+        "<p>This time the nested <code>if</code> lives inside the",
+        "<code>else</code> branch, rather than inside the <code>if</code>.</p>"
+      ],
+      "starter": [
+        "age = int(input())",
+        "",
+        "# TODO: if age < 12, print \"Child price\".",
+        "# Otherwise, read is_student (\"yes\"/\"no\") and print",
+        "# \"Student price\" or \"Regular price\"."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "8",
+            "yes"
+          ],
+          "expected": "Child price"
+        },
+        {
+          "stdin": [
+            "25",
+            "yes"
+          ],
+          "expected": "Student price"
+        },
+        {
+          "stdin": [
+            "25",
+            "no"
+          ],
+          "expected": "Regular price"
+        },
+        {
+          "stdin": [
+            "11",
+            "no"
+          ],
+          "expected": "Child price"
+        },
+        {
+          "stdin": [
+            "12",
+            "yes"
+          ],
+          "expected": "Student price"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "nested-ifs",
+      "title": "Password Strength Check",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read a password's <code>length</code> and whether it contains a number",
+        "(<code>yes</code>/<code>no</code>). If the length is less than 8, print",
+        "<code>Too short</code> &mdash; regardless of whether it has a number.",
+        "Otherwise, print <code>Strong password</code> if it has a number, or",
+        "<code>Weak password (no number)</code> if it doesn't.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "yes",
+        "Strong password</pre>"
+      ],
+      "starter": [
+        "length = int(input())",
+        "has_number = input()",
+        "",
+        "# TODO: if length < 8, print \"Too short\".",
+        "# Otherwise, print \"Strong password\" or \"Weak password (no number)\"",
+        "# depending on has_number."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "yes"
+          ],
+          "expected": "Strong password"
+        },
+        {
+          "stdin": [
+            "10",
+            "no"
+          ],
+          "expected": "Weak password (no number)"
+        },
+        {
+          "stdin": [
+            "5",
+            "yes"
+          ],
+          "expected": "Too short"
+        },
+        {
+          "stdin": [
+            "8",
+            "yes"
+          ],
+          "expected": "Strong password"
+        },
+        {
+          "stdin": [
+            "7",
+            "no"
+          ],
+          "expected": "Too short"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "nested-ifs",
+      "title": "Sign and Parity",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read an integer <code>n</code> and print one of four results, combining",
+        "its sign and whether it's even or odd:</p>",
+        "<pre>Non-negative and even",
+        "Non-negative and odd",
+        "Negative and even",
+        "Negative and odd</pre>",
+        "<pre>&gt; python program.py",
+        "-7",
+        "Negative and odd</pre>",
+        "<p>This one needs a nested <code>if</code> inside <strong>both</strong> the",
+        "<code>if</code> branch and the <code>else</code> branch &mdash; four",
+        "possible outcomes from two levels of two-way choices.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: print one of the four results above, based on n's sign and parity"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4"
+          ],
+          "expected": "Non-negative and even"
+        },
+        {
+          "stdin": [
+            "7"
+          ],
+          "expected": "Non-negative and odd"
+        },
+        {
+          "stdin": [
+            "-4"
+          ],
+          "expected": "Negative and even"
+        },
+        {
+          "stdin": [
+            "-7"
+          ],
+          "expected": "Negative and odd"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Non-negative and even"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "nested-ifs",
+      "title": "Weather Description",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read a <code>temp</code> and whether it's raining",
+        "(<code>yes</code>/<code>no</code>), and print one of:</p>",
+        "<pre>Snow           (below 32 and raining)",
+        "Cold and dry   (below 32 and not raining)",
+        "Rain           (32 or above and raining)",
+        "Clear          (32 or above and not raining)</pre>",
+        "<pre>&gt; python program.py",
+        "20",
+        "yes",
+        "Snow</pre>"
+      ],
+      "starter": [
+        "temp = int(input())",
+        "raining = input()",
+        "",
+        "# TODO: print \"Snow\", \"Cold and dry\", \"Rain\", or \"Clear\"",
+        "# based on temp and raining, using the rules above"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20",
+            "yes"
+          ],
+          "expected": "Snow"
+        },
+        {
+          "stdin": [
+            "20",
+            "no"
+          ],
+          "expected": "Cold and dry"
+        },
+        {
+          "stdin": [
+            "60",
+            "yes"
+          ],
+          "expected": "Rain"
+        },
+        {
+          "stdin": [
+            "60",
+            "no"
+          ],
+          "expected": "Clear"
+        },
+        {
+          "stdin": [
+            "32",
+            "no"
+          ],
+          "expected": "Clear"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "nested-ifs",
+      "title": "Purchase Discount",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read a purchase <code>amount</code> and whether the customer has a",
+        "coupon (<code>yes</code>/<code>no</code>), and print a discount using",
+        "these rules:</p>",
+        "<pre>amount >= 100, has coupon     &rarr; 20% off",
+        "amount >= 100, no coupon       &rarr; 10% off",
+        "amount &lt; 100, has coupon      &rarr; 5% off",
+        "amount &lt; 100, no coupon       &rarr; No discount</pre>",
+        "<pre>&gt; python program.py",
+        "150",
+        "yes",
+        "20% off</pre>"
+      ],
+      "starter": [
+        "amount = int(input())",
+        "has_coupon = input()",
+        "",
+        "# TODO: print the correct discount based on amount and has_coupon,",
+        "# using the rules above"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "150",
+            "yes"
+          ],
+          "expected": "20% off"
+        },
+        {
+          "stdin": [
+            "150",
+            "no"
+          ],
+          "expected": "10% off"
+        },
+        {
+          "stdin": [
+            "50",
+            "yes"
+          ],
+          "expected": "5% off"
+        },
+        {
+          "stdin": [
+            "50",
+            "no"
+          ],
+          "expected": "No discount"
+        },
+        {
+          "stdin": [
+            "100",
+            "yes"
+          ],
+          "expected": "20% off"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "nested-ifs",
+      "title": "Exam Result with Attendance",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read a <code>score</code> and an <code>attendance_percent</code>. If",
+        "the score is below 60, print <code>Fail</code> &mdash; attendance doesn't",
+        "matter in that case. Otherwise, print <code>Pass</code> if attendance is",
+        "75 or above, or <code>Pass but flagged for low attendance</code> if it's",
+        "below 75.</p>",
+        "<pre>&gt; python program.py",
+        "80",
+        "50",
+        "Pass but flagged for low attendance</pre>"
+      ],
+      "starter": [
+        "score = int(input())",
+        "attendance_percent = int(input())",
+        "",
+        "# TODO: if score < 60, print \"Fail\".",
+        "# Otherwise, print \"Pass\" or \"Pass but flagged for low attendance\"",
+        "# depending on attendance_percent."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "80",
+            "90"
+          ],
+          "expected": "Pass"
+        },
+        {
+          "stdin": [
+            "80",
+            "50"
+          ],
+          "expected": "Pass but flagged for low attendance"
+        },
+        {
+          "stdin": [
+            "45",
+            "95"
+          ],
+          "expected": "Fail"
+        },
+        {
+          "stdin": [
+            "60",
+            "75"
+          ],
+          "expected": "Pass"
+        },
+        {
+          "stdin": [
+            "59",
+            "100"
+          ],
+          "expected": "Fail"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "nested-ifs",
+      "title": "Shipping Cost",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read a package <code>weight</code> and whether the customer is a member",
+        "(<code>yes</code>/<code>no</code>), and print a shipping cost using these",
+        "rules:</p>",
+        "<pre>weight &gt; 10, member     &rarr; Free shipping",
+        "weight &gt; 10, not a member &rarr; $15 shipping",
+        "weight &lt;= 10, member    &rarr; Free shipping",
+        "weight &lt;= 10, not a member &rarr; $5 shipping</pre>",
+        "<pre>&gt; python program.py",
+        "5",
+        "no",
+        "$5 shipping</pre>"
+      ],
+      "starter": [
+        "weight = int(input())",
+        "is_member = input()",
+        "",
+        "# TODO: print the correct shipping cost based on weight and is_member,",
+        "# using the rules above"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "15",
+            "yes"
+          ],
+          "expected": "Free shipping"
+        },
+        {
+          "stdin": [
+            "15",
+            "no"
+          ],
+          "expected": "$15 shipping"
+        },
+        {
+          "stdin": [
+            "5",
+            "yes"
+          ],
+          "expected": "Free shipping"
+        },
+        {
+          "stdin": [
+            "5",
+            "no"
+          ],
+          "expected": "$5 shipping"
+        },
+        {
+          "stdin": [
+            "10",
+            "no"
+          ],
+          "expected": "$5 shipping"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "nested-ifs",
+      "title": "Login Access",
+      "sidebar_tag": "nested if",
+      "description": [
+        "<p>Read whether the entered password was correct",
+        "(<code>yes</code>/<code>no</code>) and how many login attempts are left.",
+        "If the password is correct, print <code>Access granted</code>. If it's",
+        "wrong, print <code>Incorrect password, try again</code> when there are",
+        "attempts left, or <code>Account locked</code> when there are none.</p>",
+        "<pre>&gt; python program.py",
+        "no",
+        "0",
+        "Account locked</pre>",
+        "<p>This time the nested <code>if</code> lives inside the",
+        "<code>else</code> branch &mdash; the attempts count is only relevant",
+        "when the password was wrong.</p>"
+      ],
+      "starter": [
+        "correct_password = input()",
+        "attempts_left = int(input())",
+        "",
+        "# TODO: print \"Access granted\", \"Incorrect password, try again\",",
+        "# or \"Account locked\", based on the rules above"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "yes",
+            "3"
+          ],
+          "expected": "Access granted"
+        },
+        {
+          "stdin": [
+            "no",
+            "2"
+          ],
+          "expected": "Incorrect password, try again"
+        },
+        {
+          "stdin": [
+            "no",
+            "0"
+          ],
+          "expected": "Account locked"
+        },
+        {
+          "stdin": [
+            "yes",
+            "0"
+          ],
+          "expected": "Access granted"
+        },
+        {
+          "stdin": [
+            "no",
+            "1"
+          ],
+          "expected": "Incorrect password, try again"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "nested-ifs",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to work exactly like an earlier exercise: ask for",
+        "an age, and only ask about voter registration if the person is 18 or",
+        "older. Run it with an age <strong>under</strong> 18 and see what happens.</p>",
+        "<p>The problem isn't a wrong comparison &mdash; it's that a line which was",
+        "meant to run only inside the <code>if</code> block is no longer properly",
+        "nested inside it. In Python, indentation is what determines which lines",
+        "belong to which block, so a line at the wrong indentation level changes",
+        "what the program actually does.</p>"
+      ],
+      "starter": [
+        "age = int(input())",
+        "if age >= 18:",
+        "    registered = input()",
+        "print(\"checking registration\")",
+        "if registered == \"yes\":",
+        "    print(\"Can vote\")",
+        "else:",
+        "    print(\"Must register first\")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20",
+            "yes"
+          ],
+          "expected": "Can vote"
+        },
+        {
+          "stdin": [
+            "20",
+            "no"
+          ],
+          "expected": "Must register first"
+        },
+        {
+          "stdin": [
+            "16",
+            "yes"
+          ],
+          "expected": "Too young to vote"
+        },
+        {
+          "stdin": [
+            "18",
+            "no"
+          ],
+          "expected": "Must register first"
+        },
+        {
+          "stdin": [
+            "17",
+            "no"
+          ],
+          "expected": "Too young to vote"
+        }
+      ]
+    }
+  ]
+}

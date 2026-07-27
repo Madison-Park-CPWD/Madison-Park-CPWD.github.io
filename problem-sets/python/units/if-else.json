@@ -1,0 +1,543 @@
+{
+  "id": "if-else",
+  "title": "If / Else",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "if-else",
+      "title": "Positive or Not",
+      "sidebar_tag": "if/else",
+      "description": [
+        "<p>Read an integer <code>n</code> and print <code>Positive</code> if it is",
+        "greater than 0, or <code>Not Positive</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "Positive</pre>",
+        "<p>An <code>if</code>/<code>else</code> statement runs one block of code or",
+        "the other, depending on whether the condition is true.</p>"
+      ],
+      "starter": [
+        "# TODO: read an integer, then print \"Positive\" if it's greater than 0,",
+        "# otherwise print \"Not Positive\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "Positive"
+        },
+        {
+          "stdin": [
+            "-3"
+          ],
+          "expected": "Not Positive"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Not Positive"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "Positive"
+        },
+        {
+          "stdin": [
+            "-1"
+          ],
+          "expected": "Not Positive"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "if-else",
+      "title": "Pass or Fail",
+      "sidebar_tag": "if/else",
+      "description": [
+        "<p>Read a <code>score</code> and print <code>Pass</code> if it's 60 or",
+        "above, or <code>Fail</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "75",
+        "Pass</pre>"
+      ],
+      "starter": [
+        "# TODO: read a score, then print \"Pass\" if it's >= 60, otherwise \"Fail\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "75"
+          ],
+          "expected": "Pass"
+        },
+        {
+          "stdin": [
+            "60"
+          ],
+          "expected": "Pass"
+        },
+        {
+          "stdin": [
+            "59"
+          ],
+          "expected": "Fail"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Fail"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "Pass"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "if-else",
+      "title": "Old Enough to Vote",
+      "sidebar_tag": "if/else",
+      "description": [
+        "<p>Read an <code>age</code> and print <code>Can vote</code> if it's 18 or",
+        "older, or <code>Cannot vote yet</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "18",
+        "Can vote</pre>"
+      ],
+      "starter": [
+        "# TODO: read an age, then print \"Can vote\" if age >= 18,",
+        "# otherwise \"Cannot vote yet\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "18"
+          ],
+          "expected": "Can vote"
+        },
+        {
+          "stdin": [
+            "17"
+          ],
+          "expected": "Cannot vote yet"
+        },
+        {
+          "stdin": [
+            "21"
+          ],
+          "expected": "Can vote"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "Cannot vote yet"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "Can vote"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "if-else",
+      "title": "Equal Numbers",
+      "sidebar_tag": "if/else",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and",
+        "print <code>Equal</code> if they're the same, or <code>Not Equal</code>",
+        "otherwise. Use <code>==</code> to check equality &mdash; a single",
+        "<code>=</code> is for assignment, not comparison.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "3",
+        "Equal</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print \"Equal\" if a == b, otherwise \"Not Equal\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "3"
+          ],
+          "expected": "Equal"
+        },
+        {
+          "stdin": [
+            "5",
+            "7"
+          ],
+          "expected": "Not Equal"
+        },
+        {
+          "stdin": [
+            "0",
+            "0"
+          ],
+          "expected": "Equal"
+        },
+        {
+          "stdin": [
+            "-2",
+            "2"
+          ],
+          "expected": "Not Equal"
+        },
+        {
+          "stdin": [
+            "10",
+            "9"
+          ],
+          "expected": "Not Equal"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "if-else",
+      "title": "Bigger Number",
+      "sidebar_tag": "if/elif/else",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and",
+        "print which one is bigger &mdash; or that they're equal. This needs three",
+        "possible outcomes, so it needs an <code>elif</code> (short for \"else",
+        "if\") between the <code>if</code> and the <code>else</code>.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "3",
+        "First is bigger</pre>",
+        "<p>Python checks each condition in order and runs the first one that's",
+        "true, skipping the rest &mdash; only one branch ever runs.</p>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print \"First is bigger\", \"Second is bigger\", or \"They are equal\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "3"
+          ],
+          "expected": "First is bigger"
+        },
+        {
+          "stdin": [
+            "3",
+            "10"
+          ],
+          "expected": "Second is bigger"
+        },
+        {
+          "stdin": [
+            "5",
+            "5"
+          ],
+          "expected": "They are equal"
+        },
+        {
+          "stdin": [
+            "-1",
+            "-5"
+          ],
+          "expected": "First is bigger"
+        },
+        {
+          "stdin": [
+            "0",
+            "0"
+          ],
+          "expected": "They are equal"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "if-else",
+      "title": "Sign of a Number",
+      "sidebar_tag": "if/elif/else",
+      "description": [
+        "<p>Read an integer <code>n</code> and print <code>Positive</code>,",
+        "<code>Negative</code>, or <code>Zero</code>, depending on its sign.</p>",
+        "<pre>&gt; python program.py",
+        "-7",
+        "Negative</pre>"
+      ],
+      "starter": [
+        "# TODO: read an integer, then print \"Positive\", \"Negative\", or \"Zero\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "7"
+          ],
+          "expected": "Positive"
+        },
+        {
+          "stdin": [
+            "-7"
+          ],
+          "expected": "Negative"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Zero"
+        },
+        {
+          "stdin": [
+            "-100"
+          ],
+          "expected": "Negative"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "Positive"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "if-else",
+      "title": "Letter Grade",
+      "sidebar_tag": "elif chain",
+      "description": [
+        "<p>Read a <code>score</code> and print a letter grade using this scale:</p>",
+        "<pre>90 and above &rarr; A",
+        "80&ndash;89       &rarr; B",
+        "70&ndash;79       &rarr; C",
+        "60&ndash;69       &rarr; D",
+        "below 60      &rarr; F</pre>",
+        "<pre>&gt; python program.py",
+        "85",
+        "B</pre>",
+        "<p>This needs a longer <code>elif</code> chain than the last exercise &mdash;",
+        "one branch per grade, checked from highest to lowest.</p>"
+      ],
+      "starter": [
+        "# TODO: read a score, then print its letter grade (A, B, C, D, or F)",
+        "# using the scale above"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "95"
+          ],
+          "expected": "A"
+        },
+        {
+          "stdin": [
+            "85"
+          ],
+          "expected": "B"
+        },
+        {
+          "stdin": [
+            "72"
+          ],
+          "expected": "C"
+        },
+        {
+          "stdin": [
+            "61"
+          ],
+          "expected": "D"
+        },
+        {
+          "stdin": [
+            "40"
+          ],
+          "expected": "F"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "if-else",
+      "title": "Temperature Category",
+      "sidebar_tag": "elif chain",
+      "description": [
+        "<p>Read a <code>temp</code> (in Fahrenheit) and print a category using this",
+        "scale:</p>",
+        "<pre>below 32   &rarr; Freezing",
+        "32&ndash;59      &rarr; Cold",
+        "60&ndash;79      &rarr; Warm",
+        "80 and above &rarr; Hot</pre>",
+        "<pre>&gt; python program.py",
+        "45",
+        "Cold</pre>",
+        "<p>Since Python checks conditions top to bottom and stops at the first true",
+        "one, the order you write these branches in matters &mdash; a broader",
+        "condition placed too early can accidentally catch cases meant for a later",
+        "branch.</p>"
+      ],
+      "starter": [
+        "# TODO: read a temperature, then print its category",
+        "# (Freezing, Cold, Warm, or Hot) using the scale above"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20"
+          ],
+          "expected": "Freezing"
+        },
+        {
+          "stdin": [
+            "45"
+          ],
+          "expected": "Cold"
+        },
+        {
+          "stdin": [
+            "70"
+          ],
+          "expected": "Warm"
+        },
+        {
+          "stdin": [
+            "95"
+          ],
+          "expected": "Hot"
+        },
+        {
+          "stdin": [
+            "32"
+          ],
+          "expected": "Cold"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "if-else",
+      "title": "Ticket Price by Age",
+      "sidebar_tag": "elif chain",
+      "description": [
+        "<p>Read an <code>age</code> and print a ticket price category using this",
+        "scale:</p>",
+        "<pre>under 5      &rarr; Free",
+        "5&ndash;17         &rarr; Child Price",
+        "18&ndash;64        &rarr; Adult Price",
+        "65 and older &rarr; Senior Price</pre>",
+        "<pre>&gt; python program.py",
+        "30",
+        "Adult Price</pre>"
+      ],
+      "starter": [
+        "# TODO: read an age, then print its ticket price category",
+        "# (Free, Child Price, Adult Price, or Senior Price) using the scale above"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "Free"
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "Child Price"
+        },
+        {
+          "stdin": [
+            "30"
+          ],
+          "expected": "Adult Price"
+        },
+        {
+          "stdin": [
+            "70"
+          ],
+          "expected": "Senior Price"
+        },
+        {
+          "stdin": [
+            "65"
+          ],
+          "expected": "Senior Price"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "if-else",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to sort a temperature into <code>Freezing</code>,",
+        "<code>Cold</code>, <code>Warm</code>, or <code>Hot</code> &mdash; the same",
+        "categories as an earlier exercise. Run it with a cold temperature like",
+        "<code>20</code> and see what it actually prints.</p>",
+        "<p>The branches are all there, and each individual comparison is written",
+        "correctly &mdash; but the <em>order</em> they're checked in causes one of",
+        "them to catch cases that were meant for a later branch.</p>"
+      ],
+      "starter": [
+        "temp = int(input())",
+        "if temp <= 100:",
+        "    print(\"Warm\")",
+        "elif temp < 32:",
+        "    print(\"Freezing\")",
+        "else:",
+        "    print(\"Hot\")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20"
+          ],
+          "expected": "Freezing"
+        },
+        {
+          "stdin": [
+            "150"
+          ],
+          "expected": "Hot"
+        },
+        {
+          "stdin": [
+            "50"
+          ],
+          "expected": "Warm"
+        },
+        {
+          "stdin": [
+            "31"
+          ],
+          "expected": "Freezing"
+        },
+        {
+          "stdin": [
+            "101"
+          ],
+          "expected": "Hot"
+        }
+      ]
+    }
+  ]
+}

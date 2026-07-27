@@ -1,5 +1,8 @@
 [
   "print-input-fstrings",
+  "variable-types",
+  "if-else",
   "int-math",
-  "float-math"
+  "float-math",
+  "nested-ifs"
 ]

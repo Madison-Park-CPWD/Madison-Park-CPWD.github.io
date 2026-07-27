@@ -1,0 +1,249 @@
+{
+  "id": "variable-types",
+  "title": "Variable Types",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "variable-types",
+      "title": "Integer Variable and type()",
+      "sidebar_tag": "int",
+      "description": [
+        "<p>Assign a whole number to a variable, then print its type using the",
+        "built-in <code>type()</code> function.</p>",
+        "<pre>&gt; python program.py",
+        "&lt;class 'int'&gt;</pre>",
+        "<p><code>type()</code> tells you what kind of value a variable holds.",
+        "For a whole number, that's <code>int</code>.</p>"
+      ],
+      "starter": [
+        "# TODO: assign a whole number to a variable, then print its type",
+        "# using type() \u2014 e.g. print(type(your_variable))"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'int'>"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "variable-types",
+      "title": "Float Variable and type()",
+      "sidebar_tag": "float",
+      "description": [
+        "<p>Assign a decimal number to a variable, then print its type using",
+        "<code>type()</code>.</p>",
+        "<pre>&gt; python program.py",
+        "&lt;class 'float'&gt;</pre>"
+      ],
+      "starter": [
+        "# TODO: assign a decimal number to a variable, then print its type"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'float'>"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "variable-types",
+      "title": "String Variable and type()",
+      "sidebar_tag": "str",
+      "description": [
+        "<p>Assign a piece of text to a variable, then print its type using",
+        "<code>type()</code>. Remember that text needs to be wrapped in quotes",
+        "&mdash; without them, Python thinks you're referring to a variable name",
+        "instead of writing out literal text.</p>",
+        "<pre>&gt; python program.py",
+        "&lt;class 'str'&gt;</pre>"
+      ],
+      "starter": [
+        "# TODO: assign some text to a variable, then print its type"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'str'>"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "variable-types",
+      "title": "Boolean Variable and type()",
+      "sidebar_tag": "bool",
+      "description": [
+        "<p>Assign a boolean value &mdash; <code>True</code> or",
+        "<code>False</code> &mdash; to a variable, then print its type using",
+        "<code>type()</code>. Note that both are capitalized in Python.</p>",
+        "<pre>&gt; python program.py",
+        "&lt;class 'bool'&gt;</pre>"
+      ],
+      "starter": [
+        "# TODO: assign True or False to a variable, then print its type"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'bool'>"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "variable-types",
+      "title": "Checking Several Types at Once",
+      "sidebar_tag": "type()",
+      "description": [
+        "<p>Assign four variables &mdash; one each of type <code>int</code>,",
+        "<code>float</code>, <code>str</code>, and <code>bool</code> &mdash; and",
+        "print all four of their types with a <strong>single</strong>",
+        "<code>print()</code> call, separated by spaces.</p>",
+        "<pre>&gt; python program.py",
+        "&lt;class 'int'&gt; &lt;class 'float'&gt; &lt;class 'str'&gt; &lt;class 'bool'&gt;</pre>",
+        "<p>Just like you've done before, handing <code>print()</code> multiple",
+        "values separated by commas puts a space between each one",
+        "automatically &mdash; that works just as well with <code>type()</code>",
+        "calls as it does with plain values.</p>"
+      ],
+      "starter": [
+        "# TODO: assign an int, a float, a string, and a boolean to four variables,",
+        "# then print all four of their types in one print() call"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'int'> <class 'float'> <class 'str'> <class 'bool'>"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "variable-types",
+      "title": "Reassigning a Variable's Type",
+      "sidebar_tag": "reassign",
+      "description": [
+        "<p>Assign an integer to a variable and print its type. Then",
+        "<strong>reassign that same variable</strong> to a piece of text, and",
+        "print its type again &mdash; both on the same line, separated by a",
+        "space.</p>",
+        "<pre>&gt; python program.py",
+        "&lt;class 'int'&gt; &lt;class 'str'&gt;</pre>",
+        "<p>In Python, a variable isn't locked to one type forever &mdash; the",
+        "same name can be reassigned to hold a completely different kind of",
+        "value later in the program. Use <code>print(..., end=\" \")</code> on",
+        "the first print so the second one lands on the same line instead of a",
+        "new one.</p>"
+      ],
+      "starter": [
+        "# TODO: assign an int to a variable, print its type with end=\" \",",
+        "# then reassign the same variable to a string and print its type again"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'int'> <class 'str'>"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "variable-types",
+      "title": "Reassigning a Variable's Type Again",
+      "sidebar_tag": "reassign",
+      "description": [
+        "<p>Assign a float to a variable and print its type. Then reassign that",
+        "same variable to a boolean, and print its type again &mdash; both on",
+        "the same line, separated by a space.</p>",
+        "<pre>&gt; python program.py",
+        "&lt;class 'float'&gt; &lt;class 'bool'&gt;</pre>"
+      ],
+      "starter": [
+        "# TODO: assign a float to a variable, print its type with end=\" \",",
+        "# then reassign the same variable to a boolean and print its type again"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'float'> <class 'bool'>"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "variable-types",
+      "title": "Fix the Bug: Missing Quotes",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to assign the text <code>blue</code> to a",
+        "variable and print its type. Run it and see what actually happens.</p>",
+        "<p>Text needs to be wrapped in quotes. Without them, Python doesn't see",
+        "<code>blue</code> as a piece of text at all &mdash; it looks for a",
+        "<em>variable</em> named <code>blue</code>, and since none exists, the",
+        "program crashes.</p>"
+      ],
+      "starter": [
+        "color = blue",
+        "print(type(color))"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'str'>"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "variable-types",
+      "title": "Fix the Bug: Double Equals",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to assign the number <code>100</code> to a",
+        "variable and print its type. Run it and see what actually happens.</p>",
+        "<p><code>=</code> and <code>==</code> do very different jobs in Python.",
+        "A single <code>=</code> assigns a value to a variable. A double",
+        "<code>==</code> <em>compares</em> two values and produces",
+        "<code>True</code> or <code>False</code> &mdash; it never creates a",
+        "variable at all.</p>"
+      ],
+      "starter": [
+        "score == 100",
+        "print(type(score))"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'int'>"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "variable-types",
+      "title": "Fix the Bug: Lowercase Boolean",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to assign a boolean value to a variable and",
+        "print its type. Run it and see what actually happens.</p>",
+        "<p>Python's boolean values are <code>True</code> and <code>False</code>",
+        "&mdash; both capitalized. Lowercase <code>true</code> isn't a boolean at",
+        "all as far as Python is concerned; it looks like a reference to a",
+        "variable called <code>true</code>, which doesn't exist.</p>"
+      ],
+      "starter": [
+        "is_ready = true",
+        "print(type(is_ready))"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "<class 'bool'>"
+        }
+      ]
+    }
+  ]
+}
