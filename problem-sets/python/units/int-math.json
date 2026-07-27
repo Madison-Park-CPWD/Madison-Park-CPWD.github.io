@@ -488,8 +488,7 @@
         "<code>%</code> to check the remainder when dividing by 2.</p>",
         "<pre>&gt; python program.py",
         "4",
-        "Even</pre>",
-        "<p><strong>Hint:</strong> <code>n % 2</code> is <code>0</code> for even numbers.</p>"
+        "Even</pre>"
       ],
       "starter": [
         "n = int(input())",

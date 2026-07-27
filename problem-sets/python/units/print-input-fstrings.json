@@ -42,8 +42,7 @@
         "a = input()",
         "b = input()",
         "",
-        "# TODO: print a and b on the same line, separated by a space",
-        "# hint: print(a, b) does this automatically"
+        "# TODO: print a and b on the same line, separated by a space"
       ],
       "tests": [
         {
@@ -88,8 +87,7 @@
         "a = input()",
         "b = input()",
         "",
-        "# TODO: print a and b separated by a dash",
-        "# hint: print(a, b, sep=\"-\")"
+        "# TODO: print a and b separated by a dash"
       ],
       "tests": [
         {
@@ -136,8 +134,7 @@
         "a = input()",
         "b = input()",
         "",
-        "# TODO: print a first with end=\" \" (no newline), then print b normally",
-        "# hint: print(a, end=\" \")"
+        "# TODO: print a first with end=\" \" (no newline), then print b normally"
       ],
       "tests": [
         {
@@ -218,8 +215,7 @@
       "starter": [
         "name = input()",
         "",
-        "# TODO: print \"Hello, \" followed by name followed by \"!\"",
-        "# hint: \"Hello, \" + name + \"!\""
+        "# TODO: print \"Hello, \" followed by name followed by \"!\""
       ],
       "tests": [
         {
