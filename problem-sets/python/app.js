@@ -60,10 +60,35 @@ function renderUnitSelect() {
   });
 }
 
-unitSelectEl.addEventListener("change", () => {
-  currentUnitIndex = Number(unitSelectEl.value);
+// --- Hash-based deep linking, e.g. python/#int-math loads that unit directly ---
+
+function unitIndexForHash(hash) {
+  const id = hash.replace(/^#/, "");
+  if (!id) return -1;
+  return UNITS.findIndex(u => u.id === id);
+}
+
+// Switches to a unit by index, optionally updating the URL hash to match
+// (skip updating the hash when we're reacting to a hash change that already
+// happened, e.g. the back/forward buttons, to avoid a redundant history entry).
+function switchToUnitIndex(i, { updateHash = true } = {}) {
+  if (i < 0 || i >= UNITS.length || i === currentUnitIndex) return;
+  currentUnitIndex = i;
   loadSolvedForUnit();
+  renderUnitSelect();
   selectExercise(0);
+  if (updateHash) {
+    window.location.hash = UNITS[i].id;
+  }
+}
+
+window.addEventListener("hashchange", () => {
+  const idx = unitIndexForHash(window.location.hash);
+  if (idx >= 0) switchToUnitIndex(idx, { updateHash: false });
+});
+
+unitSelectEl.addEventListener("change", () => {
+  switchToUnitIndex(Number(unitSelectEl.value));
 });
 
 function renderSidebar() {
@@ -222,6 +247,10 @@ async function boot() {
     problemPanelEl.innerHTML = `<h2>No units found</h2><p>Check <code>units/manifest.json</code> — it's either empty or references files that don't exist.</p>`;
     return;
   }
+
+  const initialIdx = unitIndexForHash(window.location.hash);
+  currentUnitIndex = initialIdx >= 0 ? initialIdx : 0;
+
   renderUnitSelect();
   loadSolvedForUnit();
   renderSidebar();
