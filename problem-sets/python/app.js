@@ -2,6 +2,7 @@ let pyodide = null;
 let currentUnitIndex = 0;
 let currentIndex = 0;
 let solved = new Set();
+let UNITS = []; // populated at boot by loadUnits()
 
 const unitSelectEl = document.getElementById("unit-select");
 const sidebarEl = document.getElementById("sidebar");
@@ -12,6 +13,26 @@ const runBtn = document.getElementById("run-btn");
 const resetBtn = document.getElementById("reset-btn");
 const statusDot = document.getElementById("status-dot");
 const statusText = document.getElementById("status-text");
+
+// Fetches units/manifest.json (an ordered list of unit ids), then fetches
+// units/<id>.json for each one, in that order. Reordering lessons only ever
+// means editing manifest.json — no JS file needs to change.
+async function loadUnits() {
+  const manifestRes = await fetch("units/manifest.json");
+  if (!manifestRes.ok) throw new Error(`Couldn't load units/manifest.json (${manifestRes.status})`);
+  const order = await manifestRes.json();
+
+  const units = [];
+  for (const id of order) {
+    const res = await fetch(`units/${id}.json`);
+    if (!res.ok) {
+      console.error(`Couldn't load units/${id}.json (${res.status}) — skipping it.`);
+      continue;
+    }
+    units.push(await res.json());
+  }
+  return units;
+}
 
 function currentUnit() { return UNITS[currentUnitIndex]; }
 function currentExercises() { return currentUnit().exercises; }
@@ -53,7 +74,7 @@ function renderSidebar() {
     btn.innerHTML = `
       <span class="idx">${solved.has(ex.id) ? "✓" : ex.id}</span>
       <span class="title">${ex.title}</span>
-      <span class="op">${ex.op}</span>
+      <span class="op">${ex.sidebar_tag}</span>
     `;
     btn.addEventListener("click", () => selectExercise(i));
     sidebarEl.appendChild(btn);
@@ -63,8 +84,8 @@ function renderSidebar() {
 function selectExercise(i) {
   currentIndex = i;
   const ex = currentExercises()[i];
-  problemPanelEl.innerHTML = `<h2>${ex.id}. ${ex.title}</h2>${ex.description}`;
-  editorEl.value = loadDraft(ex.id) || ex.starter;
+  problemPanelEl.innerHTML = `<h2>${ex.id}. ${ex.title}</h2>${ex.description.join("\n")}`;
+  editorEl.value = loadDraft(ex.id) || ex.starter.join("\n");
   consoleEl.innerHTML = `<div class="placeholder">Click "Run Tests" to check your solution against ${ex.tests.length} test case${ex.tests.length === 1 ? "" : "s"}.</div>`;
   renderSidebar();
 }
@@ -76,8 +97,9 @@ editorEl.addEventListener("input", () => {
 resetBtn.addEventListener("click", () => {
   const ex = currentExercises()[currentIndex];
   if (confirm("Reset this exercise back to the starter code? Your current draft will be lost.")) {
-    editorEl.value = ex.starter;
-    saveDraft(ex.id, ex.starter);
+    const starterCode = ex.starter.join("\n");
+    editorEl.value = starterCode;
+    saveDraft(ex.id, starterCode);
   }
 });
 
@@ -134,14 +156,15 @@ async function runTests() {
 
   let allPass = true;
   for (const test of ex.tests) {
-    const { stdout, error } = await runOneTest(code, test.stdin);
+    const stdinStr = test.stdin.join("\n");
+    const { stdout, error } = await runOneTest(code, stdinStr);
     const actual = stdout.trim();
     const pass = !error && actual === test.expected;
     if (!pass) allPass = false;
 
     const row = document.createElement("div");
     row.className = "test-row";
-    const inputLabel = test.stdin ? escapeHtml(test.stdin.replace(/\n/g, "  ")) : "(none)";
+    const inputLabel = test.stdin.length ? escapeHtml(test.stdin.join("  ")) : "(none)";
     if (error) {
       row.innerHTML = `
         <span class="test-status fail">✗</span>
@@ -188,8 +211,22 @@ function escapeHtml(str) {
 runBtn.addEventListener("click", runTests);
 
 // Boot
-renderUnitSelect();
-loadSolvedForUnit();
-renderSidebar();
-selectExercise(0);
-initPyodide();
+async function boot() {
+  try {
+    UNITS = await loadUnits();
+  } catch (err) {
+    problemPanelEl.innerHTML = `<h2>Couldn't load exercises</h2><p>${escapeHtml(err.message)}</p><p>If you're opening this file directly from disk, run a local web server instead (e.g. <code>python3 -m http.server</code>) — browsers block fetching local files with <code>file://</code> URLs.</p>`;
+    return;
+  }
+  if (UNITS.length === 0) {
+    problemPanelEl.innerHTML = `<h2>No units found</h2><p>Check <code>units/manifest.json</code> — it's either empty or references files that don't exist.</p>`;
+    return;
+  }
+  renderUnitSelect();
+  loadSolvedForUnit();
+  renderSidebar();
+  selectExercise(0);
+  initPyodide();
+}
+
+boot();

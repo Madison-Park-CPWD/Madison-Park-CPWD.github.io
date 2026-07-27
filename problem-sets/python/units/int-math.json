@@ -1,0 +1,590 @@
+{
+  "id": "int-math",
+  "title": "Int Math",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "int-math",
+      "title": "Sum of Two Integers",
+      "sidebar_tag": "+",
+      "description": [
+        "<p>Read two integers from input, one per line, and print their <strong>sum</strong>",
+        "using the <code>+</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "4",
+        "7</pre>",
+        "<p>Use <code>int(input())</code> to read each number, and <code>print()</code> to",
+        "output the result.</p>"
+      ],
+      "starter": [
+        "# Read two integers, one per line",
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print the sum of a and b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "4"
+          ],
+          "expected": "7"
+        },
+        {
+          "stdin": [
+            "10",
+            "15"
+          ],
+          "expected": "25"
+        },
+        {
+          "stdin": [
+            "-5",
+            "8"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "100",
+            "250"
+          ],
+          "expected": "350"
+        },
+        {
+          "stdin": [
+            "0",
+            "0"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "int-math",
+      "title": "Difference of Two Integers",
+      "sidebar_tag": "-",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
+        "<code>a - b</code> using the <code>-</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "4",
+        "6</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print a - b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "4"
+          ],
+          "expected": "6"
+        },
+        {
+          "stdin": [
+            "5",
+            "9"
+          ],
+          "expected": "-4"
+        },
+        {
+          "stdin": [
+            "0",
+            "7"
+          ],
+          "expected": "-7"
+        },
+        {
+          "stdin": [
+            "100",
+            "50"
+          ],
+          "expected": "50"
+        },
+        {
+          "stdin": [
+            "-3",
+            "-8"
+          ],
+          "expected": "5"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "int-math",
+      "title": "Product of Two Integers",
+      "sidebar_tag": "*",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
+        "their product using the <code>*</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "4",
+        "12</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print a * b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "4"
+          ],
+          "expected": "12"
+        },
+        {
+          "stdin": [
+            "7",
+            "8"
+          ],
+          "expected": "56"
+        },
+        {
+          "stdin": [
+            "-3",
+            "5"
+          ],
+          "expected": "-15"
+        },
+        {
+          "stdin": [
+            "0",
+            "9"
+          ],
+          "expected": "0"
+        },
+        {
+          "stdin": [
+            "12",
+            "12"
+          ],
+          "expected": "144"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "int-math",
+      "title": "Power of a Number",
+      "sidebar_tag": "**",
+      "description": [
+        "<p>Read a <code>base</code> and an <code>exponent</code>, one per line, and print",
+        "<code>base ** exponent</code> using Python's exponentiation operator <code>**</code>.</p>",
+        "<pre>&gt; python program.py",
+        "2",
+        "10",
+        "1024</pre>"
+      ],
+      "starter": [
+        "base = int(input())",
+        "exponent = int(input())",
+        "",
+        "# TODO: print base ** exponent"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2",
+            "0"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "7",
+            "2"
+          ],
+          "expected": "49"
+        },
+        {
+          "stdin": [
+            "2",
+            "10"
+          ],
+          "expected": "1024"
+        },
+        {
+          "stdin": [
+            "3",
+            "4"
+          ],
+          "expected": "81"
+        },
+        {
+          "stdin": [
+            "10",
+            "3"
+          ],
+          "expected": "1000"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "int-math",
+      "title": "True Division",
+      "sidebar_tag": "/",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
+        "<code>a / b</code> using the <code>/</code> operator. In Python 3, <code>/</code>",
+        "always produces a <strong>float</strong>, even when the numbers divide evenly.</p>",
+        "<pre>&gt; python program.py",
+        "7",
+        "2",
+        "3.5</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print a / b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "7",
+            "2"
+          ],
+          "expected": "3.5"
+        },
+        {
+          "stdin": [
+            "9",
+            "4"
+          ],
+          "expected": "2.25"
+        },
+        {
+          "stdin": [
+            "15",
+            "4"
+          ],
+          "expected": "3.75"
+        },
+        {
+          "stdin": [
+            "8",
+            "2"
+          ],
+          "expected": "4.0"
+        },
+        {
+          "stdin": [
+            "100",
+            "8"
+          ],
+          "expected": "12.5"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "int-math",
+      "title": "Floor Division",
+      "sidebar_tag": "//",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
+        "<code>a // b</code> using the floor division operator <code>//</code>. Floor",
+        "division divides and then rounds <strong>down</strong> to the nearest whole",
+        "number, discarding any remainder.</p>",
+        "<pre>&gt; python program.py",
+        "7",
+        "2",
+        "3</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print a // b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "7",
+            "2"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "10",
+            "3"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "9",
+            "4"
+          ],
+          "expected": "2"
+        },
+        {
+          "stdin": [
+            "23",
+            "5"
+          ],
+          "expected": "4"
+        },
+        {
+          "stdin": [
+            "100",
+            "7"
+          ],
+          "expected": "14"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "int-math",
+      "title": "Modulo (Remainder)",
+      "sidebar_tag": "%",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
+        "<code>a % b</code> using the modulo operator <code>%</code>. The modulo operator",
+        "returns the <strong>remainder</strong> left over after division.</p>",
+        "<pre>&gt; python program.py",
+        "7",
+        "2",
+        "1</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print a % b"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "7",
+            "2"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "10",
+            "3"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "9",
+            "4"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "23",
+            "5"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "100",
+            "7"
+          ],
+          "expected": "2"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "int-math",
+      "title": "Order of Operations",
+      "sidebar_tag": "+ *",
+      "description": [
+        "<p>Read three integers <code>a</code>, <code>b</code>, and <code>c</code>, one per",
+        "line, and print the result of:</p>",
+        "<pre>a + b * c</pre>",
+        "<p>Python follows standard order of operations (PEMDAS), so multiplication happens",
+        "<strong>before</strong> addition even though <code>+</code> appears first.</p>",
+        "<pre>&gt; python program.py",
+        "2",
+        "3",
+        "4",
+        "14</pre>",
+        "<p>(<code>3 * 4</code> is calculated first to get <code>12</code>, then",
+        "<code>2 + 12 = 14</code>.)</p>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "c = int(input())",
+        "",
+        "# TODO: print a + b * c"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2",
+            "3",
+            "4"
+          ],
+          "expected": "14"
+        },
+        {
+          "stdin": [
+            "5",
+            "0",
+            "10"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "1",
+            "1",
+            "1"
+          ],
+          "expected": "2"
+        },
+        {
+          "stdin": [
+            "10",
+            "2",
+            "3"
+          ],
+          "expected": "16"
+        },
+        {
+          "stdin": [
+            "0",
+            "5",
+            "5"
+          ],
+          "expected": "25"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "int-math",
+      "title": "Even or Odd",
+      "sidebar_tag": "%",
+      "description": [
+        "<p>Read one integer <code>n</code> and print <code>Even</code> if it is evenly",
+        "divisible by 2, or <code>Odd</code> otherwise. Use the modulo operator",
+        "<code>%</code> to check the remainder when dividing by 2.</p>",
+        "<pre>&gt; python program.py",
+        "4",
+        "Even</pre>",
+        "<p><strong>Hint:</strong> <code>n % 2</code> is <code>0</code> for even numbers.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: if n % 2 == 0, print \"Even\", otherwise print \"Odd\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4"
+          ],
+          "expected": "Even"
+        },
+        {
+          "stdin": [
+            "7"
+          ],
+          "expected": "Odd"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Even"
+        },
+        {
+          "stdin": [
+            "-3"
+          ],
+          "expected": "Odd"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "Even"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "int-math",
+      "title": "Seconds to Minutes:Seconds",
+      "sidebar_tag": "// %",
+      "description": [
+        "<p>Read one integer representing a total number of seconds, and print it in",
+        "<code>M:SS</code> format, where minutes and leftover seconds are separated by a",
+        "colon. Leftover seconds should always show two digits (use <code>:02d</code> in an",
+        "f-string).</p>",
+        "<p>Use <code>//</code> to find whole minutes and <code>%</code> to find leftover",
+        "seconds.</p>",
+        "<pre>&gt; python program.py",
+        "125",
+        "2:05</pre>",
+        "<p>(125 seconds is 2 minutes and 5 leftover seconds.)</p>"
+      ],
+      "starter": [
+        "total_seconds = int(input())",
+        "minutes = total_seconds // 60",
+        "seconds = total_seconds % 60",
+        "",
+        "# TODO: print in \"M:SS\" format, e.g. f\"{minutes}:{seconds:02d}\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "125"
+          ],
+          "expected": "2:05"
+        },
+        {
+          "stdin": [
+            "59"
+          ],
+          "expected": "0:59"
+        },
+        {
+          "stdin": [
+            "60"
+          ],
+          "expected": "1:00"
+        },
+        {
+          "stdin": [
+            "3661"
+          ],
+          "expected": "61:01"
+        },
+        {
+          "stdin": [
+            "600"
+          ],
+          "expected": "10:00"
+        }
+      ]
+    }
+  ]
+}

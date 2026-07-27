@@ -1,0 +1,413 @@
+{
+  "id": "print-input-fstrings",
+  "title": "Print, Input & f-strings",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "print-input-fstrings",
+      "title": "Hello, World",
+      "sidebar_tag": "print",
+      "description": [
+        "<p>Use <code>print()</code> to output exactly the following, with no input",
+        "needed:</p>",
+        "<pre>Hello, World!</pre>",
+        "<p>Make sure your spelling, capitalization, and punctuation match exactly.</p>"
+      ],
+      "starter": [
+        "# TODO: print exactly Hello, World!"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "Hello, World!"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "print-input-fstrings",
+      "title": "Print Two Values",
+      "sidebar_tag": "print(a, b)",
+      "description": [
+        "<p>Read two words, one per line, and print them <strong>on the same line,",
+        "separated by a single space</strong>. You can hand multiple values to",
+        "<code>print()</code> separated by commas, and it will space them out for you",
+        "automatically.</p>",
+        "<pre>&gt; python program.py",
+        "cat",
+        "dog",
+        "cat dog</pre>"
+      ],
+      "starter": [
+        "a = input()",
+        "b = input()",
+        "",
+        "# TODO: print a and b on the same line, separated by a space",
+        "# hint: print(a, b) does this automatically"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "cat",
+            "dog"
+          ],
+          "expected": "cat dog"
+        },
+        {
+          "stdin": [
+            "red",
+            "blue"
+          ],
+          "expected": "red blue"
+        },
+        {
+          "stdin": [
+            "up",
+            "down"
+          ],
+          "expected": "up down"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "print-input-fstrings",
+      "title": "Custom Separator",
+      "sidebar_tag": "sep=",
+      "description": [
+        "<p>Read two words, one per line, and print them on the same line separated by a",
+        "<strong>dash</strong> instead of a space. The <code>print()</code> function",
+        "accepts a <code>sep</code> keyword argument that controls what goes between",
+        "values.</p>",
+        "<pre>&gt; python program.py",
+        "cat",
+        "dog",
+        "cat-dog</pre>"
+      ],
+      "starter": [
+        "a = input()",
+        "b = input()",
+        "",
+        "# TODO: print a and b separated by a dash",
+        "# hint: print(a, b, sep=\"-\")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "cat",
+            "dog"
+          ],
+          "expected": "cat-dog"
+        },
+        {
+          "stdin": [
+            "red",
+            "blue"
+          ],
+          "expected": "red-blue"
+        },
+        {
+          "stdin": [
+            "2024",
+            "07"
+          ],
+          "expected": "2024-07"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "print-input-fstrings",
+      "title": "Print Without a Newline",
+      "sidebar_tag": "end=",
+      "description": [
+        "<p>Read two words, one per line. Print the first word so that <strong>no",
+        "newline</strong> is added after it, then print the second word normally \u2014 so",
+        "both end up on the same line, separated by a space.</p>",
+        "<p><code>print()</code> normally adds a newline at the end automatically. The",
+        "<code>end</code> keyword argument controls what gets added instead \u2014 set it to",
+        "a single space to keep the next <code>print()</code> on the same line.</p>",
+        "<pre>&gt; python program.py",
+        "cat",
+        "dog",
+        "cat dog</pre>"
+      ],
+      "starter": [
+        "a = input()",
+        "b = input()",
+        "",
+        "# TODO: print a first with end=\" \" (no newline), then print b normally",
+        "# hint: print(a, end=\" \")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "cat",
+            "dog"
+          ],
+          "expected": "cat dog"
+        },
+        {
+          "stdin": [
+            "red",
+            "blue"
+          ],
+          "expected": "red blue"
+        },
+        {
+          "stdin": [
+            "up",
+            "down"
+          ],
+          "expected": "up down"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "print-input-fstrings",
+      "title": "Echo Input Exactly",
+      "sidebar_tag": "input",
+      "description": [
+        "<p>Read one full line of text (it may contain spaces) and print it back out,",
+        "<strong>unchanged</strong>.</p>",
+        "<pre>&gt; python program.py",
+        "I love Python",
+        "I love Python</pre>"
+      ],
+      "starter": [
+        "message = input()",
+        "",
+        "# TODO: print message back out, unchanged"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "I love Python"
+          ],
+          "expected": "I love Python"
+        },
+        {
+          "stdin": [
+            "Boston Public Schools"
+          ],
+          "expected": "Boston Public Schools"
+        },
+        {
+          "stdin": [
+            "42 is my number"
+          ],
+          "expected": "42 is my number"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "print-input-fstrings",
+      "title": "Add a Greeting",
+      "sidebar_tag": "+",
+      "description": [
+        "<p>Read a name, then print a greeting by <strong>joining strings together</strong>",
+        "with the <code>+</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "Hello, Ava!</pre>",
+        "<p><strong>Hint:</strong> you can join strings with <code>+</code>, e.g.",
+        "<code>\"Hello, \" + name + \"!\"</code>.</p>"
+      ],
+      "starter": [
+        "name = input()",
+        "",
+        "# TODO: print \"Hello, \" followed by name followed by \"!\"",
+        "# hint: \"Hello, \" + name + \"!\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava"
+          ],
+          "expected": "Hello, Ava!"
+        },
+        {
+          "stdin": [
+            "Marcus"
+          ],
+          "expected": "Hello, Marcus!"
+        },
+        {
+          "stdin": [
+            "Priya"
+          ],
+          "expected": "Hello, Priya!"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "print-input-fstrings",
+      "title": "Greet with an f-string",
+      "sidebar_tag": "f\"{}\"",
+      "description": [
+        "<p>Same result as the last exercise, but this time use an",
+        "<strong>f-string</strong> instead of <code>+</code>. An f-string lets you drop a",
+        "variable directly inside a string using curly braces:</p>",
+        "<pre>f\"Hello, {name}!\"</pre>",
+        "<p>Notice the <code>f</code> right before the opening quote \u2014 that's what makes",
+        "it an f-string. Without it, Python would print the curly braces literally.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "Hello, Ava!</pre>"
+      ],
+      "starter": [
+        "name = input()",
+        "",
+        "# TODO: print an f-string greeting: f\"Hello, {name}!\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava"
+          ],
+          "expected": "Hello, Ava!"
+        },
+        {
+          "stdin": [
+            "Marcus"
+          ],
+          "expected": "Hello, Marcus!"
+        },
+        {
+          "stdin": [
+            "Priya"
+          ],
+          "expected": "Hello, Priya!"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "print-input-fstrings",
+      "title": "Introduce Yourself",
+      "sidebar_tag": "f\"{}\"",
+      "description": [
+        "<p>Read a name and an age (as a whole number), and print a full introduction",
+        "using <strong>one f-string with two variables</strong> inside it.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "16",
+        "My name is Ava and I am 16 years old.</pre>"
+      ],
+      "starter": [
+        "name = input()",
+        "age = int(input())",
+        "",
+        "# TODO: print an f-string:",
+        "# My name is <name> and I am <age> years old."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava",
+            "16"
+          ],
+          "expected": "My name is Ava and I am 16 years old."
+        },
+        {
+          "stdin": [
+            "Marcus",
+            "17"
+          ],
+          "expected": "My name is Marcus and I am 17 years old."
+        },
+        {
+          "stdin": [
+            "Priya",
+            "15"
+          ],
+          "expected": "My name is Priya and I am 15 years old."
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "print-input-fstrings",
+      "title": "Math Inside an f-string",
+      "sidebar_tag": "f\"{a+b}\"",
+      "description": [
+        "<p>Read two integers and print an f-string that shows the whole equation,",
+        "<strong>including the answer</strong> \u2014 all computed inside the curly braces.</p>",
+        "<pre>&gt; python program.py",
+        "2",
+        "3",
+        "2 + 3 = 5</pre>",
+        "<p>You can put any expression inside <code>{ }</code> in an f-string, including",
+        "math \u2014 Python evaluates it and drops the result right into the string.</p>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print an f-string like: {a} + {b} = {a + b}"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2",
+            "3"
+          ],
+          "expected": "2 + 3 = 5"
+        },
+        {
+          "stdin": [
+            "10",
+            "15"
+          ],
+          "expected": "10 + 15 = 25"
+        },
+        {
+          "stdin": [
+            "7",
+            "8"
+          ],
+          "expected": "7 + 8 = 15"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "print-input-fstrings",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is <em>supposed</em> to print a greeting like",
+        "<code>Hello, Ava!</code>, but it has a bug \u2014 run it and see what it actually",
+        "prints. Find the missing piece and fix it.</p>",
+        "<p><strong>Hint:</strong> what turns a regular string into an f-string?</p>"
+      ],
+      "starter": [
+        "name = input()",
+        "print(\"Hello, {name}!\")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava"
+          ],
+          "expected": "Hello, Ava!"
+        },
+        {
+          "stdin": [
+            "Marcus"
+          ],
+          "expected": "Hello, Marcus!"
+        },
+        {
+          "stdin": [
+            "Priya"
+          ],
+          "expected": "Hello, Priya!"
+        }
+      ]
+    }
+  ]
+}
