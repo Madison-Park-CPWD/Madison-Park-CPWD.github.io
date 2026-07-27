@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Int Math — Python Practice</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="prompt">&gt;&gt;&gt;</span>
+    <h1>Python Practice</h1>
+    <select class="unit-select" id="unit-select"></select>
+    <div class="status">
+      <span class="status-dot loading" id="status-dot"></span>
+      <span id="status-text">Loading Python…</span>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="main">
+      <div class="problem-panel" id="problem-panel"></div>
+
+      <div class="workbench">
+        <textarea id="code-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+        <div class="editor-toolbar">
+          <button class="run-btn" id="run-btn" disabled>Run Tests</button>
+          <button class="reset-btn" id="reset-btn">Reset to starter code</button>
+          <span class="hint">Your code and progress are saved in this browser automatically.</span>
+        </div>
+        <div class="console" id="console">
+          <div class="placeholder">Loading the Python environment — this takes a few seconds the first time.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+  <script src="exercises.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
