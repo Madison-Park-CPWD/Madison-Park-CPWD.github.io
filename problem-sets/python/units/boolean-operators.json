@@ -1,0 +1,602 @@
+{
+  "id": "boolean-operators",
+  "title": "Boolean Operators",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "boolean-operators",
+      "title": "Using and",
+      "sidebar_tag": "and",
+      "description": [
+        "<p>Read two integers, one per line, and print <code>True</code> if",
+        "<strong>both</strong> are positive, or <code>False</code> otherwise, using",
+        "the <code>and</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "5",
+        "True</pre>",
+        "<p><code>and</code> only produces <code>True</code> when both sides of it",
+        "are true.</p>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print True if both a and b are positive, otherwise False"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "5"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "3",
+            "-5"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "-3",
+            "5"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "-3",
+            "-5"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "0",
+            "5"
+          ],
+          "expected": "False"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "boolean-operators",
+      "title": "Using or",
+      "sidebar_tag": "or",
+      "description": [
+        "<p>Read two integers, one per line, and print <code>True</code> if",
+        "<strong>at least one</strong> is positive, or <code>False</code> otherwise,",
+        "using the <code>or</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "-3",
+        "5",
+        "True</pre>",
+        "<p><code>or</code> produces <code>True</code> as long as at least one side",
+        "of it is true.</p>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: print True if at least one of a, b is positive, otherwise False"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "-3",
+            "5"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "3",
+            "-5"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "-3",
+            "-5"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "3",
+            "5"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "0",
+            "0"
+          ],
+          "expected": "False"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "boolean-operators",
+      "title": "Using not",
+      "sidebar_tag": "not",
+      "description": [
+        "<p>Read an integer and print <code>True</code> if it is",
+        "<strong>not</strong> zero, or <code>False</code> if it is zero, using the",
+        "<code>not</code> operator.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "True</pre>",
+        "<p><code>not</code> flips a boolean value: <code>not True</code> is",
+        "<code>False</code>, and <code>not False</code> is <code>True</code>.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: print not (n == 0)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "-5"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "-1"
+          ],
+          "expected": "True"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "boolean-operators",
+      "title": "Voting Eligibility, Simplified",
+      "sidebar_tag": "and",
+      "description": [
+        "<p>Read an <code>age</code> and whether someone is registered",
+        "(<code>yes</code>/<code>no</code>), and print <code>Can vote</code> if",
+        "they're 18 or older <strong>and</strong> registered, or",
+        "<code>Cannot vote</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "20",
+        "yes",
+        "Can vote</pre>",
+        "<p>An earlier unit solved a version of this with a nested",
+        "<code>if</code> inside another <code>if</code>. With <code>and</code>,",
+        "both conditions can be checked in a single <code>if</code> line",
+        "instead.</p>"
+      ],
+      "starter": [
+        "age = int(input())",
+        "registered = input()",
+        "",
+        "# TODO: print \"Can vote\" if age >= 18 and registered == \"yes\",",
+        "# otherwise print \"Cannot vote\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20",
+            "yes"
+          ],
+          "expected": "Can vote"
+        },
+        {
+          "stdin": [
+            "20",
+            "no"
+          ],
+          "expected": "Cannot vote"
+        },
+        {
+          "stdin": [
+            "16",
+            "yes"
+          ],
+          "expected": "Cannot vote"
+        },
+        {
+          "stdin": [
+            "18",
+            "no"
+          ],
+          "expected": "Cannot vote"
+        },
+        {
+          "stdin": [
+            "17",
+            "no"
+          ],
+          "expected": "Cannot vote"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "boolean-operators",
+      "title": "Weekend Check",
+      "sidebar_tag": "or",
+      "description": [
+        "<p>Read a day number (1 = Monday ... 7 = Sunday) and print",
+        "<code>Weekend</code> if it's Saturday (6) <strong>or</strong> Sunday (7),",
+        "or <code>Weekday</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "6",
+        "Weekend</pre>"
+      ],
+      "starter": [
+        "day = int(input())",
+        "",
+        "# TODO: print \"Weekend\" if day == 6 or day == 7, otherwise \"Weekday\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "6"
+          ],
+          "expected": "Weekend"
+        },
+        {
+          "stdin": [
+            "7"
+          ],
+          "expected": "Weekend"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "Weekday"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "Weekday"
+        },
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "Weekday"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "boolean-operators",
+      "title": "Valid Password Check",
+      "sidebar_tag": "and",
+      "description": [
+        "<p>Read a password's <code>length</code> and whether it has a number",
+        "(<code>yes</code>/<code>no</code>), and print <code>Valid</code> if the",
+        "length is at least 8 <strong>and</strong> it has a number, or",
+        "<code>Invalid</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "yes",
+        "Valid</pre>"
+      ],
+      "starter": [
+        "length = int(input())",
+        "has_number = input()",
+        "",
+        "# TODO: print \"Valid\" if length >= 8 and has_number == \"yes\",",
+        "# otherwise \"Invalid\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "yes"
+          ],
+          "expected": "Valid"
+        },
+        {
+          "stdin": [
+            "10",
+            "no"
+          ],
+          "expected": "Invalid"
+        },
+        {
+          "stdin": [
+            "5",
+            "yes"
+          ],
+          "expected": "Invalid"
+        },
+        {
+          "stdin": [
+            "8",
+            "yes"
+          ],
+          "expected": "Valid"
+        },
+        {
+          "stdin": [
+            "7",
+            "no"
+          ],
+          "expected": "Invalid"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "boolean-operators",
+      "title": "Combining and and or",
+      "sidebar_tag": "and / or",
+      "description": [
+        "<p>Read three integers <code>a</code>, <code>b</code>, <code>c</code>, one",
+        "per line, and print <code>True</code> if <code>a</code> is positive",
+        "<strong>and</strong> either <code>b</code> or <code>c</code> is positive.",
+        "Print <code>False</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "-1",
+        "3",
+        "True</pre>",
+        "<p><code>and</code> binds more tightly than <code>or</code> in Python, so",
+        "<code>a and b or c</code> is grouped as <code>(a and b) or c</code> &mdash;",
+        "not what we want here. Use parentheses to make the grouping explicit:",
+        "<code>a and (b or c)</code>.</p>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "c = int(input())",
+        "",
+        "# TODO: print a > 0 and (b > 0 or c > 0)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5",
+            "-1",
+            "3"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "5",
+            "-1",
+            "-1"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "-5",
+            "1",
+            "1"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "5",
+            "1",
+            "1"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "5",
+            "0",
+            "0"
+          ],
+          "expected": "False"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "boolean-operators",
+      "title": "Ticket Refund Rules",
+      "sidebar_tag": "and / or",
+      "description": [
+        "<p>Read whether an event was <code>cancelled</code>",
+        "(<code>yes</code>/<code>no</code>) and how many hours before the event",
+        "someone is requesting a refund. Print <code>Refund approved</code> if the",
+        "event was cancelled, <strong>or</strong> if they're requesting more than",
+        "24 hours before the event. Print <code>No refund</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "no",
+        "48",
+        "Refund approved</pre>"
+      ],
+      "starter": [
+        "cancelled = input()",
+        "hours_before = int(input())",
+        "",
+        "# TODO: print \"Refund approved\" if cancelled == \"yes\" or hours_before > 24,",
+        "# otherwise \"No refund\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "yes",
+            "1"
+          ],
+          "expected": "Refund approved"
+        },
+        {
+          "stdin": [
+            "no",
+            "48"
+          ],
+          "expected": "Refund approved"
+        },
+        {
+          "stdin": [
+            "no",
+            "1"
+          ],
+          "expected": "No refund"
+        },
+        {
+          "stdin": [
+            "yes",
+            "48"
+          ],
+          "expected": "Refund approved"
+        },
+        {
+          "stdin": [
+            "no",
+            "24"
+          ],
+          "expected": "No refund"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "boolean-operators",
+      "title": "Nested If vs. and: Same Result",
+      "sidebar_tag": "and",
+      "description": [
+        "<p>Read a <code>temp</code> and whether it's <code>raining</code>",
+        "(<code>yes</code>/<code>no</code>), and print <code>Snow</code> if it's",
+        "below 32 <strong>and</strong> raining, or <code>Not snowing</code>",
+        "otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "20",
+        "yes",
+        "Snow</pre>",
+        "<p>A previous unit handled a similar problem with two levels of nested",
+        "<code>if</code> statements. When there are only two conditions and only",
+        "one of the four combinations needs special handling, a single",
+        "<code>and</code> is usually clearer than nesting.</p>"
+      ],
+      "starter": [
+        "temp = int(input())",
+        "raining = input()",
+        "",
+        "# TODO: print \"Snow\" if temp < 32 and raining == \"yes\",",
+        "# otherwise \"Not snowing\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20",
+            "yes"
+          ],
+          "expected": "Snow"
+        },
+        {
+          "stdin": [
+            "20",
+            "no"
+          ],
+          "expected": "Not snowing"
+        },
+        {
+          "stdin": [
+            "60",
+            "yes"
+          ],
+          "expected": "Not snowing"
+        },
+        {
+          "stdin": [
+            "60",
+            "no"
+          ],
+          "expected": "Not snowing"
+        },
+        {
+          "stdin": [
+            "31",
+            "yes"
+          ],
+          "expected": "Snow"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "boolean-operators",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to grant entry if a person has a ticket",
+        "<strong>or</strong> is on the guest list &mdash; but not otherwise. Run it",
+        "with someone who has neither and see what happens.</p>",
+        "<p>The comparison itself is fine. The problem is which operator is being",
+        "used to combine the two conditions &mdash; it's requiring",
+        "<strong>both</strong> to be true, rather than <strong>either</strong>",
+        "one.</p>"
+      ],
+      "starter": [
+        "has_ticket = input()",
+        "on_guest_list = input()",
+        "if has_ticket == \"yes\" and on_guest_list == \"yes\":",
+        "    print(\"Entry granted\")",
+        "else:",
+        "    print(\"Entry denied\")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "yes",
+            "no"
+          ],
+          "expected": "Entry granted"
+        },
+        {
+          "stdin": [
+            "no",
+            "yes"
+          ],
+          "expected": "Entry granted"
+        },
+        {
+          "stdin": [
+            "no",
+            "no"
+          ],
+          "expected": "Entry denied"
+        },
+        {
+          "stdin": [
+            "yes",
+            "yes"
+          ],
+          "expected": "Entry granted"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,504 @@
+{
+  "id": "dictionaries",
+  "title": "Dictionaries",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "dictionaries",
+      "title": "Create and Print a Dictionary",
+      "sidebar_tag": "dict",
+      "description": [
+        "<p>Read a <code>name</code> and an <code>age</code>, build a",
+        "dictionary with keys <code>\"name\"</code> and <code>\"age\"</code>,",
+        "and print it.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "16",
+        "{'name': 'Ava', 'age': 16}</pre>",
+        "<p>A dictionary stores <strong>key-value pairs</strong> using curly",
+        "braces: <code>{\"name\": \"Ava\", \"age\": 16}</code>. Unlike a list,",
+        "you look things up by a meaningful key instead of a numeric",
+        "position.</p>"
+      ],
+      "starter": [
+        "name = input()",
+        "age = int(input())",
+        "",
+        "# TODO: build a dict with keys \"name\" and \"age\", then print it"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava",
+            "16"
+          ],
+          "expected": "{'name': 'Ava', 'age': 16}"
+        },
+        {
+          "stdin": [
+            "Marcus",
+            "17"
+          ],
+          "expected": "{'name': 'Marcus', 'age': 17}"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "dictionaries",
+      "title": "Access by Key",
+      "sidebar_tag": "indexing",
+      "description": [
+        "<p>Read a <code>name</code> and an <code>age</code> into a",
+        "dictionary, then print just the value stored under",
+        "<code>\"name\"</code>.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "16",
+        "Ava</pre>",
+        "<p><code>person[\"name\"]</code> looks up the value associated with",
+        "the key <code>\"name\"</code> &mdash; similar to indexing a list, but",
+        "with a key instead of a position.</p>"
+      ],
+      "starter": [
+        "name = input()",
+        "age = int(input())",
+        "person = {\"name\": name, \"age\": age}",
+        "",
+        "# TODO: print person[\"name\"]"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava",
+            "16"
+          ],
+          "expected": "Ava"
+        },
+        {
+          "stdin": [
+            "Priya",
+            "15"
+          ],
+          "expected": "Priya"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "dictionaries",
+      "title": "Add or Update a Key",
+      "sidebar_tag": "assignment",
+      "description": [
+        "<p>Start with a dictionary containing just a <code>\"name\"</code>.",
+        "Read an <code>age</code>, then add it to the dictionary under the key",
+        "<code>\"age\"</code>, and print the result.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "16",
+        "{'name': 'Ava', 'age': 16}</pre>",
+        "<p><code>person[\"age\"] = age</code> adds a new key if it doesn't",
+        "exist yet, or updates the existing value if it does &mdash; the same",
+        "syntax does both jobs.</p>"
+      ],
+      "starter": [
+        "person = {\"name\": input()}",
+        "",
+        "# TODO: read an age, add it to person under the key \"age\",",
+        "# then print person"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava",
+            "16"
+          ],
+          "expected": "{'name': 'Ava', 'age': 16}"
+        },
+        {
+          "stdin": [
+            "Marcus",
+            "17"
+          ],
+          "expected": "{'name': 'Marcus', 'age': 17}"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "dictionaries",
+      "title": "Key Exists Check",
+      "sidebar_tag": "in",
+      "description": [
+        "<p>Using the fixed dictionary <code>{\"name\": \"Ava\", \"age\": 16}</code>,",
+        "read a key name and print <code>True</code> if it exists in the",
+        "dictionary, or <code>False</code> otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "age",
+        "True</pre>",
+        "<p>For a dictionary, <code>in</code> checks the <strong>keys</strong>,",
+        "not the values.</p>"
+      ],
+      "starter": [
+        "person = {\"name\": \"Ava\", \"age\": 16}",
+        "key = input()",
+        "",
+        "# TODO: print key in person"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "age"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "height"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "name"
+          ],
+          "expected": "True"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "dictionaries",
+      "title": "Building a Dictionary from Input",
+      "sidebar_tag": "for + dict",
+      "description": [
+        "<p>Read a count <code>n</code>, then read <code>n</code> key/value",
+        "pairs &mdash; a key, then an integer value, one per line each &mdash;",
+        "building them into a single dictionary. Print the result.</p>",
+        "<pre>&gt; python program.py",
+        "2",
+        "a",
+        "1",
+        "b",
+        "2",
+        "{'a': 1, 'b': 2}</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "d = {}",
+        "",
+        "# TODO: use a for loop over range(n) to read a key and an integer",
+        "# value each time, and store them in d. Then print d."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2",
+            "a",
+            "1",
+            "b",
+            "2"
+          ],
+          "expected": "{'a': 1, 'b': 2}"
+        },
+        {
+          "stdin": [
+            "3",
+            "x",
+            "10",
+            "y",
+            "20",
+            "z",
+            "30"
+          ],
+          "expected": "{'x': 10, 'y': 20, 'z': 30}"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "dictionaries",
+      "title": "Loop Over Keys",
+      "sidebar_tag": "for",
+      "description": [
+        "<p>Read a count <code>n</code>, build a dictionary from",
+        "<code>n</code> key/value pairs as before, then print each",
+        "<strong>key</strong> on its own line, in the order they were",
+        "added.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "a",
+        "1",
+        "b",
+        "2",
+        "c",
+        "3",
+        "a",
+        "b",
+        "c</pre>",
+        "<p>Looping over a dictionary directly (<code>for key in d</code>)",
+        "walks through its keys &mdash; and since Python 3.7, dictionaries",
+        "reliably remember the order things were added in.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "d = {}",
+        "",
+        "# TODO: build d from input as before, then loop over d",
+        "# and print each key on its own line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "a",
+            "1",
+            "b",
+            "2",
+            "c",
+            "3"
+          ],
+          "expected": "a\nb\nc"
+        },
+        {
+          "stdin": [
+            "2",
+            "x",
+            "10",
+            "y",
+            "20"
+          ],
+          "expected": "x\ny"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "dictionaries",
+      "title": "Loop Over Values",
+      "sidebar_tag": "for + .values()",
+      "description": [
+        "<p>Read a count <code>n</code>, build a dictionary from",
+        "<code>n</code> key/value pairs, then print each",
+        "<strong>value</strong> on its own line, using",
+        "<code>.values()</code>.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "a",
+        "1",
+        "b",
+        "2",
+        "c",
+        "3",
+        "1",
+        "2",
+        "3</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "d = {}",
+        "",
+        "# TODO: build d from input as before, then loop over d.values()",
+        "# and print each value on its own line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "a",
+            "1",
+            "b",
+            "2",
+            "c",
+            "3"
+          ],
+          "expected": "1\n2\n3"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "dictionaries",
+      "title": "Loop Over Items",
+      "sidebar_tag": "for + .items()",
+      "description": [
+        "<p>Read a count <code>n</code>, build a dictionary from",
+        "<code>n</code> key/value pairs, then print each pair in the format",
+        "<code>key: value</code>, one per line, using <code>.items()</code>.</p>",
+        "<pre>&gt; python program.py",
+        "2",
+        "a",
+        "1",
+        "b",
+        "2",
+        "a: 1",
+        "b: 2</pre>",
+        "<p><code>.items()</code> gives you both the key and value together on",
+        "each pass through the loop.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "d = {}",
+        "",
+        "# TODO: build d from input as before, then loop over d.items()",
+        "# printing an f-string: {key}: {value}"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2",
+            "a",
+            "1",
+            "b",
+            "2"
+          ],
+          "expected": "a: 1\nb: 2"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "dictionaries",
+      "title": "Counting with a Dictionary",
+      "sidebar_tag": "dict",
+      "description": [
+        "<p>Read a sentence and print a dictionary that counts how many times",
+        "each word appears.</p>",
+        "<pre>&gt; python program.py",
+        "the cat the dog the",
+        "{'the': 3, 'cat': 1, 'dog': 1}</pre>",
+        "<p>For each word: if it's already a key in the dictionary, increase",
+        "its count by 1; otherwise, add it as a new key with a count of",
+        "1.</p>"
+      ],
+      "starter": [
+        "words = input().split()",
+        "counts = {}",
+        "",
+        "# TODO: for each word in words, increment counts[word] if word",
+        "# is already a key, otherwise set counts[word] = 1.",
+        "# Then print counts."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "the cat the dog the"
+          ],
+          "expected": "{'the': 3, 'cat': 1, 'dog': 1}"
+        },
+        {
+          "stdin": [
+            "a a b b b c"
+          ],
+          "expected": "{'a': 2, 'b': 3, 'c': 1}"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "dictionaries",
+      "title": ".get() with a Default",
+      "sidebar_tag": "get()",
+      "description": [
+        "<p>Using the fixed dictionary <code>{\"a\": 1, \"b\": 2}</code>, read a",
+        "key and print its value &mdash; but print <code>0</code> instead of",
+        "crashing if the key doesn't exist, using <code>.get()</code>.</p>",
+        "<pre>&gt; python program.py",
+        "z",
+        "0</pre>",
+        "<p><code>d.get(key, default)</code> looks up <code>key</code> and",
+        "returns <code>default</code> instead of raising an error if the key",
+        "isn't found &mdash; a safer alternative to <code>d[key]</code> when",
+        "you're not sure the key exists.</p>"
+      ],
+      "starter": [
+        "d = {\"a\": 1, \"b\": 2}",
+        "key = input()",
+        "",
+        "# TODO: print d.get(key, 0)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "z"
+          ],
+          "expected": "0"
+        },
+        {
+          "stdin": [
+            "a"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "b"
+          ],
+          "expected": "2"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "dictionaries",
+      "title": "Updating a Value",
+      "sidebar_tag": "+=",
+      "description": [
+        "<p>Start with a dictionary <code>{\"player\": 0}</code>. Read a number",
+        "of points and add it to the existing score, then print the",
+        "dictionary.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "{'player': 5}</pre>",
+        "<p><code>scores[\"player\"] += points</code> updates the existing",
+        "value in place &mdash; the same shortcut you've used before with",
+        "plain variables works on dictionary values too.</p>"
+      ],
+      "starter": [
+        "scores = {\"player\": 0}",
+        "",
+        "# TODO: read a number and add it to scores[\"player\"],",
+        "# then print scores"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "{'player': 5}"
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "{'player': 10}"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "dictionaries",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print a person's age &mdash; but this",
+        "particular person's dictionary was never given an <code>\"age\"</code>",
+        "key. Run it and see what actually happens.</p>",
+        "<p>Accessing a dictionary with <code>d[key]</code> crashes if that key",
+        "doesn't exist. <code>.get(key, default)</code> handles a missing key",
+        "gracefully instead, returning a fallback value rather than raising an",
+        "error.</p>"
+      ],
+      "starter": [
+        "person = {\"name\": \"Ava\"}",
+        "print(person[\"age\"])"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "Unknown"
+        }
+      ]
+    }
+  ]
+}

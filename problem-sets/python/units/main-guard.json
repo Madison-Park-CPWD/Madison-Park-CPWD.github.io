@@ -1,0 +1,249 @@
+{
+  "id": "main-guard",
+  "title": "Program Structure: __main__",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "main-guard",
+      "title": "What is __name__?",
+      "sidebar_tag": "__name__",
+      "description": [
+        "<p>Print the built-in variable <code>__name__</code>, with no",
+        "modification.</p>",
+        "<pre>&gt; python program.py",
+        "__main__</pre>",
+        "<p>Every Python file has a variable called <code>__name__</code>",
+        "that Python fills in automatically. When a file is run",
+        "<strong>directly</strong> (like every exercise on this site), its",
+        "value is exactly the string <code>\"__main__\"</code>.</p>",
+        "<p>That value changes, though, if this same file were instead",
+        "<em>imported</em> into another Python file &mdash; in that case,",
+        "<code>__name__</code> would hold the file's actual module name",
+        "instead. That difference is what the rest of this unit is",
+        "about.</p>"
+      ],
+      "starter": [
+        "# TODO: print __name__"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "__main__"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "main-guard",
+      "title": "A Basic Guard",
+      "sidebar_tag": "if __name__",
+      "description": [
+        "<p>Define a function <code>greet()</code> that prints",
+        "<code>Hello!</code>. Instead of calling it directly, call it inside",
+        "an <code>if __name__ == \"__main__\":</code> block.</p>",
+        "<pre>&gt; python program.py",
+        "Hello!</pre>",
+        "<p>Since <code>__name__</code> equals <code>\"__main__\"</code>",
+        "whenever a file is run directly, this <code>if</code> is true right",
+        "now &mdash; but if another program imported this file to reuse",
+        "<code>greet()</code>, that same <code>if</code> would be false,",
+        "and <code>greet()</code> wouldn't run automatically just from being",
+        "imported.</p>"
+      ],
+      "starter": [
+        "def greet():",
+        "    # TODO: print \"Hello!\"",
+        "",
+        "# TODO: call greet() inside an if __name__ == \"__main__\": block"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "Hello!"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "main-guard",
+      "title": "Moving Code into main()",
+      "sidebar_tag": "def main()",
+      "description": [
+        "<p>Define a function <code>add(a, b)</code> that returns",
+        "<code>a + b</code>. Then define a function <code>main()</code> that",
+        "reads two integers, calls <code>add()</code>, and prints the",
+        "result. Call <code>main()</code> inside an",
+        "<code>if __name__ == \"__main__\":</code> block.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "4",
+        "7</pre>",
+        "<p>This is the standard shape of a Python script: helper functions",
+        "defined first, a <code>main()</code> function that ties them",
+        "together, and a guard at the very bottom that kicks everything",
+        "off.</p>"
+      ],
+      "starter": [
+        "def add(a, b):",
+        "    # TODO: return a + b",
+        "",
+        "def main():",
+        "    # TODO: read a and b, call add(a, b), and print the result",
+        "",
+        "# TODO: call main() inside an if __name__ == \"__main__\": block"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "4"
+          ],
+          "expected": "7"
+        },
+        {
+          "stdin": [
+            "10",
+            "5"
+          ],
+          "expected": "15"
+        },
+        {
+          "stdin": [
+            "-2",
+            "2"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "main-guard",
+      "title": "A Guard with Multiple Functions",
+      "sidebar_tag": "def main()",
+      "description": [
+        "<p>Define <code>square(n)</code> and <code>cube(n)</code>. Define",
+        "<code>main()</code>, which reads a number and prints both its",
+        "square and its cube on one line, separated by a space. Call",
+        "<code>main()</code> inside the guard.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "9 27</pre>"
+      ],
+      "starter": [
+        "def square(n):",
+        "    # TODO: return n * n",
+        "",
+        "def cube(n):",
+        "    # TODO: return n ** 3",
+        "",
+        "def main():",
+        "    # TODO: read a number, then print its square and cube",
+        "    # (from square() and cube()) on one line",
+        "",
+        "# TODO: call main() inside an if __name__ == \"__main__\": block"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "9 27"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "25 125"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "1 1"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "main-guard",
+      "title": "Compute, Display, and main()",
+      "sidebar_tag": "def main()",
+      "description": [
+        "<p>Define <code>compute_area(length, width)</code>, returning",
+        "<code>length * width</code>. Define",
+        "<code>display_area(length, width, area)</code>, printing",
+        "<code>Area: &lt;area&gt;</code>. Define <code>main()</code>, which",
+        "reads <code>length</code> and <code>width</code>, calls both",
+        "functions in order, and call <code>main()</code> inside the",
+        "guard.</p>",
+        "<pre>&gt; python program.py",
+        "4",
+        "5",
+        "Area: 20</pre>",
+        "<p>This pulls together everything from this unit: small,",
+        "single-purpose functions, a <code>main()</code> that coordinates",
+        "them, and a guard controlling when that coordination actually",
+        "happens.</p>"
+      ],
+      "starter": [
+        "def compute_area(length, width):",
+        "    # TODO: return length * width",
+        "",
+        "def display_area(length, width, area):",
+        "    # TODO: print an f-string: Area: {area}",
+        "",
+        "def main():",
+        "    # TODO: read length and width, compute the area, then",
+        "    # display it using the two functions above",
+        "",
+        "# TODO: call main() inside an if __name__ == \"__main__\": block"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4",
+            "5"
+          ],
+          "expected": "Area: 20"
+        },
+        {
+          "stdin": [
+            "2",
+            "3"
+          ],
+          "expected": "Area: 6"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "main-guard",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print <code>Program running</code>. Run",
+        "it and see what actually happens.</p>",
+        "<p>The comparison is checking whether <code>__name__</code> equals",
+        "the string <code>\"main\"</code> &mdash; but the real value Python",
+        "sets is <code>\"__main__\"</code>, with double underscores on both",
+        "sides. Since those two strings are never equal, the condition is",
+        "always false, and <code>main()</code> silently never runs at",
+        "all.</p>"
+      ],
+      "starter": [
+        "def main():",
+        "    print(\"Program running\")",
+        "",
+        "if __name__ == \"main\":",
+        "    main()"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "Program running"
+        }
+      ]
+    }
+  ]
+}

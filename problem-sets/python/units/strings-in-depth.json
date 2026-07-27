@@ -1,0 +1,540 @@
+{
+  "id": "strings-in-depth",
+  "title": "Strings in Depth",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "strings-in-depth",
+      "title": "First Character",
+      "sidebar_tag": "indexing",
+      "description": [
+        "<p>Read a string and print its <strong>first</strong> character, using",
+        "indexing.</p>",
+        "<pre>&gt; python program.py",
+        "hello",
+        "h</pre>",
+        "<p>Just like a list, each character in a string has a position, starting",
+        "at 0. <code>s[0]</code> gets the first character.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print the first character of s"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "hello"
+          ],
+          "expected": "h"
+        },
+        {
+          "stdin": [
+            "Python"
+          ],
+          "expected": "P"
+        },
+        {
+          "stdin": [
+            "a"
+          ],
+          "expected": "a"
+        },
+        {
+          "stdin": [
+            "zebra"
+          ],
+          "expected": "z"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "strings-in-depth",
+      "title": "Last Character",
+      "sidebar_tag": "indexing",
+      "description": [
+        "<p>Read a string and print its <strong>last</strong> character, using",
+        "<strong>negative</strong> indexing.</p>",
+        "<pre>&gt; python program.py",
+        "hello",
+        "o</pre>",
+        "<p><code>s[-1]</code> gets the last character, regardless of how long",
+        "the string is &mdash; no need to know or calculate its length first.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print the last character of s"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "hello"
+          ],
+          "expected": "o"
+        },
+        {
+          "stdin": [
+            "Python"
+          ],
+          "expected": "n"
+        },
+        {
+          "stdin": [
+            "a"
+          ],
+          "expected": "a"
+        },
+        {
+          "stdin": [
+            "zebra"
+          ],
+          "expected": "a"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "strings-in-depth",
+      "title": "Substring with Slicing",
+      "sidebar_tag": "slicing",
+      "description": [
+        "<p>Read a string and print just its first three characters, using",
+        "slicing.</p>",
+        "<pre>&gt; python program.py",
+        "hello world",
+        "hel</pre>",
+        "<p><code>s[0:3]</code> takes a <strong>slice</strong> of the string from",
+        "index 0 up to (but not including) index 3.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print the first three characters of s using slicing"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "hello world"
+          ],
+          "expected": "hel"
+        },
+        {
+          "stdin": [
+            "Python"
+          ],
+          "expected": "Pyt"
+        },
+        {
+          "stdin": [
+            "programming"
+          ],
+          "expected": "pro"
+        },
+        {
+          "stdin": [
+            "hi"
+          ],
+          "expected": "hi"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "strings-in-depth",
+      "title": "String Length",
+      "sidebar_tag": "len()",
+      "description": [
+        "<p>Read a string and print how many characters it has, using the",
+        "built-in <code>len()</code> function.</p>",
+        "<pre>&gt; python program.py",
+        "hello",
+        "5</pre>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print the length of s"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "hello"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "Python programming"
+          ],
+          "expected": "18"
+        },
+        {
+          "stdin": [
+            "a"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "hi there friend"
+          ],
+          "expected": "15"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "strings-in-depth",
+      "title": "Shout and Whisper",
+      "sidebar_tag": "upper / lower",
+      "description": [
+        "<p>Read a string and print it in all uppercase, then all lowercase,",
+        "both on the same line separated by a space.</p>",
+        "<pre>&gt; python program.py",
+        "Hello",
+        "HELLO hello</pre>",
+        "<p><code>.upper()</code> and <code>.lower()</code> return a new string",
+        "&mdash; the original string itself doesn't change.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print s.upper() with end=\" \", then print s.lower()"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Hello"
+          ],
+          "expected": "HELLO hello"
+        },
+        {
+          "stdin": [
+            "PYTHON"
+          ],
+          "expected": "PYTHON python"
+        },
+        {
+          "stdin": [
+            "MiXeD"
+          ],
+          "expected": "MIXED mixed"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "strings-in-depth",
+      "title": "Strip Whitespace",
+      "sidebar_tag": "strip()",
+      "description": [
+        "<p>Read a string and print it with any leading or trailing spaces",
+        "removed, using <code>.strip()</code>.</p>",
+        "<pre>&gt; python program.py",
+        "  hello  ",
+        "hello</pre>",
+        "<p>This is especially useful for cleaning up text a person typed, since",
+        "it's easy to accidentally leave an extra space at the start or end.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print s with leading/trailing whitespace removed"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "  hello  "
+          ],
+          "expected": "hello"
+        },
+        {
+          "stdin": [
+            "no spaces"
+          ],
+          "expected": "no spaces"
+        },
+        {
+          "stdin": [
+            "   leading"
+          ],
+          "expected": "leading"
+        },
+        {
+          "stdin": [
+            "trailing   "
+          ],
+          "expected": "trailing"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "strings-in-depth",
+      "title": "Count the Words",
+      "sidebar_tag": "split()",
+      "description": [
+        "<p>Read a sentence and print how many words it contains.</p>",
+        "<pre>&gt; python program.py",
+        "the quick brown fox",
+        "4</pre>",
+        "<p><code>.split()</code> breaks a string apart into a list of words",
+        "wherever there's whitespace, so counting words is just a matter of",
+        "counting how many items ended up in that list.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print how many words s.split() produces"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "the quick brown fox"
+          ],
+          "expected": "4"
+        },
+        {
+          "stdin": [
+            "hello"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "one two"
+          ],
+          "expected": "2"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "strings-in-depth",
+      "title": "Loop Over Words",
+      "sidebar_tag": "split() + for",
+      "description": [
+        "<p>Read a sentence and print each word on its own line, in order.</p>",
+        "<pre>&gt; python program.py",
+        "the quick brown",
+        "the",
+        "quick",
+        "brown</pre>",
+        "<p><code>s.split()</code> gives you back a list of words &mdash; and a",
+        "<code>for</code> loop can walk through a list of strings exactly the",
+        "same way it walks through a range of numbers.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: for each word in s.split(), print that word"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "the quick brown"
+          ],
+          "expected": "the\nquick\nbrown"
+        },
+        {
+          "stdin": [
+            "hi there"
+          ],
+          "expected": "hi\nthere"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "strings-in-depth",
+      "title": "Reverse a String",
+      "sidebar_tag": "slicing",
+      "description": [
+        "<p>Read a string and print it backwards.</p>",
+        "<pre>&gt; python program.py",
+        "hello",
+        "olleh</pre>",
+        "<p><code>s[::-1]</code> is a slice with a step of <code>-1</code> &mdash;",
+        "walking through the string one character at a time, but",
+        "<strong>backwards</strong>.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print s reversed, using slicing"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "hello"
+          ],
+          "expected": "olleh"
+        },
+        {
+          "stdin": [
+            "Python"
+          ],
+          "expected": "nohtyP"
+        },
+        {
+          "stdin": [
+            "a"
+          ],
+          "expected": "a"
+        },
+        {
+          "stdin": [
+            "racecar"
+          ],
+          "expected": "racecar"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "strings-in-depth",
+      "title": "Count the Vowels",
+      "sidebar_tag": "for + in",
+      "description": [
+        "<p>Read a string and count how many of its characters are vowels",
+        "(<code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>,",
+        "<code>u</code>, upper or lowercase), then print the count.</p>",
+        "<pre>&gt; python program.py",
+        "Hello World",
+        "3</pre>",
+        "<p>A <code>for</code> loop can walk through a string one character at a",
+        "time, just like it walks through a list of words. The <code>in</code>",
+        "operator checks whether a character shows up anywhere inside another",
+        "string &mdash; <code>ch in \"aeiouAEIOU\"</code> checks whether",
+        "<code>ch</code> is one of those ten letters.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "count = 0",
+        "",
+        "# TODO: for each character ch in s, add 1 to count if",
+        "# ch in \"aeiouAEIOU\". Then print count."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Hello World"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "xyz"
+          ],
+          "expected": "0"
+        },
+        {
+          "stdin": [
+            "AEIOU"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "Programming"
+          ],
+          "expected": "3"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "strings-in-depth",
+      "title": "Find and Replace",
+      "sidebar_tag": "replace()",
+      "description": [
+        "<p>Read a sentence, a word to find, and a word to replace it with, and",
+        "print the sentence with that replacement made.</p>",
+        "<pre>&gt; python program.py",
+        "I have a cat",
+        "cat",
+        "dog",
+        "I have a dog</pre>",
+        "<p><code>.replace(old, new)</code> swaps out <strong>every</strong>",
+        "occurrence of <code>old</code> in the string, not just the first",
+        "one.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "old = input()",
+        "new = input()",
+        "",
+        "# TODO: print s with every occurrence of old replaced by new"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "I have a cat",
+            "cat",
+            "dog"
+          ],
+          "expected": "I have a dog"
+        },
+        {
+          "stdin": [
+            "banana",
+            "a",
+            "o"
+          ],
+          "expected": "bonono"
+        },
+        {
+          "stdin": [
+            "hello",
+            "z",
+            "x"
+          ],
+          "expected": "hello"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "strings-in-depth",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to capitalize the first letter of a word by",
+        "replacing it directly. Run it and see what actually happens.</p>",
+        "<p>Strings in Python are <strong>immutable</strong> &mdash; once",
+        "created, a string's characters can never be changed in place, even a",
+        "single one. Instead of assigning to a position inside an existing",
+        "string, you have to build a <strong>new</strong> string (for example,",
+        "by combining slices) and assign that new string back to the",
+        "variable.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "s[0] = \"H\"",
+        "print(s)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "hello"
+          ],
+          "expected": "Hello"
+        },
+        {
+          "stdin": [
+            "python"
+          ],
+          "expected": "Hython"
+        },
+        {
+          "stdin": [
+            "zebra"
+          ],
+          "expected": "Hebra"
+        }
+      ]
+    }
+  ]
+}

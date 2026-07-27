@@ -336,6 +336,11 @@ button.reset-btn:hover { color: var(--text-primary); border-color: var(--text-se
 .test-detail { color: var(--text-secondary); }
 .test-detail .label { color: var(--text-faint); }
 .test-detail .mismatch { color: var(--err); }
+.test-detail .value-block {
+  display: inline-block;
+  white-space: pre-wrap;
+  vertical-align: top;
+}
 
 .console .summary {
   margin-top: 0.6rem;

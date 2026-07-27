@@ -1,0 +1,370 @@
+{
+  "id": "globals",
+  "title": "Globals",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "globals",
+      "title": "Reading a Global Variable",
+      "sidebar_tag": "global read",
+      "description": [
+        "<p>Read an integer into a variable called <code>LIMIT</code> at the",
+        "top level of the program. Define a function <code>show_limit()</code>",
+        "that prints <code>LIMIT</code>, and call it.</p>",
+        "<pre>&gt; python program.py",
+        "100",
+        "100</pre>",
+        "<p>A variable defined outside of any function &mdash; at the",
+        "top level of the file &mdash; is called a <strong>global</strong>",
+        "variable. Any function can freely <em>read</em> a global variable",
+        "without any special syntax.</p>"
+      ],
+      "starter": [
+        "LIMIT = int(input())",
+        "",
+        "def show_limit():",
+        "    # TODO: print LIMIT",
+        "",
+        "# TODO: call show_limit()"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "100"
+        },
+        {
+          "stdin": [
+            "50"
+          ],
+          "expected": "50"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "globals",
+      "title": "A Global Constant",
+      "sidebar_tag": "constant",
+      "description": [
+        "<p>Using the fixed global <code>MAX_SCORE = 100</code>, define a",
+        "function <code>cap_score(score)</code> that returns",
+        "<code>MAX_SCORE</code> if <code>score</code> is higher than it,",
+        "or <code>score</code> unchanged otherwise. Read a score, call the",
+        "function, and print the result.</p>",
+        "<pre>&gt; python program.py",
+        "150",
+        "100</pre>",
+        "<p>Writing a global's name in <code>ALL_CAPS</code> is a common",
+        "Python convention &mdash; it signals to anyone reading the code",
+        "\"this value is meant to stay constant,\" even though Python itself",
+        "doesn't actually enforce that.</p>"
+      ],
+      "starter": [
+        "MAX_SCORE = 100",
+        "",
+        "def cap_score(score):",
+        "    # TODO: return MAX_SCORE if score > MAX_SCORE, otherwise score",
+        "",
+        "x = int(input())",
+        "# TODO: call cap_score(x) and print the result"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "150"
+          ],
+          "expected": "100"
+        },
+        {
+          "stdin": [
+            "50"
+          ],
+          "expected": "50"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "100"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "globals",
+      "title": "Modifying a Global with global",
+      "sidebar_tag": "global keyword",
+      "description": [
+        "<p>Starting from <code>score = 0</code>, define",
+        "<code>add_points(points)</code> that adds <code>points</code> to",
+        "the global <code>score</code>. Read a number, call the function,",
+        "and print <code>score</code> afterward.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "5</pre>",
+        "<p>To actually <em>change</em> a global variable from inside a",
+        "function (not just read it), you need to tell Python that's what",
+        "you mean, with a <code>global score</code> line at the top of the",
+        "function &mdash; otherwise, an assignment inside a function only",
+        "affects a variable local to that function.</p>"
+      ],
+      "starter": [
+        "score = 0",
+        "",
+        "def add_points(points):",
+        "    # TODO: declare score as global, then add points to it",
+        "",
+        "add_points(int(input()))",
+        "# TODO: print score"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "20"
+          ],
+          "expected": "20"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "globals",
+      "title": "A Counter Across Multiple Calls",
+      "sidebar_tag": "global keyword",
+      "description": [
+        "<p>Starting from <code>count = 0</code>, define",
+        "<code>increment()</code> that adds 1 to the global",
+        "<code>count</code> each time it's called. Read a number",
+        "<code>n</code>, call <code>increment()</code> that many times in a",
+        "loop, then print the final <code>count</code>.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "3</pre>",
+        "<p>This is what makes globals genuinely useful sometimes: several",
+        "separate calls to the same function, all quietly updating one",
+        "shared value.</p>"
+      ],
+      "starter": [
+        "count = 0",
+        "",
+        "def increment():",
+        "    # TODO: declare count as global, then add 1 to it",
+        "",
+        "n = int(input())",
+        "# TODO: call increment() n times using a for loop, then print count"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "globals",
+      "title": "Sharing State Across Two Functions",
+      "sidebar_tag": "global keyword",
+      "description": [
+        "<p>Starting from <code>total = 0</code>, define",
+        "<code>add(n)</code> and <code>subtract(n)</code>, each modifying",
+        "the same global <code>total</code>. Read two numbers, call",
+        "<code>add()</code> with the first and <code>subtract()</code> with",
+        "the second, then print <code>total</code>.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "3",
+        "7</pre>",
+        "<p>Both functions declare <code>global total</code> separately",
+        "&mdash; each function that wants to modify a global needs its own",
+        "<code>global</code> line.</p>"
+      ],
+      "starter": [
+        "total = 0",
+        "",
+        "def add(n):",
+        "    # TODO: declare total as global, then add n to it",
+        "",
+        "def subtract(n):",
+        "    # TODO: declare total as global, then subtract n from it",
+        "",
+        "add(int(input()))",
+        "subtract(int(input()))",
+        "# TODO: print total"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "3"
+          ],
+          "expected": "7"
+        },
+        {
+          "stdin": [
+            "5",
+            "5"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "globals",
+      "title": "Fix the Bug: Forgetting global Entirely",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to add 5 points to a global score and print",
+        "the result. Run it and read the error message closely.</p>",
+        "<p>Because <code>score</code> is assigned to somewhere inside",
+        "<code>add_points</code>, Python treats <code>score</code> as a",
+        "<strong>local</strong> variable for the function's entire body",
+        "&mdash; including the <code>score + points</code> part, which runs",
+        "<em>before</em> that local <code>score</code> has ever been given a",
+        "value. The fix is the same one from a couple of exercises ago: add",
+        "<code>global score</code> at the top of the function.</p>"
+      ],
+      "starter": [
+        "score = 0",
+        "",
+        "def add_points(points):",
+        "    score = score + points",
+        "",
+        "add_points(int(input()))",
+        "print(score)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "20"
+          ],
+          "expected": "20"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "globals",
+      "title": "Preferring Parameters Over Globals",
+      "sidebar_tag": "good practice",
+      "description": [
+        "<p>Rewrite the running-total idea from a couple of exercises ago,",
+        "but <strong>without</strong> using any global variable at all.",
+        "Define <code>add(total, n)</code> and",
+        "<code>subtract(total, n)</code>, each taking the current total as a",
+        "parameter and <strong>returning</strong> the new total, rather than",
+        "modifying anything global. Read two numbers and print the final",
+        "result.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "3",
+        "7</pre>",
+        "<p>Globals can be convenient, but passing values in and returning",
+        "results out is usually easier to follow and to test &mdash; there's",
+        "no hidden shared state to keep track of, since everything a",
+        "function needs comes in through its parameters.</p>"
+      ],
+      "starter": [
+        "def add(total, n):",
+        "    # TODO: return total + n",
+        "",
+        "def subtract(total, n):",
+        "    # TODO: return total - n",
+        "",
+        "total = 0",
+        "# TODO: read a number, call add(total, that number), and store",
+        "# the result back into total",
+        "# TODO: read another number, call subtract(total, that number),",
+        "# and store the result back into total",
+        "# TODO: print total"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "3"
+          ],
+          "expected": "7"
+        },
+        {
+          "stdin": [
+            "5",
+            "5"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "globals",
+      "title": "Fix the Bug: Silent Shadowing",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to set a global score to whatever value is",
+        "read from input, and then print it. Run it and see what actually",
+        "happens &mdash; notice that unlike the earlier bug in this unit,",
+        "there's no error at all here.</p>",
+        "<p>Since <code>set_score</code> never declares <code>global",
+        "score</code>, the line <code>score = points</code> quietly creates",
+        "a brand new <strong>local</strong> variable that just happens to",
+        "share a name with the global one. The function runs perfectly",
+        "fine and even \"succeeds\" internally &mdash; it just never touches",
+        "the actual global <code>score</code> at all, which is why it's",
+        "still 0 afterward, no matter what value was passed in.</p>"
+      ],
+      "starter": [
+        "score = 0",
+        "",
+        "def set_score(points):",
+        "    score = points",
+        "",
+        "set_score(int(input()))",
+        "print(score)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "50"
+          ],
+          "expected": "50"
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "10"
+        }
+      ]
+    }
+  ]
+}

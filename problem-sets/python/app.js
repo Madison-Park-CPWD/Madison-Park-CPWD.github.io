@@ -249,8 +249,8 @@ async function runTests() {
         <span class="test-status ${pass ? "pass" : "fail"}">${pass ? "✓" : "✗"}</span>
         <span class="test-detail">
           <span class="label">input:</span> ${inputLabel}
-          &nbsp;&nbsp;<span class="label">expected:</span> ${escapeHtml(test.expected)}
-          ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch">${escapeHtml(actual || "(no output)")}</span>`}
+          &nbsp;&nbsp;<span class="label">expected:</span> <span class="value-block">${escapeHtml(test.expected)}</span>
+          ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(actual || "(no output)")}</span>`}
         </span>`;
     }
     consoleEl.appendChild(row);

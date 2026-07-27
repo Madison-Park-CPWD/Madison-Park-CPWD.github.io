@@ -4,5 +4,16 @@
   "if-else",
   "int-math",
   "float-math",
-  "nested-ifs"
+  "nested-ifs",
+  "boolean-operators",
+  "while-loops",
+  "for-loops",
+  "strings-in-depth",
+  "lists",
+  "tuples",
+  "sets",
+  "dictionaries",
+  "functions",
+  "main-guard",
+  "globals"
 ]

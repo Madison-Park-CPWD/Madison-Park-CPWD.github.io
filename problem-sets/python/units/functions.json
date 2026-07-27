@@ -1,0 +1,906 @@
+{
+  "id": "functions",
+  "title": "Functions",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "functions",
+      "title": "Your First Function",
+      "sidebar_tag": "def",
+      "description": [
+        "<p>Define a function called <code>greet</code> that takes no",
+        "parameters and prints <code>Hello!</code>. Then call it.</p>",
+        "<pre>&gt; python program.py",
+        "Hello!</pre>",
+        "<p><code>def greet():</code> defines a function &mdash; the code",
+        "inside it doesn't run until you actually <strong>call</strong> it",
+        "with <code>greet()</code>.</p>"
+      ],
+      "starter": [
+        "def greet():",
+        "    # TODO: print \"Hello!\"",
+        "",
+        "# TODO: call greet()"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "Hello!"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "functions",
+      "title": "A Function with One Parameter",
+      "sidebar_tag": "parameters",
+      "description": [
+        "<p>Define a function <code>greet(name)</code> that prints",
+        "<code>Hello, &lt;name&gt;!</code>. Read a name from input, then call",
+        "the function with it.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "Hello, Ava!</pre>",
+        "<p>A parameter is a variable that only exists inside the function,",
+        "filled in with whatever value you pass when you call it.</p>"
+      ],
+      "starter": [
+        "def greet(name):",
+        "    # TODO: print an f-string greeting using name",
+        "",
+        "name = input()",
+        "# TODO: call greet(name)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava"
+          ],
+          "expected": "Hello, Ava!"
+        },
+        {
+          "stdin": [
+            "Marcus"
+          ],
+          "expected": "Hello, Marcus!"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "functions",
+      "title": "A Function with Two Parameters",
+      "sidebar_tag": "parameters",
+      "description": [
+        "<p>Define a function <code>show_sum(a, b)</code> that prints the sum",
+        "of its two parameters. Read two integers and call the function with",
+        "them.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "4",
+        "7</pre>"
+      ],
+      "starter": [
+        "def show_sum(a, b):",
+        "    # TODO: print a + b",
+        "",
+        "a = int(input())",
+        "b = int(input())",
+        "# TODO: call show_sum(a, b)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "4"
+          ],
+          "expected": "7"
+        },
+        {
+          "stdin": [
+            "10",
+            "5"
+          ],
+          "expected": "15"
+        },
+        {
+          "stdin": [
+            "-2",
+            "2"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "functions",
+      "title": "Returning a Value",
+      "sidebar_tag": "return",
+      "description": [
+        "<p>Define a function <code>add(a, b)</code> that",
+        "<strong>returns</strong> the sum of its two parameters, instead of",
+        "printing it. Call the function, store the result in a variable, and",
+        "print that variable.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "4",
+        "7</pre>",
+        "<p><code>return</code> sends a value back out of the function to",
+        "wherever it was called from &mdash; unlike <code>print()</code>,",
+        "which just displays something and doesn't hand anything back.</p>"
+      ],
+      "starter": [
+        "def add(a, b):",
+        "    # TODO: return a + b",
+        "",
+        "a = int(input())",
+        "b = int(input())",
+        "# TODO: call add(a, b), store the result, and print it"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "4"
+          ],
+          "expected": "7"
+        },
+        {
+          "stdin": [
+            "10",
+            "5"
+          ],
+          "expected": "15"
+        },
+        {
+          "stdin": [
+            "-2",
+            "2"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "functions",
+      "title": "Using a Returned Value in an Expression",
+      "sidebar_tag": "return",
+      "description": [
+        "<p>Define a function <code>square(n)</code> that returns",
+        "<code>n * n</code>. Read a number, then print the result of",
+        "<code>square(x) + 1</code> &mdash; using the function's return value",
+        "directly inside a larger expression, without storing it in its own",
+        "variable first.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "26</pre>",
+        "<p>This is exactly why <code>return</code> matters: a value that's",
+        "only <code>print()</code>ed can't be used in further math, but a",
+        "returned value can.</p>"
+      ],
+      "starter": [
+        "def square(n):",
+        "    # TODO: return n * n",
+        "",
+        "x = int(input())",
+        "# TODO: print square(x) + 1"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "26"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "10"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "functions",
+      "title": "A Function with a Default Parameter",
+      "sidebar_tag": "default params",
+      "description": [
+        "<p>Define a function <code>greet(name, greeting=\"Hello\")</code> that",
+        "returns <code>&lt;greeting&gt;, &lt;name&gt;!</code>. Read a name and",
+        "call the function with just that one argument, printing the",
+        "result.</p>",
+        "<pre>&gt; python program.py",
+        "Ava",
+        "Hello, Ava!</pre>",
+        "<p>A parameter with <code>= something</code> after it becomes",
+        "optional &mdash; if you don't pass a value for it, the default is",
+        "used instead.</p>"
+      ],
+      "starter": [
+        "def greet(name, greeting=\"Hello\"):",
+        "    # TODO: return an f-string: {greeting}, {name}!",
+        "",
+        "name = input()",
+        "# TODO: call greet(name) (using the default greeting) and print it"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "Ava"
+          ],
+          "expected": "Hello, Ava!"
+        },
+        {
+          "stdin": [
+            "Marcus"
+          ],
+          "expected": "Hello, Marcus!"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "functions",
+      "title": "Calling a Function Multiple Times",
+      "sidebar_tag": "reuse",
+      "description": [
+        "<p>Define a function <code>square(n)</code> that returns",
+        "<code>n * n</code>. Read three integers and print all three of their",
+        "squares on one line, separated by spaces &mdash; calling",
+        "<code>square()</code> three separate times.</p>",
+        "<pre>&gt; python program.py",
+        "2",
+        "3",
+        "4",
+        "4 9 16</pre>",
+        "<p>This is the real payoff of writing a function: once it's defined,",
+        "reusing it is just calling it again with different arguments &mdash;",
+        "no rewriting the math each time.</p>"
+      ],
+      "starter": [
+        "def square(n):",
+        "    # TODO: return n * n",
+        "",
+        "a = int(input())",
+        "b = int(input())",
+        "c = int(input())",
+        "# TODO: print square(a), square(b), square(c) on one line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2",
+            "3",
+            "4"
+          ],
+          "expected": "4 9 16"
+        },
+        {
+          "stdin": [
+            "1",
+            "5",
+            "10"
+          ],
+          "expected": "1 25 100"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "functions",
+      "title": "A Boolean-Returning Function",
+      "sidebar_tag": "return bool",
+      "description": [
+        "<p>Define a function <code>is_even(n)</code> that returns",
+        "<code>True</code> if <code>n</code> is even, or <code>False</code>",
+        "otherwise. Read a number, call the function, and print the",
+        "result.</p>",
+        "<pre>&gt; python program.py",
+        "4",
+        "True</pre>",
+        "<p>A function's return value doesn't have to be a number or string",
+        "&mdash; it can be a boolean, which is especially useful when the",
+        "function is really just answering a yes/no question.</p>"
+      ],
+      "starter": [
+        "def is_even(n):",
+        "    # TODO: return n % 2 == 0",
+        "",
+        "x = int(input())",
+        "# TODO: call is_even(x) and print the result"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "7"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "-3"
+          ],
+          "expected": "False"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "functions",
+      "title": "A Function with a Loop Inside",
+      "sidebar_tag": "def + for",
+      "description": [
+        "<p>Define a function <code>sum_to_n(n)</code> that returns the sum of",
+        "every whole number from 1 to <code>n</code>, using a loop inside the",
+        "function. Read a number, call the function, and print the result.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "15</pre>",
+        "<p>Functions can contain anything a program can &mdash; loops,",
+        "conditionals, even calls to other functions.</p>"
+      ],
+      "starter": [
+        "def sum_to_n(n):",
+        "    total = 0",
+        "    # TODO: loop from 1 to n, adding each number to total",
+        "    return total",
+        "",
+        "x = int(input())",
+        "# TODO: call sum_to_n(x) and print the result"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "15"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "55"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "functions",
+      "title": "A Function That Takes a List",
+      "sidebar_tag": "list param",
+      "description": [
+        "<p>Define a function <code>total(nums)</code> that returns the sum of",
+        "a list of numbers, using the built-in <code>sum()</code> function.",
+        "Read a count and that many integers into a list, then call the",
+        "function and print the result.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "1",
+        "2",
+        "3",
+        "6</pre>",
+        "<p>Just like a plain number or string, a list can be passed into a",
+        "function as an argument.</p>"
+      ],
+      "starter": [
+        "def total(nums):",
+        "    # TODO: return sum(nums)",
+        "",
+        "n = int(input())",
+        "vals = []",
+        "# TODO: build vals from input as usual, then call total(vals)",
+        "# and print the result"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "1",
+            "2",
+            "3"
+          ],
+          "expected": "6"
+        },
+        {
+          "stdin": [
+            "4",
+            "10",
+            "20",
+            "30",
+            "40"
+          ],
+          "expected": "100"
+        },
+        {
+          "stdin": [
+            "1",
+            "5"
+          ],
+          "expected": "5"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "functions",
+      "title": "Returning Multiple Values",
+      "sidebar_tag": "multi-return",
+      "description": [
+        "<p>Define a function <code>min_max(nums)</code> that returns both the",
+        "smallest and largest values in a list, as a tuple. Read a count and",
+        "that many integers, call the function, and print both results",
+        "separated by a space.</p>",
+        "<pre>&gt; python program.py",
+        "4",
+        "3",
+        "7",
+        "1",
+        "9",
+        "1 9</pre>",
+        "<p><code>return min(nums), max(nums)</code> returns both values",
+        "packed into a single tuple &mdash; and",
+        "<code>lo, hi = min_max(vals)</code> unpacks them right back into two",
+        "separate variables.</p>"
+      ],
+      "starter": [
+        "def min_max(nums):",
+        "    # TODO: return min(nums), max(nums)",
+        "",
+        "n = int(input())",
+        "vals = []",
+        "# TODO: build vals from input, call min_max(vals), unpack the result",
+        "# into lo and hi, then print them separated by a space"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4",
+            "3",
+            "7",
+            "1",
+            "9"
+          ],
+          "expected": "1 9"
+        },
+        {
+          "stdin": [
+            "3",
+            "5",
+            "5",
+            "5"
+          ],
+          "expected": "5 5"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "functions",
+      "title": "Functions Calling Functions",
+      "sidebar_tag": "composition",
+      "description": [
+        "<p>Define a function <code>square(n)</code> that returns",
+        "<code>n * n</code>. Then define a second function",
+        "<code>sum_of_squares(a, b)</code> that calls <code>square()</code>",
+        "<strong>twice</strong> and returns the sum of both results. Read two",
+        "numbers, call <code>sum_of_squares</code>, and print the result.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "4",
+        "25</pre>",
+        "<p>A function can call another function you've already defined,",
+        "exactly the same way your main code does &mdash; this is one of the",
+        "most useful habits in programming: build small pieces, then combine",
+        "them.</p>"
+      ],
+      "starter": [
+        "def square(n):",
+        "    # TODO: return n * n",
+        "",
+        "def sum_of_squares(a, b):",
+        "    # TODO: return square(a) + square(b)",
+        "",
+        "a = int(input())",
+        "b = int(input())",
+        "# TODO: call sum_of_squares(a, b) and print the result"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "4"
+          ],
+          "expected": "25"
+        },
+        {
+          "stdin": [
+            "1",
+            "1"
+          ],
+          "expected": "2"
+        },
+        {
+          "stdin": [
+            "0",
+            "5"
+          ],
+          "expected": "25"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "source_unit": "functions",
+      "title": "A Three-Level Function Chain",
+      "sidebar_tag": "composition",
+      "description": [
+        "<p>Define <code>double(n)</code>, returning <code>n * 2</code>. Then",
+        "define <code>quadruple(n)</code>, which calls <code>double()</code>",
+        "<strong>twice</strong> to multiply its input by 4, without directly",
+        "multiplying by 4 itself. Read a number, call",
+        "<code>quadruple()</code>, and print the result.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "20</pre>",
+        "<p><code>double(double(n))</code> &mdash; the result of the inner",
+        "call becomes the input to the outer one.</p>"
+      ],
+      "starter": [
+        "def double(n):",
+        "    # TODO: return n * 2",
+        "",
+        "def quadruple(n):",
+        "    # TODO: return double(double(n))",
+        "",
+        "x = int(input())",
+        "# TODO: call quadruple(x) and print the result"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "20"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "0"
+        },
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "12"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "source_unit": "functions",
+      "title": "Refactoring Repeated Work",
+      "sidebar_tag": "reuse",
+      "description": [
+        "<p>Define a function <code>cube(n)</code> that returns",
+        "<code>n ** 3</code>. Read three integers and print all three of",
+        "their cubes on one line, separated by spaces &mdash; calling the",
+        "function three times rather than writing <code>** 3</code> three",
+        "separate times.</p>",
+        "<pre>&gt; python program.py",
+        "2",
+        "3",
+        "4",
+        "8 27 64</pre>"
+      ],
+      "starter": [
+        "def cube(n):",
+        "    # TODO: return n ** 3",
+        "",
+        "a = int(input())",
+        "b = int(input())",
+        "c = int(input())",
+        "# TODO: print cube(a), cube(b), cube(c) on one line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "2",
+            "3",
+            "4"
+          ],
+          "expected": "8 27 64"
+        },
+        {
+          "stdin": [
+            "1",
+            "5",
+            "10"
+          ],
+          "expected": "1 125 1000"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "source_unit": "functions",
+      "title": "Splitting Compute from Display",
+      "sidebar_tag": "composition",
+      "description": [
+        "<p>Define <code>compute_area(length, width)</code>, which returns",
+        "<code>length * width</code>. Then define",
+        "<code>display_area(length, width, area)</code>, which prints:",
+        "<code>A &lt;length&gt;x&lt;width&gt; rectangle has area",
+        "&lt;area&gt;.</code></p>",
+        "<pre>&gt; python program.py",
+        "4",
+        "5",
+        "A 4x5 rectangle has area 20.</pre>",
+        "<p>Separating <strong>calculating</strong> something from",
+        "<strong>displaying</strong> it is a common, useful split &mdash; it",
+        "means the calculation could be reused somewhere that doesn't want",
+        "printed output at all.</p>"
+      ],
+      "starter": [
+        "def compute_area(length, width):",
+        "    # TODO: return length * width",
+        "",
+        "def display_area(length, width, area):",
+        "    # TODO: print an f-string:",
+        "    # A {length}x{width} rectangle has area {area}.",
+        "",
+        "length = int(input())",
+        "width = int(input())",
+        "# TODO: call compute_area(...), then call display_area(...)",
+        "# with length, width, and the computed area"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4",
+            "5"
+          ],
+          "expected": "A 4x5 rectangle has area 20."
+        },
+        {
+          "stdin": [
+            "2",
+            "3"
+          ],
+          "expected": "A 2x3 rectangle has area 6."
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "source_unit": "functions",
+      "title": "Returning Early",
+      "sidebar_tag": "early return",
+      "description": [
+        "<p>Define a function <code>classify(n)</code> that returns",
+        "<code>\"Negative\"</code> if <code>n</code> is less than 0, or",
+        "<code>\"Non-negative\"</code> otherwise &mdash; using",
+        "<strong>two</strong> separate <code>return</code> statements rather",
+        "than an <code>if</code>/<code>else</code>.</p>",
+        "<pre>&gt; python program.py",
+        "-5",
+        "Negative</pre>",
+        "<p>The moment a function hits a <code>return</code>, it exits",
+        "immediately &mdash; nothing after that line inside the function",
+        "runs. So a plain <code>return \"Non-negative\"</code> after the",
+        "<code>if</code> block only runs when the <code>if</code> above it",
+        "didn't already return.</p>"
+      ],
+      "starter": [
+        "def classify(n):",
+        "    # TODO: if n < 0, return \"Negative\"",
+        "    # otherwise, return \"Non-negative\"",
+        "",
+        "x = int(input())",
+        "# TODO: call classify(x) and print the result"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "-5"
+          ],
+          "expected": "Negative"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "Non-negative"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Non-negative"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "source_unit": "functions",
+      "title": "A Validation Helper Function",
+      "sidebar_tag": "helper",
+      "description": [
+        "<p>Define a function <code>is_valid_age(age)</code> that returns",
+        "<code>True</code> if <code>age</code> is between 0 and 120",
+        "(inclusive), or <code>False</code> otherwise. Read a number, and",
+        "print <code>Valid age</code> or <code>Invalid age</code> depending",
+        "on what the function returns.</p>",
+        "<pre>&gt; python program.py",
+        "16",
+        "Valid age</pre>",
+        "<p>A small function like this &mdash; used inside an</p>",
+        "<pre>if is_valid_age(age):</pre>",
+        "<p>&mdash; often reads more clearly than spelling the whole",
+        "comparison out at the point where it's used.</p>"
+      ],
+      "starter": [
+        "def is_valid_age(age):",
+        "    # TODO: return 0 <= age <= 120",
+        "",
+        "age = int(input())",
+        "# TODO: print \"Valid age\" or \"Invalid age\" based on is_valid_age(age)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "16"
+          ],
+          "expected": "Valid age"
+        },
+        {
+          "stdin": [
+            "200"
+          ],
+          "expected": "Invalid age"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Valid age"
+        },
+        {
+          "stdin": [
+            "-5"
+          ],
+          "expected": "Invalid age"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "source_unit": "functions",
+      "title": "A Three-Function Pipeline",
+      "sidebar_tag": "composition",
+      "description": [
+        "<p>Define three functions: <code>clean(s)</code> returns",
+        "<code>s.strip()</code>; <code>shout(s)</code> returns",
+        "<code>s.upper()</code>; <code>add_exclamation(s)</code> returns",
+        "<code>s + \"!\"</code>. Read a line of text and print the result of",
+        "running it through all three, in order.</p>",
+        "<pre>&gt; python program.py",
+        "  hello  ",
+        "HELLO!</pre>",
+        "<p><code>add_exclamation(shout(clean(text)))</code> &mdash; the",
+        "output of each function becomes the input to the next, an idea",
+        "sometimes called a <strong>pipeline</strong>.</p>"
+      ],
+      "starter": [
+        "def clean(s):",
+        "    # TODO: return s.strip()",
+        "",
+        "def shout(s):",
+        "    # TODO: return s.upper()",
+        "",
+        "def add_exclamation(s):",
+        "    # TODO: return s + \"!\"",
+        "",
+        "text = input()",
+        "# TODO: print add_exclamation(shout(clean(text)))"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "  hello  "
+          ],
+          "expected": "HELLO!"
+        },
+        {
+          "stdin": [
+            "python rocks"
+          ],
+          "expected": "PYTHON ROCKS!"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "source_unit": "functions",
+      "title": "Fix the Bug: Missing Return",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to add two numbers and print the result.",
+        "Run it and see what actually happens.</p>",
+        "<p>The function calculates <code>total</code> correctly, but never",
+        "sends it back out with <code>return</code>. Without a",
+        "<code>return</code> statement, a function hands back",
+        "<code>None</code> by default &mdash; even if it computed something",
+        "useful internally along the way.</p>"
+      ],
+      "starter": [
+        "def add(a, b):",
+        "    total = a + b",
+        "",
+        "result = add(3, 4)",
+        "print(result)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "7"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "source_unit": "functions",
+      "title": "Fix the Bug: Print Instead of Return",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to square a number, then add 1 to the",
+        "result. Run it and see what actually happens &mdash; you may need to",
+        "check the error message closely.</p>",
+        "<p>The function prints the square instead of returning it. Printing",
+        "displays a value on the screen, but the function still hands back",
+        "<code>None</code> to whatever called it &mdash; and",
+        "<code>None + 1</code> doesn't mean anything to Python.</p>"
+      ],
+      "starter": [
+        "def square(n):",
+        "    print(n * n)",
+        "",
+        "result = square(5)",
+        "print(result + 1)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "26"
+        }
+      ]
+    }
+  ]
+}

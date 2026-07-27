@@ -1,0 +1,529 @@
+{
+  "id": "while-loops",
+  "title": "While Loops",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "while-loops",
+      "title": "Count Up to 5",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Print the numbers 1 through 5, each on its own line, using a",
+        "<code>while</code> loop &mdash; not five separate <code>print()</code>",
+        "calls.</p>",
+        "<pre>&gt; python program.py",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5</pre>",
+        "<p>A <code>while</code> loop keeps running its body as long as its",
+        "condition stays true. You'll need a variable that starts at 1 and",
+        "increases by 1 each time through the loop, so the condition eventually",
+        "becomes false.</p>"
+      ],
+      "starter": [
+        "# TODO: use a while loop to print 1 through 5, one number per line"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "1\n2\n3\n4\n5"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "while-loops",
+      "title": "Count Down from N",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read an integer <code>n</code> and print the numbers from",
+        "<code>n</code> down to 1, one per line, using a <code>while</code>",
+        "loop.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "3",
+        "2",
+        "1</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: use a while loop to print n down to 1, one number per line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "3\n2\n1"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "5\n4\n3\n2\n1"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "while-loops",
+      "title": "Sum From 1 to N",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read an integer <code>n</code> and print the sum of every whole number",
+        "from 1 to <code>n</code>, using a <code>while</code> loop.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "15</pre>",
+        "<p>(1 + 2 + 3 + 4 + 5 = 15.) You'll need a running total that starts at",
+        "0 and gets added to on each pass through the loop.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: use a while loop to add up 1 through n, then print the total"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "15"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "55"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "while-loops",
+      "title": "Repeat a Word",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read a word and a count <code>n</code>, and print the word",
+        "<code>n</code> times, once per line, using a <code>while</code>",
+        "loop.</p>",
+        "<pre>&gt; python program.py",
+        "hi",
+        "3",
+        "hi",
+        "hi",
+        "hi</pre>"
+      ],
+      "starter": [
+        "word = input()",
+        "n = int(input())",
+        "",
+        "# TODO: use a while loop to print word, n times, one per line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "hi",
+            "3"
+          ],
+          "expected": "hi\nhi\nhi"
+        },
+        {
+          "stdin": [
+            "go",
+            "1"
+          ],
+          "expected": "go"
+        },
+        {
+          "stdin": [
+            "ok",
+            "4"
+          ],
+          "expected": "ok\nok\nok\nok"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "while-loops",
+      "title": "Sum Until Zero",
+      "sidebar_tag": "sentinel loop",
+      "description": [
+        "<p>Keep reading integers and adding them to a running total, stopping as",
+        "soon as a <code>0</code> is entered. Print the total once the loop",
+        "ends. Don't count the <code>0</code> itself.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "5",
+        "2",
+        "0",
+        "10</pre>",
+        "<p>This is called a <strong>sentinel-controlled loop</strong> &mdash; the",
+        "loop doesn't know in advance how many numbers are coming; it just keeps",
+        "going until it sees a special \"stop\" value.</p>"
+      ],
+      "starter": [
+        "total = 0",
+        "n = int(input())",
+        "",
+        "# TODO: while n != 0, add n to total and read the next n.",
+        "# Then print total."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "5",
+            "2",
+            "0"
+          ],
+          "expected": "10"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "0"
+        },
+        {
+          "stdin": [
+            "7",
+            "0"
+          ],
+          "expected": "7"
+        },
+        {
+          "stdin": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "0"
+          ],
+          "expected": "4"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "while-loops",
+      "title": "Doubling Until Over a Limit",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read a <code>limit</code>. Starting from 1, keep doubling a value",
+        "until it's greater than <code>limit</code>, counting how many times you",
+        "doubled it. Print the number of doublings and the final value,",
+        "separated by a space.</p>",
+        "<pre>&gt; python program.py",
+        "100",
+        "7 128</pre>",
+        "<p>(1 &rarr; 2 &rarr; 4 &rarr; 8 &rarr; 16 &rarr; 32 &rarr; 64 &rarr; 128",
+        "takes 7 doublings to pass 100.)</p>"
+      ],
+      "starter": [
+        "limit = int(input())",
+        "value = 1",
+        "steps = 0",
+        "",
+        "# TODO: while value <= limit, double value and increment steps.",
+        "# Then print steps and value, separated by a space."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "7 128"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "1 2"
+        },
+        {
+          "stdin": [
+            "1000"
+          ],
+          "expected": "10 1024"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "while-loops",
+      "title": "Counting Digits",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read a positive integer and print how many digits it has, using a",
+        "<code>while</code> loop and floor division &mdash; not",
+        "<code>len()</code> or converting it to a string.</p>",
+        "<pre>&gt; python program.py",
+        "12345",
+        "5</pre>",
+        "<p>Repeatedly dividing a number by 10 (using <code>//</code>) removes",
+        "one digit at a time; counting how many divisions it takes until the",
+        "value reaches 0 tells you how many digits it had.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "count = 0",
+        "",
+        "# TODO: while n > 0, floor-divide n by 10 and increment count.",
+        "# Then print count."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "12345"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "7"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "999999"
+          ],
+          "expected": "6"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "while-loops",
+      "title": "Sum of Even Numbers",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read an integer <code>n</code> and print the sum of every",
+        "<strong>even</strong> whole number from 1 to <code>n</code>, using a",
+        "<code>while</code> loop.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "30</pre>",
+        "<p>(2 + 4 + 6 + 8 + 10 = 30.)</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "total = 0",
+        "i = 1",
+        "",
+        "# TODO: while i <= n, add i to total only if i is even, then",
+        "# increment i. Finally, print total."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "30"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "0"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "6"
+        },
+        {
+          "stdin": [
+            "2"
+          ],
+          "expected": "2"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "while-loops",
+      "title": "Keep Asking Until Valid",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read integers, one at a time, until a <strong>positive</strong>",
+        "number is entered &mdash; discarding zero and negative numbers along",
+        "the way. Once a positive number arrives, print",
+        "<code>Got it: &lt;value&gt;</code>.</p>",
+        "<pre>&gt; python program.py",
+        "-5",
+        "-3",
+        "7",
+        "Got it: 7</pre>",
+        "<p>This pattern &mdash; read a value, and if it isn't good enough, read",
+        "another one &mdash; comes up constantly whenever a program needs to",
+        "insist on valid input before moving on.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: while n <= 0, read another n.",
+        "# Then print an f-string: Got it: <n>"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "-5",
+            "-3",
+            "7"
+          ],
+          "expected": "Got it: 7"
+        },
+        {
+          "stdin": [
+            "4"
+          ],
+          "expected": "Got it: 4"
+        },
+        {
+          "stdin": [
+            "0",
+            "0",
+            "1"
+          ],
+          "expected": "Got it: 1"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "while-loops",
+      "title": "Multiplication Table",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>Read an integer <code>n</code> and print its multiplication table",
+        "from 1&times; up to 10&times;, one line each, in the exact format",
+        "shown below.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "3 x 1 = 3",
+        "3 x 2 = 6",
+        "3 x 3 = 9",
+        "...",
+        "3 x 10 = 30</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "i = 1",
+        "",
+        "# TODO: while i <= 10, print an f-string: {n} x {i} = {n * i}",
+        "# then increment i"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15\n3 x 6 = 18\n3 x 7 = 21\n3 x 8 = 24\n3 x 9 = 27\n3 x 10 = 30"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "1 x 1 = 1\n1 x 2 = 2\n1 x 3 = 3\n1 x 4 = 4\n1 x 5 = 5\n1 x 6 = 6\n1 x 7 = 7\n1 x 8 = 8\n1 x 9 = 9\n1 x 10 = 10"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "while-loops",
+      "title": "Sum From 1 to N, Given a Different N",
+      "sidebar_tag": "while",
+      "description": [
+        "<p>This is the same task as an earlier exercise &mdash; sum the whole",
+        "numbers from 1 to <code>n</code> &mdash; but written here as a fresh",
+        "check that your loop logic generalizes correctly to any input, not just",
+        "the examples you tried first.</p>",
+        "<pre>&gt; python program.py",
+        "20",
+        "210</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: use a while loop to add up 1 through n, then print the total"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20"
+          ],
+          "expected": "210"
+        },
+        {
+          "stdin": [
+            "7"
+          ],
+          "expected": "28"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "5050"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "while-loops",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print the numbers 1 through 5. Run it and",
+        "see what actually happens &mdash; you may need to stop it (or refresh",
+        "the page) if it doesn't finish on its own.</p>",
+        "<p>The loop's condition is checked every time before running the body",
+        "again. If nothing inside the loop ever changes the variable the",
+        "condition depends on, that condition never becomes false &mdash; and the",
+        "loop never stops.</p>"
+      ],
+      "starter": [
+        "n = 1",
+        "while n <= 5:",
+        "    print(n)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "1\n2\n3\n4\n5"
+        }
+      ]
+    }
+  ]
+}

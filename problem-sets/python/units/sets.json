@@ -1,0 +1,363 @@
+{
+  "id": "sets",
+  "title": "Sets",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "sets",
+      "title": "Create a Set and Print It Sorted",
+      "sidebar_tag": "set",
+      "description": [
+        "<p>Read three integers into a set (using curly braces), then print",
+        "them in sorted order.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "1",
+        "2",
+        "[1, 2, 3]</pre>",
+        "<p>A set looks like a list or tuple, but uses curly braces:",
+        "<code>{a, b, c}</code>. Unlike a list, a set never keeps duplicate",
+        "values, and it doesn't remember any particular order &mdash; so it's",
+        "common to sort a set with <code>sorted()</code> before printing it, to",
+        "get consistent, readable output.</p>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "c = int(input())",
+        "",
+        "# TODO: create a set from a, b, c, then print sorted(that_set)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "1",
+            "2",
+            "3"
+          ],
+          "expected": "[1, 2, 3]"
+        },
+        {
+          "stdin": [
+            "5",
+            "5",
+            "5"
+          ],
+          "expected": "[5]"
+        },
+        {
+          "stdin": [
+            "3",
+            "1",
+            "2"
+          ],
+          "expected": "[1, 2, 3]"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "sets",
+      "title": "Removing Duplicates from a List",
+      "sidebar_tag": "set()",
+      "description": [
+        "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
+        "a list (there may be duplicates). Convert the list to a set to remove",
+        "the duplicates, then print the result in sorted order.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "1",
+        "2",
+        "2",
+        "3",
+        "3",
+        "[1, 2, 3]</pre>",
+        "<p><code>set(some_list)</code> is the standard way to strip duplicate",
+        "values out of a list.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "vals = []",
+        "",
+        "# TODO: build vals from input as usual, then print",
+        "# sorted(set(vals))"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5",
+            "1",
+            "2",
+            "2",
+            "3",
+            "3"
+          ],
+          "expected": "[1, 2, 3]"
+        },
+        {
+          "stdin": [
+            "3",
+            "7",
+            "7",
+            "7"
+          ],
+          "expected": "[7]"
+        },
+        {
+          "stdin": [
+            "4",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "expected": "[1, 2, 3, 4]"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "sets",
+      "title": "Membership Testing",
+      "sidebar_tag": "in",
+      "description": [
+        "<p>Using the fixed set <code>{1, 2, 3, 4, 5}</code>, read a number and",
+        "print <code>True</code> if it's in the set, or <code>False</code>",
+        "otherwise.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "True</pre>",
+        "<p>Checking membership with <code>in</code> works the same way it did",
+        "for lists and strings &mdash; but for a set, it's typically much",
+        "faster, especially for large collections.</p>"
+      ],
+      "starter": [
+        "nums = {1, 2, 3, 4, 5}",
+        "x = int(input())",
+        "",
+        "# TODO: print x in nums"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "False"
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "expected": "True"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "True"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "sets",
+      "title": "Adding to a Set",
+      "sidebar_tag": "add()",
+      "description": [
+        "<p>Start with the set <code>{1, 2, 3}</code>, read one number, add it",
+        "using <code>.add()</code>, and print the result in sorted order.</p>",
+        "<pre>&gt; python program.py",
+        "4",
+        "[1, 2, 3, 4]</pre>",
+        "<p>Try adding a number that's already in the set &mdash; notice that",
+        "nothing changes, since a set can never contain the same value",
+        "twice.</p>"
+      ],
+      "starter": [
+        "nums = {1, 2, 3}",
+        "",
+        "# TODO: read a number, add it to nums, then print sorted(nums)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4"
+          ],
+          "expected": "[1, 2, 3, 4]"
+        },
+        {
+          "stdin": [
+            "2"
+          ],
+          "expected": "[1, 2, 3]"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "[0, 1, 2, 3]"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "sets",
+      "title": "Counting Unique Values",
+      "sidebar_tag": "set()",
+      "description": [
+        "<p>Read a count <code>n</code>, then read <code>n</code> integers",
+        "(there may be duplicates), and print how many <strong>distinct</strong>",
+        "values were entered.</p>",
+        "<pre>&gt; python program.py",
+        "6",
+        "1",
+        "2",
+        "2",
+        "3",
+        "3",
+        "3",
+        "3</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "vals = []",
+        "",
+        "# TODO: build vals from input as usual, then print len(set(vals))"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "6",
+            "1",
+            "2",
+            "2",
+            "3",
+            "3",
+            "3"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "3",
+            "5",
+            "5",
+            "5"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "4",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "expected": "4"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "sets",
+      "title": "Loop Over a Set",
+      "sidebar_tag": "for",
+      "description": [
+        "<p>Read three integers into a set, then print each value on its own",
+        "line, in sorted order.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "1",
+        "2",
+        "1",
+        "2",
+        "3</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "c = int(input())",
+        "",
+        "# TODO: build the set from a, b, c, then loop over sorted(that_set)",
+        "# and print each value on its own line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "1",
+            "2"
+          ],
+          "expected": "1\n2\n3"
+        },
+        {
+          "stdin": [
+            "10",
+            "10",
+            "5"
+          ],
+          "expected": "5\n10"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "sets",
+      "title": "Set Intersection",
+      "sidebar_tag": "&",
+      "description": [
+        "<p>Using the fixed sets <code>{1, 2, 3, 4}</code> and",
+        "<code>{3, 4, 5, 6}</code>, print the values that appear in",
+        "<strong>both</strong>, in sorted order.</p>",
+        "<pre>&gt; python program.py",
+        "[3, 4]</pre>",
+        "<p>The <code>&amp;</code> operator between two sets gives you their",
+        "<strong>intersection</strong> &mdash; only the values shared by",
+        "both.</p>"
+      ],
+      "starter": [
+        "a = {1, 2, 3, 4}",
+        "b = {3, 4, 5, 6}",
+        "",
+        "# TODO: print sorted(a & b)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "[3, 4]"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "sets",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print the smallest number in a set. Run it",
+        "and see what actually happens.</p>",
+        "<p>Sets don't keep their items in any particular order, so there's no",
+        "such thing as \"position 0\" in a set &mdash; indexing like",
+        "<code>nums[0]</code> simply isn't supported. To find the smallest",
+        "value, use the built-in <code>min()</code> function instead.</p>"
+      ],
+      "starter": [
+        "nums = {5, 2, 8, 1}",
+        "print(nums[0])"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "1"
+        }
+      ]
+    }
+  ]
+}

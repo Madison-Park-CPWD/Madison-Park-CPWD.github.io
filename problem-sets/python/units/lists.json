@@ -1,0 +1,558 @@
+{
+  "id": "lists",
+  "title": "Lists",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "lists",
+      "title": "Create and Print a List",
+      "sidebar_tag": "list",
+      "description": [
+        "<p>Create a list containing exactly these five numbers, in this order:",
+        "<code>3, 1, 4, 1, 5</code>. Then print the list.</p>",
+        "<pre>&gt; python program.py",
+        "[3, 1, 4, 1, 5]</pre>",
+        "<p>A list is written with square brackets, with commas between the",
+        "items &mdash; <code>[3, 1, 4, 1, 5]</code>. Printing a list shows all",
+        "its items at once, brackets and all.</p>"
+      ],
+      "starter": [
+        "# TODO: create a list containing 3, 1, 4, 1, 5 (in that order),",
+        "# then print it"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "[3, 1, 4, 1, 5]"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "lists",
+      "title": "Reading Three Numbers into a List",
+      "sidebar_tag": "list",
+      "description": [
+        "<p>Read three integers, one per line, into a single list, then print",
+        "the list.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "20",
+        "30",
+        "[10, 20, 30]</pre>"
+      ],
+      "starter": [
+        "# TODO: read three integers into a list, then print the list"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "1",
+            "2",
+            "3"
+          ],
+          "expected": "[1, 2, 3]"
+        },
+        {
+          "stdin": [
+            "10",
+            "20",
+            "30"
+          ],
+          "expected": "[10, 20, 30]"
+        },
+        {
+          "stdin": [
+            "-5",
+            "0",
+            "5"
+          ],
+          "expected": "[-5, 0, 5]"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "lists",
+      "title": "Access by Index",
+      "sidebar_tag": "indexing",
+      "description": [
+        "<p>Read three integers into a list, then read one more integer to use",
+        "as an <strong>index</strong>, and print the item at that index.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "20",
+        "30",
+        "2",
+        "30</pre>",
+        "<p>Negative indices work too &mdash; try an index of <code>-1</code> and",
+        "see what you get.</p>"
+      ],
+      "starter": [
+        "nums = [int(input()), int(input()), int(input())]",
+        "idx = int(input())",
+        "",
+        "# TODO: print nums at position idx"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "20",
+            "30",
+            "0"
+          ],
+          "expected": "10"
+        },
+        {
+          "stdin": [
+            "10",
+            "20",
+            "30",
+            "2"
+          ],
+          "expected": "30"
+        },
+        {
+          "stdin": [
+            "10",
+            "20",
+            "30",
+            "-1"
+          ],
+          "expected": "30"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "lists",
+      "title": "Building a List of Unknown Size",
+      "sidebar_tag": "for + append",
+      "description": [
+        "<p>Read a count <code>n</code>, then read <code>n</code> more integers",
+        "into a list &mdash; one at a time, using a <code>for</code> loop and",
+        "<code>.append()</code>, since you don't know in advance how many",
+        "there'll be beyond that count. Print the list's length afterward.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "1",
+        "2",
+        "3",
+        "3</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "nums = []",
+        "",
+        "# TODO: use a for loop over range(n) to read n integers and append",
+        "# each one to nums. Then print len(nums)."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "1",
+            "2",
+            "3"
+          ],
+          "expected": "3"
+        },
+        {
+          "stdin": [
+            "1",
+            "5"
+          ],
+          "expected": "1"
+        },
+        {
+          "stdin": [
+            "5",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "lists",
+      "title": "Append to a List",
+      "sidebar_tag": "append()",
+      "description": [
+        "<p>Start with the list <code>[1, 2, 3]</code>, read one more integer,",
+        "append it to the list, and print the result.</p>",
+        "<pre>&gt; python program.py",
+        "4",
+        "[1, 2, 3, 4]</pre>"
+      ],
+      "starter": [
+        "nums = [1, 2, 3]",
+        "",
+        "# TODO: read an integer and append it to nums, then print nums"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "4"
+          ],
+          "expected": "[1, 2, 3, 4]"
+        },
+        {
+          "stdin": [
+            "100"
+          ],
+          "expected": "[1, 2, 3, 100]"
+        },
+        {
+          "stdin": [
+            "-1"
+          ],
+          "expected": "[1, 2, 3, -1]"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "lists",
+      "title": "Loop Over a List",
+      "sidebar_tag": "for",
+      "description": [
+        "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
+        "a list. Print each item in the list on its own line, in order.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "10",
+        "20",
+        "30",
+        "10",
+        "20",
+        "30</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "nums = []",
+        "",
+        "# TODO: build the list from input as before, then loop over nums",
+        "# and print each item on its own line"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "10",
+            "20",
+            "30"
+          ],
+          "expected": "10\n20\n30"
+        },
+        {
+          "stdin": [
+            "1",
+            "7"
+          ],
+          "expected": "7"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "lists",
+      "title": "Sum of a List",
+      "sidebar_tag": "sum()",
+      "description": [
+        "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
+        "a list, and print their sum using the built-in <code>sum()</code>",
+        "function.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "1",
+        "2",
+        "3",
+        "6</pre>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "nums = []",
+        "",
+        "# TODO: build the list from input as before, then print sum(nums)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "3",
+            "1",
+            "2",
+            "3"
+          ],
+          "expected": "6"
+        },
+        {
+          "stdin": [
+            "4",
+            "10",
+            "20",
+            "30",
+            "40"
+          ],
+          "expected": "100"
+        },
+        {
+          "stdin": [
+            "1",
+            "5"
+          ],
+          "expected": "5"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "lists",
+      "title": "Find the Maximum",
+      "sidebar_tag": "for",
+      "description": [
+        "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
+        "a list, and print the largest one &mdash; without using the built-in",
+        "<code>max()</code> function.</p>",
+        "<pre>&gt; python program.py",
+        "3",
+        "3",
+        "7",
+        "2",
+        "7</pre>",
+        "<p>A common pattern: start by assuming the first item is the biggest",
+        "one you've seen, then loop through the rest, updating your answer",
+        "whenever you find something bigger.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "nums = []",
+        "",
+        "# TODO: build the list from input, then find and print the",
+        "# largest value in nums (without using max())"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "5",
+            "3",
+            "7",
+            "2",
+            "9",
+            "4"
+          ],
+          "expected": "9"
+        },
+        {
+          "stdin": [
+            "3",
+            "-1",
+            "-5",
+            "-2"
+          ],
+          "expected": "-1"
+        },
+        {
+          "stdin": [
+            "1",
+            "42"
+          ],
+          "expected": "42"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "lists",
+      "title": "List Slicing",
+      "sidebar_tag": "slicing",
+      "description": [
+        "<p>Start with the list <code>[10, 20, 30, 40, 50]</code>. Read a",
+        "<code>start</code> and <code>end</code> index, and print the slice",
+        "<code>nums[start:end]</code>.</p>",
+        "<pre>&gt; python program.py",
+        "1",
+        "3",
+        "[20, 30]</pre>",
+        "<p>Just like with strings, a slice includes the start index but stops",
+        "before the end index.</p>"
+      ],
+      "starter": [
+        "nums = [10, 20, 30, 40, 50]",
+        "start = int(input())",
+        "end = int(input())",
+        "",
+        "# TODO: print nums[start:end]"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "1",
+            "3"
+          ],
+          "expected": "[20, 30]"
+        },
+        {
+          "stdin": [
+            "0",
+            "2"
+          ],
+          "expected": "[10, 20]"
+        },
+        {
+          "stdin": [
+            "2",
+            "5"
+          ],
+          "expected": "[30, 40, 50]"
+        },
+        {
+          "stdin": [
+            "0",
+            "5"
+          ],
+          "expected": "[10, 20, 30, 40, 50]"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "lists",
+      "title": "Modifying a List Element",
+      "sidebar_tag": "mutation",
+      "description": [
+        "<p>Start with the list <code>[1, 2, 3]</code>. Read an index and a new",
+        "value, set the item at that index to the new value, and print the",
+        "resulting list.</p>",
+        "<pre>&gt; python program.py",
+        "0",
+        "99",
+        "[99, 2, 3]</pre>",
+        "<p>Unlike strings, lists <strong>are</strong> mutable &mdash; a single",
+        "item inside a list can be reassigned directly with",
+        "<code>nums[i] = new_value</code>, no error, no need to build a whole",
+        "new list.</p>"
+      ],
+      "starter": [
+        "nums = [1, 2, 3]",
+        "idx = int(input())",
+        "val = int(input())",
+        "",
+        "# TODO: set nums at position idx to val, then print nums"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "0",
+            "99"
+          ],
+          "expected": "[99, 2, 3]"
+        },
+        {
+          "stdin": [
+            "2",
+            "-5"
+          ],
+          "expected": "[1, 2, -5]"
+        },
+        {
+          "stdin": [
+            "1",
+            "0"
+          ],
+          "expected": "[1, 0, 3]"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "lists",
+      "title": "Removing an Item",
+      "sidebar_tag": "remove()",
+      "description": [
+        "<p>Start with the list <code>[10, 20, 30, 40]</code>. Read a value,",
+        "remove it from the list using <code>.remove()</code>, and print the",
+        "resulting list.</p>",
+        "<pre>&gt; python program.py",
+        "20",
+        "[10, 30, 40]</pre>",
+        "<p><code>.remove(value)</code> removes the first item that matches",
+        "<code>value</code> &mdash; note that this is different from",
+        "removing by <em>position</em>.</p>"
+      ],
+      "starter": [
+        "nums = [10, 20, 30, 40]",
+        "target = int(input())",
+        "",
+        "# TODO: remove target from nums, then print nums"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "20"
+          ],
+          "expected": "[10, 30, 40]"
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "expected": "[20, 30, 40]"
+        },
+        {
+          "stdin": [
+            "40"
+          ],
+          "expected": "[10, 20, 30]"
+        },
+        {
+          "stdin": [
+            "30"
+          ],
+          "expected": "[10, 20, 40]"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "lists",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print the <strong>last</strong> item in a",
+        "list. Run it and see what actually happens.</p>",
+        "<p>A list with 3 items has valid indices 0, 1, and 2 &mdash;",
+        "<code>len(nums)</code> is 3, but index 3 doesn't exist. The last valid",
+        "index is always <code>len(nums) - 1</code> (or more simply,",
+        "<code>-1</code>).</p>"
+      ],
+      "starter": [
+        "nums = [10, 20, 30]",
+        "print(nums[len(nums)])"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "30"
+        }
+      ]
+    }
+  ]
+}
