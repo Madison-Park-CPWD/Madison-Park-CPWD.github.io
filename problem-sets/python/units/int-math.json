@@ -18,11 +18,7 @@
         "output the result.</p>"
       ],
       "starter": [
-        "# Read two integers, one per line",
-        "a = int(input())",
-        "b = int(input())",
-        "",
-        "# TODO: print the sum of a and b"
+        "# TODO: read two integers, then print their sum"
       ],
       "tests": [
         {
@@ -76,10 +72,7 @@
         "6</pre>"
       ],
       "starter": [
-        "a = int(input())",
-        "b = int(input())",
-        "",
-        "# TODO: print a - b"
+        "# TODO: read two integers, then print a - b"
       ],
       "tests": [
         {
@@ -133,10 +126,7 @@
         "12</pre>"
       ],
       "starter": [
-        "a = int(input())",
-        "b = int(input())",
-        "",
-        "# TODO: print a * b"
+        "# TODO: read two integers, then print their product"
       ],
       "tests": [
         {
@@ -190,10 +180,7 @@
         "1024</pre>"
       ],
       "starter": [
-        "base = int(input())",
-        "exponent = int(input())",
-        "",
-        "# TODO: print base ** exponent"
+        "# TODO: read a base and an exponent, then print base ** exponent"
       ],
       "tests": [
         {
@@ -248,10 +235,7 @@
         "3.5</pre>"
       ],
       "starter": [
-        "a = int(input())",
-        "b = int(input())",
-        "",
-        "# TODO: print a / b"
+        "# TODO: read two integers, then print a / b"
       ],
       "tests": [
         {
@@ -307,10 +291,7 @@
         "3</pre>"
       ],
       "starter": [
-        "a = int(input())",
-        "b = int(input())",
-        "",
-        "# TODO: print a // b"
+        "# TODO: read two integers, then print a // b"
       ],
       "tests": [
         {
@@ -365,10 +346,7 @@
         "1</pre>"
       ],
       "starter": [
-        "a = int(input())",
-        "b = int(input())",
-        "",
-        "# TODO: print a % b"
+        "# TODO: read two integers, then print a % b"
       ],
       "tests": [
         {
@@ -428,11 +406,7 @@
         "<code>2 + 12 = 14</code>.)</p>"
       ],
       "starter": [
-        "a = int(input())",
-        "b = int(input())",
-        "c = int(input())",
-        "",
-        "# TODO: print a + b * c"
+        "# TODO: read three integers a, b, and c, then print a + b * c"
       ],
       "tests": [
         {
@@ -491,9 +465,7 @@
         "Even</pre>"
       ],
       "starter": [
-        "n = int(input())",
-        "",
-        "# TODO: if n % 2 == 0, print \"Even\", otherwise print \"Odd\""
+        "# TODO: read an integer, then print \"Even\" if it's divisible by 2, otherwise \"Odd\""
       ],
       "tests": [
         {
@@ -546,11 +518,7 @@
         "<p>(125 seconds is 2 minutes and 5 leftover seconds.)</p>"
       ],
       "starter": [
-        "total_seconds = int(input())",
-        "minutes = total_seconds // 60",
-        "seconds = total_seconds % 60",
-        "",
-        "# TODO: print in \"M:SS\" format, e.g. f\"{minutes}:{seconds:02d}\""
+        "# TODO: read total_seconds, then print the time in \"M:SS\" format"
       ],
       "tests": [
         {

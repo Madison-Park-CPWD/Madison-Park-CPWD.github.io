@@ -18,10 +18,7 @@
         "4.0</pre>"
       ],
       "starter": [
-        "a = float(input())",
-        "b = float(input())",
-        "",
-        "# TODO: print the sum of a and b"
+        "# TODO: read two floats, then print their sum"
       ],
       "tests": [
         {
@@ -75,10 +72,7 @@
         "6.25</pre>"
       ],
       "starter": [
-        "a = float(input())",
-        "b = float(input())",
-        "",
-        "# TODO: print a - b"
+        "# TODO: read two floats, then print a - b"
       ],
       "tests": [
         {
@@ -132,10 +126,7 @@
         "5.0</pre>"
       ],
       "starter": [
-        "a = float(input())",
-        "b = float(input())",
-        "",
-        "# TODO: print a * b"
+        "# TODO: read two floats, then print their product"
       ],
       "tests": [
         {
@@ -189,10 +180,7 @@
         "3.0</pre>"
       ],
       "starter": [
-        "a = float(input())",
-        "b = float(input())",
-        "",
-        "# TODO: print a / b"
+        "# TODO: read two floats, then print a / b"
       ],
       "tests": [
         {
@@ -248,10 +236,7 @@
         "3.0</pre>"
       ],
       "starter": [
-        "a = float(input())",
-        "b = float(input())",
-        "",
-        "# TODO: print a // b"
+        "# TODO: read two floats, then print a // b"
       ],
       "tests": [
         {
@@ -307,10 +292,7 @@
         "1.5</pre>"
       ],
       "starter": [
-        "a = float(input())",
-        "b = float(input())",
-        "",
-        "# TODO: print a % b"
+        "# TODO: read two floats, then print a % b"
       ],
       "tests": [
         {
@@ -365,10 +347,7 @@
         "8.0</pre>"
       ],
       "starter": [
-        "base = float(input())",
-        "exponent = float(input())",
-        "",
-        "# TODO: print base ** exponent"
+        "# TODO: read a base and an exponent, then print base ** exponent"
       ],
       "tests": [
         {
@@ -425,10 +404,7 @@
         "round, and how many digits to keep after the decimal point.</p>"
       ],
       "starter": [
-        "value = float(input())",
-        "places = int(input())",
-        "",
-        "# TODO: print round(value, places)"
+        "# TODO: read a float value and a whole number of decimal places, then print the rounded value"
       ],
       "tests": [
         {
@@ -485,10 +461,7 @@
         "5.5</pre>"
       ],
       "starter": [
-        "whole_number = int(input())",
-        "decimal_number = float(input())",
-        "",
-        "# TODO: print whole_number + decimal_number"
+        "# TODO: read a whole number and a decimal number, then print their sum"
       ],
       "tests": [
         {
