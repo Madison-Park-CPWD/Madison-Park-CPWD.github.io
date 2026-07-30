@@ -41,7 +41,6 @@
       "starter": [
         "a = input()",
         "b = input()",
-        "",
         "# TODO: print a and b on the same line, separated by a space"
       ],
       "tests": [
@@ -86,7 +85,6 @@
       "starter": [
         "a = input()",
         "b = input()",
-        "",
         "# TODO: print a and b separated by a dash"
       ],
       "tests": [
@@ -133,7 +131,6 @@
       "starter": [
         "a = input()",
         "b = input()",
-        "",
         "# TODO: print a first with end=\" \" (no newline), then print b normally"
       ],
       "tests": [
@@ -174,7 +171,6 @@
       ],
       "starter": [
         "message = input()",
-        "",
         "# TODO: print message back out, unchanged"
       ],
       "tests": [
