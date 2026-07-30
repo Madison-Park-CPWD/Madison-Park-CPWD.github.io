@@ -131,7 +131,7 @@
       "starter": [
         "a = input()",
         "b = input()",
-        "# TODO: print a first with end=\" \" (no newline), then print b normally"
+        "# TODO: print a first with no newline, then print b normally"
       ],
       "tests": [
         {
