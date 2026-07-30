@@ -253,7 +253,7 @@
       "starter": [
         "name = input()",
         "",
-        "# TODO: print an f-string greeting: f\"Hello, {name}!\""
+        "# TODO: use an f-string to print Hello, <name>!"
       ],
       "tests": [
         {
