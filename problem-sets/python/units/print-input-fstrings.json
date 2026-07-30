@@ -336,10 +336,7 @@
         "math \u2014 Python evaluates it and drops the result right into the string.</p>"
       ],
       "starter": [
-        "a = int(input())",
-        "b = int(input())",
-        "",
-        "# TODO: print an f-string like: {a} + {b} = {a + b}"
+        "# TODO: write Python to take two numbers in, add them, and output them. Use an f string to process the addition and out it."
       ],
       "tests": [
         {
