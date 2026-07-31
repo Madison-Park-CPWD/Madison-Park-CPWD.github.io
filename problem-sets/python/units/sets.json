@@ -342,11 +342,7 @@
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print the smallest number in a set. Run it",
-        "and see what actually happens.</p>",
-        "<p>Sets don't keep their items in any particular order, so there's no",
-        "such thing as \"position 0\" in a set &mdash; indexing like",
-        "<code>nums[0]</code> simply isn't supported. To find the smallest",
-        "value, use the built-in <code>min()</code> function instead.</p>"
+        "and see what actually happens.</p>"
       ],
       "starter": [
         "nums = {5, 2, 8, 1}",

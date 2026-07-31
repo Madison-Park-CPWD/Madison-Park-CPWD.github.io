@@ -502,13 +502,7 @@
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to capitalize the first letter of a word by",
-        "replacing it directly. Run it and see what actually happens.</p>",
-        "<p>Strings in Python are <strong>immutable</strong> &mdash; once",
-        "created, a string's characters can never be changed in place, even a",
-        "single one. Instead of assigning to a position inside an existing",
-        "string, you have to build a <strong>new</strong> string (for example,",
-        "by combining slices) and assign that new string back to the",
-        "variable.</p>"
+        "replacing it directly. Run it and see what actually happens.</p>"
       ],
       "starter": [
         "s = input()",

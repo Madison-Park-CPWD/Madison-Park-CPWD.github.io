@@ -537,11 +537,7 @@
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print the <strong>last</strong> item in a",
-        "list. Run it and see what actually happens.</p>",
-        "<p>A list with 3 items has valid indices 0, 1, and 2 &mdash;",
-        "<code>len(nums)</code> is 3, but index 3 doesn't exist. The last valid",
-        "index is always <code>len(nums) - 1</code> (or more simply,",
-        "<code>-1</code>).</p>"
+        "list. Run it and see what actually happens.</p>"
       ],
       "starter": [
         "nums = [10, 20, 30]",

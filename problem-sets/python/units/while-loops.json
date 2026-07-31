@@ -507,11 +507,7 @@
       "description": [
         "<p>This code is supposed to print the numbers 1 through 5. Run it and",
         "see what actually happens &mdash; you may need to stop it (or refresh",
-        "the page) if it doesn't finish on its own.</p>",
-        "<p>The loop's condition is checked every time before running the body",
-        "again. If nothing inside the loop ever changes the variable the",
-        "condition depends on, that condition never becomes false &mdash; and the",
-        "loop never stops.</p>"
+        "the page) if it doesn't finish on its own.</p>"
       ],
       "starter": [
         "n = 1",

@@ -134,9 +134,9 @@
         "&lt;class 'int'&gt; &lt;class 'str'&gt;</pre>",
         "<p>In Python, a variable isn't locked to one type forever &mdash; the",
         "same name can be reassigned to hold a completely different kind of",
-        "value later in the program. Use <code>print(..., end=\" \")</code> on",
-        "the first print so the second one lands on the same line instead of a",
-        "new one.</p>"
+        "value later in the program. (You'll need to get both types onto the",
+        "same line &mdash; think back to the trick you used for that earlier",
+        "in the course.)</p>"
       ],
       "starter": [
         "# TODO: assign an int to a variable, print its type with end=\" \",",
@@ -175,15 +175,11 @@
     {
       "id": "08",
       "source_unit": "variable-types",
-      "title": "Fix the Bug: Missing Quotes",
+      "title": "Fix the Bug",
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to assign the text <code>blue</code> to a",
-        "variable and print its type. Run it and see what actually happens.</p>",
-        "<p>Text needs to be wrapped in quotes. Without them, Python doesn't see",
-        "<code>blue</code> as a piece of text at all &mdash; it looks for a",
-        "<em>variable</em> named <code>blue</code>, and since none exists, the",
-        "program crashes.</p>"
+        "variable and print its type. Run it and see what actually happens.</p>"
       ],
       "starter": [
         "color = blue",
@@ -199,16 +195,11 @@
     {
       "id": "09",
       "source_unit": "variable-types",
-      "title": "Fix the Bug: Double Equals",
+      "title": "Fix the Bug",
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to assign the number <code>100</code> to a",
-        "variable and print its type. Run it and see what actually happens.</p>",
-        "<p><code>=</code> and <code>==</code> do very different jobs in Python.",
-        "A single <code>=</code> assigns a value to a variable. A double",
-        "<code>==</code> <em>compares</em> two values and produces",
-        "<code>True</code> or <code>False</code> &mdash; it never creates a",
-        "variable at all.</p>"
+        "variable and print its type. Run it and see what actually happens.</p>"
       ],
       "starter": [
         "score == 100",
@@ -224,15 +215,11 @@
     {
       "id": "10",
       "source_unit": "variable-types",
-      "title": "Fix the Bug: Lowercase Boolean",
+      "title": "Fix the Bug",
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to assign a boolean value to a variable and",
-        "print its type. Run it and see what actually happens.</p>",
-        "<p>Python's boolean values are <code>True</code> and <code>False</code>",
-        "&mdash; both capitalized. Lowercase <code>true</code> isn't a boolean at",
-        "all as far as Python is concerned; it looks like a reference to a",
-        "variable called <code>true</code>, which doesn't exist.</p>"
+        "print its type. Run it and see what actually happens.</p>"
       ],
       "starter": [
         "is_ready = true",

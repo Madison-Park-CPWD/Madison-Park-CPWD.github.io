@@ -419,11 +419,7 @@
       "description": [
         "<p>This code is supposed to sum every whole number from 1 to",
         "<code>n</code>, inclusive. Run it with <code>n = 5</code> and check the",
-        "result against what you'd expect (1 + 2 + 3 + 4 + 5 = 15).</p>",
-        "<p><code>range()</code> stops <em>before</em> reaching its second",
-        "argument &mdash; <code>range(1, n)</code> produces 1 up to",
-        "<code>n - 1</code>, silently leaving <code>n</code> itself out of the",
-        "loop entirely.</p>"
+        "result against what you'd expect (1 + 2 + 3 + 4 + 5 = 15).</p>"
       ],
       "starter": [
         "n = int(input())",

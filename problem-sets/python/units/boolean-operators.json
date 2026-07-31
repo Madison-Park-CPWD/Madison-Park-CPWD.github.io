@@ -553,11 +553,7 @@
       "description": [
         "<p>This code is supposed to grant entry if a person has a ticket",
         "<strong>or</strong> is on the guest list &mdash; but not otherwise. Run it",
-        "with someone who has neither and see what happens.</p>",
-        "<p>The comparison itself is fine. The problem is which operator is being",
-        "used to combine the two conditions &mdash; it's requiring",
-        "<strong>both</strong> to be true, rather than <strong>either</strong>",
-        "one.</p>"
+        "with someone who has neither and see what happens.</p>"
       ],
       "starter": [
         "has_ticket = input()",

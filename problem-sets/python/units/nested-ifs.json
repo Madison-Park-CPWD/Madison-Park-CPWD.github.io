@@ -574,12 +574,7 @@
       "description": [
         "<p>This code is supposed to work exactly like an earlier exercise: ask for",
         "an age, and only ask about voter registration if the person is 18 or",
-        "older. Run it with an age <strong>under</strong> 18 and see what happens.</p>",
-        "<p>The problem isn't a wrong comparison &mdash; it's that a line which was",
-        "meant to run only inside the <code>if</code> block is no longer properly",
-        "nested inside it. In Python, indentation is what determines which lines",
-        "belong to which block, so a line at the wrong indentation level changes",
-        "what the program actually does.</p>"
+        "older. Run it with an age <strong>under</strong> 18 and see what happens.</p>"
       ],
       "starter": [
         "age = int(input())",

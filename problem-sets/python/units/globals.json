@@ -234,18 +234,11 @@
     {
       "id": "06",
       "source_unit": "globals",
-      "title": "Fix the Bug: Forgetting global Entirely",
+      "title": "Fix the Bug",
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to add 5 points to a global score and print",
-        "the result. Run it and read the error message closely.</p>",
-        "<p>Because <code>score</code> is assigned to somewhere inside",
-        "<code>add_points</code>, Python treats <code>score</code> as a",
-        "<strong>local</strong> variable for the function's entire body",
-        "&mdash; including the <code>score + points</code> part, which runs",
-        "<em>before</em> that local <code>score</code> has ever been given a",
-        "value. The fix is the same one from a couple of exercises ago: add",
-        "<code>global score</code> at the top of the function.</p>"
+        "the result. Run it and read the error message closely.</p>"
       ],
       "starter": [
         "score = 0",
@@ -327,20 +320,13 @@
     {
       "id": "08",
       "source_unit": "globals",
-      "title": "Fix the Bug: Silent Shadowing",
+      "title": "Fix the Bug",
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to set a global score to whatever value is",
         "read from input, and then print it. Run it and see what actually",
         "happens &mdash; notice that unlike the earlier bug in this unit,",
-        "there's no error at all here.</p>",
-        "<p>Since <code>set_score</code> never declares <code>global",
-        "score</code>, the line <code>score = points</code> quietly creates",
-        "a brand new <strong>local</strong> variable that just happens to",
-        "share a name with the global one. The function runs perfectly",
-        "fine and even \"succeeds\" internally &mdash; it just never touches",
-        "the actual global <code>score</code> at all, which is why it's",
-        "still 0 afterward, no matter what value was passed in.</p>"
+        "there's no error at all here.</p>"
       ],
       "starter": [
         "score = 0",

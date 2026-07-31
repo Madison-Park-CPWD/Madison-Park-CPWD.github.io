@@ -483,11 +483,7 @@
       "description": [
         "<p>This code is supposed to print a person's age &mdash; but this",
         "particular person's dictionary was never given an <code>\"age\"</code>",
-        "key. Run it and see what actually happens.</p>",
-        "<p>Accessing a dictionary with <code>d[key]</code> crashes if that key",
-        "doesn't exist. <code>.get(key, default)</code> handles a missing key",
-        "gracefully instead, returning a fallback value rather than raising an",
-        "error.</p>"
+        "key. Run it and see what actually happens.</p>"
       ],
       "starter": [
         "person = {\"name\": \"Ava\"}",

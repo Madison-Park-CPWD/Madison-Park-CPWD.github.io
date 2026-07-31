@@ -492,10 +492,7 @@
         "<p>This code is supposed to sort a temperature into <code>Freezing</code>,",
         "<code>Cold</code>, <code>Warm</code>, or <code>Hot</code> &mdash; the same",
         "categories as an earlier exercise. Run it with a cold temperature like",
-        "<code>20</code> and see what it actually prints.</p>",
-        "<p>The branches are all there, and each individual comparison is written",
-        "correctly &mdash; but the <em>order</em> they're checked in causes one of",
-        "them to catch cases that were meant for a later branch.</p>"
+        "<code>20</code> and see what it actually prints.</p>"
       ],
       "starter": [
         "temp = int(input())",

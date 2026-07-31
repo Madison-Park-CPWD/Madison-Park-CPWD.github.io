@@ -849,16 +849,11 @@
     {
       "id": "19",
       "source_unit": "functions",
-      "title": "Fix the Bug: Missing Return",
+      "title": "Fix the Bug",
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to add two numbers and print the result.",
-        "Run it and see what actually happens.</p>",
-        "<p>The function calculates <code>total</code> correctly, but never",
-        "sends it back out with <code>return</code>. Without a",
-        "<code>return</code> statement, a function hands back",
-        "<code>None</code> by default &mdash; even if it computed something",
-        "useful internally along the way.</p>"
+        "Run it and see what actually happens.</p>"
       ],
       "starter": [
         "def add(a, b):",
@@ -877,16 +872,12 @@
     {
       "id": "20",
       "source_unit": "functions",
-      "title": "Fix the Bug: Print Instead of Return",
+      "title": "Fix the Bug",
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to square a number, then add 1 to the",
         "result. Run it and see what actually happens &mdash; you may need to",
-        "check the error message closely.</p>",
-        "<p>The function prints the square instead of returning it. Printing",
-        "displays a value on the screen, but the function still hands back",
-        "<code>None</code> to whatever called it &mdash; and",
-        "<code>None + 1</code> doesn't mean anything to Python.</p>"
+        "check the error message closely.</p>"
       ],
       "starter": [
         "def square(n):",

@@ -298,11 +298,7 @@
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to change the first value in a point from 3",
-        "to 99. Run it and see what actually happens.</p>",
-        "<p>Tuples are <strong>immutable</strong>, just like strings &mdash;",
-        "once created, none of their individual items can be reassigned. To",
-        "get a \"changed\" version, you have to build a brand new tuple, often",
-        "reusing the parts you want to keep.</p>"
+        "to 99. Run it and see what actually happens.</p>"
       ],
       "starter": [
         "point = (3, 4)",

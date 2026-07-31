@@ -223,13 +223,7 @@
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print <code>Program running</code>. Run",
-        "it and see what actually happens.</p>",
-        "<p>The comparison is checking whether <code>__name__</code> equals",
-        "the string <code>\"main\"</code> &mdash; but the real value Python",
-        "sets is <code>\"__main__\"</code>, with double underscores on both",
-        "sides. Since those two strings are never equal, the condition is",
-        "always false, and <code>main()</code> silently never runs at",
-        "all.</p>"
+        "it and see what actually happens.</p>"
       ],
       "starter": [
         "def main():",
