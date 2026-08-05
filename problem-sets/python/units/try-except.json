@@ -1,0 +1,646 @@
+{
+  "id": "try-except",
+  "title": "Try / Except",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "try-except",
+      "title": "Catching a Bad Number",
+      "sidebar_tag": "try/except",
+      "description": [
+        "<p>Read a line of text and try to convert it to an integer with",
+        "<code>int()</code>, then print it. If the conversion raises a",
+        "<code>ValueError</code> (because the text isn't a valid whole",
+        "number), print <code>Invalid number</code> instead.</p>",
+        "<pre>&gt; python program.py",
+        "42",
+        "42</pre>",
+        "<pre>&gt; python program.py",
+        "abc",
+        "Invalid number</pre>",
+        "<p>A <code>try</code> block lets you attempt something that might",
+        "fail. If it raises the exception type named in the matching",
+        "<code>except</code> block, Python jumps straight there instead of",
+        "crashing the whole program.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: try converting s to an int and printing it.",
+        "# If that raises a ValueError, print \"Invalid number\" instead."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "42"
+          ],
+          "expected": "42"
+        },
+        {
+          "stdin": [
+            "abc"
+          ],
+          "expected": "Invalid number"
+        },
+        {
+          "stdin": [
+            "-7"
+          ],
+          "expected": "-7"
+        },
+        {
+          "stdin": [
+            "12.5"
+          ],
+          "expected": "Invalid number"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "try-except",
+      "title": "Catching a Division by Zero",
+      "sidebar_tag": "except",
+      "description": [
+        "<p>Read two integers <code>a</code> and <code>b</code>. Try printing",
+        "<code>a / b</code>. If <code>b</code> is 0, Python raises a",
+        "<code>ZeroDivisionError</code> &mdash; catch it and print",
+        "<code>Cannot divide by zero</code> instead.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "2",
+        "5.0</pre>",
+        "<pre>&gt; python program.py",
+        "10",
+        "0",
+        "Cannot divide by zero</pre>"
+      ],
+      "starter": [
+        "a = int(input())",
+        "b = int(input())",
+        "",
+        "# TODO: try printing a / b.",
+        "# If that raises a ZeroDivisionError, print \"Cannot divide by zero\" instead."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "2"
+          ],
+          "expected": "5.0"
+        },
+        {
+          "stdin": [
+            "10",
+            "0"
+          ],
+          "expected": "Cannot divide by zero"
+        },
+        {
+          "stdin": [
+            "9",
+            "3"
+          ],
+          "expected": "3.0"
+        },
+        {
+          "stdin": [
+            "7",
+            "0"
+          ],
+          "expected": "Cannot divide by zero"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "try-except",
+      "title": "The else Clause",
+      "sidebar_tag": "try/except/else",
+      "description": [
+        "<p>Read a line of text and try converting it to an integer. If it",
+        "fails, print <code>Invalid number</code> as before &mdash; but if it",
+        "<strong>succeeds</strong>, use an <code>else</code> block to print",
+        "<code>Valid number: &lt;n&gt;</code>.</p>",
+        "<pre>&gt; python program.py",
+        "42",
+        "Valid number: 42</pre>",
+        "<pre>&gt; python program.py",
+        "abc",
+        "Invalid number</pre>",
+        "<p>An <code>else</code> block after <code>try</code>/<code>except</code>",
+        "runs only when the <code>try</code> block completed with",
+        "<strong>no</strong> exception &mdash; it separates \"what happens on",
+        "success\" from the risky code itself.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "try:",
+        "    n = int(s)",
+        "except ValueError:",
+        "    print(\"Invalid number\")",
+        "# TODO: add an else block that prints an f-string: Valid number: {n}"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "42"
+          ],
+          "expected": "Valid number: 42"
+        },
+        {
+          "stdin": [
+            "abc"
+          ],
+          "expected": "Invalid number"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Valid number: 0"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "try-except",
+      "title": "The finally Clause",
+      "sidebar_tag": "finally",
+      "description": [
+        "<p>Read a line of text and try converting it to an integer, printing",
+        "it if it works or <code>Invalid number</code> if it doesn't &mdash;",
+        "then, no matter which branch ran, print <code>Done</code> on the",
+        "line after, using a <code>finally</code> block.</p>",
+        "<pre>&gt; python program.py",
+        "42",
+        "42",
+        "Done</pre>",
+        "<pre>&gt; python program.py",
+        "abc",
+        "Invalid number",
+        "Done</pre>",
+        "<p>Code inside <code>finally</code> always runs, whether the",
+        "<code>try</code> block succeeded or failed &mdash; it's meant for",
+        "cleanup work that has to happen either way.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "try:",
+        "    print(int(s))",
+        "except ValueError:",
+        "    print(\"Invalid number\")",
+        "# TODO: add a finally block that prints \"Done\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "42"
+          ],
+          "expected": "42\nDone"
+        },
+        {
+          "stdin": [
+            "abc"
+          ],
+          "expected": "Invalid number\nDone"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "try-except",
+      "title": "Catching Multiple Exception Types Together",
+      "sidebar_tag": "except (A, B)",
+      "description": [
+        "<p>Read two lines of text meant to represent numbers, and try",
+        "converting both to integers and printing their quotient. This time,",
+        "a <strong>single</strong> <code>except</code> should catch two",
+        "different problems at once: a bad number, or a division by zero.",
+        "Print <code>Invalid input</code> for either one.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "2",
+        "5.0</pre>",
+        "<pre>&gt; python program.py",
+        "abc",
+        "2",
+        "Invalid input</pre>",
+        "<pre>&gt; python program.py",
+        "10",
+        "0",
+        "Invalid input</pre>",
+        "<p>Putting multiple exception types in parentheses after",
+        "<code>except</code> catches either one with the same block, for",
+        "cases where they should both be handled the same way.</p>"
+      ],
+      "starter": [
+        "a_str = input()",
+        "b_str = input()",
+        "",
+        "# TODO: try converting a_str and b_str to ints and printing their quotient.",
+        "# Catch (ValueError, ZeroDivisionError) together and print \"Invalid input\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "2"
+          ],
+          "expected": "5.0"
+        },
+        {
+          "stdin": [
+            "abc",
+            "2"
+          ],
+          "expected": "Invalid input"
+        },
+        {
+          "stdin": [
+            "10",
+            "0"
+          ],
+          "expected": "Invalid input"
+        },
+        {
+          "stdin": [
+            "6",
+            "3"
+          ],
+          "expected": "2.0"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "try-except",
+      "title": "Separate Messages for Separate Problems",
+      "sidebar_tag": "multiple except",
+      "description": [
+        "<p>Same setup as the last exercise &mdash; read two lines meant to be",
+        "numbers and try dividing them &mdash; but this time use",
+        "<strong>two separate</strong> <code>except</code> blocks, since a",
+        "bad number and a division by zero deserve different messages:",
+        "<code>Not a valid number</code> for the first,",
+        "<code>Cannot divide by zero</code> for the second.</p>",
+        "<pre>&gt; python program.py",
+        "abc",
+        "2",
+        "Not a valid number</pre>",
+        "<pre>&gt; python program.py",
+        "10",
+        "0",
+        "Cannot divide by zero</pre>",
+        "<p>Python checks a chain of <code>except</code> blocks top to",
+        "bottom, just like an <code>elif</code> chain, and runs the first",
+        "one whose exception type matches.</p>"
+      ],
+      "starter": [
+        "a_str = input()",
+        "b_str = input()",
+        "",
+        "# TODO: try converting a_str and b_str to ints and printing their quotient.",
+        "# Use a separate except block for ValueError (\"Not a valid number\")",
+        "# and ZeroDivisionError (\"Cannot divide by zero\")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "2"
+          ],
+          "expected": "5.0"
+        },
+        {
+          "stdin": [
+            "abc",
+            "2"
+          ],
+          "expected": "Not a valid number"
+        },
+        {
+          "stdin": [
+            "10",
+            "0"
+          ],
+          "expected": "Cannot divide by zero"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "try-except",
+      "title": "Looping Until the Input Is Valid",
+      "sidebar_tag": "try + while",
+      "description": [
+        "<p>Keep asking for a number until the person enters one that",
+        "actually works. Read a line of text; if <code>int()</code> raises a",
+        "<code>ValueError</code>, print <code>Try again</code> and read",
+        "another line. Once a valid number arrives, print",
+        "<code>Got it: &lt;n&gt;</code>.</p>",
+        "<pre>&gt; python program.py",
+        "abc",
+        "Try again",
+        "xyz",
+        "Try again",
+        "7",
+        "Got it: 7</pre>",
+        "<p>This is the same \"keep reading until it's good enough\" shape",
+        "from an earlier <code>while</code>-loop exercise &mdash; except now",
+        "the input itself might crash the program, so the loop needs a",
+        "<code>try</code>/<code>except</code> around each attempt.</p>"
+      ],
+      "starter": [
+        "while True:",
+        "    s = input()",
+        "    # TODO: try converting s to an int.",
+        "    # If it works, print \"Got it: <n>\" and stop looping.",
+        "    # If it raises a ValueError, print \"Try again\" and loop again."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "abc",
+            "xyz",
+            "7"
+          ],
+          "expected": "Try again\nTry again\nGot it: 7"
+        },
+        {
+          "stdin": [
+            "5"
+          ],
+          "expected": "Got it: 5"
+        },
+        {
+          "stdin": [
+            "1.5",
+            "3"
+          ],
+          "expected": "Try again\nGot it: 3"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "try-except",
+      "title": "Raising Your Own Exception",
+      "sidebar_tag": "raise",
+      "description": [
+        "<p>Define a function <code>check_age(age)</code> that",
+        "<strong>raises</strong> a <code>ValueError</code> if <code>age</code>",
+        "is negative, and otherwise does nothing. In the main part of the",
+        "program, read a number, call <code>check_age()</code> inside a",
+        "<code>try</code> block, and print <code>Valid age</code> if it",
+        "didn't raise, or <code>Invalid age</code> if it did.</p>",
+        "<pre>&gt; python program.py",
+        "16",
+        "Valid age</pre>",
+        "<pre>&gt; python program.py",
+        "-5",
+        "Invalid age</pre>",
+        "<p>Exceptions aren't only raised automatically by things like",
+        "<code>int()</code> &mdash; your own code can <code>raise</code> one",
+        "too, as a way of saying \"something here is invalid\" and letting",
+        "whoever called your function decide how to handle it.</p>"
+      ],
+      "starter": [
+        "def check_age(age):",
+        "    # TODO: if age < 0, raise a ValueError",
+        "",
+        "age = int(input())",
+        "",
+        "# TODO: call check_age(age) inside a try block.",
+        "# Print \"Valid age\" if nothing goes wrong, or \"Invalid age\"",
+        "# if a ValueError is raised."
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "16"
+          ],
+          "expected": "Valid age"
+        },
+        {
+          "stdin": [
+            "-5"
+          ],
+          "expected": "Invalid age"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Valid age"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "try-except",
+      "title": "Catching Your Own Message",
+      "sidebar_tag": "except ... as e",
+      "description": [
+        "<p>Define a function <code>check_age(age)</code> that raises",
+        "<code>ValueError(\"Age cannot be negative\")</code> if <code>age</code>",
+        "is negative. Read a number, call the function inside a",
+        "<code>try</code> block, and if it raises, catch it with",
+        "<code>as e</code> and print the exception's message directly with",
+        "<code>print(e)</code>. Otherwise, print <code>Valid age</code>.</p>",
+        "<pre>&gt; python program.py",
+        "-5",
+        "Age cannot be negative</pre>",
+        "<pre>&gt; python program.py",
+        "16",
+        "Valid age</pre>",
+        "<p>Writing text inside <code>raise ValueError(\"...\")</code>",
+        "attaches a message to the exception &mdash; catching it with",
+        "<code>except ValueError as e</code> gives you access to that",
+        "message through the variable <code>e</code>.</p>"
+      ],
+      "starter": [
+        "def check_age(age):",
+        "    # TODO: if age < 0, raise ValueError(\"Age cannot be negative\")",
+        "",
+        "age = int(input())",
+        "",
+        "# TODO: call check_age(age) inside a try block.",
+        "# If it raises, catch it as e and print e.",
+        "# Otherwise, print \"Valid age\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "-5"
+          ],
+          "expected": "Age cannot be negative"
+        },
+        {
+          "stdin": [
+            "16"
+          ],
+          "expected": "Valid age"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Valid age"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "try-except",
+      "title": "Catching Any Exception",
+      "sidebar_tag": "except Exception",
+      "description": [
+        "<p>Read a line of text and a divisor on the next line. Try converting",
+        "the text to an integer and dividing it by the divisor, printing the",
+        "result. This time, use a single <code>except Exception:</code> to",
+        "catch <strong>anything</strong> that goes wrong &mdash; a bad number",
+        "or a division by zero alike &mdash; and print",
+        "<code>Something went wrong</code>.</p>",
+        "<pre>&gt; python program.py",
+        "10",
+        "2",
+        "5.0</pre>",
+        "<pre>&gt; python program.py",
+        "abc",
+        "2",
+        "Something went wrong</pre>",
+        "<p><code>Exception</code> is the base class nearly every built-in",
+        "error inherits from, so catching it catches almost anything. It's",
+        "convenient, but it's also a blunt tool &mdash; it can't tell you",
+        "<em>which</em> problem occurred, which is why the more specific",
+        "<code>except</code> blocks from earlier exercises are usually the",
+        "better choice when you know what might go wrong.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "divisor = int(input())",
+        "",
+        "# TODO: try converting s to an int and dividing it by divisor, then print the result.",
+        "# Catch any Exception and print \"Something went wrong\""
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "2"
+          ],
+          "expected": "5.0"
+        },
+        {
+          "stdin": [
+            "abc",
+            "2"
+          ],
+          "expected": "Something went wrong"
+        },
+        {
+          "stdin": [
+            "10",
+            "0"
+          ],
+          "expected": "Something went wrong"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "try-except",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print <code>Cannot divide by zero</code>",
+        "when dividing by zero, and <code>Invalid input</code> when the first",
+        "value isn't a valid number. Run it with a non-numeric first value,",
+        "like <code>abc</code>, and see what happens.</p>"
+      ],
+      "starter": [
+        "a = input()",
+        "b = int(input())",
+        "",
+        "try:",
+        "    print(int(a) / b)",
+        "except ZeroDivisionError:",
+        "    print(\"Cannot divide by zero\")"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "10",
+            "2"
+          ],
+          "expected": "5.0"
+        },
+        {
+          "stdin": [
+            "10",
+            "0"
+          ],
+          "expected": "Cannot divide by zero"
+        },
+        {
+          "stdin": [
+            "abc",
+            "2"
+          ],
+          "expected": "Invalid input"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "try-except",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print the specific message",
+        "<code>Age cannot be negative</code> when given a negative age, using",
+        "the same custom-exception setup as an earlier exercise. Run it with",
+        "a negative age and see what actually prints instead.</p>"
+      ],
+      "starter": [
+        "def check_age(age):",
+        "    if age < 0:",
+        "        raise ValueError(\"Age cannot be negative\")",
+        "",
+        "age = int(input())",
+        "",
+        "try:",
+        "    check_age(age)",
+        "    print(\"Valid age\")",
+        "except Exception:",
+        "    print(\"Something went wrong\")",
+        "except ValueError as e:",
+        "    print(e)"
+      ],
+      "tests": [
+        {
+          "stdin": [
+            "-5"
+          ],
+          "expected": "Age cannot be negative"
+        },
+        {
+          "stdin": [
+            "16"
+          ],
+          "expected": "Valid age"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "expected": "Valid age"
+        }
+      ]
+    }
+  ]
+}
