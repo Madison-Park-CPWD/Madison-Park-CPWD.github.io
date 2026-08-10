@@ -43,6 +43,19 @@
     </main>
   </div>
 
+  <div class="reflection-overlay" id="reflection-overlay">
+    <div class="reflection-modal">
+      <p class="eyebrow">unit complete &mdash; <span id="reflection-unit-title"></span></p>
+      <h2>Quick reflection</h2>
+      <p class="prompt-text" id="reflection-prompt-text"></p>
+      <textarea id="reflection-textarea" placeholder="Type a few sentences…" spellcheck="true"></textarea>
+      <div class="reflection-actions">
+        <button class="reset-btn" id="reflection-skip-btn" type="button">Skip for now</button>
+        <button class="run-btn" id="reflection-save-btn" type="button">Save reflection</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
   <script src="app.js"></script>
 </body>

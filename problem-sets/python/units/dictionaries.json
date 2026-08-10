@@ -1,6 +1,7 @@
 {
   "id": "dictionaries",
   "title": "Dictionaries",
+  "reflection_prompt": "In your own words, when would you reach for a dictionary instead of a list?",
   "exercises": [
     {
       "id": "01",

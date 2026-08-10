@@ -1,6 +1,7 @@
 {
   "id": "lists",
   "title": "Lists",
+  "reflection_prompt": "What's one thing you learned about lists this unit that works differently than it does for strings?",
   "exercises": [
     {
       "id": "01",

@@ -1,6 +1,7 @@
 {
   "id": "int-math",
   "title": "Int Math",
+  "reflection_prompt": "Which operator in this unit (//, %, or **) took the longest to make sense? What finally helped it click?",
   "exercises": [
     {
       "id": "01",

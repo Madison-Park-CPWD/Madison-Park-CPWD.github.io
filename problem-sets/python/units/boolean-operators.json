@@ -1,6 +1,7 @@
 {
   "id": "boolean-operators",
   "title": "Boolean Operators",
+  "reflection_prompt": "Look back at a nested-if exercise from the previous unit. How would you rewrite it using and/or instead? Which version is easier to read?",
   "exercises": [
     {
       "id": "01",

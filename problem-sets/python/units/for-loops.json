@@ -1,6 +1,7 @@
 {
   "id": "for-loops",
   "title": "For Loops & range()",
+  "reflection_prompt": "When would you reach for a for loop instead of a while loop? Give a specific example from this unit's exercises.",
   "exercises": [
     {
       "id": "01",

@@ -1,6 +1,7 @@
 {
   "id": "print-input-fstrings",
   "title": "Print, Input & f-strings",
+  "reflection_prompt": "What's one thing about print(), input(), or f-strings that finally clicked for you this unit? What's still a little fuzzy?",
   "exercises": [
     {
       "id": "01",

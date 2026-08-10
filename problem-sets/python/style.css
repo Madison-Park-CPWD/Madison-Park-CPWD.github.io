@@ -356,6 +356,91 @@ button.reset-btn:hover { color: var(--text-primary); border-color: var(--text-se
   color: var(--err);
 }
 
+/* ---------------- Error nudge ---------------- */
+/* Shown inline at the top of the console on a failing run, before the raw
+   test rows/traceback — prompts the student to re-read the question and the
+   error itself before diving back into their code. */
+.error-nudge {
+  background: rgba(242, 177, 52, 0.08);
+  border: 1px solid var(--accent-dim);
+  border-radius: 6px;
+  padding: 0.65rem 0.9rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+.error-nudge strong { color: var(--accent); }
+
+/* ---------------- Reflection modal ---------------- */
+/* Shown once, the first time every exercise in a unit has been solved. */
+.reflection-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 20, 0.72);
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1.5rem;
+}
+.reflection-overlay.open { display: flex; }
+
+.reflection-modal {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-width: 480px;
+  width: 100%;
+  padding: 1.4rem 1.5rem;
+}
+
+.reflection-modal .eyebrow {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+}
+
+.reflection-modal h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.2rem;
+}
+
+.reflection-modal .prompt-text {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+.reflection-modal textarea {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  background: var(--bg-console);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.65rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  outline: none;
+}
+.reflection-modal textarea:focus-visible {
+  border-color: var(--accent);
+}
+
+.reflection-modal .reflection-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
 /* ---------------- Responsive ---------------- */
 @media (max-width: 780px) {
   .workspace { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }

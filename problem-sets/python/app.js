@@ -16,6 +16,12 @@ const statusText = document.getElementById("status-text");
 const studentNameEl = document.getElementById("student-name");
 const changeNameBtn = document.getElementById("change-name-btn");
 const downloadBtn = document.getElementById("download-btn");
+const reflectionOverlay = document.getElementById("reflection-overlay");
+const reflectionUnitTitleEl = document.getElementById("reflection-unit-title");
+const reflectionPromptEl = document.getElementById("reflection-prompt-text");
+const reflectionTextarea = document.getElementById("reflection-textarea");
+const reflectionSaveBtn = document.getElementById("reflection-save-btn");
+const reflectionSkipBtn = document.getElementById("reflection-skip-btn");
 
 // Fetches units/manifest.json (an ordered list of unit ids), then fetches
 // units/<id>.json for each one, in that order. Reordering lessons only ever
@@ -70,6 +76,67 @@ function appendHistory(unitId, exerciseId, entry) {
   hist.push(entry);
   localStorage.setItem(key, JSON.stringify(hist));
 }
+
+// --- Unit reflections: one short free-text reflection per unit, prompted
+// once the first time every exercise in that unit has been solved. Stored
+// separately from exercise history so a student can only be asked once per
+// unit (checked via hasReflection), but still shows up in their export. ---
+
+function reflectionKey(unitId) {
+  return `reflection-${unitId}`;
+}
+
+function hasReflection(unitId) {
+  return localStorage.getItem(reflectionKey(unitId)) !== null;
+}
+
+function loadReflection(unitId) {
+  const raw = localStorage.getItem(reflectionKey(unitId));
+  return raw ? JSON.parse(raw) : null;
+}
+
+function saveReflection(unitId, text) {
+  localStorage.setItem(reflectionKey(unitId), JSON.stringify({
+    text,
+    timestamp: new Date().toISOString(),
+  }));
+}
+
+// The unit a currently-open reflection modal refers to — captured at the
+// moment the modal opens, since the student could in theory switch units
+// (via the dropdown or a hash change) while it's still open.
+let reflectionTargetUnit = null;
+
+function showReflectionModal(unit) {
+  reflectionTargetUnit = unit;
+  reflectionUnitTitleEl.textContent = unit.title;
+  reflectionPromptEl.textContent = unit.reflection_prompt;
+  reflectionTextarea.value = "";
+  reflectionOverlay.classList.add("open");
+  reflectionTextarea.focus();
+}
+
+function closeReflectionModal() {
+  reflectionOverlay.classList.remove("open");
+  reflectionTargetUnit = null;
+}
+
+reflectionSaveBtn.addEventListener("click", () => {
+  if (reflectionTargetUnit) {
+    const text = reflectionTextarea.value.trim();
+    saveReflection(reflectionTargetUnit.id, text);
+  }
+  closeReflectionModal();
+});
+
+reflectionSkipBtn.addEventListener("click", () => {
+  // Record an empty reflection so we know not to ask again for this unit,
+  // without forcing the student to write something they don't want to.
+  if (reflectionTargetUnit) {
+    saveReflection(reflectionTargetUnit.id, "");
+  }
+  closeReflectionModal();
+});
 
 // --- Student name, used to label the downloaded export. Asked once, editable
 // any time via the "change" link next to the name in the header. ---
@@ -227,12 +294,15 @@ async function runTests() {
   consoleEl.innerHTML = "";
 
   let allPass = true;
+  let hadCrash = false;
+  const rows = [];
   for (const test of ex.tests) {
     const stdinStr = test.stdin.join("\n");
     const { stdout, error } = await runOneTest(code, stdinStr);
     const actual = stdout.trim();
     const pass = !error && actual === test.expected;
     if (!pass) allPass = false;
+    if (error) hadCrash = true;
 
     const row = document.createElement("div");
     row.className = "test-row";
@@ -253,8 +323,23 @@ async function runTests() {
           ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(actual || "(no output)")}</span>`}
         </span>`;
     }
-    consoleEl.appendChild(row);
+    rows.push(row);
   }
+
+  // On a failing run, show a short nudge *before* the raw test rows/error
+  // trace — pushes the student to actually read the question and the error
+  // rather than jumping straight back into editing code. Worded differently
+  // depending on whether Python crashed vs. just produced the wrong output.
+  if (!allPass) {
+    const nudge = document.createElement("div");
+    nudge.className = "error-nudge";
+    nudge.innerHTML = hadCrash
+      ? `<strong>Before you touch your code again:</strong> your program crashed. Read the error message below, especially its last line — what is it telling you, specifically? Then re-read the question above and see where that lines up with your code.`
+      : `<strong>Before you touch your code again:</strong> your program ran, but the output isn't right. Compare "expected" and "got" below closely, then re-read the question above — what's different about what it's asking for?`;
+    consoleEl.appendChild(nudge);
+  }
+
+  rows.forEach(row => consoleEl.appendChild(row));
 
   const summary = document.createElement("div");
   summary.className = "summary " + (allPass ? "all-pass" : "some-fail");
@@ -262,6 +347,10 @@ async function runTests() {
     ? `All ${ex.tests.length} test${ex.tests.length === 1 ? "" : "s"} passed! 🎉`
     : `Some tests failed — check the output above.`;
   consoleEl.appendChild(summary);
+
+  // Track completion state before/after so the reflection prompt fires
+  // exactly once, right when the last exercise in a unit gets solved.
+  const wasFullyComplete = solved.size === currentExercises().length;
 
   if (allPass) {
     solved.add(ex.id);
@@ -274,6 +363,12 @@ async function runTests() {
     code,
     passed: allPass,
   });
+
+  const nowFullyComplete = solved.size === currentExercises().length;
+  const unit = currentUnit();
+  if (!wasFullyComplete && nowFullyComplete && unit.reflection_prompt && !hasReflection(unit.id)) {
+    showReflectionModal(unit);
+  }
 
   runBtn.disabled = false;
   runBtn.textContent = "Run Tests";
@@ -308,10 +403,31 @@ function localDayLabel(isoTimestamp) {
   });
 }
 
+// Reflections aren't tied to a single day the way attempts are, so they get
+// their own section up top rather than being folded into the day-by-day
+// trail below — a quick summary of how the student felt about each unit,
+// before the blow-by-blow of every attempt.
+function buildReflectionsSection() {
+  const entries = UNITS
+    .map(unit => ({ unit, reflection: loadReflection(unit.id) }))
+    .filter(({ reflection }) => reflection && reflection.text && reflection.text.trim().length > 0);
+
+  if (entries.length === 0) return [];
+
+  const lines = ["## Unit Reflections", ""];
+  entries.forEach(({ unit, reflection }) => {
+    const when = new Date(reflection.timestamp).toLocaleString();
+    lines.push(`### ${unit.title}`, "", `_${when}_`, "", reflection.text, "");
+  });
+  return lines;
+}
+
 function buildExportMarkdown() {
   const name = getStudentName() || "(name not set)";
   const generatedAt = new Date().toLocaleString();
   const lines = [`# Python Practice — ${name}`, "", `Exported ${generatedAt}`, ""];
+
+  lines.push(...buildReflectionsSection());
 
   // Flatten every attempt across every unit/exercise into one list, each
   // tagged with where it came from, then sort chronologically so grouping

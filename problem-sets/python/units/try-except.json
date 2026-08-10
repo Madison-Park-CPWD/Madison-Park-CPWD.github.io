@@ -1,6 +1,7 @@
 {
   "id": "try-except",
   "title": "Try / Except",
+  "reflection_prompt": "How has your idea of \"handling an error\" changed after this unit? What's an example of a crash you'd now know how to prevent?",
   "exercises": [
     {
       "id": "01",

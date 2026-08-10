@@ -1,6 +1,7 @@
 {
   "id": "nested-ifs",
   "title": "Nested Ifs",
+  "reflection_prompt": "Nested ifs and combined conditions (from the next unit) can often solve the same problem. What made you reach for nesting instead of one big condition?",
   "exercises": [
     {
       "id": "01",

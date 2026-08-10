@@ -1,6 +1,7 @@
 {
   "id": "while-loops",
   "title": "While Loops",
+  "reflection_prompt": "What's the biggest risk with a while loop that you don't have to worry about with a for loop? How do you protect against it?",
   "exercises": [
     {
       "id": "01",

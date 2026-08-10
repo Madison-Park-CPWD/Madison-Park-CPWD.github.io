@@ -1,6 +1,7 @@
 {
   "id": "float-math",
   "title": "Float Math",
+  "reflection_prompt": "In your own words, why doesn't 0.1 + 0.2 print exactly 0.3? Why does that matter when comparing float values in real programs?",
   "exercises": [
     {
       "id": "01",

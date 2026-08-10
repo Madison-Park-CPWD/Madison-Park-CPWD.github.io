@@ -1,6 +1,7 @@
 {
   "id": "sets",
   "title": "Sets",
+  "reflection_prompt": "Describe a real situation (not from this unit) where a set would be the right tool instead of a list.",
   "exercises": [
     {
       "id": "01",

@@ -1,6 +1,7 @@
 {
   "id": "main-guard",
   "title": "Program Structure: __main__",
+  "reflection_prompt": "Why does the if __name__ == \"__main__\": guard matter once your code might be imported by another file?",
   "exercises": [
     {
       "id": "01",

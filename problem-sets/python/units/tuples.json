@@ -1,6 +1,7 @@
 {
   "id": "tuples",
   "title": "Tuples",
+  "reflection_prompt": "Why might you choose a tuple instead of a list in your own code? When would that choice actually matter?",
   "exercises": [
     {
       "id": "01",

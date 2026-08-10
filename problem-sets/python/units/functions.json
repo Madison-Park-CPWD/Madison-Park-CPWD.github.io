@@ -1,6 +1,7 @@
 {
   "id": "functions",
   "title": "Functions",
+  "reflection_prompt": "What's one thing that got easier once you started breaking your code into functions? What's still confusing about parameters, return values, or scope?",
   "exercises": [
     {
       "id": "01",

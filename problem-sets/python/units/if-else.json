@@ -1,6 +1,7 @@
 {
   "id": "if-else",
   "title": "If / Else",
+  "reflection_prompt": "Think of a real decision you make in daily life. How would you write it as an if/elif/else chain?",
   "exercises": [
     {
       "id": "01",

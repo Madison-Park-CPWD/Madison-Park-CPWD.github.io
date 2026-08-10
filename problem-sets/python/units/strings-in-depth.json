@@ -1,6 +1,7 @@
 {
   "id": "strings-in-depth",
   "title": "Strings in Depth",
+  "reflection_prompt": "What surprised you about how Python treats strings (indexing, slicing, or the fact that they can't be modified in place)?",
   "exercises": [
     {
       "id": "01",

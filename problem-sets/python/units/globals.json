@@ -1,6 +1,7 @@
 {
   "id": "globals",
   "title": "Globals",
+  "reflection_prompt": "What's a downside of using a global variable that you actually ran into in this unit's exercises?",
   "exercises": [
     {
       "id": "01",

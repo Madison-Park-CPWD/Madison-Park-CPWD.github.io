@@ -1,6 +1,7 @@
 {
   "id": "variable-types",
   "title": "Variable Types",
+  "reflection_prompt": "How would you explain the difference between int, float, str, and bool to someone who has never coded before?",
   "exercises": [
     {
       "id": "01",
