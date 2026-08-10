@@ -91,6 +91,48 @@ showing an error.
   one unit file and paste it into another, you can still tell where it
   originally came from. If you do move one, update this field by hand to
   match its new home.
+- `reflection_prompt` (top-level, next to `id`/`title`) is a single question
+  string shown once a student has solved every exercise in that unit. See
+  "Unit reflections" below.
+- `tests[].expected_contains` is an alternative to `tests[].expected` for
+  cases where output can't be matched exactly — e.g. `help()`, which prints
+  verbose, version-dependent text. It's a list of substrings that must all
+  appear somewhere in the output (order doesn't matter, and the rest of the
+  output is ignored). Use `expected` normally; reach for
+  `expected_contains` only when exact-matching genuinely isn't reliable. A
+  test should have exactly one of the two, not both.
+
+## Unit reflections
+Each unit file carries a top-level `reflection_prompt` string, e.g.:
+```json
+{
+  "id": "dictionaries",
+  "title": "Dictionaries",
+  "reflection_prompt": "In your own words, when would you reach for a dictionary instead of a list?",
+  "exercises": [ ... ]
+}
+```
+The first time a student's solved count for a unit reaches every exercise in
+it, a small modal pops up showing that unit's `reflection_prompt` with a text
+box. They can write a few sentences and save, or skip — either way, the
+modal won't show again for that unit (skipping records an empty reflection
+so the "have they already been asked" check still trips). Reflections are
+stored in `localStorage` alongside everything else, and non-empty ones show
+up in their own **Unit Reflections** section near the top of the "Download
+My Work" export, ahead of the day-by-day attempt trail.
+
+A unit without a `reflection_prompt` field simply never shows the modal —
+useful if you want to add a new unit without writing a reflection prompt for
+it right away.
+
+## Nudging students on a failing run
+Every failing **Run Tests** click now shows a short message above the test
+results, before the raw error trace / expected-vs-got output, prompting the
+student to re-read the question and the error itself rather than jumping
+straight back into editing code. The wording differs depending on whether
+Python actually crashed (read the traceback) or the code ran but produced
+the wrong output (compare expected vs. got, re-read the question). This is
+static UI copy in `app.js` — it isn't configurable per-exercise or per-unit.
 
 **To draft a unit without showing it to students yet:** just leave its file
 out of `manifest.json` — it can sit in the `units/` folder unfinished, and

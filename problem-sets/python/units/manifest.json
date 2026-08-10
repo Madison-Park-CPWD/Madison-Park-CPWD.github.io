@@ -1,6 +1,7 @@
 [
   "print-input-fstrings",
   "variable-types",
+  "introspection",
   "if-else",
   "int-math",
   "float-math",

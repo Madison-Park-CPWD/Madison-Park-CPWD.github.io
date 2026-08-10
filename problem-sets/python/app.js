@@ -300,7 +300,16 @@ async function runTests() {
     const stdinStr = test.stdin.join("\n");
     const { stdout, error } = await runOneTest(code, stdinStr);
     const actual = stdout.trim();
-    const pass = !error && actual === test.expected;
+    // Most tests check for an exact match against `expected`. A few
+    // (introspection exercises using help(), mainly) can't be exact-matched
+    // safely, since the built-in output is verbose and can shift wording
+    // slightly between Python versions. Those use `expected_contains`
+    // instead: a list of substrings that must all appear somewhere in the
+    // output, regardless of the surrounding text.
+    const usesContains = Array.isArray(test.expected_contains);
+    const pass = !error && (usesContains
+      ? test.expected_contains.every(s => actual.includes(s))
+      : actual === test.expected);
     if (!pass) allPass = false;
     if (error) hadCrash = true;
 
@@ -313,6 +322,15 @@ async function runTests() {
         <span class="test-detail">
           <span class="label">input:</span> ${inputLabel}
           <div class="error-trace">${escapeHtml(error)}</div>
+        </span>`;
+    } else if (usesContains) {
+      const mustInclude = test.expected_contains.map(s => `"${escapeHtml(s)}"`).join(", ");
+      row.innerHTML = `
+        <span class="test-status ${pass ? "pass" : "fail"}">${pass ? "✓" : "✗"}</span>
+        <span class="test-detail">
+          <span class="label">input:</span> ${inputLabel}
+          &nbsp;&nbsp;<span class="label">must include:</span> <span class="value-block">${mustInclude}</span>
+          ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(actual || "(no output)")}</span>`}
         </span>`;
     } else {
       row.innerHTML = `

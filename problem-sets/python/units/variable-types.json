@@ -232,6 +232,111 @@
           "expected": "<class 'bool'>"
         }
       ]
+    },
+    {
+      "id": "11",
+      "source_unit": "variable-types",
+      "title": "Checking a Type with isinstance()",
+      "sidebar_tag": "isinstance()",
+      "description": [
+        "<p>Read an integer and print whether it's an <code>int</code>, using",
+        "<code>isinstance()</code> instead of <code>type()</code>.</p>",
+        "<pre>&gt; python program.py",
+        "5",
+        "True</pre>",
+        "<p><code>isinstance(value, int)</code> asks a slightly different",
+        "question than <code>type(value) == int</code> does &mdash; \"is this",
+        "value an <code>int</code>, or something close enough to one?\" rather",
+        "than \"is this value's type <em>exactly</em> <code>int</code>, no",
+        "more, no less?\" The next two exercises show why that difference",
+        "actually matters.</p>"
+      ],
+      "starter": [
+        "n = int(input())",
+        "",
+        "# TODO: print isinstance(n, int)"
+      ],
+      "tests": [
+        {
+          "stdin": ["5"],
+          "expected": "True"
+        },
+        {
+          "stdin": ["-3"],
+          "expected": "True"
+        },
+        {
+          "stdin": ["0"],
+          "expected": "True"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "variable-types",
+      "title": "Checking Against Several Types at Once",
+      "sidebar_tag": "isinstance()",
+      "description": [
+        "<p>Using the fixed value <code>x = 5.0</code>, print whether",
+        "<code>x</code> is <strong>either</strong> an <code>int</code> or a",
+        "<code>float</code>, in a single <code>isinstance()</code> call.</p>",
+        "<pre>&gt; python program.py",
+        "True</pre>",
+        "<p><code>isinstance()</code> accepts a <strong>tuple</strong> of",
+        "types as its second argument &mdash; <code>isinstance(x, (int, float))</code>",
+        "&mdash; and returns <code>True</code> if <code>x</code> matches any",
+        "one of them. This saves writing out",
+        "<code>isinstance(x, int) or isinstance(x, float)</code> by hand.</p>"
+      ],
+      "starter": [
+        "x = 5.0",
+        "",
+        "# TODO: print whether x is an int or a float, using one",
+        "# isinstance() call with a tuple of types"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "True"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "source_unit": "variable-types",
+      "title": "The bool/int Surprise",
+      "sidebar_tag": "isinstance() vs type()",
+      "description": [
+        "<p>Using the fixed value <code>flag = True</code>, print two things",
+        "on the same line, separated by a space: whether",
+        "<code>type(flag) == int</code>, and whether",
+        "<code>isinstance(flag, int)</code>.</p>",
+        "<pre>&gt; python program.py",
+        "False True</pre>",
+        "<p>In Python, <code>bool</code> is secretly a more specific version",
+        "of <code>int</code> &mdash; every <code>True</code>/<code>False</code>",
+        "is <em>also</em> an <code>int</code> under the hood (<code>True</code>",
+        "behaves like <code>1</code>, <code>False</code> like <code>0</code>).",
+        "<code>type(flag) == int</code> only matches the exact type",
+        "<code>bool</code>, so it says <code>False</code> &mdash; but",
+        "<code>isinstance(flag, int)</code> says <code>True</code>, since it",
+        "also counts anything built on top of <code>int</code>. This is",
+        "usually the reason experienced Python code reaches for",
+        "<code>isinstance()</code> over a direct <code>type()</code>",
+        "comparison.</p>"
+      ],
+      "starter": [
+        "flag = True",
+        "",
+        "# TODO: print type(flag) == int, then isinstance(flag, int),",
+        "# on the same line separated by a space"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "False True"
+        }
+      ]
     }
   ]
 }
