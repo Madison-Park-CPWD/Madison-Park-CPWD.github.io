@@ -646,3 +646,64 @@ primary entry point per Session 4, and with only three puzzles shipped it's
 too early to know what shape navigation should take once there are many
 more. Revisit once puzzle volume actually makes the current hash-only
 addressing (`#<puzzle-id>`) feel limiting.
+
+## Session 7 — naming what's actually been built: a three-tier gap
+
+A discussion session, no code changes — a checkpoint to resume planning
+from, not a set of firm decisions.
+
+### The observation
+
+All three shipped harnesses (`trace`, `ancestor-trace`, `descend-trace`) are
+the same *kind* of puzzle wearing different content: deterministic, one
+skill exercised, one correct answer, checked by exact match. Useful, but
+structurally it's the practice app's retry-until-green loop wearing a
+different UI skin, not the qualitatively different thing "puzzles" were
+originally meant to add.
+
+### A three-tier framework
+
+Named in this session, but each tier maps onto language the doc already
+had, mostly unbuilt:
+
+1. **Rote practice of a single skill.** Everything shipped so far. Cheap to
+   keep extending — it's more of the same shell. The Level 5
+   shallow-copy/box-and-arrow pointer puzzle (flagged alongside
+   ancestor-tracing back in Session 4/5's "Natural next steps," never
+   built) is the next-named candidate; Round 1 has a longer tail past that
+   (off-by-one gallery, truthy/falsy trivia, specificity duels-as-prediction)
+   if more variety within this tier is wanted.
+2. **Combining multiple skills to solve a problem, still probably one right
+   answer.** This is Session 3's **reinforcement-via-composition** idea
+   ("a later puzzle that requires an earlier skill as one step, not the
+   whole task"), plus the ladder's own candidates — building a nested list
+   via nested loops (bridging Levels 3–4), and the capstone representing
+   one hierarchy four ways (indented HTML, indented Python, nested
+   list/dict, linked `Node` class). **Open question, not yet decided:**
+   whether this is even `puzzles/` work at all, versus new *content* in the
+   existing practice app — the doc already says that app's retry-until-green
+   harness is "well-suited to produce correct code from a spec," which is
+   what a compositional exercise still fundamentally is.
+3. **Free thinking — genuinely open-ended, multiple valid solutions.**
+   Named all the way back in Round 2, pattern #4: "same problem, competing
+   paradigms — loop vs. comprehension, float vs. flex vs. grid — argue
+   tradeoffs, not just produce output." Flagged as **not machine-checkable**
+   from the very first harness-design discussion, alongside
+   reflection/capstone puzzles. The doc even named the interaction mode
+   for this — **open reflection, no auto-check** — but it has never been
+   designed or built, in either app. The `harness_type` registry already
+   anticipates this (Session 4: "not every type uses the full
+   checkable-harness shell... skip that shell rather than force-fit into
+   it"), so no re-architecture is needed to add it — it's a from-scratch UX
+   design problem, not an engineering one.
+
+### Direction, provisionally
+
+**Build toward all three, not just the third.** Tier 1 isn't wasted effort
+to abandon — it's foundational practice students still need, and it stays
+cheap to keep producing. The open question is sequencing: whether to treat
+Tier 3's open-reflection mode as its own deliberate design effort soon
+(it's the one piece with zero prior art anywhere in either app), while
+Tier 1 keeps accumulating in the background and Tier 2 gets routed to the
+practice app instead of invented as new `puzzles/` infrastructure. Not
+decided — picking this back up later.
