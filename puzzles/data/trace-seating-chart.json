@@ -1,0 +1,14 @@
+{
+  "id": "trace-seating-chart",
+  "harness_type": "trace",
+  "title": "Trace the Seating Chart",
+  "scenario": "A classroom has some rows of desks, with the same number of seats in each row. Trace the code below, one line at a time, to determine exactly what it prints for every desk.",
+  "related_units": [],
+  "payload": {
+    "levels": [
+      { "var": "row", "label": "ROWS", "min": 2, "max": 4 },
+      { "var": "seat", "label": "SEATS_PER_ROW", "min": 2, "max": 3 }
+    ],
+    "output_format": "{row} {seat}"
+  }
+}

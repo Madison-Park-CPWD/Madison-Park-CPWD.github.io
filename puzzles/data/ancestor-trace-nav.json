@@ -1,0 +1,95 @@
+{
+  "id": "ancestor-trace-nav",
+  "harness_type": "ancestor-trace",
+  "title": "Trace the Ancestors",
+  "scenario": "Below is part of a page's HTML. One element is highlighted. Starting from its immediate parent and working outward, name every element that contains it.",
+  "related_units": [],
+  "payload": {
+    "instances": [
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            {
+              "tag": "header",
+              "children": [
+                {
+                  "tag": "nav",
+                  "children": [
+                    {
+                      "tag": "ul",
+                      "children": [
+                        {
+                          "tag": "li",
+                          "children": [
+                            { "tag": "a", "children": [], "target": true }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            {
+              "tag": "div",
+              "children": [
+                {
+                  "tag": "main",
+                  "children": [
+                    {
+                      "tag": "section",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "children": [
+                            { "tag": "p", "children": [], "target": true }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            {
+              "tag": "main",
+              "children": [
+                {
+                  "tag": "article",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "children": [
+                            { "tag": "span", "children": [], "target": true }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+/* ---------------------------------------------------------------
+   Shared base — design tokens + generic resets used by every app
+   on this site. Palette: deep navy workspace, amber accent (nod to
+   Python's own blue/yellow without copying it), console green/red
+   for results.
+
+   Per-app stylesheets should link this file first, then layer their
+   own layout/component rules on top — this file intentionally stops
+   at tokens + resets and never sets layout (flex/grid direction,
+   positioning), since that differs per page.
+------------------------------------------------------------------*/
+:root {
+  --bg-app: #141a24;
+  --bg-panel: #1b2330;
+  --bg-panel-raised: #212b3a;
+  --bg-console: #0f141c;
+  --border: #2c3849;
+  --text-primary: #e7ecf3;
+  --text-secondary: #93a2b8;
+  --text-faint: #5c6b81;
+  --accent: #f2b134;
+  --accent-dim: #a8802a;
+  --ok: #4fbf8b;
+  --err: #e5645a;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+/* Keyboard focus visibility */
+button:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+a:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
