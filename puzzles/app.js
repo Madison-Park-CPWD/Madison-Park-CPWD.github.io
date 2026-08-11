@@ -37,6 +37,7 @@ function randInt(min, max) {
 const HARNESS_REGISTRY = {
   trace: renderTraceHarness,
   "ancestor-trace": renderAncestorTraceHarness,
+  "descend-trace": renderDescendTraceHarness,
 };
 
 function puzzleForHash(puzzles) {
@@ -472,18 +473,45 @@ function ancestorChain(tree) {
   return search(tree, []);
 }
 
+function tagOpenText(node) {
+  return node.class ? `<${node.tag} class="${node.class}">` : `<${node.tag}>`;
+}
+
 // Flattens a tree into printable open/close-tag lines with indentation —
 // same visual technique as the trace harness's code panel, applied to a
-// tree instead of a flat levels array.
-function buildTreeLines(node, depth, lines) {
+// tree instead of a flat levels array. `class` is optional on any node and
+// only rendered when present — used by descend-trace to disambiguate
+// same-tag siblings at a fork; ancestor-trace's trees never set it, so
+// output for those is unchanged. `isRoot` is only ever passed true by the
+// top-level caller (descend-trace, marking its "Start at" line) — every
+// recursive call omits it, so only that single opening line is ever
+// flagged, never the matching closing tag or any descendant.
+function buildTreeLines(node, depth, lines, isRoot) {
   const hasChildren = (node.children || []).length > 0;
   if (!hasChildren) {
-    lines.push({ text: `<${node.tag}></${node.tag}>`, depth, isTarget: !!node.target });
+    lines.push({ text: `${tagOpenText(node)}</${node.tag}>`, depth, isTarget: !!node.target, isRoot: !!isRoot });
     return;
   }
-  lines.push({ text: `<${node.tag}>`, depth, isTarget: !!node.target });
+  lines.push({ text: tagOpenText(node), depth, isTarget: !!node.target, isRoot: !!isRoot });
   node.children.forEach((child) => buildTreeLines(child, depth + 1, lines));
   lines.push({ text: `</${node.tag}>`, depth, isTarget: false });
+}
+
+// DFS returning the list of node objects from root to the tree's single
+// target: true node, inclusive — descend-trace needs the actual node
+// objects (not just tags) at each depth, since each row's options are that
+// depth's real `children` array.
+function pathToTarget(tree) {
+  function search(node, path) {
+    const nextPath = path.concat([node]);
+    if (node.target) return nextPath;
+    for (const child of node.children || []) {
+      const result = search(child, nextPath);
+      if (result) return result;
+    }
+    return null;
+  }
+  return search(tree, []);
 }
 
 function renderAncestorTraceHarness(root, puzzle) {
@@ -742,6 +770,302 @@ function renderAncestorTraceHarness(root, puzzle) {
       tree,
       chain,
       entries: chain.map(() => ({ value: "" })),
+      unlocked: 1,
+      confidence: null,
+      checked: false,
+      results: null,
+    };
+    fullRender();
+  }
+
+  newInstance();
+}
+
+function optionLabel(node) {
+  return node.class ? `${node.tag}.${node.class}` : node.tag;
+}
+
+// --- descend-trace harness ---
+//
+// Root-to-target direction, but deliberately kept free-text like the other
+// two harnesses, not click-to-choose. An earlier version rendered each
+// fork's children as buttons — but with only one correct path, clicking
+// among a few visible options is recognition, not recall: multiple-choice
+// scaffolds the answer in a way typing it doesn't. Same fix the `class`
+// field already existed for (disambiguating same-tag siblings) works just
+// as well as a typed answer format ("div.description") as it does as a
+// button label, so the content didn't need to change, only the mechanic.
+// Every row's expected answer comes from the *true* path, same reasoning
+// as before (independent per-row correctness, nothing cascades from a
+// student's own wrong answers) — that part didn't change either.
+function renderDescendTraceHarness(root, puzzle) {
+  const instances = puzzle.payload.instances;
+
+  let state = null;
+  let rowElements = [];
+  let placeholderEl = null;
+  let currentInstanceIndex = -1;
+
+  function pickInstanceIndex() {
+    if (instances.length === 1) return 0;
+    let idx;
+    do { idx = Math.floor(Math.random() * instances.length); } while (idx === currentInstanceIndex);
+    return idx;
+  }
+
+  root.innerHTML = `
+    <div class="puzzle-card">
+      <p class="puzzle-eyebrow">Trace it &middot; path finding</p>
+      <h2 class="puzzle-title"></h2>
+      <p class="puzzle-scenario"></p>
+      <div class="code-panel"></div>
+      <p class="code-bounds path-start"></p>
+      <div class="trace-table"></div>
+      <div class="confidence-gate" hidden>
+        <p class="confidence-prompt">How sure are you this path is right?</p>
+        <div class="confidence-options"></div>
+      </div>
+      <div class="check-action" hidden>
+        <button type="button" class="btn btn-primary check-btn">Check the Path</button>
+      </div>
+      <div class="result-summary" hidden>
+        <p class="result-text"></p>
+        <button type="button" class="btn btn-secondary recheck-btn" hidden>Recheck</button>
+        <button type="button" class="btn btn-secondary new-btn">New Path</button>
+      </div>
+    </div>
+  `;
+
+  const titleEl = root.querySelector(".puzzle-title");
+  const scenarioEl = root.querySelector(".puzzle-scenario");
+  const codePanelEl = root.querySelector(".code-panel");
+  const pathStartEl = root.querySelector(".path-start");
+  const tableEl = root.querySelector(".trace-table");
+  const confidenceGateEl = root.querySelector(".confidence-gate");
+  const confidenceOptionsEl = root.querySelector(".confidence-options");
+  const checkActionEl = root.querySelector(".check-action");
+  const checkBtn = root.querySelector(".check-btn");
+  const resultSummaryEl = root.querySelector(".result-summary");
+  const resultTextEl = root.querySelector(".result-text");
+  const recheckBtn = root.querySelector(".recheck-btn");
+  const newBtn = root.querySelector(".new-btn");
+
+  titleEl.textContent = puzzle.title;
+  scenarioEl.textContent = puzzle.scenario;
+
+  checkBtn.addEventListener("click", handleCheck);
+  recheckBtn.addEventListener("click", handleRecheck);
+  newBtn.addEventListener("click", newInstance);
+
+  // state.steps[i] is the node the student is trying to name at row i —
+  // path[0] is the root, so steps = path.slice(1) (root's child through
+  // the target itself).
+  function rowCount() { return state.steps.length; }
+  function isRowFilled(idx) { return state.entries[idx].value.trim() !== ""; }
+  function allFilled() { return state.entries.every((_, idx) => isRowFilled(idx)); }
+  function readyForConfidence() { return state.unlocked === rowCount() && allFilled() && !state.checked; }
+
+  function maybeUnlockNext() {
+    if (state.checked) return;
+    const activeIdx = state.unlocked - 1;
+    if (activeIdx >= rowCount() - 1) return;
+    if (isRowFilled(activeIdx)) {
+      state.unlocked = Math.min(state.unlocked + 1, rowCount());
+    }
+  }
+
+  // Tag names (and the class used only where a sibling needs
+  // disambiguating), not exact-syntax Python — case doesn't matter here.
+  function evaluateRow(idx) {
+    return state.entries[idx].value.trim().toLowerCase() === optionLabel(state.steps[idx]).toLowerCase();
+  }
+
+  function createRowElement(idx) {
+    const entry = state.entries[idx];
+    const wrap = document.createElement("div");
+    wrap.className = "trace-row-wrap";
+
+    const rowEl = document.createElement("div");
+    rowEl.className = "trace-row";
+
+    const field = document.createElement("label");
+    field.className = "trace-field trace-field-path";
+    const labelSpan = document.createElement("span");
+    labelSpan.className = "trace-field-label";
+    labelSpan.textContent = "next step down";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = entry.value;
+    input.placeholder = "tag or tag.class";
+    input.addEventListener("input", (e) => {
+      entry.value = e.target.value;
+      handleFieldChange();
+    });
+    field.append(labelSpan, input);
+    rowEl.appendChild(field);
+
+    const statusIcon = document.createElement("span");
+    statusIcon.className = "trace-status";
+    rowEl.appendChild(statusIcon);
+
+    wrap.appendChild(rowEl);
+
+    const hintEl = document.createElement("p");
+    hintEl.className = "trace-hint";
+    hintEl.hidden = true;
+    wrap.appendChild(hintEl);
+
+    tableEl.insertBefore(wrap, placeholderEl);
+    return { idx, rowEl, input, statusIcon, hintEl };
+  }
+
+  function ensurePlaceholder() {
+    if (placeholderEl) return;
+    placeholderEl = document.createElement("div");
+    placeholderEl.className = "trace-row trace-row-locked";
+    placeholderEl.textContent = "Name the step above first";
+    tableEl.appendChild(placeholderEl);
+  }
+
+  function removePlaceholder() {
+    if (!placeholderEl) return;
+    placeholderEl.remove();
+    placeholderEl = null;
+  }
+
+  function syncTableStructure() {
+    while (rowElements.length < state.unlocked) {
+      removePlaceholder();
+      rowElements.push(createRowElement(rowElements.length));
+    }
+    if (state.unlocked < rowCount()) ensurePlaceholder();
+    else removePlaceholder();
+  }
+
+  function updateRowVisualState() {
+    rowElements.forEach(({ idx, rowEl, input, statusIcon, hintEl }) => {
+      const result = state.results ? state.results[idx] : null;
+      const isLockedCorrect = !!(state.checked && result && result.correct);
+
+      rowEl.classList.toggle("trace-row-correct", isLockedCorrect);
+      rowEl.classList.toggle("trace-row-wrong", !!(state.checked && result && !result.correct));
+      input.disabled = isLockedCorrect;
+
+      if (state.checked && result) {
+        statusIcon.textContent = result.correct ? "✓" : "✗";
+        statusIcon.className = `trace-status ${result.correct ? "trace-status-ok" : "trace-status-err"}`;
+      } else {
+        statusIcon.textContent = "";
+        statusIcon.className = "trace-status";
+      }
+
+      if (state.checked && result && !result.correct) {
+        hintEl.textContent = `should be: ${optionLabel(state.steps[idx])}`;
+        hintEl.hidden = false;
+      } else {
+        hintEl.hidden = true;
+      }
+    });
+  }
+
+  function renderConfidenceOptions() {
+    confidenceOptionsEl.innerHTML = "";
+    CONFIDENCE_OPTIONS.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `confidence-btn${state.confidence === opt.value ? " confidence-btn-active" : ""}`;
+      btn.textContent = opt.label;
+      btn.addEventListener("click", () => {
+        state.confidence = opt.value;
+        updateChrome();
+      });
+      confidenceOptionsEl.appendChild(btn);
+    });
+  }
+
+  function updateChrome() {
+    const ready = readyForConfidence();
+    confidenceGateEl.hidden = !ready;
+    checkActionEl.hidden = !ready;
+    if (ready) {
+      renderConfidenceOptions();
+      checkBtn.disabled = !state.confidence;
+    }
+
+    resultSummaryEl.hidden = !state.checked;
+    if (state.checked) {
+      const correctCount = state.results.filter((r) => r.correct).length;
+      const allCorrect = correctCount === state.results.length;
+      resultTextEl.textContent = allCorrect
+        ? "Path traced correctly."
+        : `${correctCount} of ${state.results.length} correct so far. Fix the highlighted steps above, then recheck.`;
+      recheckBtn.hidden = allCorrect;
+    }
+  }
+
+  function handleFieldChange() {
+    maybeUnlockNext();
+    syncTableStructure();
+    updateChrome();
+  }
+
+  function handleCheck() {
+    state.results = state.steps.map((_, idx) => ({ correct: evaluateRow(idx) }));
+    state.checked = true;
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  function handleRecheck() {
+    state.results = state.results.map((r, idx) => (r.correct ? r : { correct: evaluateRow(idx) }));
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  // No depth-based indentation — same reasoning as ancestor-trace: with
+  // the tree flush-left, finding the branch that leads to the target has
+  // to come from reading the tag/class structure itself, not from
+  // eyeballing how far a line is indented.
+  function renderTreePanel(tree) {
+    codePanelEl.innerHTML = "";
+    const lines = [];
+    buildTreeLines(tree, 0, lines, true);
+    lines.forEach(({ text, isTarget, isRoot }) => {
+      const line = document.createElement("div");
+      line.className = `code-line${(isTarget || isRoot) ? " code-line-target" : ""}`;
+      line.textContent = text;
+      codePanelEl.appendChild(line);
+    });
+  }
+
+  function fullRender() {
+    renderTreePanel(state.tree);
+    // The root itself is never one of the rows below (naming it would be
+    // copying the first visible line, not a real decision) — without this,
+    // "starting from the top" reads as ambiguous about whether row 1 means
+    // the root or the root's child.
+    pathStartEl.textContent = `Start at: ${optionLabel(state.tree)}`;
+    tableEl.innerHTML = "";
+    rowElements = [];
+    placeholderEl = null;
+    syncTableStructure();
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  function newInstance() {
+    currentInstanceIndex = pickInstanceIndex();
+    const tree = instances[currentInstanceIndex].tree;
+    const path = pathToTarget(tree);
+    if (!path || path.length < 2) {
+      console.error(`[puzzles] "${puzzle.id}" instance ${currentInstanceIndex} has no reachable target — check the tree JSON.`);
+      return;
+    }
+    const steps = path.slice(1);
+    state = {
+      tree,
+      steps,
+      entries: steps.map(() => ({ value: "" })),
       unlocked: 1,
       confidence: null,
       checked: false,

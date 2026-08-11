@@ -169,6 +169,11 @@
   width: 5rem;
 }
 
+.trace-field-path input {
+  width: 9rem;
+  text-align: left;
+}
+
 .trace-field input:disabled {
   opacity: 0.75;
 }

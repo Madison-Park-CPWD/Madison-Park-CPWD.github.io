@@ -1,0 +1,93 @@
+{
+  "id": "descend-trace-nav",
+  "harness_type": "descend-trace",
+  "title": "Find the Path",
+  "scenario": "Below is a page's full HTML. One element is your destination, highlighted. The starting point is given below the code — from there, name each next child, one level at a time, until you reach the destination.",
+  "related_units": [],
+  "payload": {
+    "instances": [
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            {
+              "tag": "header",
+              "children": [
+                { "tag": "nav", "children": [] }
+              ]
+            },
+            {
+              "tag": "main",
+              "children": [
+                {
+                  "tag": "section",
+                  "class": "sidebar",
+                  "children": [
+                    { "tag": "ul", "children": [] }
+                  ]
+                },
+                {
+                  "tag": "section",
+                  "class": "content",
+                  "children": [
+                    {
+                      "tag": "article",
+                      "children": [
+                        { "tag": "p", "children": [], "target": true }
+                      ]
+                    },
+                    { "tag": "aside", "children": [] }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            {
+              "tag": "header",
+              "children": [
+                { "tag": "nav", "children": [] }
+              ]
+            },
+            {
+              "tag": "main",
+              "children": [
+                {
+                  "tag": "section",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "article",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "class": "description",
+                      "children": [
+                        { "tag": "p", "children": [], "target": true }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "class": "reviews",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
