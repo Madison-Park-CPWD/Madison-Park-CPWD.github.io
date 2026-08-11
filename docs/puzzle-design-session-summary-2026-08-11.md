@@ -578,3 +578,71 @@ re-checking against this rule specifically whenever a new harness type is
 built, since each new content shape (numeric ranges, tree depth, whatever
 comes next) tends to introduce its own not-obviously-a-hint scaffolding
 before it's caught.
+
+## Session 6 — `descend-trace`: root-to-target, and a click-vs-type correction
+
+Not one of the ladder's planned puzzles — this one came from a direct
+request to mirror `ancestor-trace` in the opposite direction: given a
+destination, trace *down* from the root instead of up from a target.
+
+### Why it's not just `ancestor-trace` reversed
+
+Going up, a node has exactly one parent, so the path is unique and there's
+nothing to disambiguate. Going down, a node can have several children, so
+the exercise is genuine branch disambiguation — "which of these leads to
+the target?" — not the same chain read backwards. That needed two things
+`ancestor-trace`'s content didn't: trees with real decoy siblings at forks,
+and a `class` field on tree nodes (rendered as `<tag class="...">`, used
+only where two siblings share a tag and need disambiguating, e.g.
+`section.sidebar` vs `section.content`).
+
+One mechanic decision carried over unchanged from `ancestor-trace`'s
+design: each row's correct answer is always drawn from the *true* path,
+never from wherever the student's own (possibly wrong) answer would
+actually lead. Letting a wrong answer cascade could dead-end on a childless
+node with nothing further to ask about — which would silently tell the
+student they were wrong before they ever hit Check, a worse leak than
+either of the two from Session 5.
+
+### First build, and why it didn't work
+
+The first version showed each fork's children as clickable buttons —
+multiple choice. Live-tested and rejected: with only one correct path,
+clicking among a handful of visible options is recognition, not recall.
+**"The reason I don't like this one is it is overly scaffolded: they just
+have to pick the right one (multiple choice versus open response)."**
+Reworked to free text, matching `trace` and `ancestor-trace`'s mechanic
+exactly — type the tag (or `tag.class` when disambiguation is needed) for
+each step down. The `class` field didn't need to change; it works exactly
+as well as a typed answer format as it did as a button label. The
+now-unused button CSS was deleted rather than left dead.
+
+### Two more corrections from live testing
+
+- **Indentation, again.** The tree display was originally indented by
+  nesting depth, same as real HTML — same leak as Session 5's, just
+  rediscovered in a new harness: indentation is a visual proxy for the
+  structure the puzzle is supposed to make the student work out. Removed,
+  flush-left now, confirming the "don't hint via indentation" rule isn't
+  specific to `ancestor-trace` — it applies to any harness that displays a
+  tree.
+- **Ambiguous starting point.** *"I failed on first try because I started
+  at body. The directions are ambiguous."* The root is deliberately never
+  one of the answer rows — typing it would just be copying the tree's own
+  first visible line, not a decision — but nothing told the student that
+  was the rule. Fixed at the UI level, not just in the scenario copy: a
+  "Start at: `<tag>`" caption computed live from the actual tree data (so
+  it's correct for any future instance regardless of its root tag, not a
+  hardcoded string), plus the root's own line in the tree display gets the
+  same highlight color as the destination.
+
+### Puzzle navigation: explicitly deferred
+
+Discussed whether a student should be able to reach other puzzles from the
+one they're on. Considered a header dropdown (matching the practice app's
+`.unit-select`) and a fuller index page (matching `problem-sets/index.html`'s
+track picker) — **decided to defer both.** Google Classroom remains the
+primary entry point per Session 4, and with only three puzzles shipped it's
+too early to know what shape navigation should take once there are many
+more. Revisit once puzzle volume actually makes the current hash-only
+addressing (`#<puzzle-id>`) feel limiting.
