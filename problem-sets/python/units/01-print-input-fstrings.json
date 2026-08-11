@@ -205,7 +205,9 @@
         "with the <code>+</code> operator.</p>",
         "<pre>&gt; python program.py",
         "Ava",
-        "Hello, Ava!</pre>"
+        "Hello, Ava!</pre>",
+        "<p><strong>Hint:</strong> you can join strings with <code>+</code>, e.g.",
+        "<code>\"Hello, \" + name + \"!\"</code>.</p>"
       ],
       "starter": [
         "name = input()",

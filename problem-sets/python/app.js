@@ -24,18 +24,25 @@ const reflectionSaveBtn = document.getElementById("reflection-save-btn");
 const reflectionSkipBtn = document.getElementById("reflection-skip-btn");
 
 // Fetches units/manifest.json (an ordered list of unit ids), then fetches
-// units/<id>.json for each one, in that order. Reordering lessons only ever
-// means editing manifest.json — no JS file needs to change.
+// each unit file in that order. Filenames carry a two-digit prefix matching
+// position in the manifest (01-, 02-, ...) purely so the units/ folder is
+// human-readable — that prefix is derived here from array position, never
+// stored anywhere, and never touches the unit's actual id. Reordering
+// lessons means editing manifest.json *and* renaming files to match their
+// new position — see the README for why id itself never changes.
 async function loadUnits() {
   const manifestRes = await fetch("units/manifest.json");
   if (!manifestRes.ok) throw new Error(`Couldn't load units/manifest.json (${manifestRes.status})`);
   const order = await manifestRes.json();
 
   const units = [];
-  for (const id of order) {
-    const res = await fetch(`units/${id}.json`);
+  for (let i = 0; i < order.length; i++) {
+    const id = order[i];
+    const prefix = String(i + 1).padStart(2, "0");
+    const filename = `${prefix}-${id}.json`;
+    const res = await fetch(`units/${filename}`);
     if (!res.ok) {
-      console.error(`Couldn't load units/${id}.json (${res.status}) — skipping it.`);
+      console.error(`Couldn't load units/${filename} (${res.status}) — skipping it.`);
       continue;
     }
     units.push(await res.json());

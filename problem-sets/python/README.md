@@ -14,10 +14,11 @@ python/
 ├── style.css            ← visual design (dark IDE-style theme)
 ├── app.js                ← loads Pyodide, fetches unit data, runs tests
 └── units/
-    ├── manifest.json      ← ordered list of unit ids — controls lesson order
-    ├── int-math.json
-    ├── print-input-fstrings.json
-    └── ...one file per unit, as many as you like
+    ├── manifest.json          ← ordered list of unit ids — controls lesson order
+    ├── 01-print-input-fstrings.json
+    ├── 02-variable-types.json
+    ├── 03-introspection.json
+    └── ...one numbered file per unit, as many as you like
 ```
 
 Each unit is its own small JSON file rather than one giant JS file — built
@@ -26,16 +27,39 @@ short, easy-to-review file, and editing one lesson can never accidentally
 break another. `app.js` fetches `units/manifest.json` first, then fetches
 each listed unit file in that order, at page load.
 
+**Filenames carry a two-digit number prefix matching their position in
+`manifest.json`** (`01-`, `02-`, ...), purely so the `units/` folder is
+readable at a glance in a file browser or `ls` — with enough units that
+alphabetical-by-id ordering no longer resembles lesson order, scanning the
+folder was taking real time to make sense of. This prefix is a filename
+convention only; nothing inside the JSON changes because of it (see
+"Reordering lessons" below for what that means in practice).
+
 ## Reordering lessons
-Open `units/manifest.json` and reorder the id strings — that's it, nothing
-else needs to change:
-```json
-[
-  "print-input-fstrings",
-  "int-math",
-  "float-math"
-]
-```
+Open `units/manifest.json` and reorder the id strings — same as before.
+**Because filenames now encode position, reordering also means renaming
+files** to match their new numbers: if `if-else` moves from position 4 to
+position 2, its file goes from `04-if-else.json` to `02-if-else.json`, and
+every file between the old and new position shifts by one to stay
+sequential. This is the one tradeoff of the numbered-filename convention —
+it turns a pure-JSON edit into a JSON edit plus a batch rename.
+
+**The `id` value inside each file, and its entry in `manifest.json`,
+never change when a unit is reordered — only the filename does.** This
+isn't just a style choice:
+- `id` is the key every piece of student progress is saved under in the
+  browser (`solved-<id>`, `reflection-<id>`, per-exercise drafts — see
+  `app.js`). If `id` changed on reorder, a returning student's saved work
+  for that unit would silently orphan, since their old browser storage
+  would no longer match anything.
+- `id` is also the value used in `#<unit-id>` deep links (see "Linking
+  directly to a unit" below), which matters even more now that lesson
+  links get shared directly in Google Classroom — a link posted once needs
+  to keep working no matter how many times the unit gets reordered later.
+
+So a reorder is: edit `manifest.json`, then rename files to match their
+new position — `id` fields, `source_unit` fields, and any shared links are
+untouched throughout.
 
 ## Linking directly to a unit
 Add `#<unit-id>` to the URL to open the site straight into that lesson, e.g.:
@@ -49,7 +73,11 @@ removed), the site just falls back to the first lesson in the list rather than
 showing an error.
 
 ## Adding a new unit
-1. Create a new file `units/<your-unit-id>.json` shaped like this:
+1. Create a new file `units/<NN>-<your-unit-id>.json`, where `<NN>` is a
+   two-digit number matching wherever it'll land in `manifest.json` (see
+   "Reordering lessons" above — adding at the very end just needs the next
+   number; inserting in the middle means renaming everything after it up
+   by one). Shape the file like this:
    ```json
    {
      "id": "your-unit-id",
@@ -76,6 +104,8 @@ showing an error.
      ]
    }
    ```
+   Note that `id` inside the file is just `"your-unit-id"` — no number
+   prefix. The number lives in the filename only.
 2. Add `"your-unit-id"` to `units/manifest.json` wherever you want it to
    appear in the lesson order.
 
