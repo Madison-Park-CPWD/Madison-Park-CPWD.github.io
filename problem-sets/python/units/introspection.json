@@ -1,0 +1,290 @@
+{
+  "id": "introspection",
+  "title": "Introspection: help(), id(), dir()",
+  "reflection_prompt": "Of help(), id(), and dir(), which do you think you'll actually reach for while coding on your own? Why?",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "introspection",
+      "title": "Asking Python for Help",
+      "sidebar_tag": "help()",
+      "description": [
+        "<p>Call <code>help(len)</code>, with no other output.</p>",
+        "<pre>&gt; python program.py",
+        "Help on built-in function len in module builtins:",
+        "",
+        "len(obj, /)",
+        "    Return the number of items in a container.</pre>",
+        "<p><code>help()</code> prints a function's built-in documentation",
+        "&mdash; its name, what arguments it takes, and what it does &mdash;",
+        "without you needing to look anything up online. This is usually the",
+        "fastest way to answer \"wait, what does this function actually do?\"",
+        "while you're coding.</p>",
+        "<p>Since the exact wording Python prints can change slightly between",
+        "versions, this exercise (and the rest of this unit's",
+        "<code>help()</code> exercises) only checks that certain key pieces of",
+        "text show up somewhere in the output &mdash; not that it matches",
+        "character-for-character.</p>"
+      ],
+      "starter": [
+        "# TODO: call help(len)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected_contains": ["len", "container"]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "introspection",
+      "title": "help() on a Method",
+      "sidebar_tag": "help()",
+      "description": [
+        "<p>Call <code>help(str.upper)</code>.</p>",
+        "<pre>&gt; python program.py",
+        "Help on method_descriptor:",
+        "",
+        "upper(self, /)",
+        "    Return a copy of the string converted to uppercase.</pre>",
+        "<p><code>help()</code> isn't just for standalone functions like",
+        "<code>len()</code> &mdash; it works on methods too, like the",
+        "<code>.upper()</code> string method you used back in the strings",
+        "unit. Notice the syntax: <code>str.upper</code>, not",
+        "<code>\"hello\".upper</code> &mdash; you're asking about the method",
+        "itself, not calling it on a particular string.</p>"
+      ],
+      "starter": [
+        "# TODO: call help(str.upper)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected_contains": ["upper", "uppercase"]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "introspection",
+      "title": "Using help() to Discover an Argument",
+      "sidebar_tag": "help() + discover",
+      "description": [
+        "<p>The built-in <code>sorted()</code> function has a keyword argument",
+        "that reverses the sort order &mdash; but this unit isn't going to",
+        "tell you its name. Call <code>help(sorted)</code> first to find it,",
+        "then use <code>sorted()</code> with that argument to print the list",
+        "<code>[3, 1, 4, 1, 5]</code> sorted from",
+        "<strong>largest to smallest</strong>.</p>",
+        "<pre>&gt; python program.py",
+        "[5, 4, 3, 1, 1]</pre>",
+        "<p>This is the real-world way <code>help()</code> gets used: not to",
+        "read documentation for its own sake, but to answer a specific",
+        "question &mdash; \"does this function have an option for what I'm",
+        "trying to do?\" &mdash; right when you need the answer.</p>"
+      ],
+      "starter": [
+        "# TODO: call help(sorted) to find the keyword argument that reverses",
+        "# the sort order, then use it to print [3, 1, 4, 1, 5] sorted",
+        "# from largest to smallest"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "[5, 4, 3, 1, 1]"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "introspection",
+      "title": "Listing What a String Can Do",
+      "sidebar_tag": "dir()",
+      "description": [
+        "<p>Read a string, then print whether <code>\"upper\"</code> appears in",
+        "<code>dir()</code> of that string.</p>",
+        "<pre>&gt; python program.py",
+        "hello",
+        "True</pre>",
+        "<p><code>dir(value)</code> returns a list of every attribute and",
+        "method a value has &mdash; for a string, that includes things like",
+        "<code>.upper()</code>, <code>.split()</code>, and <code>.strip()</code>,",
+        "all methods you've already used. Rather than printing the whole",
+        "(long) list, this checks for one specific name using",
+        "<code>in</code>, the same way you checked for a key in a",
+        "dictionary.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print whether \"upper\" is in dir(s)"
+      ],
+      "tests": [
+        {
+          "stdin": ["hello"],
+          "expected": "True"
+        },
+        {
+          "stdin": ["world"],
+          "expected": "True"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "introspection",
+      "title": "Checking What a Tuple Can't Do",
+      "sidebar_tag": "dir()",
+      "description": [
+        "<p>Print whether <code>\"sort\"</code> appears in <code>dir(())</code>",
+        "&mdash; that is, in the list of things an empty <strong>tuple</strong>",
+        "supports.</p>",
+        "<pre>&gt; python program.py",
+        "False</pre>",
+        "<p>Tuples don't have a <code>.sort()</code> method at all, since",
+        "sorting would mean changing the tuple in place &mdash; and tuples",
+        "are immutable. <code>dir()</code> is a quick way to check whether a",
+        "type supports something <em>before</em> you try it and get an",
+        "error, instead of guessing.</p>"
+      ],
+      "starter": [
+        "# TODO: print whether \"sort\" is in dir(())"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "False"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "introspection",
+      "title": "Same Object, Same id()",
+      "sidebar_tag": "id()",
+      "description": [
+        "<p>Create a list <code>a = [1, 2, 3]</code>, then set",
+        "<code>b = a</code> &mdash; not a new list, just another name for the",
+        "same one. Print whether <code>id(a)</code> equals <code>id(b)</code>.</p>",
+        "<pre>&gt; python program.py",
+        "True</pre>",
+        "<p>Every value in Python has an <code>id()</code> &mdash; a number",
+        "that uniquely identifies it in memory while your program runs. Since",
+        "<code>id()</code> is different every time a program runs, this",
+        "exercise (like the rest of this unit's <code>id()</code> exercises)",
+        "checks whether two ids are <strong>equal to each other</strong>,",
+        "rather than checking any specific id value.</p>",
+        "<p>Because <code>b</code> was assigned directly from <code>a</code>,",
+        "they refer to the exact same list in memory &mdash; so their ids",
+        "match.</p>"
+      ],
+      "starter": [
+        "a = [1, 2, 3]",
+        "b = a",
+        "",
+        "# TODO: print whether id(a) equals id(b)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "True"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "introspection",
+      "title": "Equal Value, Different id()",
+      "sidebar_tag": "id()",
+      "description": [
+        "<p>Create two <strong>separate</strong> lists that happen to contain",
+        "the same values: <code>a = [1, 2, 3]</code> and",
+        "<code>c = [1, 2, 3]</code>. Print whether <code>id(a)</code> equals",
+        "<code>id(c)</code>.</p>",
+        "<pre>&gt; python program.py",
+        "False</pre>",
+        "<p>Even though <code>a</code> and <code>c</code> look identical when",
+        "printed, and <code>a == c</code> would say <code>True</code>, they're",
+        "two separate list objects sitting in two separate places in memory",
+        "&mdash; so their ids are different. This is the difference between",
+        "two things being <strong>equal</strong> and two things being",
+        "<strong>the same object</strong>.</p>"
+      ],
+      "starter": [
+        "a = [1, 2, 3]",
+        "c = [1, 2, 3]",
+        "",
+        "# TODO: print whether id(a) equals id(c)"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "False"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "introspection",
+      "title": "Find the Method, Then Use It",
+      "sidebar_tag": "dir() + use",
+      "description": [
+        "<p>Read a string. Use <code>dir()</code> to confirm that strings have",
+        "a method for counting how many times a character or substring",
+        "appears (its name starts with <code>c</code>), then use that method",
+        "to print how many times the letter <code>\"l\"</code> appears in the",
+        "string.</p>",
+        "<pre>&gt; python program.py",
+        "hello world",
+        "3</pre>",
+        "<p>This is the combined skill this unit is really building:",
+        "when you're not sure a type has the method you need, check",
+        "<code>dir()</code> first, then look up how to use it with",
+        "<code>help()</code> if the name alone isn't enough &mdash; instead of",
+        "guessing, or assuming it doesn't exist.</p>"
+      ],
+      "starter": [
+        "s = input()",
+        "",
+        "# TODO: print how many times \"l\" appears in s"
+      ],
+      "tests": [
+        {
+          "stdin": ["hello world"],
+          "expected": "3"
+        },
+        {
+          "stdin": ["mississippi"],
+          "expected": "0"
+        },
+        {
+          "stdin": ["banana"],
+          "expected": "0"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "introspection",
+      "title": "Fix the Bug",
+      "sidebar_tag": "debug",
+      "description": [
+        "<p>This code is supposed to print <code>True</code> once, showing",
+        "that two variables pointing at the same list have the same",
+        "<code>id()</code>. Run it and see what actually happens.</p>"
+      ],
+      "starter": [
+        "a = [1, 2, 3]",
+        "b = a",
+        "print(id(a) = id(b))"
+      ],
+      "tests": [
+        {
+          "stdin": [],
+          "expected": "True"
+        }
+      ]
+    }
+  ]
+}
