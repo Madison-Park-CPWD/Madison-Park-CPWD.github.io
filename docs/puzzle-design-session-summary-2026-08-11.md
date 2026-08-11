@@ -536,3 +536,45 @@ Two distinct problems live under this one heading:
 - Set up the actual `styles/` folder (base stylesheet + per-app
   stylesheets) and the puzzle app's sibling-folder scaffold, per the
   Session 4 architecture decisions above.
+
+## Session 5 — puzzles app shipped; two more integrity leaks found
+
+The `styles/` extraction and the puzzle app scaffold from Session 4's next
+steps were built for real: `styles/base.css` now holds the shared tokens,
+and `puzzles/` shipped with two harness types through the `harness_type`
+registry — the nested-loop `trace` harness (generalized to any number of
+levels, not fixed at 2, resolving that open question from Session 4) and a
+new `ancestor-trace` harness for the Level 1 HTML ancestor-tracing quiz
+flagged above.
+
+### More instances of the puzzle-integrity leak
+
+While hardening `ancestor-trace`, the same category of bug from Session 3's
+"two puzzle-integrity leaks" turned up again, twice, in new forms:
+
+Each unlockable row was originally labeled with its own position — "parent"
+for the first row, then "2 levels up," "3 levels up," and so on. That label
+was itself a hint: reading down the list of labels told a student exactly
+how many ancestors the chain contained before they had traced a single one
+of them — the answer to "how deep is this nesting?" handed over by the row
+labels, the same shape of leak as Session 3's computed total and
+placeholder-per-remaining-row, just for a different concept (chain depth
+instead of loop row count). **Fix:** every row's label was flattened to the
+same text, "next level up," regardless of position, so the label carries no
+information about how many rows remain.
+
+A second, related leak was fixed at the same time: the HTML tree display was
+originally indented by nesting depth, the same way real HTML is normally
+formatted. But indentation depth *is* a visual proxy for nesting depth — the
+exact thing the puzzle is supposed to make the student work out from the tag
+structure itself, not read off the whitespace. **Fix:** the tree now renders
+flush-left, no indentation, for every line.
+
+Both confirm the general rule from Session 3 holds beyond the puzzle it was
+first written for: **any UI chrome that reveals the answer to the concept
+being tested — not just the specific trace values — is a leak, even if it
+feels like a harmless convenience label or formatting choice.** Worth
+re-checking against this rule specifically whenever a new harness type is
+built, since each new content shape (numeric ranges, tree depth, whatever
+comes next) tends to introduce its own not-obviously-a-hint scaffolding
+before it's caught.
