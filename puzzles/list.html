@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Puzzles</title>
+<title>Puzzle List</title>
 <link rel="stylesheet" href="../styles/base.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,13 +11,19 @@
 
   <header class="site-header">
     <span class="prompt">&gt;&gt;&gt;</span>
-    <h1>Puzzles</h1>
+    <h1>Puzzle List</h1>
   </header>
 
   <main class="puzzle-main">
-    <div id="puzzle-root">Loading…</div>
+    <div class="puzzle-list-wrap">
+      <p class="puzzle-list-hint">
+        Reference page, not linked from the student app. Right-click a
+        puzzle's title and copy the link to post it in Google Classroom.
+      </p>
+      <div id="puzzle-list-root">Loading…</div>
+    </div>
   </main>
 
-  <script src="js/app.js"></script>
+  <script src="js/list.js"></script>
 </body>
 </html>
