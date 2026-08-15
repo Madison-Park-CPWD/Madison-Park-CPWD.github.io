@@ -31,3 +31,8 @@ documentation — that's what `problem-sets/python/README.md` is for.
    `problem-sets/python/app.js`, per the style convention above — this app
    predates that decision, so it still has ternaries the puzzles app
    (`puzzles/app.js`) no longer does.
+3. **Write a second functions unit, and add a basic classes unit if there
+   isn't one.** Checked `units/manifest.json`: a `functions` unit already
+   exists (19 units total), so this is a follow-up set, not a first one —
+   but there's no classes/OOP unit anywhere yet, confirming the "if we
+   don't have it" suspicion.
