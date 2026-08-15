@@ -38,6 +38,8 @@ const HARNESS_REGISTRY = {
   trace: renderTraceHarness,
   "ancestor-trace": renderAncestorTraceHarness,
   "descend-trace": renderDescendTraceHarness,
+  "depth-quiz": renderDepthQuizHarness,
+  "selector-match": renderSelectorMatchHarness,
 };
 
 function puzzleForHash(puzzles) {
@@ -295,13 +297,8 @@ function renderTraceHarness(root, puzzle) {
 
     wrap.appendChild(rowEl);
 
-    const hintEl = document.createElement("p");
-    hintEl.className = "trace-hint";
-    hintEl.hidden = true;
-    wrap.appendChild(hintEl);
-
     tableEl.insertBefore(wrap, placeholderEl);
-    return { idx, rowEl, inputs, outputInput, statusIcon, hintEl };
+    return { idx, rowEl, inputs, outputInput, statusIcon };
   }
 
   function ensurePlaceholder() {
@@ -330,9 +327,14 @@ function renderTraceHarness(root, puzzle) {
     else removePlaceholder();
   }
 
+  // Wrong rows get marked (red row, ✗) but never told the correct
+  // answer — a hint that hands over the exact expected value removes any
+  // reason to keep trying, per the same "any UI chrome that reveals the
+  // answer is a leak" principle behind the Session 5/6 hint fixes.
   function updateRowVisualState() {
-    rowElements.forEach(({ idx, rowEl, inputs, outputInput, statusIcon, hintEl }) => {
-      const result = state.results ? state.results[idx] : null;
+    rowElements.forEach(({ idx, rowEl, inputs, outputInput, statusIcon }) => {
+      let result = null;
+      if (state.results) result = state.results[idx];
       const isLockedCorrect = !!(state.checked && result && result.correct);
 
       rowEl.classList.toggle("trace-row-correct", isLockedCorrect);
@@ -341,20 +343,15 @@ function renderTraceHarness(root, puzzle) {
       levels.forEach((l) => { inputs[l.var].disabled = isLockedCorrect; });
       outputInput.disabled = isLockedCorrect;
 
-      if (state.checked && result) {
-        statusIcon.textContent = result.correct ? "✓" : "✗";
-        statusIcon.className = `trace-status ${result.correct ? "trace-status-ok" : "trace-status-err"}`;
+      if (state.checked && result && result.correct) {
+        statusIcon.textContent = "✓";
+        statusIcon.className = "trace-status trace-status-ok";
+      } else if (state.checked && result) {
+        statusIcon.textContent = "✗";
+        statusIcon.className = "trace-status trace-status-err";
       } else {
         statusIcon.textContent = "";
         statusIcon.className = "trace-status";
-      }
-
-      if (state.checked && result && !result.correct) {
-        const parts = levels.map((l, i) => `${l.var} ${result.expected.values[i]}`).join(", ");
-        hintEl.textContent = `should be: ${parts} → "${result.expected.output}"`;
-        hintEl.hidden = false;
-      } else {
-        hintEl.hidden = true;
       }
     });
   }
@@ -364,7 +361,8 @@ function renderTraceHarness(root, puzzle) {
     CONFIDENCE_OPTIONS.forEach((opt) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = `confidence-btn${state.confidence === opt.value ? " confidence-btn-active" : ""}`;
+      btn.className = "confidence-btn";
+      if (state.confidence === opt.value) btn.className += " confidence-btn-active";
       btn.textContent = opt.label;
       btn.addEventListener("click", () => {
         state.confidence = opt.value;
@@ -387,9 +385,11 @@ function renderTraceHarness(root, puzzle) {
     if (state.checked) {
       const correctCount = state.results.filter((r) => r.correct).length;
       const allCorrect = correctCount === state.results.length;
-      resultTextEl.textContent = allCorrect
-        ? "All rows traced correctly."
-        : `${correctCount} of ${state.results.length} correct so far. Fix the highlighted rows above, then recheck.`;
+      if (allCorrect) {
+        resultTextEl.textContent = "All rows traced correctly.";
+      } else {
+        resultTextEl.textContent = `${correctCount} of ${state.results.length} correct so far. Fix the highlighted rows above, then recheck.`;
+      }
       recheckBtn.hidden = allCorrect;
     }
   }
@@ -408,7 +408,10 @@ function renderTraceHarness(root, puzzle) {
   }
 
   function handleRecheck() {
-    state.results = state.results.map((r, idx) => (r.correct ? r : { correct: evaluateRow(idx), expected: r.expected }));
+    state.results = state.results.map((r, idx) => {
+      if (r.correct) return r;
+      return { correct: evaluateRow(idx), expected: r.expected };
+    });
     updateRowVisualState();
     updateChrome();
   }
@@ -474,7 +477,8 @@ function ancestorChain(tree) {
 }
 
 function tagOpenText(node) {
-  return node.class ? `<${node.tag} class="${node.class}">` : `<${node.tag}>`;
+  if (node.class) return `<${node.tag} class="${node.class}">`;
+  return `<${node.tag}>`;
 }
 
 // Flattens a tree into printable open/close-tag lines with indentation —
@@ -512,6 +516,37 @@ function pathToTarget(tree) {
     return null;
   }
   return search(tree, []);
+}
+
+// Checks a node against structured match criteria — used by selector-match
+// in place of a real CSS selector parser, since content only ever needs to
+// *display* something that looks like a selector, not evaluate arbitrary
+// CSS. Any field the rule doesn't specify is unconstrained — but criteria
+// with *neither* field specified would silently match every node, which
+// should only ever happen as a loud content-authoring mistake, not quietly.
+function nodeMatchesCriteria(criteria, node) {
+  if (criteria.tag === undefined && criteria.class === undefined) {
+    console.error("[puzzles] rule criteria has neither tag nor class — matches everything:", criteria);
+  }
+  if (criteria.tag !== undefined && criteria.tag !== node.tag) return false;
+  if (criteria.class !== undefined && criteria.class !== node.class) return false;
+  return true;
+}
+
+// A rule matches a target if the target itself satisfies `match`, and (if
+// present) `ancestor` is satisfied per its combinator: "child" checks only
+// the immediate parent (ancestors[0]); "descendant" (the default/anything
+// else) checks whether *any* ancestor, at any distance, satisfies it —
+// real CSS combinator semantics, not a depth number. `ancestors` is
+// closest-first (immediate parent first, root last), same convention
+// ancestorChain() already returns.
+function ruleMatchesTarget(rule, target, ancestors) {
+  if (!nodeMatchesCriteria(rule.match, target)) return false;
+  if (!rule.ancestor) return true;
+  if (rule.ancestor.combinator === "child") {
+    return ancestors.length > 0 && nodeMatchesCriteria(rule.ancestor, ancestors[0]);
+  }
+  return ancestors.some((a) => nodeMatchesCriteria(rule.ancestor, a));
 }
 
 function renderAncestorTraceHarness(root, puzzle) {
@@ -621,13 +656,8 @@ function renderAncestorTraceHarness(root, puzzle) {
 
     wrap.appendChild(rowEl);
 
-    const hintEl = document.createElement("p");
-    hintEl.className = "trace-hint";
-    hintEl.hidden = true;
-    wrap.appendChild(hintEl);
-
     tableEl.insertBefore(wrap, placeholderEl);
-    return { idx, rowEl, input, statusIcon, hintEl };
+    return { idx, rowEl, input, statusIcon };
   }
 
   function ensurePlaceholder() {
@@ -653,28 +683,27 @@ function renderAncestorTraceHarness(root, puzzle) {
     else removePlaceholder();
   }
 
+  // Wrong rows get marked (red row, ✗) but never told the correct
+  // ancestor — revealing it would remove any reason to keep tracing.
   function updateRowVisualState() {
-    rowElements.forEach(({ idx, rowEl, input, statusIcon, hintEl }) => {
-      const result = state.results ? state.results[idx] : null;
+    rowElements.forEach(({ idx, rowEl, input, statusIcon }) => {
+      let result = null;
+      if (state.results) result = state.results[idx];
       const isLockedCorrect = !!(state.checked && result && result.correct);
 
       rowEl.classList.toggle("trace-row-correct", isLockedCorrect);
       rowEl.classList.toggle("trace-row-wrong", !!(state.checked && result && !result.correct));
       input.disabled = isLockedCorrect;
 
-      if (state.checked && result) {
-        statusIcon.textContent = result.correct ? "✓" : "✗";
-        statusIcon.className = `trace-status ${result.correct ? "trace-status-ok" : "trace-status-err"}`;
+      if (state.checked && result && result.correct) {
+        statusIcon.textContent = "✓";
+        statusIcon.className = "trace-status trace-status-ok";
+      } else if (state.checked && result) {
+        statusIcon.textContent = "✗";
+        statusIcon.className = "trace-status trace-status-err";
       } else {
         statusIcon.textContent = "";
         statusIcon.className = "trace-status";
-      }
-
-      if (state.checked && result && !result.correct) {
-        hintEl.textContent = `should be: ${state.chain[idx]}`;
-        hintEl.hidden = false;
-      } else {
-        hintEl.hidden = true;
       }
     });
   }
@@ -684,7 +713,8 @@ function renderAncestorTraceHarness(root, puzzle) {
     CONFIDENCE_OPTIONS.forEach((opt) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = `confidence-btn${state.confidence === opt.value ? " confidence-btn-active" : ""}`;
+      btn.className = "confidence-btn";
+      if (state.confidence === opt.value) btn.className += " confidence-btn-active";
       btn.textContent = opt.label;
       btn.addEventListener("click", () => {
         state.confidence = opt.value;
@@ -707,9 +737,11 @@ function renderAncestorTraceHarness(root, puzzle) {
     if (state.checked) {
       const correctCount = state.results.filter((r) => r.correct).length;
       const allCorrect = correctCount === state.results.length;
-      resultTextEl.textContent = allCorrect
-        ? "Ancestor chain traced correctly."
-        : `${correctCount} of ${state.results.length} correct so far. Fix the highlighted rows above, then recheck.`;
+      if (allCorrect) {
+        resultTextEl.textContent = "Ancestor chain traced correctly.";
+      } else {
+        resultTextEl.textContent = `${correctCount} of ${state.results.length} correct so far. Fix the highlighted rows above, then recheck.`;
+      }
       recheckBtn.hidden = allCorrect;
     }
   }
@@ -728,7 +760,10 @@ function renderAncestorTraceHarness(root, puzzle) {
   }
 
   function handleRecheck() {
-    state.results = state.results.map((r, idx) => (r.correct ? r : { correct: evaluateRow(idx) }));
+    state.results = state.results.map((r, idx) => {
+      if (r.correct) return r;
+      return { correct: evaluateRow(idx) };
+    });
     updateRowVisualState();
     updateChrome();
   }
@@ -742,7 +777,8 @@ function renderAncestorTraceHarness(root, puzzle) {
     buildTreeLines(tree, 0, lines);
     lines.forEach(({ text, isTarget }) => {
       const line = document.createElement("div");
-      line.className = `code-line${isTarget ? " code-line-target" : ""}`;
+      line.className = "code-line";
+      if (isTarget) line.className += " code-line-target";
       line.textContent = text;
       codePanelEl.appendChild(line);
     });
@@ -782,7 +818,8 @@ function renderAncestorTraceHarness(root, puzzle) {
 }
 
 function optionLabel(node) {
-  return node.class ? `${node.tag}.${node.class}` : node.tag;
+  if (node.class) return `${node.tag}.${node.class}`;
+  return node.tag;
 }
 
 // --- descend-trace harness ---
@@ -910,13 +947,8 @@ function renderDescendTraceHarness(root, puzzle) {
 
     wrap.appendChild(rowEl);
 
-    const hintEl = document.createElement("p");
-    hintEl.className = "trace-hint";
-    hintEl.hidden = true;
-    wrap.appendChild(hintEl);
-
     tableEl.insertBefore(wrap, placeholderEl);
-    return { idx, rowEl, input, statusIcon, hintEl };
+    return { idx, rowEl, input, statusIcon };
   }
 
   function ensurePlaceholder() {
@@ -942,28 +974,27 @@ function renderDescendTraceHarness(root, puzzle) {
     else removePlaceholder();
   }
 
+  // Wrong rows get marked (red row, ✗) but never told the correct step —
+  // revealing it would remove any reason to keep tracing the path.
   function updateRowVisualState() {
-    rowElements.forEach(({ idx, rowEl, input, statusIcon, hintEl }) => {
-      const result = state.results ? state.results[idx] : null;
+    rowElements.forEach(({ idx, rowEl, input, statusIcon }) => {
+      let result = null;
+      if (state.results) result = state.results[idx];
       const isLockedCorrect = !!(state.checked && result && result.correct);
 
       rowEl.classList.toggle("trace-row-correct", isLockedCorrect);
       rowEl.classList.toggle("trace-row-wrong", !!(state.checked && result && !result.correct));
       input.disabled = isLockedCorrect;
 
-      if (state.checked && result) {
-        statusIcon.textContent = result.correct ? "✓" : "✗";
-        statusIcon.className = `trace-status ${result.correct ? "trace-status-ok" : "trace-status-err"}`;
+      if (state.checked && result && result.correct) {
+        statusIcon.textContent = "✓";
+        statusIcon.className = "trace-status trace-status-ok";
+      } else if (state.checked && result) {
+        statusIcon.textContent = "✗";
+        statusIcon.className = "trace-status trace-status-err";
       } else {
         statusIcon.textContent = "";
         statusIcon.className = "trace-status";
-      }
-
-      if (state.checked && result && !result.correct) {
-        hintEl.textContent = `should be: ${optionLabel(state.steps[idx])}`;
-        hintEl.hidden = false;
-      } else {
-        hintEl.hidden = true;
       }
     });
   }
@@ -973,7 +1004,8 @@ function renderDescendTraceHarness(root, puzzle) {
     CONFIDENCE_OPTIONS.forEach((opt) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = `confidence-btn${state.confidence === opt.value ? " confidence-btn-active" : ""}`;
+      btn.className = "confidence-btn";
+      if (state.confidence === opt.value) btn.className += " confidence-btn-active";
       btn.textContent = opt.label;
       btn.addEventListener("click", () => {
         state.confidence = opt.value;
@@ -996,9 +1028,11 @@ function renderDescendTraceHarness(root, puzzle) {
     if (state.checked) {
       const correctCount = state.results.filter((r) => r.correct).length;
       const allCorrect = correctCount === state.results.length;
-      resultTextEl.textContent = allCorrect
-        ? "Path traced correctly."
-        : `${correctCount} of ${state.results.length} correct so far. Fix the highlighted steps above, then recheck.`;
+      if (allCorrect) {
+        resultTextEl.textContent = "Path traced correctly.";
+      } else {
+        resultTextEl.textContent = `${correctCount} of ${state.results.length} correct so far. Fix the highlighted steps above, then recheck.`;
+      }
       recheckBtn.hidden = allCorrect;
     }
   }
@@ -1017,7 +1051,10 @@ function renderDescendTraceHarness(root, puzzle) {
   }
 
   function handleRecheck() {
-    state.results = state.results.map((r, idx) => (r.correct ? r : { correct: evaluateRow(idx) }));
+    state.results = state.results.map((r, idx) => {
+      if (r.correct) return r;
+      return { correct: evaluateRow(idx) };
+    });
     updateRowVisualState();
     updateChrome();
   }
@@ -1032,7 +1069,8 @@ function renderDescendTraceHarness(root, puzzle) {
     buildTreeLines(tree, 0, lines, true);
     lines.forEach(({ text, isTarget, isRoot }) => {
       const line = document.createElement("div");
-      line.className = `code-line${(isTarget || isRoot) ? " code-line-target" : ""}`;
+      line.className = "code-line";
+      if (isTarget || isRoot) line.className += " code-line-target";
       line.textContent = text;
       codePanelEl.appendChild(line);
     });
@@ -1072,6 +1110,544 @@ function renderDescendTraceHarness(root, puzzle) {
       results: null,
     };
     fullRender();
+  }
+
+  newInstance();
+}
+
+// --- depth-quiz harness ---
+//
+// The inverse of what ancestor-trace/descend-trace already require: there,
+// depth is a side effect the student has to work around (indentation
+// stripped, nothing shown); here it's the entire graded question. Reuses
+// ancestorChain() directly for the answer — the number of ancestors *is*
+// "how deep is this?" — so there's no new tree-math, only a single-field
+// UI, the degenerate one-row case of the same confidence-gate/check/hint/
+// recheck shell every other harness uses.
+function renderDepthQuizHarness(root, puzzle) {
+  const instances = puzzle.payload.instances;
+
+  let state = null;
+  let currentInstanceIndex = -1;
+  let rowEl = null;
+  let inputEl = null;
+  let statusIconEl = null;
+
+  function pickInstanceIndex() {
+    if (instances.length === 1) return 0;
+    let idx;
+    do { idx = Math.floor(Math.random() * instances.length); } while (idx === currentInstanceIndex);
+    return idx;
+  }
+
+  root.innerHTML = `
+    <div class="puzzle-card">
+      <p class="puzzle-eyebrow">Trace it &middot; nesting depth</p>
+      <h2 class="puzzle-title"></h2>
+      <p class="puzzle-scenario"></p>
+      <div class="code-panel"></div>
+      <div class="trace-table"></div>
+      <div class="confidence-gate" hidden>
+        <p class="confidence-prompt">How sure are you?</p>
+        <div class="confidence-options"></div>
+      </div>
+      <div class="check-action" hidden>
+        <button type="button" class="btn btn-primary check-btn">Check</button>
+      </div>
+      <div class="result-summary" hidden>
+        <p class="result-text"></p>
+        <button type="button" class="btn btn-secondary recheck-btn" hidden>Recheck</button>
+        <button type="button" class="btn btn-secondary new-btn">New Element</button>
+      </div>
+    </div>
+  `;
+
+  const titleEl = root.querySelector(".puzzle-title");
+  const scenarioEl = root.querySelector(".puzzle-scenario");
+  const codePanelEl = root.querySelector(".code-panel");
+  const tableEl = root.querySelector(".trace-table");
+  const confidenceGateEl = root.querySelector(".confidence-gate");
+  const confidenceOptionsEl = root.querySelector(".confidence-options");
+  const checkActionEl = root.querySelector(".check-action");
+  const checkBtn = root.querySelector(".check-btn");
+  const resultSummaryEl = root.querySelector(".result-summary");
+  const resultTextEl = root.querySelector(".result-text");
+  const recheckBtn = root.querySelector(".recheck-btn");
+  const newBtn = root.querySelector(".new-btn");
+
+  titleEl.textContent = puzzle.title;
+  scenarioEl.textContent = puzzle.scenario;
+
+  checkBtn.addEventListener("click", handleCheck);
+  recheckBtn.addEventListener("click", handleRecheck);
+  newBtn.addEventListener("click", newInstance);
+
+  function isFilled() { return state.entry.value.trim() !== ""; }
+  function readyForConfidence() { return isFilled() && !state.checked; }
+  function evaluate() { return state.entry.value.trim() === String(state.answer); }
+
+  function createRow() {
+    const wrap = document.createElement("div");
+    wrap.className = "trace-row-wrap";
+
+    rowEl = document.createElement("div");
+    rowEl.className = "trace-row";
+
+    const field = document.createElement("label");
+    field.className = "trace-field";
+    const labelSpan = document.createElement("span");
+    labelSpan.className = "trace-field-label";
+    labelSpan.textContent = "depth";
+    inputEl = document.createElement("input");
+    inputEl.type = "text";
+    inputEl.inputMode = "numeric";
+    inputEl.value = state.entry.value;
+    inputEl.placeholder = "?";
+    inputEl.addEventListener("input", (e) => {
+      state.entry.value = e.target.value;
+      updateChrome();
+    });
+    field.append(labelSpan, inputEl);
+    rowEl.appendChild(field);
+
+    statusIconEl = document.createElement("span");
+    statusIconEl.className = "trace-status";
+    rowEl.appendChild(statusIconEl);
+
+    wrap.appendChild(rowEl);
+
+    tableEl.appendChild(wrap);
+  }
+
+  // Wrong gets marked (red row, ✗) but never told the correct depth —
+  // revealing it would remove any reason to keep counting.
+  function updateRowVisualState() {
+    const isCorrect = !!(state.checked && state.correct);
+    rowEl.classList.toggle("trace-row-correct", isCorrect);
+    rowEl.classList.toggle("trace-row-wrong", !!(state.checked && !state.correct));
+    inputEl.disabled = isCorrect;
+
+    if (state.checked && state.correct) {
+      statusIconEl.textContent = "✓";
+      statusIconEl.className = "trace-status trace-status-ok";
+    } else if (state.checked) {
+      statusIconEl.textContent = "✗";
+      statusIconEl.className = "trace-status trace-status-err";
+    } else {
+      statusIconEl.textContent = "";
+      statusIconEl.className = "trace-status";
+    }
+  }
+
+  function renderConfidenceOptions() {
+    confidenceOptionsEl.innerHTML = "";
+    CONFIDENCE_OPTIONS.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "confidence-btn";
+      if (state.confidence === opt.value) btn.className += " confidence-btn-active";
+      btn.textContent = opt.label;
+      btn.addEventListener("click", () => {
+        state.confidence = opt.value;
+        updateChrome();
+      });
+      confidenceOptionsEl.appendChild(btn);
+    });
+  }
+
+  function updateChrome() {
+    const ready = readyForConfidence();
+    confidenceGateEl.hidden = !ready;
+    checkActionEl.hidden = !ready;
+    if (ready) {
+      renderConfidenceOptions();
+      checkBtn.disabled = !state.confidence;
+    }
+
+    resultSummaryEl.hidden = !state.checked;
+    if (state.checked) {
+      if (state.correct) {
+        resultTextEl.textContent = "Correct.";
+      } else {
+        resultTextEl.textContent = "Not quite — try again, then recheck.";
+      }
+      recheckBtn.hidden = state.correct;
+    }
+  }
+
+  function handleCheck() {
+    state.correct = evaluate();
+    state.checked = true;
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  function handleRecheck() {
+    state.correct = evaluate();
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  function renderCodePanel(tree) {
+    codePanelEl.innerHTML = "";
+    const lines = [];
+    buildTreeLines(tree, 0, lines);
+    lines.forEach(({ text, isTarget }) => {
+      const line = document.createElement("div");
+      line.className = "code-line";
+      if (isTarget) line.className += " code-line-target";
+      line.textContent = text;
+      codePanelEl.appendChild(line);
+    });
+  }
+
+  function newInstance() {
+    currentInstanceIndex = pickInstanceIndex();
+    const tree = instances[currentInstanceIndex].tree;
+    const chain = ancestorChain(tree);
+    if (!chain) {
+      console.error(`[puzzles] "${puzzle.id}" instance ${currentInstanceIndex} has no target node — check the tree JSON.`);
+      return;
+    }
+    state = {
+      tree,
+      answer: chain.length,
+      entry: { value: "" },
+      confidence: null,
+      checked: false,
+      correct: false,
+    };
+    renderCodePanel(tree);
+    tableEl.innerHTML = "";
+    createRow();
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  newInstance();
+}
+
+// --- selector-match harness ---
+//
+// Tests real CSS combinator semantics — descendant (.sidebar p, any
+// ancestor at any distance) and child (main > p, immediate parent only) —
+// against the target's actual ancestor chain, via ruleMatchesTarget().
+// An earlier version used an invented data-depth attribute shown directly
+// on the target's own line, which didn't require any containment
+// reasoning at all (everything needed was already sitting on one line);
+// combinators fix that by requiring the ancestor chain to actually be
+// walked. Same row-unlock/confidence-gate/check/hint/recheck shell as
+// descend-trace, one row per rule instead of one row per path step.
+function renderSelectorMatchHarness(root, puzzle) {
+  const instances = puzzle.payload.instances;
+
+  let state = null;
+  let rowElements = [];
+  let placeholderEl = null;
+  let currentInstanceIndex = -1;
+
+  function pickInstanceIndex() {
+    if (instances.length === 1) return 0;
+    let idx;
+    do { idx = Math.floor(Math.random() * instances.length); } while (idx === currentInstanceIndex);
+    return idx;
+  }
+
+  root.innerHTML = `
+    <div class="puzzle-card">
+      <p class="puzzle-eyebrow">Trace it &middot; CSS selectors</p>
+      <h2 class="puzzle-title"></h2>
+      <p class="puzzle-scenario"></p>
+      <div class="code-panel"></div>
+      <div class="code-panel css-rules-panel"></div>
+      <div class="trace-table"></div>
+      <div class="confidence-gate" hidden>
+        <p class="confidence-prompt">How sure are you about these rules?</p>
+        <div class="confidence-options"></div>
+      </div>
+      <div class="check-action" hidden>
+        <button type="button" class="btn btn-primary check-btn">Check the Rules</button>
+      </div>
+      <div class="result-summary" hidden>
+        <p class="result-text"></p>
+        <button type="button" class="btn btn-secondary recheck-btn" hidden>Recheck</button>
+        <button type="button" class="btn btn-secondary new-btn">New Element</button>
+      </div>
+    </div>
+  `;
+
+  const titleEl = root.querySelector(".puzzle-title");
+  const scenarioEl = root.querySelector(".puzzle-scenario");
+  const codePanelEl = root.querySelector(".code-panel");
+  const rulesPanelEl = root.querySelector(".css-rules-panel");
+  const tableEl = root.querySelector(".trace-table");
+  const confidenceGateEl = root.querySelector(".confidence-gate");
+  const confidenceOptionsEl = root.querySelector(".confidence-options");
+  const checkActionEl = root.querySelector(".check-action");
+  const checkBtn = root.querySelector(".check-btn");
+  const resultSummaryEl = root.querySelector(".result-summary");
+  const resultTextEl = root.querySelector(".result-text");
+  const recheckBtn = root.querySelector(".recheck-btn");
+  const newBtn = root.querySelector(".new-btn");
+
+  titleEl.textContent = puzzle.title;
+  scenarioEl.textContent = puzzle.scenario;
+
+  checkBtn.addEventListener("click", handleCheck);
+  recheckBtn.addEventListener("click", handleRecheck);
+  newBtn.addEventListener("click", newInstance);
+
+  function rowCount() { return state.rules.length; }
+  function isRowFilled(idx) { return state.entries[idx].value.trim() !== ""; }
+  function allFilled() { return state.entries.every((_, idx) => isRowFilled(idx)); }
+  function readyForConfidence() { return state.unlocked === rowCount() && allFilled() && !state.checked; }
+
+  function maybeUnlockNext() {
+    if (state.checked) return;
+    const activeIdx = state.unlocked - 1;
+    if (activeIdx >= rowCount() - 1) return;
+    if (isRowFilled(activeIdx)) {
+      state.unlocked = Math.min(state.unlocked + 1, rowCount());
+    }
+  }
+
+  function expectedAnswer(idx) {
+    const rule = state.rules[idx];
+    if (ruleMatchesTarget(rule, state.target, state.ancestors)) return rule.color;
+    return "none";
+  }
+
+  function evaluateRow(idx) {
+    return state.entries[idx].value.trim().toLowerCase() === expectedAnswer(idx).toLowerCase();
+  }
+
+  function createRowElement(idx) {
+    const entry = state.entries[idx];
+    const rule = state.rules[idx];
+
+    const wrap = document.createElement("div");
+    wrap.className = "trace-row-wrap";
+
+    const rowEl = document.createElement("div");
+    rowEl.className = "trace-row";
+
+    const ruleLabel = document.createElement("span");
+    ruleLabel.className = "trace-field-label";
+    ruleLabel.textContent = rule.display;
+    rowEl.appendChild(ruleLabel);
+
+    const field = document.createElement("label");
+    field.className = "trace-field trace-field-path";
+    const inputPrompt = document.createElement("span");
+    inputPrompt.className = "trace-field-label";
+    inputPrompt.textContent = "matches? type its color, or “none”";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = entry.value;
+    input.placeholder = "e.g. teal, or “none”";
+    input.addEventListener("input", (e) => {
+      entry.value = e.target.value;
+      handleFieldChange();
+    });
+    field.append(inputPrompt, input);
+    rowEl.appendChild(field);
+
+    const statusIcon = document.createElement("span");
+    statusIcon.className = "trace-status";
+    rowEl.appendChild(statusIcon);
+
+    wrap.appendChild(rowEl);
+
+    tableEl.insertBefore(wrap, placeholderEl);
+    return { idx, rowEl, input, statusIcon };
+  }
+
+  function ensurePlaceholder() {
+    if (placeholderEl) return;
+    placeholderEl = document.createElement("div");
+    placeholderEl.className = "trace-row trace-row-locked";
+    placeholderEl.textContent = "Answer the rule above first";
+    tableEl.appendChild(placeholderEl);
+  }
+
+  function removePlaceholder() {
+    if (!placeholderEl) return;
+    placeholderEl.remove();
+    placeholderEl = null;
+  }
+
+  function syncTableStructure() {
+    while (rowElements.length < state.unlocked) {
+      removePlaceholder();
+      rowElements.push(createRowElement(rowElements.length));
+    }
+    if (state.unlocked < rowCount()) ensurePlaceholder();
+    else removePlaceholder();
+  }
+
+  // Wrong rows get marked (red row, ✗) but never told which color/rule was
+  // actually right — revealing it would remove any reason to reconsider.
+  function updateRowVisualState() {
+    rowElements.forEach(({ idx, rowEl, input, statusIcon }) => {
+      let result = null;
+      if (state.results) result = state.results[idx];
+      const isLockedCorrect = !!(state.checked && result && result.correct);
+
+      rowEl.classList.toggle("trace-row-correct", isLockedCorrect);
+      rowEl.classList.toggle("trace-row-wrong", !!(state.checked && result && !result.correct));
+      input.disabled = isLockedCorrect;
+
+      if (state.checked && result && result.correct) {
+        statusIcon.textContent = "✓";
+        statusIcon.className = "trace-status trace-status-ok";
+      } else if (state.checked && result) {
+        statusIcon.textContent = "✗";
+        statusIcon.className = "trace-status trace-status-err";
+      } else {
+        statusIcon.textContent = "";
+        statusIcon.className = "trace-status";
+      }
+    });
+  }
+
+  function renderConfidenceOptions() {
+    confidenceOptionsEl.innerHTML = "";
+    CONFIDENCE_OPTIONS.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "confidence-btn";
+      if (state.confidence === opt.value) btn.className += " confidence-btn-active";
+      btn.textContent = opt.label;
+      btn.addEventListener("click", () => {
+        state.confidence = opt.value;
+        updateChrome();
+      });
+      confidenceOptionsEl.appendChild(btn);
+    });
+  }
+
+  function updateChrome() {
+    const ready = readyForConfidence();
+    confidenceGateEl.hidden = !ready;
+    checkActionEl.hidden = !ready;
+    if (ready) {
+      renderConfidenceOptions();
+      checkBtn.disabled = !state.confidence;
+    }
+
+    resultSummaryEl.hidden = !state.checked;
+    if (state.checked) {
+      const correctCount = state.results.filter((r) => r.correct).length;
+      const allCorrect = correctCount === state.results.length;
+      if (allCorrect) {
+        resultTextEl.textContent = "All rules answered correctly.";
+      } else {
+        resultTextEl.textContent = `${correctCount} of ${state.results.length} correct so far. Fix the highlighted rules above, then recheck.`;
+      }
+      recheckBtn.hidden = allCorrect;
+    }
+  }
+
+  function handleFieldChange() {
+    maybeUnlockNext();
+    syncTableStructure();
+    updateChrome();
+  }
+
+  function handleCheck() {
+    state.results = state.rules.map((_, idx) => ({ correct: evaluateRow(idx) }));
+    state.checked = true;
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  function handleRecheck() {
+    state.results = state.results.map((r, idx) => {
+      if (r.correct) return r;
+      return { correct: evaluateRow(idx) };
+    });
+    updateRowVisualState();
+    updateChrome();
+  }
+
+  function renderTreePanel(tree) {
+    codePanelEl.innerHTML = "";
+    const lines = [];
+    buildTreeLines(tree, 0, lines);
+    lines.forEach(({ text, isTarget }) => {
+      const line = document.createElement("div");
+      line.className = "code-line";
+      if (isTarget) line.className += " code-line-target";
+      line.textContent = text;
+      codePanelEl.appendChild(line);
+    });
+  }
+
+  // Rules are always shown in full, same principle as the tree above —
+  // only the answer rows unlock progressively, never the thing being
+  // asked about. Without this, the student is asked "what color does this
+  // rule apply" with no way to ever see what color it declares.
+  function renderRulesPanel(rules) {
+    rulesPanelEl.innerHTML = "";
+    rules.forEach((rule, idx) => {
+      const selectorLine = document.createElement("div");
+      selectorLine.className = "code-line";
+      selectorLine.textContent = `${rule.display} {`;
+      rulesPanelEl.appendChild(selectorLine);
+
+      const colorLine = document.createElement("div");
+      colorLine.className = "code-line";
+      colorLine.style.paddingLeft = "1.25rem";
+      colorLine.textContent = `color: ${rule.color};`;
+      rulesPanelEl.appendChild(colorLine);
+
+      const closeLine = document.createElement("div");
+      closeLine.className = "code-line";
+      closeLine.textContent = "}";
+      rulesPanelEl.appendChild(closeLine);
+
+      if (idx < rules.length - 1) {
+        const spacer = document.createElement("div");
+        spacer.className = "code-line";
+        spacer.textContent = " ";
+        rulesPanelEl.appendChild(spacer);
+      }
+    });
+  }
+
+  function newInstance() {
+    currentInstanceIndex = pickInstanceIndex();
+    const instance = instances[currentInstanceIndex];
+    const tree = instance.tree;
+    const path = pathToTarget(tree);
+    if (!path || !path.length) {
+      console.error(`[puzzles] "${puzzle.id}" instance ${currentInstanceIndex} has no target node — check the tree JSON.`);
+      return;
+    }
+    const target = path[path.length - 1];
+    // Closest-first ancestor chain (immediate parent first, root last) —
+    // same convention ancestorChain() returns, needed here as node objects
+    // (not just tags) so combinator rules can check tag/class per ancestor.
+    const ancestors = path.slice(0, path.length - 1).reverse();
+    state = {
+      tree,
+      target,
+      ancestors,
+      rules: instance.rules,
+      entries: instance.rules.map(() => ({ value: "" })),
+      unlocked: 1,
+      confidence: null,
+      checked: false,
+      results: null,
+    };
+    renderTreePanel(tree);
+    renderRulesPanel(instance.rules);
+    tableEl.innerHTML = "";
+    rowElements = [];
+    placeholderEl = null;
+    syncTableStructure();
+    updateRowVisualState();
+    updateChrome();
   }
 
   newInstance();

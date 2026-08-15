@@ -1,0 +1,96 @@
+{
+  "id": "depth-quiz-basics",
+  "harness_type": "depth-quiz",
+  "title": "How Deep Is It?",
+  "scenario": "Below is part of a page's HTML, with no indentation. One element is highlighted. Count how many elements contain it, then type that number.",
+  "related_units": [],
+  "payload": {
+    "instances": [
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            {
+              "tag": "header",
+              "children": [
+                { "tag": "div", "children": [] },
+                {
+                  "tag": "nav",
+                  "children": [
+                    {
+                      "tag": "ul",
+                      "children": [
+                        { "tag": "li", "children": [] },
+                        {
+                          "tag": "li",
+                          "children": [
+                            { "tag": "a", "children": [], "target": true }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            { "tag": "header", "children": [] },
+            {
+              "tag": "main",
+              "children": [
+                { "tag": "aside", "children": [] },
+                {
+                  "tag": "article",
+                  "children": [
+                    { "tag": "p", "children": [], "target": true }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tree": {
+          "tag": "body",
+          "children": [
+            {
+              "tag": "main",
+              "children": [
+                { "tag": "nav", "children": [] },
+                {
+                  "tag": "section",
+                  "children": [
+                    { "tag": "p", "children": [] },
+                    {
+                      "tag": "div",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "children": [
+                            {
+                              "tag": "figure",
+                              "children": [
+                                { "tag": "img", "children": [], "target": true }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

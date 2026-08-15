@@ -13,6 +13,11 @@ the starting point for everything below.
   `puzzle-design-session-summary-2026-08-10.md`. Agreed going forward for
   this and any future summary docs from this project, so multiple versions
   can be told apart at a glance without opening each one.
+- **No ternary operator in `puzzles/` JavaScript.** Use `if`/`else` instead,
+  even where it costs more lines. Reason given: ternaries measurably slow
+  down reading the code, and that cost applies every time the file is read
+  going forward, not just once. Applies to `puzzles/app.js` (and any future
+  JS in this project) going forward — not a one-time cleanup.
 
 ## Audience
 
@@ -707,3 +712,52 @@ Tier 3's open-reflection mode as its own deliberate design effort soon
 Tier 1 keeps accumulating in the background and Tier 2 gets routed to the
 practice app instead of invented as new `puzzles/` infrastructure. Not
 decided — picking this back up later.
+
+## Session 8 — hardening pass on `depth-quiz` and `selector-match`
+
+A round of fixes from actually playing the two newest harnesses:
+
+- **`depth-quiz` was trivially easy.** All three trees were pure linear
+  chains — no branching, so "how many elements contain this one" degraded
+  into counting lines. Fixed by adding decoy sibling branches to all three
+  instances (same technique already used elsewhere): a naive line-count
+  now overcounts, so the answer genuinely requires tracking which lines
+  are true ancestors vs. decoy branches.
+- **`selector-match` never showed what color a rule declared** — only the
+  bare selector text was rendered, so the student was asked "what color
+  does this apply" with the actual color never visible anywhere. Fixed by
+  adding a second, always-fully-visible rules panel (real
+  `selector { color: value; }` blocks), same "show everything, gate only
+  the response" principle as the HTML tree itself.
+- **`data-depth` didn't actually connect to "insideness."** Once depth was
+  shown directly on the target's own line, answering required no
+  containment reasoning at all — everything needed was sitting on one
+  line, making the tree decorative. Traced back to a deeper question:
+  what is this puzzle actually testing? Resolved by dropping `data-depth`
+  entirely in favor of **real CSS combinators** — descendant (`.sidebar p`,
+  any ancestor at any distance) and child (`main > p`, immediate parent
+  only) — which require walking the target's actual ancestor chain to
+  answer, restoring the connection to the ladder's throughline. Rules now
+  carry a `match`/`ancestor` structure (`ruleMatchesTarget()` in
+  `puzzles/app.js`) instead of a flat `{tag, class, depth}` criteria
+  object, and every instance includes the trap this was built to test: a
+  class that exists in the tree but only on a sibling, not an ancestor.
+- **The hint text was handing over the answer.** Every harness's
+  check/recheck flow showed "should be: X" on a wrong row — which meant
+  one guess told the student the exact correct value, removing any reason
+  to actually retry. Removed across all five harnesses (`trace`,
+  `ancestor-trace`, `descend-trace`, `depth-quiz`, `selector-match`):
+  wrong rows still get marked (red row, ✗ icon) and stay editable, but the
+  specific correct value is never shown. Same "any UI chrome that reveals
+  the answer is a leak" principle from Session 3/5/6, found again in a
+  fourth and fifth form.
+
+## Session 9 — no ternary operator, project-wide
+
+Coding-style decision, not a puzzle-design one: ternary expressions in
+`puzzles/app.js` measurably slowed down reading the code. All 34 instances
+across the file were converted to explicit `if`/`else`, with no behavior
+change (verified against the same isolated-logic checks used throughout
+this project). Added as a standing convention (see "Conventions" above)
+rather than a one-time cleanup, since the readability cost of a ternary
+applies every time the file is read afterward, not just when it's written.

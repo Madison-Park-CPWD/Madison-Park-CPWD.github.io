@@ -77,6 +77,8 @@
 }
 
 .code-line { white-space: pre; }
+
+.css-rules-panel { margin-top: 0.75rem; }
 .code-kw { color: #7dc4f0; }
 .code-range { color: var(--accent); }
 .code-fn { color: var(--ok); }
@@ -186,14 +188,6 @@
 
 .trace-status-ok { color: var(--ok); }
 .trace-status-err { color: var(--err); }
-
-.trace-hint {
-  margin: 0;
-  padding-left: 0.9rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--err);
-}
 
 /* ---------------- Confidence gate ---------------- */
 .confidence-gate {
