@@ -761,3 +761,49 @@ change (verified against the same isolated-logic checks used throughout
 this project). Added as a standing convention (see "Conventions" above)
 rather than a one-time cleanup, since the readability cost of a ternary
 applies every time the file is read afterward, not just when it's written.
+
+## Session 10 — `selector-match` dropped: CSS cascade doesn't fit "trace"
+
+After the exactly-one-match content fix (Session 8), a sharper diagnosis:
+the puzzle wasn't confusing because of wording, and making only one rule
+match didn't actually fix it either — it just relocated the problem.
+
+**The real issue:** every other harness (`trace`, `ancestor-trace`,
+`descend-trace`, `depth-quiz`) shares one property — given the input,
+there is exactly one correct output, full stop, no external rule system
+needed to resolve it. CSS selector *matching* has that property in
+isolation. But the moment multiple candidate rules are shown for the same
+element, cascade enters the room whether the puzzle intends it or not —
+"which of several matching rules actually applies" is the entire reason
+cascade exists, and a CSS-literate student's reflex to ask "okay, but
+which one wins" is the *correct* reflex for real CSS, not a
+misunderstanding to word around. No scenario copy fixes that, because the
+ambiguity is in the premise (several candidate rules, one element), not
+the instructions.
+
+Forcing exactly one rule to match per instance sidesteps cascade by
+construction, but reduces the exercise to "spot the one correct answer
+among distractors" — recognition among decoys, not meaningfully different
+in kind from the multiple-choice version already rejected in Session 6 for
+being too scaffolded, just spread across several yes/no judgments instead
+of one click.
+
+**Decision: drop `selector-match` entirely** rather than patch it further.
+Removed from `puzzles/app.js` (`renderSelectorMatchHarness`,
+`nodeMatchesCriteria`, `ruleMatchesTarget`, its registry entry),
+`puzzles/data/manifest.json`, `puzzles/data/selector-match-basics.json`
+(deleted), and `puzzles/style.css`'s `.css-rules-panel` rule. The other
+four harnesses are unaffected — none of the removed code was shared.
+
+**To-do: revisit where and how to explore CSS selector matching.** Two
+directions were discussed and neither was picked:
+- A single-rule-per-instance version (same simplification `depth-quiz`
+  already uses) would sidestep cascade entirely, since there's never a
+  comparison set to trigger the "which one wins" reflex — but wasn't
+  built, pending a decision on whether that's still worth doing.
+- Having students *write* a selector to match a target, rather than judge
+  given ones, tests a genuinely different (arguably better) skill and
+  avoids the cascade question by construction — but grading arbitrary
+  student-authored selector text needs something close to a real CSS
+  selector matcher, a much bigger build than anything else in this
+  project needed so far.
