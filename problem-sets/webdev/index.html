@@ -3,25 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web Dev Practice — Coming Soon</title>
+<title>Web Dev Practice</title>
 <link rel="stylesheet" href="../../styles/base.css">
-<style>
-  html, body {
-    height: 100%;
-    display: flex; align-items: center; justify-content: center; text-align: center;
-  }
-  .wrap { max-width: 480px; padding: 2rem; }
-  .prompt { font-family: var(--font-mono); color: var(--accent); }
-  p { color: var(--text-secondary); }
-  a { color: var(--accent); }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <p class="prompt">&gt;&gt;&gt;</p>
+
+  <header class="site-header">
+    <span class="prompt">&gt;&gt;&gt;</span>
     <h1>Web Dev Practice</h1>
-    <p>This track isn't built yet — check back soon.</p>
-    <p><a href="../">&larr; Back to all tracks</a></p>
+    <select class="unit-select" id="unit-select"></select>
+    <div class="student-info">
+      <span id="student-name">Set your name</span>
+      <button class="text-link" id="change-name-btn" type="button">change</button>
+    </div>
+    <button class="download-btn" id="download-btn" type="button">Download My Work</button>
+  </header>
+
+  <div class="workspace">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="main">
+      <div class="problem-panel" id="problem-panel"></div>
+
+      <div class="workbench">
+        <div class="editor-panes">
+          <div class="editor-pane">
+            <div class="editor-pane-label">HTML</div>
+            <textarea id="html-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+          </div>
+          <div class="editor-pane">
+            <div class="editor-pane-label">CSS</div>
+            <textarea id="css-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+          </div>
+          <div class="editor-pane">
+            <div class="editor-pane-label">JS</div>
+            <textarea id="js-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+          </div>
+        </div>
+
+        <div class="editor-toolbar">
+          <button class="run-btn" id="run-btn">Run Tests</button>
+          <button class="reset-btn" id="reset-btn">Reset to starter code</button>
+          <span class="hint">Your code and progress are saved in this browser automatically.</span>
+        </div>
+
+        <div class="output-split">
+          <div class="preview-pane">
+            <iframe id="preview-frame" class="preview-frame" sandbox="allow-scripts allow-same-origin" title="Live preview"></iframe>
+            <div class="js-console-label">Console</div>
+            <div class="js-console" id="js-console">
+              <div class="placeholder">console.log() output from the preview above shows up here.</div>
+            </div>
+          </div>
+          <div class="console" id="console">
+            <div class="placeholder">Click "Run Tests" to check your solution.</div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
+
+  <!-- Hidden — used only to run assertions against a fresh, isolated render
+       per test case. Never shown; the visible preview above is a separate
+       iframe so a student's own clicking around in it never affects a
+       test result. -->
+  <iframe id="test-frame" style="display:none" sandbox="allow-scripts allow-same-origin" title="Test runner (hidden)"></iframe>
+
+  <div class="reflection-overlay" id="reflection-overlay">
+    <div class="reflection-modal">
+      <p class="eyebrow">unit complete &mdash; <span id="reflection-unit-title"></span></p>
+      <h2>Quick reflection</h2>
+      <p class="prompt-text" id="reflection-prompt-text"></p>
+      <textarea id="reflection-textarea" placeholder="Type a few sentences…" spellcheck="true"></textarea>
+      <div class="reflection-actions">
+        <button class="reset-btn" id="reflection-skip-btn" type="button">Skip for now</button>
+        <button class="run-btn" id="reflection-save-btn" type="button">Save reflection</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

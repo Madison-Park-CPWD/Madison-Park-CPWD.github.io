@@ -1,0 +1,68 @@
+{
+  "id": "html-basics",
+  "title": "HTML Basics",
+  "reflection_prompt": "What's one thing about combining HTML, CSS, and JS together that felt different from writing Python?",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "html-basics",
+      "title": "Build a Simple Nav",
+      "sidebar_tag": "html + css",
+      "description": [
+        "<p>Build a navigation bar.</p>",
+        "<p>In the <strong>HTML</strong> panel, add a <code>&lt;nav&gt;</code> element with <code>id=\"main-nav\"</code>, containing exactly three <code>&lt;a&gt;</code> links, in this order: <code>Home</code>, <code>About</code>, <code>Contact</code>.</p>",
+        "<p>In the <strong>CSS</strong> panel, give <code>#main-nav</code> <code>display: flex;</code> so the links lay out horizontally instead of stacking.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<!-- Add your nav here -->"
+        ],
+        "css": [
+          "/* Style #main-nav here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Page has exactly one &lt;nav&gt;", "selector": "nav", "check": "count", "expected": 1 },
+        { "description": "The nav has id \"main-nav\"", "selector": "nav", "check": "attribute", "attribute": "id", "expected": "main-nav" },
+        { "description": "The nav contains exactly 3 links", "selector": "nav a", "check": "count", "expected": 3 },
+        { "description": "The first link says \"Home\"", "selector": "nav a:first-child", "check": "text", "expected": "Home" },
+        { "description": "#main-nav uses flexbox", "selector": "#main-nav", "check": "style", "property": "display", "expected": "flex" }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "html-basics",
+      "title": "A Clickable Counter",
+      "sidebar_tag": "js",
+      "description": [
+        "<p>The HTML panel already has a button (<code>#count-btn</code>) and a paragraph (<code>#count-display</code>) that starts showing <code>0</code>.</p>",
+        "<p>In the <strong>JS</strong> panel, add a click handler on <code>#count-btn</code> that increases the number shown in <code>#count-display</code> by 1 every time it's clicked.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<button id=\"count-btn\">Click me</button>",
+          "<p id=\"count-display\">0</p>"
+        ],
+        "css": [],
+        "js": [
+          "// Add your click handler here"
+        ]
+      },
+      "tests": [
+        { "description": "The button exists", "selector": "#count-btn", "check": "exists" },
+        { "description": "The count starts at 0", "selector": "#count-display", "check": "text", "expected": "0" },
+        {
+          "description": "Clicking the button once makes the count 1",
+          "actions": [{ "type": "click", "selector": "#count-btn" }],
+          "selector": "#count-display", "check": "text", "expected": "1"
+        },
+        {
+          "description": "Clicking the button twice makes the count 2",
+          "actions": [{ "type": "click", "selector": "#count-btn" }, { "type": "click", "selector": "#count-btn" }],
+          "selector": "#count-display", "check": "text", "expected": "2"
+        }
+      ]
+    }
+  ]
+}
