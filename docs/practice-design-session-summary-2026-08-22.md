@@ -245,11 +245,66 @@ attempts from the payload; correctly includes full per-attempt history
 for everything else; repeated clicks each send a complete fresh snapshot
 (no state carried between calls, by design).
 
-Still open, deliberately deferred: the Apps Script side itself (the
-`doPost()` receiving endpoint, the calc script reading the Sheet to
-compute `relative_performance`/`week_score`/the trend, and the resolved
-row schema those two ends need to agree on — now a `{student, track,
-units: [{unit, exercises: [{exercise, history}]}]}` shape rather than
-one row per exercise), and the display/leaderboard layer — both
-explicitly out of scope until this client-side half existed to feed
-them.
+### Security model: the endpoint URL can't be a secret, so it has to be write-only
+
+Discussed before writing any Apps Script: nothing embedded in client-side
+JS on a static site can function as a real secret (an API key included
+in `app.js` ships to every visitor's browser, visible via dev tools,
+exactly like the endpoint URL itself). So access control can't come from
+hiding the URL or gating it with a token — it has to come from what the
+Apps Script *does* when hit. Decided: the endpoint stays strictly
+write-only (`doPost()` only, no matching read-back), so the worst case of
+the URL being effectively public is spam rows, not a data leak. Payload
+validation (reject malformed shape) is the other half of that — not real
+security against a motivated actor, but keeps garbage out of the sheet.
+Google Workspace domain-restriction (limiting the Web App to signed-in
+BPS accounts instead of fully public) was named as a possible stronger
+option, but whether it works cleanly with a cross-origin `fetch()`/
+`sendBeacon()` call rather than a direct browser visit is unverified —
+left as a later exploration, not assumed to work.
+
+### Apps Script ingest endpoint built (`apps-script/`)
+
+`apps-script/Code.gs` — `doPost()` receives one batch per "Download My
+Work" click, validates it (`student` non-empty string, `track` is
+`"python"`/`"webdev"`, `units` is an array — malformed requests get a
+clean `{status: "error", ...}` response, never an unhandled exception),
+then flattens the nested `{units: [{unit, exercises: [{exercise,
+history}]}]}` payload into one row per *attempt* (not per exercise) in an
+"Attempts" sheet tab, auto-created with a header row on first use.
+Columns: received-at, student, track, unit, exercise, attempt timestamp,
+passed, test results (JSON), and submission (JSON — `{code}` for Python,
+`{html, css, js}` for Web Dev) — keeping full code per attempt, not just
+pass/fail, so a suspicious growth score stays auditable by hand, same
+principle already established for `history` itself. Uses
+`LockService.getScriptLock()` around the whole write so concurrent
+submissions from different students can't interleave and clobber rows.
+`doGet()` returns a plain confirmation message — a way to sanity-check a
+deployment is live without needing to test the real POST flow first.
+
+Caught and fixed a real bug in the client code from a prior session
+before it could bite silently once deployed: `exportAllHistoryToSheet()`
+was building its `sendBeacon()` payload as a `Blob` with type
+`application/json`. A cross-origin request with that content type
+triggers CORS preflight behavior Apps Script Web Apps don't handle
+cleanly (a well-documented gotcha for this exact static-site-to-Apps-
+Script pattern) — changed to `text/plain`, which `doPost()` still parses
+as JSON regardless of the declared type, in both `app.js` files.
+
+Verified via isolated simulation (`parsePayload`/`buildRows` extracted
+and run against the actual payload shape `exportAllHistoryToSheet()`
+sends, for both tracks, plus four malformed-input cases): correctly
+flattens real payloads into per-attempt rows with the right values in
+the right columns, and cleanly rejects bad JSON, an unknown track, a
+missing body, and a blank student name. What this *can't* verify without
+a real deployed URL and a real browser: whether the actual cross-origin
+POST is delivered successfully end-to-end once live — that needs a real
+smoke test (click "Download My Work" against the live deployed URL,
+confirm a row appears) once the Apps Script is actually deployed.
+
+Still open, deliberately deferred: the calc script that reads the
+"Attempts" sheet to compute `relative_performance`/`week_score`/the
+trend (now has real data to read once deployed), and the display/
+leaderboard layer — both still out of scope until the ingest side existed
+to feed them, which it now does, pending deployment and a live smoke
+test.

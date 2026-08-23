@@ -115,7 +115,11 @@ function exportAllHistoryToSheet() {
     track: "webdev",
     units,
   });
-  const blob = new Blob([payload], { type: "application/json" });
+  // text/plain, not application/json — a cross-origin request with a JSON
+  // content type triggers CORS preflight behavior Apps Script Web Apps
+  // don't handle cleanly. doPost() parses the body as JSON regardless of
+  // the declared type, so this loses nothing.
+  const blob = new Blob([payload], { type: "text/plain" });
   const queued = navigator.sendBeacon(EXPORT_ENDPOINT_URL, blob);
   if (!queued) {
     fetch(EXPORT_ENDPOINT_URL, { method: "POST", body: payload, keepalive: true }).catch(() => {});
