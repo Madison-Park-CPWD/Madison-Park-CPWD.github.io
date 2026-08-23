@@ -1,9 +1,12 @@
 // Standalone reference page for rating exercise difficulty — not linked
 // from either student-facing app. Reads both tracks' real unit data live
-// (same fetch shape as each app's loadUnits()), pre-fills a rough
-// algorithmic guess per exercise, and lets a human confirm/override it
-// with one click. This page cannot write back to the repo, so its output
-// is a JSON blob of decisions to hand to Claude, not a file it edits itself.
+// (same fetch shape as each app's loadUnits()). Any exercise that already
+// has a `difficulty` value in its JSON shows as confirmed with that value;
+// anything else gets a rough algorithmic guess as a starting point. A
+// click always confirms/overrides a row. This page cannot write back to
+// the repo, so its output is a JSON blob of decisions to hand to Claude —
+// meaning this same page stays useful as new units get added later: only
+// the new, undecided exercises need attention on a repeat pass.
 
 const TRACKS = [
   { key: "python", label: "Python", unitsDir: "python/units" },
@@ -24,6 +27,30 @@ function loadOverride(track, unitId, exerciseId) {
 
 function saveOverride(track, unitId, exerciseId, value) {
   localStorage.setItem(storageKey(track, unitId, exerciseId), String(value));
+}
+
+// An exercise's own `difficulty` field, once one has actually been applied
+// to its unit JSON, is the real source of truth — takes priority over the
+// algorithmic guess. This is what lets a later pass (after new units get
+// added) show already-decided exercises as already-confirmed without
+// depending on this browser's localStorage still holding the same override
+// from the original pass.
+function existingDifficulty(ex) {
+  const d = ex.difficulty;
+  if (d === 1 || d === 2 || d === 3) return d;
+  return null;
+}
+
+// Resolves the value + confirmed-state a row should show, in priority
+// order: an override made on this page in this browser (most recent
+// intent), then a `difficulty` value already applied to the JSON, then
+// the algorithmic guess as a last resort for anything undecided.
+function resolveDifficulty(track, unit, ex) {
+  const override = loadOverride(track.key, unit.id, ex.id);
+  if (override !== null) return { value: override, confirmed: true };
+  const existing = existingDifficulty(ex);
+  if (existing !== null) return { value: existing, confirmed: true };
+  return { value: null, confirmed: false };
 }
 
 // Total character length of an exercise's starter code, regardless of
@@ -121,17 +148,19 @@ function collectDecisions(trackData) {
   trackData.forEach(({ track, units }) => {
     units.forEach(unit => {
       unit.exercises.forEach((ex, index) => {
-        const testCount = ex.tests.length;
-        const guess = algorithmicGuess(index, unit.exercises.length, testCount, starterLength(ex.starter));
-        const override = loadOverride(track.key, unit.id, ex.id);
-        const value = override !== null ? override : guess;
+        const resolved = resolveDifficulty(track, unit, ex);
+        let value = resolved.value;
+        if (value === null) {
+          const testCount = ex.tests.length;
+          value = algorithmicGuess(index, unit.exercises.length, testCount, starterLength(ex.starter));
+        }
         decisions.push({
           track: track.key,
           unit: unit.id,
           exercise: ex.id,
           title: ex.title,
           difficulty: value,
-          confirmed: override !== null,
+          confirmed: resolved.confirmed,
         });
       });
     });
@@ -175,8 +204,8 @@ async function loadAndRenderReview() {
         totalExercises++;
         const testCount = ex.tests.length;
         const guess = algorithmicGuess(index, unit.exercises.length, testCount, starterLength(ex.starter));
-        const override = loadOverride(track.key, unit.id, ex.id);
-        if (override !== null) ratedExercises++;
+        const resolved = resolveDifficulty(track, unit, ex);
+        if (resolved.confirmed) ratedExercises++;
 
         const row = document.createElement("div");
         row.className = "ex-row";
@@ -194,7 +223,7 @@ async function loadAndRenderReview() {
         snippetEl.textContent = descriptionSnippet(ex.description);
         info.append(titleEl, metaEl, snippetEl);
 
-        let rowIsRated = override !== null;
+        let rowIsRated = resolved.confirmed;
 
         const buttons = document.createElement("div");
         buttons.className = "diff-buttons";
@@ -203,8 +232,8 @@ async function loadAndRenderReview() {
           btn.type = "button";
           btn.className = "diff-btn";
           btn.textContent = String(value);
-          const isActive = override !== null && override === value;
-          const isGuessOnly = override === null && guess === value;
+          const isActive = resolved.confirmed && resolved.value === value;
+          const isGuessOnly = !resolved.confirmed && guess === value;
           if (isActive) btn.classList.add("active");
           if (isGuessOnly) btn.classList.add("guess");
           btn.addEventListener("click", () => {
