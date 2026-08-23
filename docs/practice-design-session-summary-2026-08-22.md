@@ -154,10 +154,64 @@ exercise has enough of its own history, its empirical average should
 override the category default). Category 3's number is unvalidated by
 even a single rated exercise right now.
 
-Still open, deliberately deferred: writing the code that computes
-`relative_performance`/`week_score`/the rolling trend from stored
-history (now that `testResults`, `difficulty`, and the lookup table all
-exist, this is the first piece with nothing left blocking it), and the
-storage/display layer (Apps Script → Google Sheet pipeline, leaderboard
-question) — both explicitly out of scope until the metric itself was
-defined and its inputs existed, which is now the case.
+### Where the metric computation lives: Apps Script, not the client
+
+Decided `relative_performance`/`week_score`/the trend get computed in
+Apps Script, not in either track's `app.js`, even though the math only
+needs one student's own `history` + the lookup table above (so it
+*could* run client-side). Reasoning: the actual purpose — comparing
+growth across students, and later overriding `expected_attempts` per
+exercise from real cohort data — only works once data is centralized in
+the Sheet; keeping the metric logic there also means it can keep getting
+tuned without ever touching the student-facing practice apps, which stay
+focused on "run exercises, log history."
+
+### Export pipeline: batched per exercise, not per attempt (client side, implemented)
+
+Before the Apps Script side can be written, data has to get from a
+student's browser to the Sheet at all — that ingestion step didn't exist
+yet, so this session started designing and building the client half of
+it. Decided against uploading on every "Run Tests" click (`appendHistory`
+already fires that often, every attempt, pass or fail) in favor of
+batching: one upload per exercise, containing that exercise's *entire*
+attempt history so far, triggered by either of two events —
+
+1. **Solved** — inside `runTests()`'s existing `if (allPass)` branch, both
+   tracks.
+2. **Left with unsolved attempts** — switching exercises (sidebar click),
+   switching units (`switchToUnitIndex`), or closing/navigating away from
+   the page (`beforeunload`). Added after confirming a real gap: without
+   this, an exercise a student attempted and never solved would leave
+   *zero* record anywhere but that student's own browser — invisible to
+   Grit, which specifically needs to see effort on things that don't come
+   easily. An exercise with zero attempts still uploads nothing, since
+   there's nothing to say.
+
+Implemented as `exportExerciseIfNeeded(unitId, exerciseId)` in both
+`app.js` files, backed by a per-exercise `exported-<unit>-<exercise>`
+count in `localStorage` (how many history entries were already sent) —
+calling it is a safe no-op whenever there's nothing new since the last
+export, so every call site just calls it speculatively rather than
+tracking send-state itself. `EXPORT_ENDPOINT_URL` is `null` right now — a
+deliberate no-op until the Apps Script Web App exists and gets deployed;
+critically, this means nothing collected before deployment is lost: the
+exported-count only advances on an actual send, so the very first call
+after the URL gets set uploads everything accumulated for that exercise
+in one batch, no manual backfill needed. Uses `navigator.sendBeacon()`
+(falling back to a `keepalive` `fetch()` if the browser refuses to queue
+it) specifically so the `beforeunload` case still fires reliably, which a
+plain `fetch()` can't guarantee during page teardown.
+
+Verified via an isolated simulation (fake `localStorage`/`sendBeacon`,
+no real browser available this session): confirmed nothing sends while
+the endpoint is unset, exported-count stays at 0 so later deployment
+doesn't lose data, a real send correctly batches all accumulated
+attempts and advances the count, an immediate repeat call is a true
+no-op, and an untouched exercise never sends anything.
+
+Still open, deliberately deferred: the Apps Script side itself (the
+`doPost()` receiving endpoint, the calc script reading the Sheet to
+compute `relative_performance`/`week_score`/the trend, and the resolved
+row schema those two ends need to agree on), and the display/leaderboard
+layer — both explicitly out of scope until this client-side half existed
+to feed them.
