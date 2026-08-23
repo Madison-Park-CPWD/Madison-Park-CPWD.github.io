@@ -586,6 +586,33 @@ visiting the URL, by either the user or Claude via `curl`); `GrowthMetrics.gs`
 has no public endpoint, so its version gets logged as the first line of
 every `runGrowthMetrics()` run instead.
 
-Still open: the actual final delete-and-re-export-and-reverify cycle for
-Bug 3 (not yet done as of this writing); the calc script's outputs still
-haven't been checked against a fully clean dataset end to end.
+Verified live: `Code.gs v1` and the redeployed URL confirmed via `curl`
+(both the `doGet()` version string and the combined leading-zero +
+fail/fail/pass test), and confirmed the live GitHub Pages `app.js` files
+picked up the new `EXPORT_ENDPOINT_URL` after a short propagation delay.
+
+### Bug 4: empty `testResults` on pre-existing history trivially "matched" as same-mistake
+
+Spotted by the user reviewing real exported data before running the
+calculation for real: rows from before `testResults` was added to
+`appendHistory()` (see Session 2/3) correctly show `[]` — expected, not a
+bug, per the rollout note from when that field was designed. But
+`computeExerciseStats()`'s failure-pair loop didn't check for this: two
+consecutive failed attempts with **both** sides empty compare as
+trivially identical (`sameArray([], [])` is `true`), so every
+pre-`testResults` consecutive failure was silently counting as a
+confirmed "repeated the same mistake" — real-looking signal from zero
+actual information.
+
+Fixed: a failure pair only counts toward `totalFailurePairs`/
+`sameMistakePairs` at all when *both* attempts have non-empty
+`testResults`; pairs missing that data are skipped entirely rather than
+defaulting to "same" or "different." Verified via four cases (both
+empty, one empty, both real-and-same, both real-and-different) — only
+the two real-data cases count, and only the genuinely-same one increments
+`sameMistakePairs`. `GROWTH_METRICS_VERSION` bumped to `2`.
+
+Still open: the actual final delete-and-re-export-and-reverify cycle
+(not yet done as of this writing, now additionally waiting on this Bug 4
+fix being pasted in first); the calc script's outputs still haven't been
+checked against a fully clean dataset end to end.

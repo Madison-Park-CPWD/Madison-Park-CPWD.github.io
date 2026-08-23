@@ -13,7 +13,7 @@
 // pasting into the Apps Script editor — logged at the start of every run,
 // so the Execution log confirms exactly which version actually ran (this
 // file has no doGet() to check against directly, unlike Code.gs).
-const GROWTH_METRICS_VERSION = "1";
+const GROWTH_METRICS_VERSION = "2";
 
 // Update this if it's wrong — used to fetch unit/difficulty data live from
 // the deployed site rather than duplicating it here, so re-rating
@@ -206,9 +206,18 @@ function computeExerciseStats(attempts) {
   let totalFailurePairs = 0;
   for (let i = 1; i < attempts.length; i++) {
     if (!attempts[i - 1].passed && !attempts[i].passed) {
-      totalFailurePairs++;
-      if (sameMistake(attempts[i - 1].testResults, attempts[i].testResults)) {
-        sameMistakePairs++;
+      // Skip pairs where either side has no real testResults data (e.g.
+      // history logged before that field existed) — two empty arrays
+      // trivially compare as "identical," which would otherwise count as
+      // a confirmed same-mistake repeat when there's actually zero
+      // information about what happened on that attempt.
+      const prevHasData = attempts[i - 1].testResults && attempts[i - 1].testResults.length > 0;
+      const currHasData = attempts[i].testResults && attempts[i].testResults.length > 0;
+      if (prevHasData && currHasData) {
+        totalFailurePairs++;
+        if (sameMistake(attempts[i - 1].testResults, attempts[i].testResults)) {
+          sameMistakePairs++;
+        }
       }
     }
   }
