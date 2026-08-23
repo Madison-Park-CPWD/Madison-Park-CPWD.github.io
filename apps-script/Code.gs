@@ -20,6 +20,31 @@ const HEADER = [
   "Attempt Timestamp", "Passed", "Test Results", "Submission",
 ];
 
+const ERROR_LOG_SHEET_NAME = "ErrorLog";
+const ERROR_LOG_HEADER = ["Timestamp", "Message", "Context"];
+
+// Neither console.error() nor Logger.log() reliably surfaced in the
+// Executions view for real Web App-triggered runs (only for
+// manually-run-in-editor ones) — a real gap in that view, not a
+// logging-API choice. Writing to a sheet tab is already proven reliable
+// (see "Attempts"), so errors go there instead, where they're always
+// visible without depending on that view at all.
+function logError(message, context) {
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName(ERROR_LOG_SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(ERROR_LOG_SHEET_NAME);
+      sheet.getRange(1, 1, 1, ERROR_LOG_HEADER.length).setValues([ERROR_LOG_HEADER]);
+      sheet.setFrozenRows(1);
+    }
+    sheet.appendRow([new Date().toISOString(), message, context || ""]);
+  } catch (err) {
+    // If even the error-logging write fails, there's nothing further to
+    // do — don't let a logging failure break the actual response.
+  }
+}
+
 // Visiting the deployed URL directly in a browser hits this — useful for
 // confirming the deployment itself works before testing the real POST
 // flow from the practice apps.
@@ -32,10 +57,17 @@ function doGet() {
 function doPost(e) {
   // Multiple students can submit within the same moment; without a lock,
   // two concurrent executions could both read "last row" before either
-  // has written, and clobber each other's rows.
+  // has written, and clobber each other's rows. waitLock() lives inside
+  // the try now (not before it) so a lock-timeout also comes back as a
+  // clean JSON error instead of an unhandled platform error; lockAcquired
+  // tracks whether releaseLock() is actually safe to call in finally,
+  // since waitLock() throwing means the lock was never ours to release.
   const lock = LockService.getScriptLock();
-  lock.waitLock(30000);
+  let lockAcquired = false;
   try {
+    lock.waitLock(30000);
+    lockAcquired = true;
+
     const parsed = parsePayload(e);
     if (parsed.error) {
       return jsonResponse({ status: "error", message: parsed.error });
@@ -46,32 +78,44 @@ function doPost(e) {
     }
     return jsonResponse({ status: "ok", rowsWritten: rows.length });
   } catch (err) {
+    logError("doPost failed", String(err));
     return jsonResponse({ status: "error", message: String(err) });
   } finally {
-    lock.releaseLock();
+    if (lockAcquired) {
+      lock.releaseLock();
+    }
   }
 }
 
 // Parses and shape-validates the request body. Returns { data } on
 // success or { error } on failure — never throws, so a malformed or
 // unexpected request can't crash the execution before the lock releases.
+// Every rejection goes to the "ErrorLog" sheet tab via logError() (see
+// above for why, not the Executions view) — this endpoint has to accept
+// requests from anyone, so a malformed request needs to leave a visible
+// trace to debug, not vanish.
 function parsePayload(e) {
   if (!e || !e.postData || !e.postData.contents) {
+    logError("parsePayload rejected: missing request body", "");
     return { error: "missing request body" };
   }
   let data;
   try {
     data = JSON.parse(e.postData.contents);
   } catch (err) {
+    logError("parsePayload rejected: body is not valid JSON", String(err) + " | raw contents: " + e.postData.contents);
     return { error: "body is not valid JSON" };
   }
   if (typeof data.student !== "string" || !data.student.trim()) {
+    logError("parsePayload rejected: missing student", JSON.stringify(data.student));
     return { error: "missing student" };
   }
   if (data.track !== "python" && data.track !== "webdev") {
+    logError("parsePayload rejected: invalid track", JSON.stringify(data.track));
     return { error: "track must be \"python\" or \"webdev\"" };
   }
   if (!Array.isArray(data.units)) {
+    logError("parsePayload rejected: units is not an array", JSON.stringify(data.units));
     return { error: "units must be an array" };
   }
   return { data: data };

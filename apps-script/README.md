@@ -81,3 +81,14 @@ produce many rows if a student has attempted several exercises:
 Nothing here computes `relative_performance`/`week_score`/growth yet —
 this is only the raw ingest. The calc script that reads this sheet is a
 separate, not-yet-written piece.
+
+A second tab, **ErrorLog**, also gets created automatically the first
+time a request gets rejected or fails — one row per problem: `Timestamp`,
+`Message` (what went wrong), `Context` (the relevant raw value or error
+detail). This exists instead of relying on Apps Script's own Executions
+view: that view doesn't reliably show logged output (`console.error()` or
+`Logger.log()`, tried both) for real Web App-triggered requests, only for
+functions run manually from the editor — writing to a sheet tab sidesteps
+that gap entirely, using the same `SpreadsheetApp` mechanism already
+proven reliable for "Attempts." If a student's submission silently didn't
+show up in "Attempts," check ErrorLog first.

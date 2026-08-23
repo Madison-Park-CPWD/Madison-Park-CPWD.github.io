@@ -97,7 +97,7 @@ function appendHistory(unitId, exerciseId, entry) {
 // localStorage. EXPORT_ENDPOINT_URL stays null (a deliberate no-op) until
 // the Apps Script Web App is deployed and its URL is dropped in here. ---
 
-const EXPORT_ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyTlSY0re7KEGWfLqYPhAlPupwC9CD2P0-6NYgelEmwMJdibo5cV_vXs9ylNyQxWAbHGQ/exec";
+const EXPORT_ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbxVQAKTR3obkniGpgHUAEFZ8k3NiQZNg5vjvIYC04Ff39jug23NzZ5J4RskDwTyxej7/exec";
 
 function exportAllHistoryToSheet() {
   if (!EXPORT_ENDPOINT_URL) return;

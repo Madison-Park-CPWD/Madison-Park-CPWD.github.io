@@ -336,10 +336,57 @@ result:
 The four test rows (student `__SMOKE_TEST_delete_me__`) need deleting
 from the "Attempts" sheet before real student data starts arriving.
 
+### Error visibility: the Executions view doesn't reliably show logs for real requests
+
+Follow-up questions surfaced a real, non-obvious Apps Script limitation.
+`parsePayload()`'s rejection branches originally logged via
+`console.error()`. Testing that from the actual deployed Web App (a
+malformed-body `curl` POST) produced the correct clean error *response*,
+but the Executions view showed no logged content for that row — only a
+manually-run-in-editor test (`doPost()` called with no arguments, via the
+editor's Run button) showed its log. Suspected `console.error()`
+specifically; switched to `Logger.log()` (the older mechanism) and
+redeployed — same result: still invisible for real Web App-triggered
+runs, still visible for manual runs. Two different logging APIs failing
+identically for the same trigger-type distinction ruled out "wrong API"
+as the explanation — it's a real gap in that view for Web App-triggered
+executions specifically, not a logging-API choice.
+
+Fix: stopped depending on the Executions view for this at all. Added
+`logError(message, context)` in `Code.gs`, writing directly to a new
+"ErrorLog" sheet tab (auto-created on first use, same pattern as
+"Attempts") via `SpreadsheetApp` — already proven reliable, since real
+student data was already landing correctly in "Attempts" the whole time.
+Every `parsePayload()` rejection and the outer `doPost()` catch now call
+this instead of any console/Logger call. Verified via curl against the
+redeployed version: the malformed-JSON test's response was still the
+correct clean error, and this time a real row appeared in "ErrorLog"
+(`parsePayload rejected: body is not valid JSON`) — confirmed directly,
+not just inferred from the response.
+
+Separately, an unexplained anomaly surfaced during this process: the
+Executions list showed 3 `doGet`s against one deployed version when
+neither Claude nor the user had made more than one (Claude: 1, user: 0).
+Not resolved — no confirmed cause. Flagged as low-risk regardless of
+cause, since `doGet()` has zero side effects (no sheet access, static
+response only), but worth keeping an eye on if it recurs, especially
+once real student traffic starts and unexplained-request-counting
+becomes harder to reason about by inspection.
+
+### Fully verified end-to-end
+
+With the ErrorLog fix confirmed live, both halves of the pipeline are now
+directly verified against the real deployed endpoint (not just curl
+responses): a successful submission lands in "Attempts" with the right
+data, and a malformed one lands in "ErrorLog" with a readable message —
+both checked by the user directly in the Sheet, not just inferred from
+JSON response bodies.
+
 Still open: the one verification this session's tooling genuinely can't
 do — an actual browser, on the live deployed site, clicking "Download My
-Work" and confirming a real row appears. High confidence after the curl
-test and the CORS header, but not yet a completed check. Also still
-open, deliberately deferred: the calc script that reads the "Attempts"
-sheet to compute `relative_performance`/`week_score`/the trend (now has
-real data to read), and the display/leaderboard layer.
+Work" and confirming a real row appears via the real client code path
+(`sendBeacon()`/`fetch()`), not curl standing in for it. High confidence
+after everything above, but not yet a completed check. Also still open,
+deliberately deferred: the calc script that reads the "Attempts" sheet to
+compute `relative_performance`/`week_score`/the trend (now has real data
+to read), and the display/leaderboard layer.
