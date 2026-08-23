@@ -162,6 +162,19 @@ function buildRows(data) {
 
 function appendRows(rows) {
   const sheet = getOrCreateSheet();
+  // Whole-column plain-text format, reapplied on every call (not just
+  // the freshly-written range) — otherwise Sheets can silently
+  // reinterpret a numeric-looking string as a real number, e.g. exercise
+  // id "01" becomes 1, permanently losing the leading zero. Formatting
+  // only the new range right before writing worked for an isolated
+  // single-row test but not for a real multi-row batch — formatting the
+  // whole column up front, every time, plus an explicit flush to force
+  // it to actually commit before values get written, is the more robust
+  // fix. (Found via GrowthMetrics.gs's difficulty lookup silently failing
+  // to match every exercise 01-09 once this had already happened once.)
+  sheet.getRange(1, 1, sheet.getMaxRows(), HEADER.length).setNumberFormat("@");
+  SpreadsheetApp.flush();
+
   sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, HEADER.length).setValues(rows);
 }
 

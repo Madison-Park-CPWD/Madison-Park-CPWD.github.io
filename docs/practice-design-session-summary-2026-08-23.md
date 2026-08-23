@@ -390,3 +390,129 @@ after everything above, but not yet a completed check. Also still open,
 deliberately deferred: the calc script that reads the "Attempts" sheet to
 compute `relative_performance`/`week_score`/the trend (now has real data
 to read), and the display/leaderboard layer.
+
+## Session 3 — real browser test confirmed, calc script built, a real data-corruption bug found and fixed
+
+### The one remaining verification passed
+
+The user clicked "Download My Work" on the live deployed site (a real
+browser, real `sendBeacon()`/`fetch()`, not curl standing in) and
+confirmed a row landed correctly — closing the one gap Session 2 flagged
+as unverifiable from this session's tooling alone.
+
+### `apps-script/GrowthMetrics.gs` built
+
+New file in the same Apps Script project as `Code.gs` (not a Web App —
+runs manually from the editor, or a future time-based trigger; never
+reachable through the public URL, since it reads student data). Reads
+"Attempts," groups by student + `track|unit|exercise`, and computes:
+
+- **Per-exercise stats**: `attemptsTaken` (position of first `{passed:
+  true}`, or total attempts if never solved), `firstPassTimestamp`,
+  whether attempt #1 passed, and same-mistake detection between every
+  pair of *consecutive* failed attempts (identical failing-test-index set
+  + identical `hadError` pattern, exactly the rule decided when
+  `testResults` was designed).
+- **Grit** = average `attemptsTaken` across solved exercises.
+  **First-attempt success rate** = fraction of attempted exercises where
+  try #1 passed. **Error-reading rate** = fraction of consecutive-failure
+  pairs that repeated the identical mistake (lower is better; `null`,
+  not `0`, when a student has no failure pairs to measure at all).
+- **Growth trend**: `relative_performance = expected_attempts /
+  attemptsTaken` per solved exercise (skipped, not zeroed, when no
+  difficulty/expected_attempts data exists for that exercise) →
+  `week_score(w)` bucketed by Monday-of-week (UTC, a plain date-math
+  function, not `Utilities.formatDate`, to stay timezone-independent and
+  sidestep ISO week-numbering's year-boundary edge cases) →
+  `growth_score` = avg(most recent N weeks) / avg(earliest N weeks), N
+  shrinking automatically for students with under `2×N` weeks of data,
+  `null` outright below 2 weeks (a trend needs at least two points).
+- `expected_attempts` comes from fetching the live site's unit JSON files
+  + `growth-metric-config.json` via `UrlFetchApp` — one source of truth,
+  no duplicated difficulty data inside the calc script itself.
+
+Writes to two new tabs: **GrowthScores** (one row per student — the three
+metrics plus growth score) and **WeekScores** (one row per student per
+week — the audit trail behind the growth number, same "never reduce to a
+summary-only record" principle as keeping full code per attempt).
+
+All pure-logic functions (stats, same-mistake detection, week bucketing,
+the growth-score ratio, every edge case — unsolved exercises, zero
+activity, single-week data, zero failure-pairs) verified via isolated
+simulation with hand-checked synthetic data before ever touching Apps
+Script — same methodology used all session. Every value matched by hand.
+
+### Two real bugs found only by running it against real data
+
+**Bug 1 — wasteful, noisy unit-file fetching.** The first version guessed
+filename number-prefixes 1–99 until one worked (mirroring
+`difficulty-review.js`'s existing pattern, harmless there since it's
+client-side and failures aren't logged). In Apps Script, every guess-miss
+is a real HTTP request *and* got logged as an "Error" by the new
+diagnostics — for a unit late in a 19-unit manifest, that's ~18 wasted
+requests and 18 false-alarm log lines before succeeding. Fixed by using
+the manifest's own array index directly (`String(index + 1).padStart(2,
+"0")`), the same deterministic convention `loadUnits()` already uses in
+both apps' `app.js` — no guessing needed at all. Verified against the
+live site: all 20 real unit files resolve on the first request, zero
+failures, all 204 exercises confirmed carrying a `difficulty` field.
+
+**Bug 2 — Google Sheets silently corrupts numeric-looking exercise IDs.**
+Even after fixing Bug 1, `WeekScores` stayed empty. Diagnostic logging
+(`console.log`/`console.error` — reliable here since `runGrowthMetrics`
+only ever runs manually, unlike `Code.gs`'s Web App-triggered functions)
+showed the actual cause: solved-exercise keys read back from "Attempts"
+were `"python|print-input-fstrings|1"`, not `|01"` — Google Sheets'
+`setValues()` had silently reinterpreted the string `"01"` as the number
+`1` at write time, in `Code.gs`. This isn't a display quirk — the
+leading zero is permanently gone from the stored data itself. Only
+exercises `01`–`09` are affected (`10`+ look identical as a number or a
+zero-padded string, so the bug is invisible for most of the range).
+
+First fix attempt: `range.setNumberFormat("@")` (plain-text format) on
+just the newly-written range, immediately before `setValues()` — the
+textbook fix for this Sheets/Apps Script gotcha. Verified with a
+single-row `curl` POST sending exercise id `"01"` explicitly, confirmed
+directly in the sheet: cell showed `01`, correctly. **This verification
+was misleading** — the user then re-exported their real multi-exercise
+data through the actual fixed deployment, and it corrupted again anyway
+(`1`, `2`, `3`...). A single isolated row surviving didn't prove a real
+multi-row batch would; it should have been tested with a multi-exercise
+payload from the start, matching what `exportAllHistoryToSheet()` (and
+the earlier multi-row smoke tests in Session 2) actually send.
+
+Real fix: format the *whole column* (`sheet.getRange(1, 1,
+sheet.getMaxRows(), HEADER.length).setNumberFormat("@")`), every time
+`appendRows()` runs (not just once at sheet creation — the sheet already
+existed with unformatted columns, so a creation-time-only fix wouldn't
+retroactively help), plus an explicit `SpreadsheetApp.flush()` before
+`setValues()` to force the format change to actually commit first rather
+than risk being reordered/batched with the write. This time verified with
+a 7-exercise single-batch `curl` payload (`exercises 01`–`07` in one
+POST, deliberately mirroring the shape that broke) — confirmed directly
+in the sheet by the user: all seven read `01` through `07` correctly.
+
+**Consequence**: every row already in "Attempts" (written before this
+fix) has this corruption baked in permanently — the fix only prevents it
+going forward. Since the underlying `localStorage` data was never
+corrupted (this only happens at the sheet-write step), the clean fix is
+deleting the existing Attempts rows and re-clicking "Download My Work"
+once the fix is deployed, not a data-repair script. Not yet done as of
+this writing — the next step once this session's changes are committed.
+
+**Lesson worth keeping**: a passing single-instance test doesn't
+generalize to "the batch case works" for anything involving spreadsheet
+formatting/write-ordering — verify with a payload shaped like real usage
+(multiple rows, multiple columns) from the start, not the smallest
+possible reproduction.
+
+Worth naming as a general lesson, not just this one bug: this is the
+second time in this project a full-fidelity round-trip test (not just
+"did the request succeed") caught something a response-code check alone
+would have missed entirely — the `doPost()` response was `{"status":
+"ok"}` the whole time, even while every write after it was silently
+losing data.
+
+Still open: re-verify `WeekScores`/`GrowthScores` populate correctly
+against clean, regenerated data; decide on and build the display/
+leaderboard layer.
