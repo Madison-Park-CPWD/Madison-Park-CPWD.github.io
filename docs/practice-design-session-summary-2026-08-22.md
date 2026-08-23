@@ -302,9 +302,44 @@ POST is delivered successfully end-to-end once live — that needs a real
 smoke test (click "Download My Work" against the live deployed URL,
 confirm a row appears) once the Apps Script is actually deployed.
 
-Still open, deliberately deferred: the calc script that reads the
-"Attempts" sheet to compute `relative_performance`/`week_score`/the
-trend (now has real data to read once deployed), and the display/
-leaderboard layer — both still out of scope until the ingest side existed
-to feed them, which it now does, pending deployment and a live smoke
-test.
+### Deployed and smoke-tested
+
+The Apps Script got deployed for real (under the BPS Google account, not
+personal Gmail — identifiable student data belongs on district-managed
+infrastructure, and this data includes student names). `EXPORT_ENDPOINT_URL`
+is now set to the real deployed URL in both `app.js` files.
+
+Smoke-tested via `curl` before trusting it with real student traffic:
+`doGet()` sanity check matched exactly; a `doPost()` test with a fake
+student name wrote rows correctly (`{"status":"ok","rowsWritten":2}`).
+Worth recording two things learned from the process itself, not just the
+result:
+
+- Apps Script Web Apps respond to a POST with a `302` redirect to a
+  `script.googleusercontent.com/macros/echo?...` URL that serves the
+  actual response body — but `doPost()` (parsing + the sheet write)
+  already executes on the original request, *before* that redirect is
+  even involved. `curl -L` mishandled following that specific redirect
+  (looked like a failure), but the underlying write had already
+  succeeded regardless — confirmed by ending up with 4 test rows instead
+  of 2, since a "failed" first attempt had silently written its rows
+  anyway. This is a good reliability signal for the real client, not just
+  a curl quirk to shrug off: `sendBeacon()` never reads a response either
+  (fire-and-forget), so this confirms the write doesn't depend on the
+  client successfully handling that response step.
+- The response carried `access-control-allow-origin: *`, meaning Apps
+  Script's own infrastructure sets a permissive CORS header — good
+  evidence against the cross-origin concern raised earlier, though it
+  doesn't fully replace an actual browser test (curl isn't subject to a
+  browser's CORS enforcement the way `fetch()`/`sendBeacon()` are).
+
+The four test rows (student `__SMOKE_TEST_delete_me__`) need deleting
+from the "Attempts" sheet before real student data starts arriving.
+
+Still open: the one verification this session's tooling genuinely can't
+do — an actual browser, on the live deployed site, clicking "Download My
+Work" and confirming a real row appears. High confidence after the curl
+test and the CORS header, but not yet a completed check. Also still
+open, deliberately deferred: the calc script that reads the "Attempts"
+sheet to compute `relative_performance`/`week_score`/the trend (now has
+real data to read), and the display/leaderboard layer.
