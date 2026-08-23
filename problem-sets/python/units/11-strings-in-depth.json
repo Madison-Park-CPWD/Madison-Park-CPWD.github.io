@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "strings-in-depth",
       "title": "First Character",
+      "difficulty": 1,
       "sidebar_tag": "indexing",
       "description": [
         "<p>Read a string and print its <strong>first</strong> character, using",
@@ -53,6 +54,7 @@
       "id": "02",
       "source_unit": "strings-in-depth",
       "title": "Last Character",
+      "difficulty": 1,
       "sidebar_tag": "indexing",
       "description": [
         "<p>Read a string and print its <strong>last</strong> character, using",
@@ -99,6 +101,7 @@
       "id": "03",
       "source_unit": "strings-in-depth",
       "title": "Substring with Slicing",
+      "difficulty": 1,
       "sidebar_tag": "slicing",
       "description": [
         "<p>Read a string and print just its first three characters, using",
@@ -145,6 +148,7 @@
       "id": "04",
       "source_unit": "strings-in-depth",
       "title": "String Length",
+      "difficulty": 1,
       "sidebar_tag": "len()",
       "description": [
         "<p>Read a string and print how many characters it has, using the",
@@ -189,6 +193,7 @@
       "id": "05",
       "source_unit": "strings-in-depth",
       "title": "Shout and Whisper",
+      "difficulty": 1,
       "sidebar_tag": "upper / lower",
       "description": [
         "<p>Read a string and print it in all uppercase, then all lowercase,",
@@ -229,6 +234,7 @@
       "id": "06",
       "source_unit": "strings-in-depth",
       "title": "Strip Whitespace",
+      "difficulty": 1,
       "sidebar_tag": "strip()",
       "description": [
         "<p>Read a string and print it with any leading or trailing spaces",
@@ -275,6 +281,7 @@
       "id": "07",
       "source_unit": "strings-in-depth",
       "title": "Count the Words",
+      "difficulty": 1,
       "sidebar_tag": "split()",
       "description": [
         "<p>Read a sentence and print how many words it contains.</p>",
@@ -315,6 +322,7 @@
       "id": "08",
       "source_unit": "strings-in-depth",
       "title": "Loop Over Words",
+      "difficulty": 1,
       "sidebar_tag": "split() + for",
       "description": [
         "<p>Read a sentence and print each word on its own line, in order.</p>",
@@ -351,6 +359,7 @@
       "id": "09",
       "source_unit": "strings-in-depth",
       "title": "Reverse a String",
+      "difficulty": 2,
       "sidebar_tag": "slicing",
       "description": [
         "<p>Read a string and print it backwards.</p>",
@@ -397,6 +406,7 @@
       "id": "10",
       "source_unit": "strings-in-depth",
       "title": "Count the Vowels",
+      "difficulty": 2,
       "sidebar_tag": "for + in",
       "description": [
         "<p>Read a string and count how many of its characters are vowels",
@@ -449,6 +459,7 @@
       "id": "11",
       "source_unit": "strings-in-depth",
       "title": "Find and Replace",
+      "difficulty": 2,
       "sidebar_tag": "replace()",
       "description": [
         "<p>Read a sentence, a word to find, and a word to replace it with, and",
@@ -500,6 +511,7 @@
       "id": "12",
       "source_unit": "strings-in-depth",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to capitalize the first letter of a word by",

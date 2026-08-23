@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "introspection",
       "title": "Asking Python for Help",
+      "difficulty": 1,
       "sidebar_tag": "help()",
       "description": [
         "<p>Call <code>help(len)</code>, with no other output.</p>",
@@ -40,6 +41,7 @@
       "id": "02",
       "source_unit": "introspection",
       "title": "help() on a Method",
+      "difficulty": 1,
       "sidebar_tag": "help()",
       "description": [
         "<p>Call <code>help(str.upper)</code>.</p>",
@@ -69,6 +71,7 @@
       "id": "03",
       "source_unit": "introspection",
       "title": "Using help() to Discover an Argument",
+      "difficulty": 1,
       "sidebar_tag": "help() + discover",
       "description": [
         "<p>The built-in <code>sorted()</code> function has a keyword argument",
@@ -100,6 +103,7 @@
       "id": "04",
       "source_unit": "introspection",
       "title": "Listing What a String Can Do",
+      "difficulty": 1,
       "sidebar_tag": "dir()",
       "description": [
         "<p>Read a string, then print whether <code>\"upper\"</code> appears in",
@@ -135,6 +139,7 @@
       "id": "05",
       "source_unit": "introspection",
       "title": "Checking What a Tuple Can't Do",
+      "difficulty": 1,
       "sidebar_tag": "dir()",
       "description": [
         "<p>Print whether <code>\"sort\"</code> appears in <code>dir(())</code>",
@@ -162,6 +167,7 @@
       "id": "06",
       "source_unit": "introspection",
       "title": "Same Object, Same id()",
+      "difficulty": 1,
       "sidebar_tag": "id()",
       "description": [
         "<p>Create a list <code>a = [1, 2, 3]</code>, then set",
@@ -196,6 +202,7 @@
       "id": "07",
       "source_unit": "introspection",
       "title": "Equal Value, Different id()",
+      "difficulty": 1,
       "sidebar_tag": "id()",
       "description": [
         "<p>Create two <strong>separate</strong> lists that happen to contain",
@@ -228,6 +235,7 @@
       "id": "08",
       "source_unit": "introspection",
       "title": "Find the Method, Then Use It",
+      "difficulty": 1,
       "sidebar_tag": "dir() + use",
       "description": [
         "<p>Read a string. Use <code>dir()</code> to confirm that strings have",
@@ -268,6 +276,7 @@
       "id": "09",
       "source_unit": "introspection",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print <code>True</code> once, showing",

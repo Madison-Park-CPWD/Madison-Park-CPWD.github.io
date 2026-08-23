@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "functions",
       "title": "Your First Function",
+      "difficulty": 1,
       "sidebar_tag": "def",
       "description": [
         "<p>Define a function called <code>greet</code> that takes no",
@@ -34,6 +35,7 @@
       "id": "02",
       "source_unit": "functions",
       "title": "A Function with One Parameter",
+      "difficulty": 2,
       "sidebar_tag": "parameters",
       "description": [
         "<p>Define a function <code>greet(name)</code> that prints",
@@ -71,6 +73,7 @@
       "id": "03",
       "source_unit": "functions",
       "title": "A Function with Two Parameters",
+      "difficulty": 2,
       "sidebar_tag": "parameters",
       "description": [
         "<p>Define a function <code>show_sum(a, b)</code> that prints the sum",
@@ -117,6 +120,7 @@
       "id": "04",
       "source_unit": "functions",
       "title": "Returning a Value",
+      "difficulty": 2,
       "sidebar_tag": "return",
       "description": [
         "<p>Define a function <code>add(a, b)</code> that",
@@ -167,6 +171,7 @@
       "id": "05",
       "source_unit": "functions",
       "title": "Using a Returned Value in an Expression",
+      "difficulty": 2,
       "sidebar_tag": "return",
       "description": [
         "<p>Define a function <code>square(n)</code> that returns",
@@ -213,6 +218,7 @@
       "id": "06",
       "source_unit": "functions",
       "title": "A Function with a Default Parameter",
+      "difficulty": 2,
       "sidebar_tag": "default params",
       "description": [
         "<p>Define a function <code>greet(name, greeting=\"Hello\")</code> that",
@@ -252,6 +258,7 @@
       "id": "07",
       "source_unit": "functions",
       "title": "Calling a Function Multiple Times",
+      "difficulty": 2,
       "sidebar_tag": "reuse",
       "description": [
         "<p>Define a function <code>square(n)</code> that returns",
@@ -299,6 +306,7 @@
       "id": "08",
       "source_unit": "functions",
       "title": "A Boolean-Returning Function",
+      "difficulty": 2,
       "sidebar_tag": "return bool",
       "description": [
         "<p>Define a function <code>is_even(n)</code> that returns",
@@ -350,6 +358,7 @@
       "id": "09",
       "source_unit": "functions",
       "title": "A Function with a Loop Inside",
+      "difficulty": 2,
       "sidebar_tag": "def + for",
       "description": [
         "<p>Define a function <code>sum_to_n(n)</code> that returns the sum of",
@@ -395,6 +404,7 @@
       "id": "10",
       "source_unit": "functions",
       "title": "A Function That Takes a List",
+      "difficulty": 2,
       "sidebar_tag": "list param",
       "description": [
         "<p>Define a function <code>total(nums)</code> that returns the sum of",
@@ -452,6 +462,7 @@
       "id": "11",
       "source_unit": "functions",
       "title": "Returning Multiple Values",
+      "difficulty": 2,
       "sidebar_tag": "multi-return",
       "description": [
         "<p>Define a function <code>min_max(nums)</code> that returns both the",
@@ -505,6 +516,7 @@
       "id": "12",
       "source_unit": "functions",
       "title": "Functions Calling Functions",
+      "difficulty": 2,
       "sidebar_tag": "composition",
       "description": [
         "<p>Define a function <code>square(n)</code> that returns",
@@ -560,6 +572,7 @@
       "id": "13",
       "source_unit": "functions",
       "title": "A Three-Level Function Chain",
+      "difficulty": 2,
       "sidebar_tag": "composition",
       "description": [
         "<p>Define <code>double(n)</code>, returning <code>n * 2</code>. Then",
@@ -608,6 +621,7 @@
       "id": "14",
       "source_unit": "functions",
       "title": "Refactoring Repeated Work",
+      "difficulty": 2,
       "sidebar_tag": "reuse",
       "description": [
         "<p>Define a function <code>cube(n)</code> that returns",
@@ -653,6 +667,7 @@
       "id": "15",
       "source_unit": "functions",
       "title": "Splitting Compute from Display",
+      "difficulty": 2,
       "sidebar_tag": "composition",
       "description": [
         "<p>Define <code>compute_area(length, width)</code>, which returns",
@@ -703,6 +718,7 @@
       "id": "16",
       "source_unit": "functions",
       "title": "Returning Early",
+      "difficulty": 2,
       "sidebar_tag": "early return",
       "description": [
         "<p>Define a function <code>classify(n)</code> that returns",
@@ -752,6 +768,7 @@
       "id": "17",
       "source_unit": "functions",
       "title": "A Validation Helper Function",
+      "difficulty": 2,
       "sidebar_tag": "helper",
       "description": [
         "<p>Define a function <code>is_valid_age(age)</code> that returns",
@@ -805,6 +822,7 @@
       "id": "18",
       "source_unit": "functions",
       "title": "A Three-Function Pipeline",
+      "difficulty": 2,
       "sidebar_tag": "composition",
       "description": [
         "<p>Define three functions: <code>clean(s)</code> returns",
@@ -851,6 +869,7 @@
       "id": "19",
       "source_unit": "functions",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to add two numbers and print the result.",
@@ -874,6 +893,7 @@
       "id": "20",
       "source_unit": "functions",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to square a number, then add 1 to the",

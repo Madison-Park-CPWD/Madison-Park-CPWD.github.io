@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "globals",
       "title": "Reading a Global Variable",
+      "difficulty": 1,
       "sidebar_tag": "global read",
       "description": [
         "<p>Read an integer into a variable called <code>LIMIT</code> at the",
@@ -47,6 +48,7 @@
       "id": "02",
       "source_unit": "globals",
       "title": "A Global Constant",
+      "difficulty": 1,
       "sidebar_tag": "constant",
       "description": [
         "<p>Using the fixed global <code>MAX_SCORE = 100</code>, define a",
@@ -96,6 +98,7 @@
       "id": "03",
       "source_unit": "globals",
       "title": "Modifying a Global with global",
+      "difficulty": 2,
       "sidebar_tag": "global keyword",
       "description": [
         "<p>Starting from <code>score = 0</code>, define",
@@ -139,6 +142,7 @@
       "id": "04",
       "source_unit": "globals",
       "title": "A Counter Across Multiple Calls",
+      "difficulty": 2,
       "sidebar_tag": "global keyword",
       "description": [
         "<p>Starting from <code>count = 0</code>, define",
@@ -187,6 +191,7 @@
       "id": "05",
       "source_unit": "globals",
       "title": "Sharing State Across Two Functions",
+      "difficulty": 2,
       "sidebar_tag": "global keyword",
       "description": [
         "<p>Starting from <code>total = 0</code>, define",
@@ -236,6 +241,7 @@
       "id": "06",
       "source_unit": "globals",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to add 5 points to a global score and print",
@@ -269,6 +275,7 @@
       "id": "07",
       "source_unit": "globals",
       "title": "Preferring Parameters Over Globals",
+      "difficulty": 2,
       "sidebar_tag": "good practice",
       "description": [
         "<p>Rewrite the running-total idea from a couple of exercises ago,",
@@ -322,6 +329,7 @@
       "id": "08",
       "source_unit": "globals",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to set a global score to whatever value is",

@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "sets",
       "title": "Create a Set and Print It Sorted",
+      "difficulty": 1,
       "sidebar_tag": "set",
       "description": [
         "<p>Read three integers into a set (using curly braces), then print",
@@ -60,6 +61,7 @@
       "id": "02",
       "source_unit": "sets",
       "title": "Removing Duplicates from a List",
+      "difficulty": 2,
       "sidebar_tag": "set()",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
@@ -120,6 +122,7 @@
       "id": "03",
       "source_unit": "sets",
       "title": "Membership Testing",
+      "difficulty": 1,
       "sidebar_tag": "in",
       "description": [
         "<p>Using the fixed set <code>{1, 2, 3, 4, 5}</code>, read a number and",
@@ -169,6 +172,7 @@
       "id": "04",
       "source_unit": "sets",
       "title": "Adding to a Set",
+      "difficulty": 1,
       "sidebar_tag": "add()",
       "description": [
         "<p>Start with the set <code>{1, 2, 3}</code>, read one number, add it",
@@ -210,6 +214,7 @@
       "id": "05",
       "source_unit": "sets",
       "title": "Counting Unique Values",
+      "difficulty": 2,
       "sidebar_tag": "set()",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> integers",
@@ -269,6 +274,7 @@
       "id": "06",
       "source_unit": "sets",
       "title": "Loop Over a Set",
+      "difficulty": 1,
       "sidebar_tag": "for",
       "description": [
         "<p>Read three integers into a set, then print each value on its own",
@@ -312,6 +318,7 @@
       "id": "07",
       "source_unit": "sets",
       "title": "Set Intersection",
+      "difficulty": 2,
       "sidebar_tag": "&",
       "description": [
         "<p>Using the fixed sets <code>{1, 2, 3, 4}</code> and",
@@ -340,6 +347,7 @@
       "id": "08",
       "source_unit": "sets",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print the smallest number in a set. Run it",

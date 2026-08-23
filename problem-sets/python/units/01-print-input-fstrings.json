@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "print-input-fstrings",
       "title": "Hello, World",
+      "difficulty": 1,
       "sidebar_tag": "print",
       "description": [
         "<p>Use <code>print()</code> to output exactly the following, with no input",
@@ -28,6 +29,7 @@
       "id": "02",
       "source_unit": "print-input-fstrings",
       "title": "Print Two Values",
+      "difficulty": 1,
       "sidebar_tag": "print(a, b)",
       "description": [
         "<p>Read two words, one per line, and print them <strong>on the same line,",
@@ -72,6 +74,7 @@
       "id": "03",
       "source_unit": "print-input-fstrings",
       "title": "Custom Separator",
+      "difficulty": 1,
       "sidebar_tag": "sep=",
       "description": [
         "<p>Read two words, one per line, and print them on the same line separated by a",
@@ -116,6 +119,7 @@
       "id": "04",
       "source_unit": "print-input-fstrings",
       "title": "Print Without a Newline",
+      "difficulty": 1,
       "sidebar_tag": "end=",
       "description": [
         "<p>Read two words, one per line. Print the first word so that <strong>no",
@@ -162,6 +166,7 @@
       "id": "05",
       "source_unit": "print-input-fstrings",
       "title": "Echo Input Exactly",
+      "difficulty": 1,
       "sidebar_tag": "input",
       "description": [
         "<p>Read one full line of text (it may contain spaces) and print it back out,",
@@ -199,6 +204,7 @@
       "id": "06",
       "source_unit": "print-input-fstrings",
       "title": "Add a Greeting",
+      "difficulty": 1,
       "sidebar_tag": "+",
       "description": [
         "<p>Read a name, then print a greeting by <strong>joining strings together</strong>",
@@ -239,6 +245,7 @@
       "id": "07",
       "source_unit": "print-input-fstrings",
       "title": "Greet with an f-string",
+      "difficulty": 1,
       "sidebar_tag": "f\"{}\"",
       "description": [
         "<p>Same result as the last exercise, but this time use an",
@@ -281,6 +288,7 @@
       "id": "08",
       "source_unit": "print-input-fstrings",
       "title": "Introduce Yourself",
+      "difficulty": 1,
       "sidebar_tag": "f\"{}\"",
       "description": [
         "<p>Read a name and an age (as a whole number), and print a full introduction",
@@ -325,6 +333,7 @@
       "id": "09",
       "source_unit": "print-input-fstrings",
       "title": "Math Inside an f-string",
+      "difficulty": 1,
       "sidebar_tag": "f\"{a+b}\"",
       "description": [
         "<p>Read two integers and print an f-string that shows the whole equation,",
@@ -367,6 +376,7 @@
       "id": "10",
       "source_unit": "print-input-fstrings",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is <em>supposed</em> to print a greeting like",

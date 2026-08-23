@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "while-loops",
       "title": "Count Up to 5",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Print the numbers 1 through 5, each on its own line, using a",
@@ -37,6 +38,7 @@
       "id": "02",
       "source_unit": "while-loops",
       "title": "Count Down from N",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Read an integer <code>n</code> and print the numbers from",
@@ -78,6 +80,7 @@
       "id": "03",
       "source_unit": "while-loops",
       "title": "Sum From 1 to N",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Read an integer <code>n</code> and print the sum of every whole number",
@@ -124,6 +127,7 @@
       "id": "04",
       "source_unit": "while-loops",
       "title": "Repeat a Word",
+      "difficulty": 1,
       "sidebar_tag": "while",
       "description": [
         "<p>Read a word and a count <code>n</code>, and print the word",
@@ -170,6 +174,7 @@
       "id": "05",
       "source_unit": "while-loops",
       "title": "Sum Until Zero",
+      "difficulty": 2,
       "sidebar_tag": "sentinel loop",
       "description": [
         "<p>Keep reading integers and adding them to a running total, stopping as",
@@ -231,6 +236,7 @@
       "id": "06",
       "source_unit": "while-loops",
       "title": "Doubling Until Over a Limit",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Read a <code>limit</code>. Starting from 1, keep doubling a value",
@@ -276,6 +282,7 @@
       "id": "07",
       "source_unit": "while-loops",
       "title": "Counting Digits",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Read a positive integer and print how many digits it has, using a",
@@ -326,6 +333,7 @@
       "id": "08",
       "source_unit": "while-loops",
       "title": "Sum of Even Numbers",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Read an integer <code>n</code> and print the sum of every",
@@ -375,6 +383,7 @@
       "id": "09",
       "source_unit": "while-loops",
       "title": "Keep Asking Until Valid",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Read integers, one at a time, until a <strong>positive</strong>",
@@ -425,6 +434,7 @@
       "id": "10",
       "source_unit": "while-loops",
       "title": "Multiplication Table",
+      "difficulty": 2,
       "sidebar_tag": "while",
       "description": [
         "<p>Read an integer <code>n</code> and print its multiplication table",
@@ -464,6 +474,7 @@
       "id": "11",
       "source_unit": "while-loops",
       "title": "Sum From 1 to N, Given a Different N",
+      "difficulty": 1,
       "sidebar_tag": "while",
       "description": [
         "<p>This is the same task as an earlier exercise &mdash; sum the whole",
@@ -504,6 +515,7 @@
       "id": "12",
       "source_unit": "while-loops",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print the numbers 1 through 5. Run it and",

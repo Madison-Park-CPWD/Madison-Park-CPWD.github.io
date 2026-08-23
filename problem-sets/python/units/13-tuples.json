@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "tuples",
       "title": "Create and Print a Tuple",
+      "difficulty": 1,
       "sidebar_tag": "tuple",
       "description": [
         "<p>Create a tuple containing exactly the numbers 3 and 4, in that",
@@ -30,6 +31,7 @@
       "id": "02",
       "source_unit": "tuples",
       "title": "Access by Index",
+      "difficulty": 1,
       "sidebar_tag": "indexing",
       "description": [
         "<p>Read two integers into a tuple, then print both values on the same",
@@ -74,6 +76,7 @@
       "id": "03",
       "source_unit": "tuples",
       "title": "Tuple Length",
+      "difficulty": 1,
       "sidebar_tag": "len()",
       "description": [
         "<p>Read three integers into a tuple and print how many items it",
@@ -112,6 +115,7 @@
       "id": "04",
       "source_unit": "tuples",
       "title": "Unpacking a Tuple",
+      "difficulty": 1,
       "sidebar_tag": "unpacking",
       "description": [
         "<p>Read two integers into a tuple representing a point, then",
@@ -157,6 +161,7 @@
       "id": "05",
       "source_unit": "tuples",
       "title": "Building a Tuple from a List",
+      "difficulty": 1,
       "sidebar_tag": "tuple()",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
@@ -212,6 +217,7 @@
       "id": "06",
       "source_unit": "tuples",
       "title": "Loop Over a Tuple",
+      "difficulty": 1,
       "sidebar_tag": "for",
       "description": [
         "<p>Read three integers into a tuple, then print each one on its own",
@@ -252,6 +258,7 @@
       "id": "07",
       "source_unit": "tuples",
       "title": "Combining Two Tuples",
+      "difficulty": 2,
       "sidebar_tag": "+",
       "description": [
         "<p>Read two integers into one tuple and two more into a second tuple,",
@@ -296,6 +303,7 @@
       "id": "08",
       "source_unit": "tuples",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to change the first value in a point from 3",

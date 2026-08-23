@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "nested-ifs",
       "title": "Voting Eligibility with Registration",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read an <code>age</code>. If it's 18 or older, also read whether the",
@@ -76,6 +77,7 @@
       "id": "02",
       "source_unit": "nested-ifs",
       "title": "Movie Ticket Discount",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read an <code>age</code>. If it's under 12, print",
@@ -138,6 +140,7 @@
       "id": "03",
       "source_unit": "nested-ifs",
       "title": "Password Strength Check",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read a password's <code>length</code> and whether it contains a number",
@@ -200,6 +203,7 @@
       "id": "04",
       "source_unit": "nested-ifs",
       "title": "Sign and Parity",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read an integer <code>n</code> and print one of four results, combining",
@@ -257,6 +261,7 @@
       "id": "05",
       "source_unit": "nested-ifs",
       "title": "Weather Description",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read a <code>temp</code> and whether it's raining",
@@ -319,6 +324,7 @@
       "id": "06",
       "source_unit": "nested-ifs",
       "title": "Purchase Discount",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read a purchase <code>amount</code> and whether the customer has a",
@@ -382,6 +388,7 @@
       "id": "07",
       "source_unit": "nested-ifs",
       "title": "Exam Result with Attendance",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read a <code>score</code> and an <code>attendance_percent</code>. If",
@@ -444,6 +451,7 @@
       "id": "08",
       "source_unit": "nested-ifs",
       "title": "Shipping Cost",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read a package <code>weight</code> and whether the customer is a member",
@@ -507,6 +515,7 @@
       "id": "09",
       "source_unit": "nested-ifs",
       "title": "Login Access",
+      "difficulty": 2,
       "sidebar_tag": "nested if",
       "description": [
         "<p>Read whether the entered password was correct",
@@ -571,6 +580,7 @@
       "id": "10",
       "source_unit": "nested-ifs",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to work exactly like an earlier exercise: ask for",

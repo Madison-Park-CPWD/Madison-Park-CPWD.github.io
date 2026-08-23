@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "boolean-operators",
       "title": "Using and",
+      "difficulty": 1,
       "sidebar_tag": "and",
       "description": [
         "<p>Read two integers, one per line, and print <code>True</code> if",
@@ -67,6 +68,7 @@
       "id": "02",
       "source_unit": "boolean-operators",
       "title": "Using or",
+      "difficulty": 1,
       "sidebar_tag": "or",
       "description": [
         "<p>Read two integers, one per line, and print <code>True</code> if",
@@ -127,6 +129,7 @@
       "id": "03",
       "source_unit": "boolean-operators",
       "title": "Using not",
+      "difficulty": 1,
       "sidebar_tag": "not",
       "description": [
         "<p>Read an integer and print <code>True</code> if it is",
@@ -180,6 +183,7 @@
       "id": "04",
       "source_unit": "boolean-operators",
       "title": "Voting Eligibility, Simplified",
+      "difficulty": 2,
       "sidebar_tag": "and",
       "description": [
         "<p>Read an <code>age</code> and whether someone is registered",
@@ -244,6 +248,7 @@
       "id": "05",
       "source_unit": "boolean-operators",
       "title": "Weekend Check",
+      "difficulty": 1,
       "sidebar_tag": "or",
       "description": [
         "<p>Read a day number (1 = Monday ... 7 = Sunday) and print",
@@ -295,6 +300,7 @@
       "id": "06",
       "source_unit": "boolean-operators",
       "title": "Valid Password Check",
+      "difficulty": 2,
       "sidebar_tag": "and",
       "description": [
         "<p>Read a password's <code>length</code> and whether it has a number",
@@ -355,6 +361,7 @@
       "id": "07",
       "source_unit": "boolean-operators",
       "title": "Combining and and or",
+      "difficulty": 2,
       "sidebar_tag": "and / or",
       "description": [
         "<p>Read three integers <code>a</code>, <code>b</code>, <code>c</code>, one",
@@ -425,6 +432,7 @@
       "id": "08",
       "source_unit": "boolean-operators",
       "title": "Ticket Refund Rules",
+      "difficulty": 2,
       "sidebar_tag": "and / or",
       "description": [
         "<p>Read whether an event was <code>cancelled</code>",
@@ -486,6 +494,7 @@
       "id": "09",
       "source_unit": "boolean-operators",
       "title": "Nested If vs. and: Same Result",
+      "difficulty": 2,
       "sidebar_tag": "and",
       "description": [
         "<p>Read a <code>temp</code> and whether it's <code>raining</code>",
@@ -550,6 +559,7 @@
       "id": "10",
       "source_unit": "boolean-operators",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to grant entry if a person has a ticket",

@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "int-math",
       "title": "Sum of Two Integers",
+      "difficulty": 1,
       "sidebar_tag": "+",
       "description": [
         "<p>Read two integers from input, one per line, and print their <strong>sum</strong>",
@@ -63,6 +64,7 @@
       "id": "02",
       "source_unit": "int-math",
       "title": "Difference of Two Integers",
+      "difficulty": 1,
       "sidebar_tag": "-",
       "description": [
         "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
@@ -117,6 +119,7 @@
       "id": "03",
       "source_unit": "int-math",
       "title": "Product of Two Integers",
+      "difficulty": 1,
       "sidebar_tag": "*",
       "description": [
         "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
@@ -171,6 +174,7 @@
       "id": "04",
       "source_unit": "int-math",
       "title": "Power of a Number",
+      "difficulty": 1,
       "sidebar_tag": "**",
       "description": [
         "<p>Read a <code>base</code> and an <code>exponent</code>, one per line, and print",
@@ -225,6 +229,7 @@
       "id": "05",
       "source_unit": "int-math",
       "title": "True Division",
+      "difficulty": 1,
       "sidebar_tag": "/",
       "description": [
         "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
@@ -280,6 +285,7 @@
       "id": "06",
       "source_unit": "int-math",
       "title": "Floor Division",
+      "difficulty": 1,
       "sidebar_tag": "//",
       "description": [
         "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
@@ -336,6 +342,7 @@
       "id": "07",
       "source_unit": "int-math",
       "title": "Modulo (Remainder)",
+      "difficulty": 1,
       "sidebar_tag": "%",
       "description": [
         "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and print",
@@ -391,6 +398,7 @@
       "id": "08",
       "source_unit": "int-math",
       "title": "Order of Operations",
+      "difficulty": 1,
       "sidebar_tag": "+ *",
       "description": [
         "<p>Read three integers <code>a</code>, <code>b</code>, and <code>c</code>, one per",
@@ -456,6 +464,7 @@
       "id": "09",
       "source_unit": "int-math",
       "title": "Even or Odd",
+      "difficulty": 2,
       "sidebar_tag": "%",
       "description": [
         "<p>Read one integer <code>n</code> and print <code>Even</code> if it is evenly",
@@ -505,6 +514,7 @@
       "id": "10",
       "source_unit": "int-math",
       "title": "Seconds to Minutes:Seconds",
+      "difficulty": 2,
       "sidebar_tag": "// %",
       "description": [
         "<p>Read one integer representing a total number of seconds, and print it in",

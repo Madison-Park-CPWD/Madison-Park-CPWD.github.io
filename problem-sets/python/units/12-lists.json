@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "lists",
       "title": "Create and Print a List",
+      "difficulty": 1,
       "sidebar_tag": "list",
       "description": [
         "<p>Create a list containing exactly these five numbers, in this order:",
@@ -32,6 +33,7 @@
       "id": "02",
       "source_unit": "lists",
       "title": "Reading Three Numbers into a List",
+      "difficulty": 1,
       "sidebar_tag": "list",
       "description": [
         "<p>Read three integers, one per line, into a single list, then print",
@@ -76,6 +78,7 @@
       "id": "03",
       "source_unit": "lists",
       "title": "Access by Index",
+      "difficulty": 1,
       "sidebar_tag": "indexing",
       "description": [
         "<p>Read three integers into a list, then read one more integer to use",
@@ -129,6 +132,7 @@
       "id": "04",
       "source_unit": "lists",
       "title": "Building a List of Unknown Size",
+      "difficulty": 2,
       "sidebar_tag": "for + append",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> more integers",
@@ -189,6 +193,7 @@
       "id": "05",
       "source_unit": "lists",
       "title": "Append to a List",
+      "difficulty": 2,
       "sidebar_tag": "append()",
       "description": [
         "<p>Start with the list <code>[1, 2, 3]</code>, read one more integer,",
@@ -227,6 +232,7 @@
       "id": "06",
       "source_unit": "lists",
       "title": "Loop Over a List",
+      "difficulty": 2,
       "sidebar_tag": "for",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
@@ -270,6 +276,7 @@
       "id": "07",
       "source_unit": "lists",
       "title": "Sum of a List",
+      "difficulty": 2,
       "sidebar_tag": "sum()",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
@@ -327,6 +334,7 @@
       "id": "08",
       "source_unit": "lists",
       "title": "Find the Maximum",
+      "difficulty": 2,
       "sidebar_tag": "for",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> integers into",
@@ -383,6 +391,7 @@
       "id": "09",
       "source_unit": "lists",
       "title": "List Slicing",
+      "difficulty": 2,
       "sidebar_tag": "slicing",
       "description": [
         "<p>Start with the list <code>[10, 20, 30, 40, 50]</code>. Read a",
@@ -437,6 +446,7 @@
       "id": "10",
       "source_unit": "lists",
       "title": "Modifying a List Element",
+      "difficulty": 2,
       "sidebar_tag": "mutation",
       "description": [
         "<p>Start with the list <code>[1, 2, 3]</code>. Read an index and a new",
@@ -486,6 +496,7 @@
       "id": "11",
       "source_unit": "lists",
       "title": "Removing an Item",
+      "difficulty": 2,
       "sidebar_tag": "remove()",
       "description": [
         "<p>Start with the list <code>[10, 20, 30, 40]</code>. Read a value,",
@@ -535,6 +546,7 @@
       "id": "12",
       "source_unit": "lists",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print the <strong>last</strong> item in a",

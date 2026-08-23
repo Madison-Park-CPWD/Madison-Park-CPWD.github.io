@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "dictionaries",
       "title": "Create and Print a Dictionary",
+      "difficulty": 1,
       "sidebar_tag": "dict",
       "description": [
         "<p>Read a <code>name</code> and an <code>age</code>, build a",
@@ -48,6 +49,7 @@
       "id": "02",
       "source_unit": "dictionaries",
       "title": "Access by Key",
+      "difficulty": 1,
       "sidebar_tag": "indexing",
       "description": [
         "<p>Read a <code>name</code> and an <code>age</code> into a",
@@ -89,6 +91,7 @@
       "id": "03",
       "source_unit": "dictionaries",
       "title": "Add or Update a Key",
+      "difficulty": 2,
       "sidebar_tag": "assignment",
       "description": [
         "<p>Start with a dictionary containing just a <code>\"name\"</code>.",
@@ -129,6 +132,7 @@
       "id": "04",
       "source_unit": "dictionaries",
       "title": "Key Exists Check",
+      "difficulty": 1,
       "sidebar_tag": "in",
       "description": [
         "<p>Using the fixed dictionary <code>{\"name\": \"Ava\", \"age\": 16}</code>,",
@@ -171,6 +175,7 @@
       "id": "05",
       "source_unit": "dictionaries",
       "title": "Building a Dictionary from Input",
+      "difficulty": 2,
       "sidebar_tag": "for + dict",
       "description": [
         "<p>Read a count <code>n</code>, then read <code>n</code> key/value",
@@ -220,6 +225,7 @@
       "id": "06",
       "source_unit": "dictionaries",
       "title": "Loop Over Keys",
+      "difficulty": 2,
       "sidebar_tag": "for",
       "description": [
         "<p>Read a count <code>n</code>, build a dictionary from",
@@ -277,6 +283,7 @@
       "id": "07",
       "source_unit": "dictionaries",
       "title": "Loop Over Values",
+      "difficulty": 2,
       "sidebar_tag": "for + .values()",
       "description": [
         "<p>Read a count <code>n</code>, build a dictionary from",
@@ -321,6 +328,7 @@
       "id": "08",
       "source_unit": "dictionaries",
       "title": "Loop Over Items",
+      "difficulty": 2,
       "sidebar_tag": "for + .items()",
       "description": [
         "<p>Read a count <code>n</code>, build a dictionary from",
@@ -361,6 +369,7 @@
       "id": "09",
       "source_unit": "dictionaries",
       "title": "Counting with a Dictionary",
+      "difficulty": 2,
       "sidebar_tag": "dict",
       "description": [
         "<p>Read a sentence and print a dictionary that counts how many times",
@@ -399,6 +408,7 @@
       "id": "10",
       "source_unit": "dictionaries",
       "title": ".get() with a Default",
+      "difficulty": 1,
       "sidebar_tag": "get()",
       "description": [
         "<p>Using the fixed dictionary <code>{\"a\": 1, \"b\": 2}</code>, read a",
@@ -443,6 +453,7 @@
       "id": "11",
       "source_unit": "dictionaries",
       "title": "Updating a Value",
+      "difficulty": 1,
       "sidebar_tag": "+=",
       "description": [
         "<p>Start with a dictionary <code>{\"player\": 0}</code>. Read a number",
@@ -480,6 +491,7 @@
       "id": "12",
       "source_unit": "dictionaries",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print a person's age &mdash; but this",

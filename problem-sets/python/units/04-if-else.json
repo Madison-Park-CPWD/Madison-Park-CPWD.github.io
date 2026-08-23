@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "if-else",
       "title": "Positive or Not",
+      "difficulty": 2,
       "sidebar_tag": "if/else",
       "description": [
         "<p>Read an integer <code>n</code> and print <code>Positive</code> if it is",
@@ -58,6 +59,7 @@
       "id": "02",
       "source_unit": "if-else",
       "title": "Pass or Fail",
+      "difficulty": 1,
       "sidebar_tag": "if/else",
       "description": [
         "<p>Read a <code>score</code> and print <code>Pass</code> if it's 60 or",
@@ -106,6 +108,7 @@
       "id": "03",
       "source_unit": "if-else",
       "title": "Old Enough to Vote",
+      "difficulty": 1,
       "sidebar_tag": "if/else",
       "description": [
         "<p>Read an <code>age</code> and print <code>Can vote</code> if it's 18 or",
@@ -155,6 +158,7 @@
       "id": "04",
       "source_unit": "if-else",
       "title": "Equal Numbers",
+      "difficulty": 1,
       "sidebar_tag": "if/else",
       "description": [
         "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and",
@@ -214,6 +218,7 @@
       "id": "05",
       "source_unit": "if-else",
       "title": "Bigger Number",
+      "difficulty": 2,
       "sidebar_tag": "if/elif/else",
       "description": [
         "<p>Read two integers <code>a</code> and <code>b</code>, one per line, and",
@@ -275,6 +280,7 @@
       "id": "06",
       "source_unit": "if-else",
       "title": "Sign of a Number",
+      "difficulty": 1,
       "sidebar_tag": "if/elif/else",
       "description": [
         "<p>Read an integer <code>n</code> and print <code>Positive</code>,",
@@ -323,6 +329,7 @@
       "id": "07",
       "source_unit": "if-else",
       "title": "Letter Grade",
+      "difficulty": 2,
       "sidebar_tag": "elif chain",
       "description": [
         "<p>Read a <code>score</code> and print a letter grade using this scale:</p>",
@@ -378,6 +385,7 @@
       "id": "08",
       "source_unit": "if-else",
       "title": "Temperature Category",
+      "difficulty": 1,
       "sidebar_tag": "elif chain",
       "description": [
         "<p>Read a <code>temp</code> (in Fahrenheit) and print a category using this",
@@ -435,6 +443,7 @@
       "id": "09",
       "source_unit": "if-else",
       "title": "Ticket Price by Age",
+      "difficulty": 1,
       "sidebar_tag": "elif chain",
       "description": [
         "<p>Read an <code>age</code> and print a ticket price category using this",
@@ -488,6 +497,7 @@
       "id": "10",
       "source_unit": "if-else",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to sort a temperature into <code>Freezing</code>,",

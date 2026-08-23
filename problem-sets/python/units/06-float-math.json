@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "float-math",
       "title": "Sum of Two Floats",
+      "difficulty": 1,
       "sidebar_tag": "+",
       "description": [
         "<p>Read two floating-point numbers from input, one per line, and print",
@@ -63,6 +64,7 @@
       "id": "02",
       "source_unit": "float-math",
       "title": "Difference of Two Floats",
+      "difficulty": 1,
       "sidebar_tag": "-",
       "description": [
         "<p>Read two floats, one per line, and print <code>a - b</code> using the",
@@ -117,6 +119,7 @@
       "id": "03",
       "source_unit": "float-math",
       "title": "Product of Two Floats",
+      "difficulty": 1,
       "sidebar_tag": "*",
       "description": [
         "<p>Read two floats, one per line, and print their product using the",
@@ -171,6 +174,7 @@
       "id": "04",
       "source_unit": "float-math",
       "title": "Quotient of Two Floats",
+      "difficulty": 1,
       "sidebar_tag": "/",
       "description": [
         "<p>Read two floats, one per line, and print <code>a / b</code> using the",
@@ -225,6 +229,7 @@
       "id": "05",
       "source_unit": "float-math",
       "title": "Floor Division with Floats",
+      "difficulty": 1,
       "sidebar_tag": "//",
       "description": [
         "<p>Read two floats, one per line, and print <code>a // b</code> using the",
@@ -281,6 +286,7 @@
       "id": "06",
       "source_unit": "float-math",
       "title": "Modulo with Floats",
+      "difficulty": 1,
       "sidebar_tag": "%",
       "description": [
         "<p>Read two floats, one per line, and print <code>a % b</code> using the",
@@ -337,6 +343,7 @@
       "id": "07",
       "source_unit": "float-math",
       "title": "Power of a Float",
+      "difficulty": 1,
       "sidebar_tag": "**",
       "description": [
         "<p>Read a <code>base</code> and an <code>exponent</code>, one per line, and",
@@ -392,6 +399,7 @@
       "id": "08",
       "source_unit": "float-math",
       "title": "Rounding a Float",
+      "difficulty": 1,
       "sidebar_tag": "round()",
       "description": [
         "<p>Read a float and a whole number of decimal places, and print the float",
@@ -449,6 +457,7 @@
       "id": "09",
       "source_unit": "float-math",
       "title": "Mixing Int and Float",
+      "difficulty": 1,
       "sidebar_tag": "int + float",
       "description": [
         "<p>Read a whole number (as an <code>int</code>) and a decimal number (as a",
@@ -506,6 +515,7 @@
       "id": "10",
       "source_unit": "float-math",
       "title": "The Floating-Point Precision Quirk",
+      "difficulty": 1,
       "sidebar_tag": "quirk",
       "description": [
         "<p>Use <code>print()</code> to output exactly the result of the following",

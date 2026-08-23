@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "variable-types",
       "title": "Integer Variable and type()",
+      "difficulty": 1,
       "sidebar_tag": "int",
       "description": [
         "<p>Assign a whole number to a variable, then print its type using the",
@@ -31,6 +32,7 @@
       "id": "02",
       "source_unit": "variable-types",
       "title": "Float Variable and type()",
+      "difficulty": 1,
       "sidebar_tag": "float",
       "description": [
         "<p>Assign a decimal number to a variable, then print its type using",
@@ -52,6 +54,7 @@
       "id": "03",
       "source_unit": "variable-types",
       "title": "String Variable and type()",
+      "difficulty": 1,
       "sidebar_tag": "str",
       "description": [
         "<p>Assign a piece of text to a variable, then print its type using",
@@ -75,6 +78,7 @@
       "id": "04",
       "source_unit": "variable-types",
       "title": "Boolean Variable and type()",
+      "difficulty": 1,
       "sidebar_tag": "bool",
       "description": [
         "<p>Assign a boolean value &mdash; <code>True</code> or",
@@ -97,6 +101,7 @@
       "id": "05",
       "source_unit": "variable-types",
       "title": "Checking Several Types at Once",
+      "difficulty": 1,
       "sidebar_tag": "type()",
       "description": [
         "<p>Assign four variables &mdash; one each of type <code>int</code>,",
@@ -125,6 +130,7 @@
       "id": "06",
       "source_unit": "variable-types",
       "title": "Reassigning a Variable's Type",
+      "difficulty": 1,
       "sidebar_tag": "reassign",
       "description": [
         "<p>Assign an integer to a variable and print its type. Then",
@@ -154,6 +160,7 @@
       "id": "07",
       "source_unit": "variable-types",
       "title": "Reassigning a Variable's Type Again",
+      "difficulty": 1,
       "sidebar_tag": "reassign",
       "description": [
         "<p>Assign a float to a variable and print its type. Then reassign that",
@@ -177,6 +184,7 @@
       "id": "08",
       "source_unit": "variable-types",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to assign the text <code>blue</code> to a",
@@ -197,6 +205,7 @@
       "id": "09",
       "source_unit": "variable-types",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to assign the number <code>100</code> to a",
@@ -217,6 +226,7 @@
       "id": "10",
       "source_unit": "variable-types",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to assign a boolean value to a variable and",
@@ -237,6 +247,7 @@
       "id": "11",
       "source_unit": "variable-types",
       "title": "Checking a Type with isinstance()",
+      "difficulty": 1,
       "sidebar_tag": "isinstance()",
       "description": [
         "<p>Read an integer and print whether it's an <code>int</code>, using",
@@ -275,6 +286,7 @@
       "id": "12",
       "source_unit": "variable-types",
       "title": "Checking Against Several Types at Once",
+      "difficulty": 1,
       "sidebar_tag": "isinstance()",
       "description": [
         "<p>Using the fixed value <code>x = 5.0</code>, print whether",
@@ -305,6 +317,7 @@
       "id": "13",
       "source_unit": "variable-types",
       "title": "The bool/int Surprise",
+      "difficulty": 1,
       "sidebar_tag": "isinstance() vs type()",
       "description": [
         "<p>Using the fixed value <code>flag = True</code>, print two things",

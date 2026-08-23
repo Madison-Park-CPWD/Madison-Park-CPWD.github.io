@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "html-basics",
       "title": "Build a Simple Nav",
+      "difficulty": 2,
       "sidebar_tag": "html + css",
       "description": [
         "<p>Build a navigation bar.</p>",
@@ -34,6 +35,7 @@
       "id": "02",
       "source_unit": "html-basics",
       "title": "A Clickable Counter",
+      "difficulty": 2,
       "sidebar_tag": "js",
       "description": [
         "<p>The HTML panel already has a button (<code>#count-btn</code>) and a paragraph (<code>#count-display</code>) that starts showing <code>0</code>.</p>",

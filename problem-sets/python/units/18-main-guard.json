@@ -7,6 +7,7 @@
       "id": "01",
       "source_unit": "main-guard",
       "title": "What is __name__?",
+      "difficulty": 2,
       "sidebar_tag": "__name__",
       "description": [
         "<p>Print the built-in variable <code>__name__</code>, with no",
@@ -37,6 +38,7 @@
       "id": "02",
       "source_unit": "main-guard",
       "title": "A Basic Guard",
+      "difficulty": 2,
       "sidebar_tag": "if __name__",
       "description": [
         "<p>Define a function <code>greet()</code> that prints",
@@ -68,6 +70,7 @@
       "id": "03",
       "source_unit": "main-guard",
       "title": "Moving Code into main()",
+      "difficulty": 2,
       "sidebar_tag": "def main()",
       "description": [
         "<p>Define a function <code>add(a, b)</code> that returns",
@@ -121,6 +124,7 @@
       "id": "04",
       "source_unit": "main-guard",
       "title": "A Guard with Multiple Functions",
+      "difficulty": 2,
       "sidebar_tag": "def main()",
       "description": [
         "<p>Define <code>square(n)</code> and <code>cube(n)</code>. Define",
@@ -169,6 +173,7 @@
       "id": "05",
       "source_unit": "main-guard",
       "title": "Compute, Display, and main()",
+      "difficulty": 2,
       "sidebar_tag": "def main()",
       "description": [
         "<p>Define <code>compute_area(length, width)</code>, returning",
@@ -221,6 +226,7 @@
       "id": "06",
       "source_unit": "main-guard",
       "title": "Fix the Bug",
+      "difficulty": 1,
       "sidebar_tag": "debug",
       "description": [
         "<p>This code is supposed to print <code>Program running</code>. Run",
