@@ -209,9 +209,47 @@ doesn't lose data, a real send correctly batches all accumulated
 attempts and advances the count, an immediate repeat call is a true
 no-op, and an untouched exercise never sends anything.
 
+### Superseded: export trigger changed from event-driven to "Download My Work" only
+
+The event-driven design above (solve, leave-unsolved, `beforeunload`) got
+replaced the same session, before any Apps Script side was built against
+it — decided that "Download My Work" becomes the actual submission step
+(downloaded file handed in via Classroom, or similar), so it's the one
+deliberate moment data should leave the browser, not something that
+happens silently in the background on every navigation.
+
+`exportExerciseIfNeeded()` and its per-exercise `exported-<unit>-<exercise>`
+dedup bookkeeping are gone. In their place: `exportAllHistoryToSheet()`,
+called once from inside `downloadExport()` right after the local Markdown
+file downloads. It walks every unit → every exercise → `loadHistory()`
+(same shape `buildExportMarkdown()` already uses) and sends everything
+with at least one attempt — solved or not — as a single payload. No
+dedup needed: since it only fires on an explicit, infrequent click, each
+call just sends a fresh complete snapshot; a click with nothing new to
+add is cheap enough not to bother skipping. `EXPORT_ENDPOINT_URL` is
+still `null`, same deliberate-no-op-until-deployed pattern as before.
+`switchToUnitIndex`, the sidebar click handler, and the `beforeunload`
+listener are all back to their pre-export form — net effect is 40 fewer
+lines than the event-driven version, not more, since one trigger point
+replaced four.
+
+Known tradeoff, confirmed acceptable: data now only reaches the Sheet if
+a student clicks Download — an optional convenience today. This only
+works as intended once that click becomes a required part of the
+workflow (e.g. downloaded file submitted via Classroom), not something
+students can just skip; if it stays optional, coverage will have gaps.
+
+Re-verified with a fresh isolated simulation: no-op while
+`EXPORT_ENDPOINT_URL` is unset; correctly omits units/exercises with zero
+attempts from the payload; correctly includes full per-attempt history
+for everything else; repeated clicks each send a complete fresh snapshot
+(no state carried between calls, by design).
+
 Still open, deliberately deferred: the Apps Script side itself (the
 `doPost()` receiving endpoint, the calc script reading the Sheet to
 compute `relative_performance`/`week_score`/the trend, and the resolved
-row schema those two ends need to agree on), and the display/leaderboard
-layer — both explicitly out of scope until this client-side half existed
-to feed them.
+row schema those two ends need to agree on — now a `{student, track,
+units: [{unit, exercises: [{exercise, history}]}]}` shape rather than
+one row per exercise), and the display/leaderboard layer — both
+explicitly out of scope until this client-side half existed to feed
+them.

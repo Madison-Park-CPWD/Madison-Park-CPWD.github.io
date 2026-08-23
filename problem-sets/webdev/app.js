@@ -88,57 +88,38 @@ function appendHistory(unitId, exerciseId, entry) {
   localStorage.setItem(key, JSON.stringify(hist));
 }
 
-// --- Growth-metric export: batched per exercise, not per attempt. Fires
-// when an exercise is solved, or when the student navigates away from an
-// exercise that has unsolved attempts on it — either way, the exercise's
-// whole history (every attempt, in order) goes in one payload, so
-// per-attempt detail (needed for grit/error-reading) survives even though
-// the network call itself is batched. An exercise with zero attempts
-// never triggers an export, since there's nothing to say. EXPORT_ENDPOINT_URL
-// stays null (a deliberate no-op) until the Apps Script Web App is deployed
-// and its URL is dropped in here. ---
+// --- Growth-metric export: fires only when the student clicks "Download
+// My Work" (see downloadExport() below) — that action is the intended
+// submission step, so it's the one moment data is expected to leave the
+// browser. Sends every exercise's full attempt history (solved or not)
+// in one payload; nothing incremental to track between clicks, since each
+// click just sends a fresh, complete snapshot of everything currently in
+// localStorage. EXPORT_ENDPOINT_URL stays null (a deliberate no-op) until
+// the Apps Script Web App is deployed and its URL is dropped in here. ---
 
 const EXPORT_ENDPOINT_URL = null;
 
-function exportedCountKey(unitId, exerciseId) {
-  return `exported-${unitId}-${exerciseId}`;
-}
-
-function getExportedCount(unitId, exerciseId) {
-  return Number(localStorage.getItem(exportedCountKey(unitId, exerciseId)) || "0");
-}
-
-function setExportedCount(unitId, exerciseId, count) {
-  localStorage.setItem(exportedCountKey(unitId, exerciseId), String(count));
-}
-
-// Safe to call speculatively on every navigation/solve — a no-op when
-// there's nothing new since the last export, so callers don't need to
-// track "did I already send this" themselves. Uses sendBeacon so it still
-// fires reliably during a page unload, which a normal fetch can't
-// guarantee; falls back to a best-effort fetch if the browser refuses to
-// queue the beacon (e.g. payload too large).
-function exportExerciseIfNeeded(unitId, exerciseId) {
+function exportAllHistoryToSheet() {
   if (!EXPORT_ENDPOINT_URL) return;
 
-  const hist = loadHistory(unitId, exerciseId);
-  const alreadyExported = getExportedCount(unitId, exerciseId);
-  if (hist.length <= alreadyExported) return;
+  const units = UNITS.map(unit => ({
+    unit: unit.id,
+    exercises: unit.exercises
+      .map(ex => ({ exercise: ex.id, history: loadHistory(unit.id, ex.id) }))
+      .filter(e => e.history.length > 0),
+  })).filter(u => u.exercises.length > 0);
+  if (units.length === 0) return;
 
   const payload = JSON.stringify({
     student: getStudentName(),
     track: "webdev",
-    unit: unitId,
-    exercise: exerciseId,
-    history: hist,
+    units,
   });
   const blob = new Blob([payload], { type: "application/json" });
   const queued = navigator.sendBeacon(EXPORT_ENDPOINT_URL, blob);
   if (!queued) {
     fetch(EXPORT_ENDPOINT_URL, { method: "POST", body: payload, keepalive: true }).catch(() => {});
   }
-
-  setExportedCount(unitId, exerciseId, hist.length);
 }
 
 // --- Unit reflections: identical subsystem to the Python track's — depends
@@ -243,7 +224,6 @@ function unitIndexForHash(hash) {
 
 function switchToUnitIndex(i, { updateHash = true } = {}) {
   if (i < 0 || i >= UNITS.length || i === currentUnitIndex) return;
-  exportExerciseIfNeeded(currentUnit().id, currentExercises()[currentIndex].id);
   currentUnitIndex = i;
   loadSolvedForUnit();
   renderUnitSelect();
@@ -272,12 +252,7 @@ function renderSidebar() {
       <span class="title">${ex.title}</span>
       <span class="op">${ex.sidebar_tag}</span>
     `;
-    btn.addEventListener("click", () => {
-      if (i !== currentIndex) {
-        exportExerciseIfNeeded(currentUnit().id, currentExercises()[currentIndex].id);
-      }
-      selectExercise(i);
-    });
+    btn.addEventListener("click", () => selectExercise(i));
     sidebarEl.appendChild(btn);
   });
 }
@@ -586,10 +561,6 @@ async function runTests() {
     testResults,
   });
 
-  if (allPass) {
-    exportExerciseIfNeeded(currentUnit().id, ex.id);
-  }
-
   const nowFullyComplete = solved.size === currentExercises().length;
   const unit = currentUnit();
   if (!wasFullyComplete && nowFullyComplete && unit.reflection_prompt && !hasReflection(unit.id)) {
@@ -747,6 +718,8 @@ function downloadExport() {
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
+
+  exportAllHistoryToSheet();
 }
 
 changeNameBtn.addEventListener("click", promptForStudentName);
@@ -782,10 +755,5 @@ async function boot() {
     promptForStudentName();
   }
 }
-
-window.addEventListener("beforeunload", () => {
-  if (!UNITS.length) return;
-  exportExerciseIfNeeded(currentUnit().id, currentExercises()[currentIndex].id);
-});
 
 boot();
