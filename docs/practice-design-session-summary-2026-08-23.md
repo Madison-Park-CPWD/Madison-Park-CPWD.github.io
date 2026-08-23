@@ -616,3 +616,38 @@ Still open: the actual final delete-and-re-export-and-reverify cycle
 (not yet done as of this writing, now additionally waiting on this Bug 4
 fix being pasted in first); the calc script's outputs still haven't been
 checked against a fully clean dataset end to end.
+
+### Fully verified against real, clean data — pipeline confirmed correct end to end
+
+The user deleted all "Attempts" data, re-exported via "Download My Work"
+through the fully-fixed `Code.gs`, and ran `runGrowthMetrics` (v2) against
+it. Real result for 18 attempted/18 solved exercises: Grit `1.111`,
+first-attempt success `0.889`, error-reading blank, growth score `1.2`.
+
+Checked for internal consistency, not just plausibility: `1.111 = 20/18`
+and `0.889 = 16/18` are exactly what falls out of the same underlying
+pattern — 16 exercises solved in 1 try, 2 solved in 2 tries
+(`16×1 + 2×2 = 20` total attempts across 18 solved; `16/18` of them
+first-try) — two independently-computed metrics landing on the same
+implied pattern is a real consistency check, not just "the number looks
+reasonable." Error-reading correctly came back blank (`null`, not `0`)
+given only 2 exercises ever needed a second try, essentially no chance of
+a genuine *consecutive*-failure pair to measure a repeat-mistake rate
+from. `WeekScores`' 3 weeks (`1.25`, `1.5`, `1.5`) correctly produced
+`growth_score = 1.5/1.25 = 1.2` by hand-check against the actual formula.
+
+This closes out the growth-metric pipeline build: logging (`testResults`
+on every attempt) → batched export (`Download My Work`) → Apps Script
+ingest (`Code.gs`, write-only, validated, plain-text-safe) → calculation
+(`GrowthMetrics.gs`, three metrics + the difficulty-normalized trend) →
+real, internally-consistent output. Four real bugs were found and fixed
+along the way (guess-based unit fetching, two separate Sheets
+format-corruption issues, and the empty-testResults false-match), each
+caught only by verifying against real or realistically-shaped data rather
+than the smallest reproduction that would pass.
+
+Still open, deliberately deferred from the start of this whole
+investigation: the storage/display layer — how this reaches the teacher
+or students to actually look at (a Sheet view, a dashboard, something
+else), and the leaderboard/visibility question (private-only vs.
+cross-student) named back when the growth metric was first proposed.
