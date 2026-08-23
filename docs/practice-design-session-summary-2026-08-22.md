@@ -125,10 +125,39 @@ script: guesses cluster around 2 with a mild upward drift toward the end
 of most units and occasional dips to 1 early on — reasonable as a rough
 starting point, not mistaken for an actual rating.
 
-Still open, deliberately deferred: actually running the review page
-end-to-end to produce real `difficulty` values, adding the
-category → `expected_attempts` lookup table, writing the code that
-computes `relative_performance`/`week_score`/the rolling trend from
-stored history, and the storage/display layer (Apps Script → Google Sheet
-pipeline, leaderboard question) — all explicitly out of scope until the
-metric itself was defined, which this session did.
+### Difficulty values applied, lookup table added
+
+The review page got a real pass: all 204 exercises across both tracks now
+have a `difficulty` value in their unit JSON, applied from the teacher's
+"Copy results" JSON output. Applied as a targeted text insertion keyed on
+each exercise's `id`/`title` lines rather than a full JSON re-dump — a
+first attempt at a full re-dump was caught and reverted because it
+silently reformatted `webdev/units/01-html-basics.json`'s hand-compacted
+single-line test objects (a real risk worth remembering: re-serializing
+JSON through a formatter can quietly rewrite unrelated parts of a file
+that started out hand-formatted differently than the serializer's
+defaults). Verified after the fact: every touched file parses, the diff
+is purely additive (no deletions), and all 204 applied values were
+cross-checked against the source decisions with zero mismatches.
+
+Worth noting: of the 204 ratings, **zero landed on `3` (hard)** — 110
+came in as `1`, 94 as `2`. Either the current exercise set genuinely has
+no "hard" exercises by the teacher's judgment, or it's worth a deliberate
+second look later; not treated as a bug, just flagged.
+
+Added `problem-sets/growth-metric-config.json` — the
+category → `expected_attempts` lookup table Plan 2 called for
+(`{1: 1.5, 2: 3, 3: 5}`). These are illustrative placeholders, not
+measured from real attempt data (none exists yet); the file's own notes
+say so explicitly and describe the later cohort-override plan (once an
+exercise has enough of its own history, its empirical average should
+override the category default). Category 3's number is unvalidated by
+even a single rated exercise right now.
+
+Still open, deliberately deferred: writing the code that computes
+`relative_performance`/`week_score`/the rolling trend from stored
+history (now that `testResults`, `difficulty`, and the lookup table all
+exist, this is the first piece with nothing left blocking it), and the
+storage/display layer (Apps Script → Google Sheet pipeline, leaderboard
+question) — both explicitly out of scope until the metric itself was
+defined and its inputs existed, which is now the case.

@@ -1,0 +1,23 @@
+{
+  "_notes": [
+    "category -> expected_attempts baseline for the growth metric's",
+    "relative_performance = expected_attempts / attempts_taken calculation",
+    "(see docs/practice-design-session-summary-*.md, Session 2).",
+    "",
+    "Categories match each exercise's 'difficulty' field (1/2/3) in the",
+    "unit JSON files. These starting numbers are illustrative placeholders,",
+    "not measured from real attempt data -- there isn't any yet. Once an",
+    "exercise has enough of its own attempt history, its own empirical",
+    "average expected_attempts should override the category default here;",
+    "everything with sparse data falls back to this table.",
+    "",
+    "As of the first difficulty-rating pass (204 exercises, both tracks),",
+    "no exercise was rated 3 (hard) -- ratings were 110x easy, 94x medium.",
+    "The category-3 number below is a placeholder until that changes."
+  ],
+  "expected_attempts_by_category": {
+    "1": 1.5,
+    "2": 3,
+    "3": 5
+  }
+}
