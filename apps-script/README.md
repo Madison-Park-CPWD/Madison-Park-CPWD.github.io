@@ -41,7 +41,7 @@ steps only you can do (no API access to your Google account from here).
 Paste the Web App URL into a browser address bar and visit it directly
 (a plain GET, no student data involved). You should see:
 
-> This endpoint only accepts POST requests from the practice apps.
+> This endpoint only accepts POST requests from the practice apps. (Code.gs v1)
 
 If you see that, the deployment itself is live and correctly wired to
 the script. If you see a Google error page instead, something's wrong
@@ -51,6 +51,17 @@ access" settings.
 That check doesn't confirm the actual POST flow works yet — the real
 test is clicking "Download My Work" on the live site once the URL is
 wired in and confirming a row shows up on the "Attempts" tab.
+
+**The version number matters**: both `Code.gs` and `GrowthMetrics.gs`
+carry a `CODE_VERSION`/`GROWTH_METRICS_VERSION` constant that gets bumped
+every time a new copy is handed over for pasting into the editor.
+`Code.gs`'s shows up right in that GET response, so visiting the URL
+confirms exactly which version is actually live — useful when the editor
+leaves the file in select-all mode after a paste and it's not obvious at
+a glance whether the right version landed. `GrowthMetrics.gs` has no
+public endpoint to check the same way, so its version gets logged at the
+start of every `runGrowthMetrics()` run instead — check the first line of
+the Execution log.
 
 ## If you edit `Code.gs` later
 

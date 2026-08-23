@@ -516,3 +516,76 @@ losing data.
 Still open: re-verify `WeekScores`/`GrowthScores` populate correctly
 against clean, regenerated data; decide on and build the display/
 leaderboard layer.
+
+## Session 4 — a self-inflicted regression, its real fix, and a version-tracking convention
+
+### Bug 3: the leading-zero fix broke the "Passed" boolean column
+
+After the Bug 2 fix (whole-column plain-text format) was live, a growth
+score of exactly `1.0` looked plausible at first (all-1.5 relative
+performance, consistent with mostly first-try test data) — but a targeted
+synthetic test (an exercise solved in 3 attempts, expecting
+`relative_performance = 3/3 = 1.0`) came back as `3` instead, proving
+`attemptsTaken` was always computing as `1` regardless of real attempt
+count. Diagnostic logging of the raw attempts feeding
+`computeExerciseStats()` showed the actual cause directly: every attempt
+read back with `passed: true`, even ones written as `passed: false`.
+
+Root cause: Bug 2's fix formatted the *entire* row range as plain text,
+including the boolean "Passed" column. A JS boolean `false` written into
+a text-formatted cell becomes the string `"FALSE"` — and `!!"FALSE"` is
+`true` in JavaScript, since any non-empty string is truthy. Every failed
+attempt was silently being read back as a pass. This fully explains the
+suspiciously-uniform earlier results: with every `attemptsTaken` forced
+to `1`, `relative_performance` always equals raw `expected_attempts`
+exactly, matching what looked at first like a benign "mostly first-try"
+coincidence.
+
+First fix attempt: narrow the plain-text formatting to only the Exercise
+column. Verified correctly in the sheet (a combined test — leading-zero
+exercise ID *and* real fail/fail/pass attempts in one batch — displayed
+correctly). But `runGrowthMetrics` still read every attempt as passed.
+Second, deeper root cause: Sheets' cell format is *persistent metadata*
+that doesn't get undone just because a later script version stops
+setting it — column 7 was still stuck in the plain-text state Bug 2's
+fix had left it in. Narrowing the format call going forward only stopped
+adding more damage; it didn't undo the existing damage.
+
+Real fix: `appendRows()` now explicitly resets the *whole* row range back
+to `"General"` (Sheets' default format) on every call, *then* forces
+plain text on only the Exercise column — guaranteeing a known-clean state
+regardless of what any earlier deployment left behind, rather than
+relying on "don't make it worse from here." Verified two levels deep this
+time: the sheet display showed `false`/`false`/`true` correctly (as
+Bug 2's first, insufficient fix had also shown), *and*, more importantly,
+`runGrowthMetrics`'s own diagnostic log confirmed `attemptsTaken=3` —
+checking what the calculation actually reads, not just what the sheet
+displays, since those had already diverged once.
+
+**Consequence, again**: format resets don't retroactively fix
+already-corrupted *values* — anything written while the whole-column bug
+was live (which includes the "clean" re-export done after only the Bug 2
+fix, since Bug 3 was still present then) needs deleting and
+re-exporting once more.
+
+**Lesson worth keeping, sharper this time**: verifying a fix by checking
+what a sheet *displays* isn't the same as verifying what gets *read back*
+by code — they diverged twice in this one investigation (Bug 2's
+"01" looked right displayed as text; Bug 3's "false" looked right
+displayed as the word "FALSE", while both were silently wrong for
+anything that actually parsed the value programmatically).
+
+### Version tracking added, per explicit request
+
+Pasting updated `.gs` files into the Apps Script editor was error-prone —
+the editor leaves a file in select-all mode after a paste, making it hard
+to visually confirm the right version landed. Added `CODE_VERSION` /
+`GROWTH_METRICS_VERSION` constants to both files, bumped on every handoff.
+`Code.gs`'s shows up directly in the `doGet()` response (checkable by
+visiting the URL, by either the user or Claude via `curl`); `GrowthMetrics.gs`
+has no public endpoint, so its version gets logged as the first line of
+every `runGrowthMetrics()` run instead.
+
+Still open: the actual final delete-and-re-export-and-reverify cycle for
+Bug 3 (not yet done as of this writing); the calc script's outputs still
+haven't been checked against a fully clean dataset end to end.

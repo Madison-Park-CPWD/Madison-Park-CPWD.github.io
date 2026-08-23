@@ -9,6 +9,12 @@
 // — this reads student data, so it only ever runs from inside the Apps
 // Script editor (or a trigger you control), never through the public URL.
 
+// GROWTH_METRICS_VERSION: bump this on every change handed over for
+// pasting into the Apps Script editor — logged at the start of every run,
+// so the Execution log confirms exactly which version actually ran (this
+// file has no doGet() to check against directly, unlike Code.gs).
+const GROWTH_METRICS_VERSION = "1";
+
 // Update this if it's wrong — used to fetch unit/difficulty data live from
 // the deployed site rather than duplicating it here, so re-rating
 // difficulty never requires touching this script.
@@ -32,6 +38,8 @@ const WEEK_SCORES_HEADER = ["Student", "Week Starting (Mon)", "Relative Performa
 const GROWTH_TREND_WINDOW_WEEKS = 2;
 
 function runGrowthMetrics() {
+  console.log("GrowthMetrics.gs v" + GROWTH_METRICS_VERSION);
+
   const expectedAttemptsLookup = buildExpectedAttemptsLookup();
   console.log("sample lookup keys: " + JSON.stringify(Object.keys(expectedAttemptsLookup).slice(0, 5)));
 
@@ -53,6 +61,13 @@ function runGrowthMetrics() {
       });
       const stats = computeExerciseStats(sortedAttempts);
       statsList.push(stats);
+
+      if (sortedAttempts.length > 1) {
+        console.log(student + " " + exerciseKey + ": group has "
+          + exerciseGroups[exerciseKey].length + " raw attempts, sorted = "
+          + JSON.stringify(sortedAttempts.map(function (a) { return { t: a.timestamp, p: a.passed }; }))
+          + " -> attemptsTaken=" + stats.attemptsTaken + " solved=" + stats.solved);
+      }
 
       if (stats.solved) {
         const expectedAttempts = expectedAttemptsLookup[exerciseKey];

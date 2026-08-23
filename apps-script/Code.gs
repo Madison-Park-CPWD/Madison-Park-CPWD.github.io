@@ -14,6 +14,12 @@
 // leak. Don't add a doGet() (or anything else) that reads sheet contents
 // back out through this same endpoint.
 
+// CODE_VERSION: bump this on every change handed over for pasting into
+// the Apps Script editor — shows up in the doGet() response, so visiting
+// the deployed URL confirms exactly which version is actually live
+// (useful both for you, pasting in the editor, and for testing from here).
+const CODE_VERSION = "1";
+
 const SHEET_NAME = "Attempts";
 const HEADER = [
   "Received At", "Student", "Track", "Unit", "Exercise",
@@ -50,7 +56,7 @@ function logError(message, context) {
 // flow from the practice apps.
 function doGet() {
   return ContentService.createTextOutput(
-    "This endpoint only accepts POST requests from the practice apps."
+    "This endpoint only accepts POST requests from the practice apps. (Code.gs v" + CODE_VERSION + ")"
   );
 }
 
@@ -160,19 +166,24 @@ function buildRows(data) {
   return rows;
 }
 
+const EXERCISE_COLUMN = 5; // must match HEADER's "Exercise" position
+
 function appendRows(rows) {
   const sheet = getOrCreateSheet();
-  // Whole-column plain-text format, reapplied on every call (not just
-  // the freshly-written range) — otherwise Sheets can silently
-  // reinterpret a numeric-looking string as a real number, e.g. exercise
-  // id "01" becomes 1, permanently losing the leading zero. Formatting
-  // only the new range right before writing worked for an isolated
-  // single-row test but not for a real multi-row batch — formatting the
-  // whole column up front, every time, plus an explicit flush to force
-  // it to actually commit before values get written, is the more robust
-  // fix. (Found via GrowthMetrics.gs's difficulty lookup silently failing
-  // to match every exercise 01-09 once this had already happened once.)
-  sheet.getRange(1, 1, sheet.getMaxRows(), HEADER.length).setNumberFormat("@");
+  // Reset the WHOLE row range back to Sheets' default format first, then
+  // force plain text on ONLY the Exercise column. The reset matters, not
+  // just the narrower scope: an earlier version of this fix set plain-
+  // text format on every column (including the boolean "Passed" one,
+  // which corrupted every false into the string "FALSE" -- and
+  // !!"FALSE" is true in JS). Sheets' cell format is persistent metadata
+  // that sticks around regardless of what later code does -- simply no
+  // longer setting "@" on that column doesn't undo it, since it was
+  // already set. Explicitly resetting to "General" every call guarantees
+  // a clean, known state regardless of what any earlier deployment left
+  // behind.
+  const fullRange = sheet.getRange(1, 1, sheet.getMaxRows(), HEADER.length);
+  fullRange.setNumberFormat("General");
+  sheet.getRange(1, EXERCISE_COLUMN, sheet.getMaxRows(), 1).setNumberFormat("@");
   SpreadsheetApp.flush();
 
   sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, HEADER.length).setValues(rows);
