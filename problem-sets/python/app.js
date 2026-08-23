@@ -303,6 +303,7 @@ async function runTests() {
   let allPass = true;
   let hadCrash = false;
   const rows = [];
+  const testResults = [];
   for (const test of ex.tests) {
     const stdinStr = test.stdin.join("\n");
     const { stdout, error } = await runOneTest(code, stdinStr);
@@ -319,6 +320,7 @@ async function runTests() {
       : actual === test.expected);
     if (!pass) allPass = false;
     if (error) hadCrash = true;
+    testResults.push({ passed: pass, hadError: !!error });
 
     const row = document.createElement("div");
     row.className = "test-row";
@@ -387,6 +389,7 @@ async function runTests() {
     timestamp: new Date().toISOString(),
     code,
     passed: allPass,
+    testResults,
   });
 
   const nowFullyComplete = solved.size === currentExercises().length;

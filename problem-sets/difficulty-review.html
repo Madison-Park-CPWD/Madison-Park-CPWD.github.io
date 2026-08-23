@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Difficulty Review</title>
+<link rel="stylesheet" href="../styles/base.css">
+<style>
+  body {
+    padding: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.4rem;
+  }
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+  }
+  .hint {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    max-width: 640px;
+  }
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.2rem 0 1.5rem;
+    padding: 0.8rem 1rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: sticky;
+    top: 0.75rem;
+    z-index: 5;
+  }
+  .progress {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  .copy-btn {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    background: var(--accent-dim);
+    color: var(--text-primary);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: var(--accent); }
+  .copy-status {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ok);
+    min-width: 5rem;
+  }
+  h2.track-title {
+    margin: 2rem 0 0.25rem;
+    font-size: 1.2rem;
+  }
+  h3.unit-title {
+    margin: 1.3rem 0 0.5rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+  }
+  .ex-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-panel);
+    margin-bottom: 0.5rem;
+  }
+  .ex-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .ex-title {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .ex-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-top: 0.15rem;
+  }
+  .ex-snippet {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 0.2rem;
+  }
+  .diff-buttons {
+    display: flex;
+    gap: 0.3rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+  .diff-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    width: 2.4rem;
+    padding: 0.35rem 0;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-panel-raised);
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .diff-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+  .diff-btn.active {
+    background: var(--accent);
+    color: var(--bg-app);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .diff-btn.guess:not(.active) {
+    border-style: dashed;
+    color: var(--text-faint);
+  }
+</style>
+</head>
+<body>
+
+  <p class="eyebrow">&gt;&gt;&gt; difficulty review</p>
+  <h1>Difficulty Review</h1>
+  <p class="hint">
+    Reference page, not linked from either practice app. Each exercise is
+    pre-filled with an algorithmic guess (dashed border) based on its
+    position in the unit, starter-code length, and test count — it's a
+    starting point, not a real difficulty rating. Click 1 / 2 / 3 on any
+    row to confirm or override it. Your choices are saved in this browser
+    as you go, so you can leave and come back. When you're done, use
+    "Copy results" and paste the JSON into a message — Claude applies it
+    to the actual unit files, since this page can't write to them itself.
+  </p>
+
+  <div class="toolbar">
+    <span class="progress" id="progress">Loading…</span>
+    <span class="copy-status" id="copy-status"></span>
+    <button class="copy-btn" id="copy-btn" type="button">Copy results as JSON</button>
+  </div>
+
+  <div id="review-root"></div>
+
+  <script src="difficulty-review.js"></script>
+</body>
+</html>

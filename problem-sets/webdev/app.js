@@ -470,10 +470,12 @@ async function runTests() {
   let allPass = true;
   let foundNothingAny = false;
   const rows = [];
+  const testResults = [];
   for (const test of ex.tests) {
     const result = await runOneTest(html, css, js, test);
     if (!result.pass) allPass = false;
     if (result.foundNothing) foundNothingAny = true;
+    testResults.push({ passed: result.pass, hadError: !!(result.foundNothing || result.checkError) });
 
     const row = document.createElement("div");
     row.className = "test-row";
@@ -522,6 +524,7 @@ async function runTests() {
     timestamp: new Date().toISOString(),
     html, css, js,
     passed: allPass,
+    testResults,
   });
 
   const nowFullyComplete = solved.size === currentExercises().length;
