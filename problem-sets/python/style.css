@@ -226,6 +226,7 @@ body {
 
 .editor-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
   padding: 0.6rem 1.5rem;
@@ -261,6 +262,35 @@ button.run-btn {
 
 button.run-btn:hover { background: #f7c563; }
 button.run-btn:disabled { background: var(--accent-dim); cursor: wait; }
+
+button.run-code-btn {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button.run-code-btn:hover { background: rgba(242, 177, 52, 0.08); }
+button.run-code-btn:disabled { color: var(--text-faint); border-color: var(--border); cursor: wait; }
+
+textarea.stdin-box {
+  flex: 1 1 220px;
+  min-width: 160px;
+  max-width: 360px;
+  height: 2.4rem;
+  resize: vertical;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.35rem 0.6rem;
+}
 
 button.reset-btn {
   background: none;
@@ -327,6 +357,11 @@ button.reset-btn:hover { color: var(--text-primary); border-color: var(--text-se
 }
 .summary.all-pass { color: var(--ok); }
 .summary.some-fail { color: var(--err); }
+
+.console .output-block {
+  white-space: pre-wrap;
+  color: var(--text-secondary);
+}
 
 .console .error-trace {
   white-space: pre-wrap;

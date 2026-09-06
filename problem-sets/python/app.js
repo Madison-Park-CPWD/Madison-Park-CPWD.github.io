@@ -10,6 +10,8 @@ const problemPanelEl = document.getElementById("problem-panel");
 const editorEl = document.getElementById("code-editor");
 const consoleEl = document.getElementById("console");
 const runBtn = document.getElementById("run-btn");
+const runCodeBtn = document.getElementById("run-code-btn");
+const stdinBoxEl = document.getElementById("stdin-box");
 const resetBtn = document.getElementById("reset-btn");
 const statusDot = document.getElementById("status-dot");
 const statusText = document.getElementById("status-text");
@@ -270,7 +272,20 @@ function selectExercise(i) {
   const ex = currentExercises()[i];
   problemPanelEl.innerHTML = `<h2>${ex.id}. ${ex.title}</h2>${ex.description.join("\n")}`;
   editorEl.value = loadDraft(ex.id) || ex.starter.join("\n");
-  consoleEl.innerHTML = `<div class="placeholder">Click "Run Tests" to check your solution against ${ex.tests.length} test case${ex.tests.length === 1 ? "" : "s"}.</div>`;
+
+  // "Run Code" (raw-output preview) is only offered until the student's
+  // first "Run Tests" click on this exercise — after that, grading has
+  // begun and the app behaves exactly as it always has. loadHistory is
+  // backed by localStorage, so this also holds across page reloads and
+  // past sessions, with no extra state to track.
+  const alreadyTested = loadHistory(currentUnit().id, ex.id).length > 0;
+  runCodeBtn.style.display = alreadyTested ? "none" : "";
+  stdinBoxEl.style.display = alreadyTested ? "none" : "";
+  stdinBoxEl.value = "";
+
+  consoleEl.innerHTML = alreadyTested
+    ? `<div class="placeholder">Click "Run Tests" to check your solution against ${ex.tests.length} test case${ex.tests.length === 1 ? "" : "s"}.</div>`
+    : `<div class="placeholder">Type input above if your code needs it, then click "Run Code" to see what it prints — or click "Run Tests" to check your solution against ${ex.tests.length} test case${ex.tests.length === 1 ? "" : "s"}.</div>`;
   renderSidebar();
 }
 
@@ -294,12 +309,18 @@ async function initPyodide() {
   statusText.textContent = "Python ready";
   statusDot.className = "status-dot ready";
   runBtn.disabled = false;
+  runCodeBtn.disabled = false;
 }
 
-// Runs `code` against a single test case's stdin, returns {stdout, error}
-async function runOneTest(code, stdin) {
+// Runs `code` against a single test case's stdin, returns {stdout, error}.
+// echoInput writes each input() call's prompt and consumed line into the
+// captured output, like a real terminal session would — used by "Run Code"
+// so students see their own prompts, not by "Run Tests" grading, so this
+// never changes what a test's expected-output comparison sees.
+async function runOneTest(code, stdin, echoInput) {
   pyodide.globals.set("__student_code", code);
   pyodide.globals.set("__test_stdin", stdin);
+  pyodide.globals.set("__echo_input", !!echoInput);
   const result = await pyodide.runPythonAsync(`
 import sys, io, builtins, traceback
 
@@ -309,7 +330,10 @@ sys.stdout = _output
 
 _input_lines = iter(__test_stdin.split(chr(10)))
 def _fake_input(prompt=""):
-    return next(_input_lines)
+    line = next(_input_lines)
+    if __echo_input:
+        _output.write(prompt + line + chr(10))
+    return line
 _old_input = builtins.input
 builtins.input = _fake_input
 
@@ -317,7 +341,7 @@ _error = None
 try:
     exec(__student_code, {})
 except StopIteration:
-    _error = "Your program tried to read more input than this test case provides."
+    _error = "Your program tried to read more input than was provided."
 except Exception:
     _error = traceback.format_exc()
 
@@ -331,11 +355,53 @@ builtins.input = _old_input
   return { stdout: stdout.replace(/\n$/, ""), error };
 }
 
+// Runs the student's code once against whatever they typed into the stdin
+// box, with no grading — a side-effect-free preview, never logged to
+// attempt history, so it can't affect first-attempt-success or any other
+// growth metric. Hides "Run Code"/the stdin box for good the moment the
+// student commits to "Run Tests" instead (see the hide lines there).
+async function runCode() {
+  const code = editorEl.value;
+  const stdin = stdinBoxEl.value;
+  runCodeBtn.disabled = true;
+  runBtn.disabled = true;
+  runCodeBtn.textContent = "Running…";
+  consoleEl.innerHTML = "";
+
+  const { stdout, error } = await runOneTest(code, stdin, true);
+
+  if (stdout) {
+    const outputBlock = document.createElement("div");
+    outputBlock.className = "output-block";
+    outputBlock.textContent = stdout;
+    consoleEl.appendChild(outputBlock);
+  }
+  if (error) {
+    const errorBlock = document.createElement("div");
+    errorBlock.className = "error-trace";
+    errorBlock.textContent = error;
+    consoleEl.appendChild(errorBlock);
+  }
+  if (!stdout && !error) {
+    const placeholder = document.createElement("div");
+    placeholder.className = "placeholder";
+    placeholder.textContent = "Your program didn't print anything.";
+    consoleEl.appendChild(placeholder);
+  }
+
+  runCodeBtn.disabled = false;
+  runBtn.disabled = false;
+  runCodeBtn.textContent = "Run Code";
+}
+
 async function runTests() {
   const ex = currentExercises()[currentIndex];
   const code = editorEl.value;
   runBtn.disabled = true;
   runBtn.textContent = "Running…";
+  runCodeBtn.disabled = true;
+  runCodeBtn.style.display = "none";
+  stdinBoxEl.style.display = "none";
   consoleEl.innerHTML = "";
 
   let allPass = true;
@@ -602,6 +668,7 @@ changeNameBtn.addEventListener("click", promptForStudentName);
 downloadBtn.addEventListener("click", downloadExport);
 
 runBtn.addEventListener("click", runTests);
+runCodeBtn.addEventListener("click", runCode);
 
 // Boot
 async function boot() {
