@@ -36,6 +36,22 @@ documentation — that's what `problem-sets/python/README.md` is for.
    exists (19 units total), so this is a follow-up set, not a first one —
    but there's no classes/OOP unit anywhere yet, confirming the "if we
    don't have it" suspicion.
+4. **Web Dev: a "raw HTML" exercise mode for teaching the full page
+   skeleton** (`<!DOCTYPE>`/`<html>`/`<head>`/`<body>`). Not buildable with
+   today's three-pane engine — `buildDocumentSource()` in
+   `problem-sets/webdev/app.js` always wraps the HTML pane's content inside
+   its own prebuilt `<html><head><body>`, so a student typing their own
+   skeleton into that pane ends up nested inside the wrapper's (browsers
+   silently merge/drop the duplicate tags rather than erroring, so it half-
+   renders but teaches nothing and can't be reliably tested). Needs an
+   opt-in `"mode": "raw_html"` flag: hides the CSS/JS panes, stretches the
+   HTML pane to full width and relabels it (e.g. "index.html — the whole
+   page"), and `buildDocumentSource()` gets a branch that uses the pane's
+   content verbatim as the `srcdoc` with no wrapping at all (and skips
+   injecting the console-capture shim, since raw-mode lessons are about
+   structure, not scripting). Once unwrapped, checks like "exactly one
+   `<html>`" or "`<head>` has a `<title>` saying X" become meaningful
+   again. Not started.
 
 ## Session 2 — Growth metric: definition, then the logging + difficulty changes it needs
 
@@ -807,3 +823,47 @@ the values needed to exercise the code, never prompt-related content:
 pre-solving the prompt for the student, or baking prompt text into
 grading, would both remove the "the space goes inside the string" lesson
 this feature exists to surface.
+
+## Session 7 — Bug: "Run Code" permanently stuck disabled on `exit()`/`quit()`
+
+Reported symptom: clicking "Run Code" left it disabled forever
+(`cursor: wait` from `problem-sets/python/style.css:278`, since it's only
+styled for the disabled state) while the rest of the page — sidebar,
+unit dropdown — stayed fully responsive. That last part was the key
+diagnostic: a genuine main-thread-blocking infinite loop (the
+already-documented, accepted Pyodide risk) would freeze the *entire*
+page, not just one button, since Pyodide's WASM execution is synchronous
+on the same thread as everything else. Page staying responsive meant this
+was a JS promise that silently never resolved, not a busy loop.
+
+**Root cause**: neither `runCode()` nor `runOneTest()` in
+`problem-sets/python/app.js` had any error handling around the Pyodide
+call. The embedded Python wrapper's `except Exception:` doesn't catch
+`SystemExit` (raised by `exit()`/`quit()`, which a student may well try)
+or `KeyboardInterrupt` — neither is an `Exception` subclass. Either one
+escaping that `except` propagates all the way out of
+`pyodide.runPythonAsync()` as an unhandled JS promise rejection, which
+skips every line after the `await` — including the code that resets
+`runCodeBtn.disabled`. Verified directly: an isolated simulation running
+the exact wrapper logic against `exit()`-containing code confirmed
+`SystemExit` escapes uncaught under the old `except Exception:`, and is
+caught cleanly (shown as a normal traceback) under `except BaseException:`.
+
+**Fix**, two layers:
+1. `except Exception:` → `except BaseException:` in the wrapper Python
+   inside `runOneTest()` — the direct fix, converts `exit()`/`quit()`/
+   Ctrl+C-style code into a normal traceback shown to the student instead
+   of an uncaught escape.
+2. Defense in depth: `runCode()` and `runTests()` both now wrap their body
+   in `try/catch/finally`, so button state *always* resets and a friendly
+   message shows even for some future, still-unanticipated failure mode —
+   not just this specific one. Previously, any exception thrown anywhere
+   after the `await runOneTest(...)` call in either function permanently
+   stuck that function's buttons, since the reset lines ran unconditionally
+   *after* the awaited call with nothing guarding them.
+
+Not yet done: an actual browser click-through to confirm live (this
+session's tooling had no working browser connection) — high confidence
+from the isolated simulation matching the reported symptom exactly, but
+worth a real "Run Code" click on `exit()`-containing code once someone's
+at a browser.

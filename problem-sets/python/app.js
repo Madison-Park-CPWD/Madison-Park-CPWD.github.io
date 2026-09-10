@@ -342,7 +342,14 @@ try:
     exec(__student_code, {})
 except StopIteration:
     _error = "Your program tried to read more input than was provided."
-except Exception:
+except BaseException:
+    # BaseException, not Exception: student code calling exit()/quit()
+    # raises SystemExit, and Ctrl+C-style code raises KeyboardInterrupt —
+    # neither is an Exception subclass. Either one escaping this except
+    # block would propagate all the way out of runPythonAsync() as an
+    # unhandled JS promise rejection, skipping the button-reset cleanup
+    # in runCode()/runTests() and leaving "Run Code" stuck disabled
+    # forever (cursor: wait, unresponsive) with no error shown at all.
     _error = traceback.format_exc()
 
 sys.stdout = _old_stdout
@@ -368,30 +375,47 @@ async function runCode() {
   runCodeBtn.textContent = "Running…";
   consoleEl.innerHTML = "";
 
-  const { stdout, error } = await runOneTest(code, stdin, true);
+  // try/finally so the buttons always come back, even if something throws
+  // partway through — before this, an uncaught error left "Run Code"
+  // permanently disabled (cursor: wait forever) with the rest of the page
+  // still working fine, since a JS exception here doesn't block the thread,
+  // it just silently skips whatever comes after the throwing line.
+  try {
+    const { stdout, error } = await runOneTest(code, stdin, true);
 
-  if (stdout) {
-    const outputBlock = document.createElement("div");
-    outputBlock.className = "output-block";
-    outputBlock.textContent = stdout;
-    consoleEl.appendChild(outputBlock);
-  }
-  if (error) {
+    if (stdout) {
+      const outputBlock = document.createElement("div");
+      outputBlock.className = "output-block";
+      outputBlock.textContent = stdout;
+      consoleEl.appendChild(outputBlock);
+    }
+    if (error) {
+      const errorBlock = document.createElement("div");
+      errorBlock.className = "error-trace";
+      errorBlock.textContent = error;
+      consoleEl.appendChild(errorBlock);
+    }
+    if (!stdout && !error) {
+      const placeholder = document.createElement("div");
+      placeholder.className = "placeholder";
+      placeholder.textContent = "Your program didn't print anything.";
+      consoleEl.appendChild(placeholder);
+    }
+  } catch (err) {
+    // Belt-and-suspenders: the Python-side BaseException catch in
+    // runOneTest's exec() should prevent this, but if something still
+    // throws at the JS level (a genuine Pyodide-internal failure, not a
+    // student code bug), show it instead of leaving the console blank.
+    console.error("[python] Run Code failed unexpectedly:", err);
     const errorBlock = document.createElement("div");
     errorBlock.className = "error-trace";
-    errorBlock.textContent = error;
+    errorBlock.textContent = "Something went wrong running your code. Try again — if it keeps happening, let your teacher know.";
     consoleEl.appendChild(errorBlock);
+  } finally {
+    runCodeBtn.disabled = false;
+    runBtn.disabled = false;
+    runCodeBtn.textContent = "Run Code";
   }
-  if (!stdout && !error) {
-    const placeholder = document.createElement("div");
-    placeholder.className = "placeholder";
-    placeholder.textContent = "Your program didn't print anything.";
-    consoleEl.appendChild(placeholder);
-  }
-
-  runCodeBtn.disabled = false;
-  runBtn.disabled = false;
-  runCodeBtn.textContent = "Run Code";
 }
 
 async function runTests() {
@@ -404,106 +428,122 @@ async function runTests() {
   stdinBoxEl.style.display = "none";
   consoleEl.innerHTML = "";
 
-  let allPass = true;
-  let hadCrash = false;
-  const rows = [];
-  const testResults = [];
-  for (const test of ex.tests) {
-    const stdinStr = test.stdin.join("\n");
-    const { stdout, error } = await runOneTest(code, stdinStr);
-    const actual = stdout.trim();
-    // Most tests check for an exact match against `expected`. A few
-    // (introspection exercises using help(), mainly) can't be exact-matched
-    // safely, since the built-in output is verbose and can shift wording
-    // slightly between Python versions. Those use `expected_contains`
-    // instead: a list of substrings that must all appear somewhere in the
-    // output, regardless of the surrounding text.
-    const usesContains = Array.isArray(test.expected_contains);
-    const pass = !error && (usesContains
-      ? test.expected_contains.every(s => actual.includes(s))
-      : actual === test.expected);
-    if (!pass) allPass = false;
-    if (error) hadCrash = true;
-    testResults.push({ passed: pass, hadError: !!error });
+  // try/finally so the buttons always come back, even if something throws
+  // partway through — same reasoning as runCode()'s wrap above; this loop
+  // calls the same runOneTest() and was equally exposed to a stuck-disabled
+  // "Run Tests" button on an unhandled error.
+  try {
+    let allPass = true;
+    let hadCrash = false;
+    const rows = [];
+    const testResults = [];
+    for (const test of ex.tests) {
+      const stdinStr = test.stdin.join("\n");
+      const { stdout, error } = await runOneTest(code, stdinStr);
+      const actual = stdout.trim();
+      // Most tests check for an exact match against `expected`. A few
+      // (introspection exercises using help(), mainly) can't be exact-matched
+      // safely, since the built-in output is verbose and can shift wording
+      // slightly between Python versions. Those use `expected_contains`
+      // instead: a list of substrings that must all appear somewhere in the
+      // output, regardless of the surrounding text.
+      const usesContains = Array.isArray(test.expected_contains);
+      const pass = !error && (usesContains
+        ? test.expected_contains.every(s => actual.includes(s))
+        : actual === test.expected);
+      if (!pass) allPass = false;
+      if (error) hadCrash = true;
+      testResults.push({ passed: pass, hadError: !!error });
 
-    const row = document.createElement("div");
-    row.className = "test-row";
-    const inputLabel = test.stdin.length ? escapeHtml(test.stdin.join("  ")) : "(none)";
-    if (error) {
-      row.innerHTML = `
-        <span class="test-status fail">✗</span>
-        <span class="test-detail">
-          <span class="label">input:</span> ${inputLabel}
-          <div class="error-trace">${escapeHtml(error)}</div>
-        </span>`;
-    } else if (usesContains) {
-      const mustInclude = test.expected_contains.map(s => `"${escapeHtml(s)}"`).join(", ");
-      row.innerHTML = `
-        <span class="test-status ${pass ? "pass" : "fail"}">${pass ? "✓" : "✗"}</span>
-        <span class="test-detail">
-          <span class="label">input:</span> ${inputLabel}
-          &nbsp;&nbsp;<span class="label">must include:</span> <span class="value-block">${mustInclude}</span>
-          ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(actual || "(no output)")}</span>`}
-        </span>`;
-    } else {
-      row.innerHTML = `
-        <span class="test-status ${pass ? "pass" : "fail"}">${pass ? "✓" : "✗"}</span>
-        <span class="test-detail">
-          <span class="label">input:</span> ${inputLabel}
-          &nbsp;&nbsp;<span class="label">expected:</span> <span class="value-block">${escapeHtml(test.expected)}</span>
-          ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(actual || "(no output)")}</span>`}
-        </span>`;
+      const row = document.createElement("div");
+      row.className = "test-row";
+      const inputLabel = test.stdin.length ? escapeHtml(test.stdin.join("  ")) : "(none)";
+      if (error) {
+        row.innerHTML = `
+          <span class="test-status fail">✗</span>
+          <span class="test-detail">
+            <span class="label">input:</span> ${inputLabel}
+            <div class="error-trace">${escapeHtml(error)}</div>
+          </span>`;
+      } else if (usesContains) {
+        const mustInclude = test.expected_contains.map(s => `"${escapeHtml(s)}"`).join(", ");
+        row.innerHTML = `
+          <span class="test-status ${pass ? "pass" : "fail"}">${pass ? "✓" : "✗"}</span>
+          <span class="test-detail">
+            <span class="label">input:</span> ${inputLabel}
+            &nbsp;&nbsp;<span class="label">must include:</span> <span class="value-block">${mustInclude}</span>
+            ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(actual || "(no output)")}</span>`}
+          </span>`;
+      } else {
+        row.innerHTML = `
+          <span class="test-status ${pass ? "pass" : "fail"}">${pass ? "✓" : "✗"}</span>
+          <span class="test-detail">
+            <span class="label">input:</span> ${inputLabel}
+            &nbsp;&nbsp;<span class="label">expected:</span> <span class="value-block">${escapeHtml(test.expected)}</span>
+            ${pass ? "" : `&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(actual || "(no output)")}</span>`}
+          </span>`;
+      }
+      rows.push(row);
     }
-    rows.push(row);
+
+    // On a failing run, show a short nudge *before* the raw test rows/error
+    // trace — pushes the student to actually read the question and the error
+    // rather than jumping straight back into editing code. Worded differently
+    // depending on whether Python crashed vs. just produced the wrong output.
+    if (!allPass) {
+      const nudge = document.createElement("div");
+      nudge.className = "error-nudge";
+      nudge.innerHTML = hadCrash
+        ? `<strong>Before you touch your code again:</strong> your program crashed. Read the error message below, especially its last line — what is it telling you, specifically? Then re-read the question above and see where that lines up with your code.`
+        : `<strong>Before you touch your code again:</strong> your program ran, but the output isn't right. Compare "expected" and "got" below closely, then re-read the question above — what's different about what it's asking for?`;
+      consoleEl.appendChild(nudge);
+    }
+
+    rows.forEach(row => consoleEl.appendChild(row));
+
+    const summary = document.createElement("div");
+    summary.className = "summary " + (allPass ? "all-pass" : "some-fail");
+    summary.textContent = allPass
+      ? `All ${ex.tests.length} test${ex.tests.length === 1 ? "" : "s"} passed! 🎉`
+      : `Some tests failed — check the output above.`;
+    consoleEl.appendChild(summary);
+
+    // Track completion state before/after so the reflection prompt fires
+    // exactly once, right when the last exercise in a unit gets solved.
+    const wasFullyComplete = solved.size === currentExercises().length;
+
+    if (allPass) {
+      solved.add(ex.id);
+      saveSolved();
+      renderSidebar();
+    }
+
+    appendHistory(currentUnit().id, ex.id, {
+      timestamp: new Date().toISOString(),
+      code,
+      passed: allPass,
+      testResults,
+    });
+
+    const nowFullyComplete = solved.size === currentExercises().length;
+    const unit = currentUnit();
+    if (!wasFullyComplete && nowFullyComplete && unit.reflection_prompt && !hasReflection(unit.id)) {
+      showReflectionModal(unit);
+    }
+  } catch (err) {
+    // Belt-and-suspenders: the Python-side BaseException catch in
+    // runOneTest's exec() should prevent this, but if something still
+    // throws at the JS level (a genuine Pyodide-internal failure, not a
+    // student code bug), show it instead of leaving the console blank.
+    console.error("[python] Run Tests failed unexpectedly:", err);
+    const errorBlock = document.createElement("div");
+    errorBlock.className = "error-trace";
+    errorBlock.textContent = "Something went wrong running your tests. Try again — if it keeps happening, let your teacher know.";
+    consoleEl.appendChild(errorBlock);
+  } finally {
+    runBtn.disabled = false;
+    runBtn.textContent = "Run Tests";
   }
-
-  // On a failing run, show a short nudge *before* the raw test rows/error
-  // trace — pushes the student to actually read the question and the error
-  // rather than jumping straight back into editing code. Worded differently
-  // depending on whether Python crashed vs. just produced the wrong output.
-  if (!allPass) {
-    const nudge = document.createElement("div");
-    nudge.className = "error-nudge";
-    nudge.innerHTML = hadCrash
-      ? `<strong>Before you touch your code again:</strong> your program crashed. Read the error message below, especially its last line — what is it telling you, specifically? Then re-read the question above and see where that lines up with your code.`
-      : `<strong>Before you touch your code again:</strong> your program ran, but the output isn't right. Compare "expected" and "got" below closely, then re-read the question above — what's different about what it's asking for?`;
-    consoleEl.appendChild(nudge);
-  }
-
-  rows.forEach(row => consoleEl.appendChild(row));
-
-  const summary = document.createElement("div");
-  summary.className = "summary " + (allPass ? "all-pass" : "some-fail");
-  summary.textContent = allPass
-    ? `All ${ex.tests.length} test${ex.tests.length === 1 ? "" : "s"} passed! 🎉`
-    : `Some tests failed — check the output above.`;
-  consoleEl.appendChild(summary);
-
-  // Track completion state before/after so the reflection prompt fires
-  // exactly once, right when the last exercise in a unit gets solved.
-  const wasFullyComplete = solved.size === currentExercises().length;
-
-  if (allPass) {
-    solved.add(ex.id);
-    saveSolved();
-    renderSidebar();
-  }
-
-  appendHistory(currentUnit().id, ex.id, {
-    timestamp: new Date().toISOString(),
-    code,
-    passed: allPass,
-    testResults,
-  });
-
-  const nowFullyComplete = solved.size === currentExercises().length;
-  const unit = currentUnit();
-  if (!wasFullyComplete && nowFullyComplete && unit.reflection_prompt && !hasReflection(unit.id)) {
-    showReflectionModal(unit);
-  }
-
-  runBtn.disabled = false;
-  runBtn.textContent = "Run Tests";
 }
 
 function escapeHtml(str) {
