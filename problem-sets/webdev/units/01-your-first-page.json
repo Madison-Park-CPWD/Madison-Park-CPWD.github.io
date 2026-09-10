@@ -1,0 +1,77 @@
+{
+  "id": "your-first-page",
+  "title": "Your First Web Page",
+  "reflection_prompt": "What was it like to change code that was already written, instead of writing it yourself?",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "your-first-page",
+      "title": "Make This Page Yours",
+      "difficulty": 1,
+      "sidebar_tag": "html + css",
+      "description": [
+        "<p>This page already has real HTML and CSS written for it — you don't need to write any code from scratch yet. Your job is to <strong>edit</strong> what's already there.</p>",
+        "<p>Look at the <strong>HTML</strong> panel. Anywhere you see text inside square brackets, like <code>[YOUR NAME HERE]</code>, that's a placeholder — delete it (brackets and all) and type your own text in its place.</p>",
+        "<ol>",
+        "<li>In the first section, replace <code>[YOUR NAME HERE]</code> with your actual name.</li>",
+        "<li>In the second section, replace <code>[Favorite Movie]</code> with the title of a movie you like, and replace <code>[Your Initials]</code> with your initials.</li>",
+        "<li>In the third section, replace <code>[Song 1]</code>, <code>[Song 2]</code>, and <code>[Song 3]</code> with three real songs you like.</li>",
+        "</ol>",
+        "<p>Now look at the <strong>CSS</strong> panel. Find the rule for <code>.songs-section</code> — it has a line that starts with <code>background-color:</code>. Change the color after the colon to any color you like. You can type a plain color word (<code>lightpink</code>, <code>orange</code>, <code>turquoise</code>...) or a hex code like <code>#ffb6c1</code> — either works. Check the live preview on the right to see the color change.</p>",
+        "<p>Click <strong>Run Tests</strong> when you're done to check your work.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<section class=\"name-section\">",
+          "  <h1>[YOUR NAME HERE]</h1>",
+          "</section>",
+          "",
+          "<section class=\"movie-section\">",
+          "  <h2>[Favorite Movie]</h2>",
+          "  <p>3 days ago by [Your Initials]</p>",
+          "</section>",
+          "",
+          "<section class=\"songs-section\">",
+          "  <h2>Favorite Songs</h2>",
+          "  <ol>",
+          "    <li>[Song 1]</li>",
+          "    <li>[Song 2]</li>",
+          "    <li>[Song 3]</li>",
+          "  </ol>",
+          "</section>"
+        ],
+        "css": [
+          ".name-section {",
+          "  background-color: #fff3cd;",
+          "  padding: 16px;",
+          "  margin-bottom: 12px;",
+          "}",
+          "",
+          ".movie-section {",
+          "  background-color: #d1ecf1;",
+          "  padding: 16px;",
+          "  margin-bottom: 12px;",
+          "}",
+          "",
+          ".songs-section {",
+          "  background-color: #d4edda;",
+          "  padding: 16px;",
+          "}"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The page has exactly one &lt;h1&gt;", "selector": "h1", "check": "count", "expected": 1 },
+        { "description": "The &lt;h1&gt; no longer says the placeholder name", "selector": "h1", "check": "not_text", "expected": "[YOUR NAME HERE]" },
+        { "description": "The movie heading no longer says the placeholder movie", "selector": ".movie-section h2", "check": "not_text", "expected": "[Favorite Movie]" },
+        { "description": "The byline no longer says the placeholder initials", "selector": ".movie-section p", "check": "not_text", "expected": "3 days ago by [Your Initials]" },
+        { "description": "Uses an &lt;ol&gt; (ordered list) for the songs", "selector": ".songs-section ol", "check": "exists" },
+        { "description": "The songs list has exactly 3 &lt;li&gt; items", "selector": ".songs-section li", "check": "count", "expected": 3 },
+        { "description": "Song 1 is no longer a placeholder", "selector": ".songs-section li:nth-child(1)", "check": "not_text", "expected": "[Song 1]" },
+        { "description": "Song 2 is no longer a placeholder", "selector": ".songs-section li:nth-child(2)", "check": "not_text", "expected": "[Song 2]" },
+        { "description": "Song 3 is no longer a placeholder", "selector": ".songs-section li:nth-child(3)", "check": "not_text", "expected": "[Song 3]" },
+        { "description": "The songs section's background color has been changed", "selector": ".songs-section", "check": "not_style", "property": "background-color", "expected": "rgb(212, 237, 218)" }
+      ]
+    }
+  ]
+}

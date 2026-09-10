@@ -468,6 +468,19 @@ function runOneCheck(test, doc) {
     const actual = el.getAttribute(test.attribute);
     return { pass: actual === test.expected, foundNothing: false, actual };
   }
+  // "not_" checks exist for exercises where a student fills in their own
+  // content (a name, a favorite movie) — there's no one correct string to
+  // match, only a placeholder value that must be gone. `negated: true` lets
+  // the row-rendering below show "still shows: X" instead of a confusing
+  // "expected: X, got: X" (both sides equal is exactly the failing case).
+  if (test.check === "not_text") {
+    const actual = el.textContent.trim();
+    return { pass: actual !== test.expected, foundNothing: false, actual, negated: true };
+  }
+  if (test.check === "not_style") {
+    const actual = getComputedStyle(el)[test.property];
+    return { pass: actual !== test.expected, foundNothing: false, actual, negated: true };
+  }
 
   console.error(`[webdev] unknown check type "${test.check}" in test "${test.description}" — check the unit JSON.`);
   return { pass: false, foundNothing: false, checkError: true };
@@ -523,7 +536,9 @@ async function runTests() {
       <span class="test-detail">
         ${escapeHtml(test.description)}
         ${result.pass ? "" : (hasActual
-          ? `&nbsp;&nbsp;<span class="label">expected:</span> <span class="value-block">${escapeHtml(String(test.expected))}</span>&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(String(result.actual))}</span>`
+          ? (result.negated
+              ? `&nbsp;&nbsp;<span class="label">still shows:</span> <span class="mismatch value-block">${escapeHtml(String(result.actual))}</span>`
+              : `&nbsp;&nbsp;<span class="label">expected:</span> <span class="value-block">${escapeHtml(String(test.expected))}</span>&nbsp;&nbsp;<span class="label">got:</span> <span class="mismatch value-block">${escapeHtml(String(result.actual))}</span>`)
           : `&nbsp;&nbsp;<span class="mismatch">element not found</span>`)}
       </span>`;
     rows.push(row);

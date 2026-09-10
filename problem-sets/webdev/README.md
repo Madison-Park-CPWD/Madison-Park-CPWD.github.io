@@ -120,6 +120,21 @@ from the way Python's tests have) and a `check` type:
   ```json
   { "description": "Links to example.com", "selector": "a", "check": "attribute", "attribute": "href", "expected": "https://example.com" }
   ```
+- `not_text` — the matched element's trimmed `textContent` does **not**
+  equal `expected`. For exercises where a student fills in their own
+  content (their name, a favorite movie) — there's no single correct
+  string to match, only a placeholder value that must be gone.
+  ```json
+  { "description": "The heading no longer says the placeholder name", "selector": "h1", "check": "not_text", "expected": "[YOUR NAME HERE]" }
+  ```
+- `not_style` — `getComputedStyle(element)[property]` does **not** equal
+  `expected`. Same idea as `not_text`, for "change this to any color/value
+  you like" tasks where there's no one correct answer, just a starting
+  value that must change. `expected` needs to be the *computed* form of the
+  starter value (e.g. `rgb(...)` for a color), same caveat as `style`.
+  ```json
+  { "description": "The section's background color has been changed", "selector": ".songs-section", "check": "not_style", "property": "background-color", "expected": "rgb(212, 237, 218)" }
+  ```
 
 **`actions` (optional)** — simulate interaction *before* the check runs,
 for testing JS event handlers:
