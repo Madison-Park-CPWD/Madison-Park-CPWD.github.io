@@ -824,46 +824,55 @@ pre-solving the prompt for the student, or baking prompt text into
 grading, would both remove the "the space goes inside the string" lesson
 this feature exists to surface.
 
-## Session 7 — Bug: "Run Code" permanently stuck disabled on `exit()`/`quit()`
+## Session 7 — Unreproduced "Run Code" hang; hardening applied, root cause not confirmed
 
-Reported symptom: clicking "Run Code" left it disabled forever
-(`cursor: wait` from `problem-sets/python/style.css:278`, since it's only
-styled for the disabled state) while the rest of the page — sidebar,
-unit dropdown — stayed fully responsive. That last part was the key
-diagnostic: a genuine main-thread-blocking infinite loop (the
-already-documented, accepted Pyodide risk) would freeze the *entire*
-page, not just one button, since Pyodide's WASM execution is synchronous
-on the same thread as everything else. Page staying responsive meant this
-was a JS promise that silently never resolved, not a busy loop.
+Reported symptom: clicking "Run Code" for the first time on exercise 09
+of `print-input-fstrings` left it disabled forever (`cursor: wait` from
+`problem-sets/python/style.css:278`, only styled for the disabled state)
+while the rest of the page — sidebar, unit dropdown — stayed fully
+responsive. That last part ruled out the already-documented, accepted
+main-thread-infinite-loop risk (which would freeze the *entire* page,
+not just one button) and pointed at a JS promise that silently never
+resolved.
 
-**Root cause**: neither `runCode()` nor `runOneTest()` in
-`problem-sets/python/app.js` had any error handling around the Pyodide
-call. The embedded Python wrapper's `except Exception:` doesn't catch
-`SystemExit` (raised by `exit()`/`quit()`, which a student may well try)
-or `KeyboardInterrupt` — neither is an `Exception` subclass. Either one
-escaping that `except` propagates all the way out of
-`pyodide.runPythonAsync()` as an unhandled JS promise rejection, which
-skips every line after the `await` — including the code that resets
-`runCodeBtn.disabled`. Verified directly: an isolated simulation running
-the exact wrapper logic against `exit()`-containing code confirmed
-`SystemExit` escapes uncaught under the old `except Exception:`, and is
-caught cleanly (shown as a normal traceback) under `except BaseException:`.
+**First theory (wrong, or at least unconfirmed): `exit()`/`quit()`.**
+Reasoned that `except Exception:` in the wrapper Python inside
+`runOneTest()` doesn't catch `SystemExit`/`KeyboardInterrupt` (neither is
+an `Exception` subclass), so either one escaping would propagate out of
+`pyodide.runPythonAsync()` as an unhandled rejection, skipping the
+button-reset code after the `await`. Verified in isolation that this
+mechanism is real — but the user hadn't written `exit()`/`quit()` at all,
+so this was a plausible-sounding guess presented with more confidence
+than it had earned, not an actual diagnosis. Worth naming as a specific
+mistake, not just a wrong guess: proposing a fix before asking for the
+actual repro input.
 
-**Fix**, two layers:
-1. `except Exception:` → `except BaseException:` in the wrapper Python
-   inside `runOneTest()` — the direct fix, converts `exit()`/`quit()`/
-   Ctrl+C-style code into a normal traceback shown to the student instead
-   of an uncaught escape.
-2. Defense in depth: `runCode()` and `runTests()` both now wrap their body
-   in `try/catch/finally`, so button state *always* resets and a friendly
-   message shows even for some future, still-unanticipated failure mode —
-   not just this specific one. Previously, any exception thrown anywhere
-   after the `await runOneTest(...)` call in either function permanently
-   stuck that function's buttons, since the reset lines ran unconditionally
-   *after* the awaited call with nothing guarding them.
+**Got the real code, tested it directly, it didn't explain the hang
+either.** The user's actual code had two lines each missing a closing
+paren (`int(input("Input a number ")`). Reproduced verbatim against real
+CPython (not Pyodide, which wasn't available to test against directly
+this session): raises a plain `SyntaxError` in ~3.6ms — which is an
+`Exception` subclass, so it would have been caught even by the
+*original*, pre-fix `except Exception:`. This code shouldn't hang either
+version.
 
-Not yet done: an actual browser click-through to confirm live (this
-session's tooling had no working browser connection) — high confidence
-from the isolated simulation matching the reported symptom exactly, but
-worth a real "Run Code" click on `exit()`-containing code once someone's
-at a browser.
+**Could not reproduce.** Cleared `history-print-input-fstrings-09` from
+`localStorage` to bring "Run Code" back for that exercise (it hides
+permanently after a unit's first "Run Tests" click), retested the same
+code on the live GitHub Pages site in Firefox 155.0.1 (64-bit) with
+DevTools console open — no hang, no console errors. User confirmed "all
+is fine now" on a fresh attempt.
+
+**Where this leaves things**: root cause not confirmed. Possibly a
+one-off browser/extension hiccup unrelated to this codebase, possibly
+something timing-dependent that didn't recur — genuinely unknown. The
+`except BaseException:` change and the `try/catch/finally` wrapping of
+`runCode()`/`runTests()` (committed as `a9c0add`) are being **kept
+anyway** as legitimate defense-in-depth — neither one can make things
+worse, and the missing-`BaseException` gap and the unguarded post-`await`
+button-reset code were both real structural weaknesses regardless of
+whether either one caused this specific incident. If a "Run Code" hang
+recurs, capture the exact code + stdin content *before* clearing any
+state, and check the DevTools console immediately — this session only
+got the console-open request in after the original incident had already
+resolved.
