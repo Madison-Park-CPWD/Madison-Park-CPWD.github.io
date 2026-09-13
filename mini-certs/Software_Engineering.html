@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Certificate</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #2980b9;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        .certificate {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .prerequisites {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .learning-targets {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+        .learning-targets ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        .proof {
+            margin: 15px 0;
+        }
+        .proof ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .proof li {
+            margin: 8px 0;
+            list-style-type: none;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .mastery {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+            border-left: 4px solid #28a745;
+        }
+        .success-indicators {
+            background-color: #d1ecf1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        .success-indicators h2 {
+            margin-top: 0;
+            color: #0c5460;
+        }
+        .success-indicators ul {
+            padding-left: 20px;
+        }
+        .final-note {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<h1>Software Engineering Certificate</h1>
+
+<div class="certificate">
+    <p class="prerequisites"><strong>Prerequisites:</strong> Software Development Concepts Certificate</p>
+    <p><strong>Final Goal:</strong> Students will understand how real software systems are structured, built, and shipped — beyond writing a single program, toward how production systems are architected, versioned, and delivered.</p>
+
+    <h2>Learning Targets</h2>
+    <div class="learning-targets">
+        <ul>
+            <li>Compare <strong>monolithic, tiered, and microservices</strong> architectures and diagram how each structures a system</li>
+            <li>Apply <strong>design patterns</strong> (MVC, MVVM, component-based design) and explain when each fits</li>
+            <li>Identify <strong>cross-cutting concerns</strong> (security, logging, error handling) and strategies for handling them</li>
+            <li>Compare programming <strong>languages, paradigms, and technology stacks</strong>, and explain compiled vs. interpreted execution</li>
+            <li>Explain the purpose of a <strong>CI/CD pipeline</strong> and diagram its stages</li>
+            <li>Demonstrate <strong>version control</strong> methods and explain why they matter to a team</li>
+        </ul>
+    </div>
+
+    <h2>Proof</h2>
+    <p><em>Each checkbox represents a proof of understanding. Students must demonstrate mastery through diagramming, comparison, or hands-on application.</em></p>
+
+    <h3>Multi-Tiered &amp; Distributed Design</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Monolith Definition</strong> – Define monolithic architecture and explain its "all-in-one" nature, with at least 2 real-world examples</li>
+            <li><input type="checkbox"> <strong>3-Tier / N-Tier Explanation</strong> – Define and diagram the presentation, business logic, and data access tiers, and explain how 3-tier extends to N-tier</li>
+            <li><input type="checkbox"> <strong>Microservices &amp; Cloud</strong> – Define microservices architecture, diagram independent services communicating via APIs, and explain how it leverages cloud infrastructure for scalability</li>
+            <li><input type="checkbox"> <strong>Architecture Comparison</strong> – Compare monolithic, tiered, and microservices architectures across scalability, complexity, and deployment, and recommend one for a given project scenario</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Design Patterns</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>MVC</strong> – Define Model-View-Controller and diagram how it separates an application's data, display, and logic</li>
+            <li><input type="checkbox"> <strong>MVVM</strong> – Define Model-View-ViewModel and explain how it differs from MVC</li>
+            <li><input type="checkbox"> <strong>Component-Based Design</strong> – Explain the component pattern (self-contained, reusable UI pieces) and identify the components in an existing application</li>
+            <li><input type="checkbox"> <strong>Pattern Comparison</strong> – Compare MVC, MVVM, and component-based design, and explain when each is a good fit</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Cross-Cutting Concerns</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Concern Identification</strong> – List and define at least 6 cross-cutting concerns (security, logging, error handling, etc.)</li>
+            <li><input type="checkbox"> <strong>Impact Analysis</strong> – Explain how each concern affects multiple parts of a software system rather than living in one place</li>
+            <li><input type="checkbox"> <strong>Implementation Strategies</strong> – Research and explain at least 2 approaches to handling cross-cutting concerns (middleware, service layers, aspect-oriented patterns)</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Programming Languages &amp; Technology Stacks</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Compiled vs. Interpreted</strong> – Compare compiled and interpreted languages with 3 examples of each and the performance implications</li>
+            <li><input type="checkbox"> <strong>Paradigm Comparison</strong> – Explain procedural, OOP, functional, and declarative programming with code examples, and identify a hybrid language that combines multiple paradigms</li>
+            <li><input type="checkbox"> <strong>Language Landscape</strong> – Identify at least 7 general-purpose languages and their typical use cases, plus SQL as an example of a domain-specific language</li>
+            <li><input type="checkbox"> <strong>Technology Stacks</strong> – Explain the components of at least 3 named technology stacks (e.g., LAMP, MEAN/MERN, a Java/Spring or .NET stack) and compare their tradeoffs</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>CI/CD</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>CI/CD Purpose</strong> – Explain what continuous integration and continuous delivery/deployment mean and why teams automate them</li>
+            <li><input type="checkbox"> <strong>Pipeline Diagram</strong> – Diagram a CI/CD pipeline showing code commit → build → automated test → deployment</li>
+            <li><input type="checkbox"> <strong>Failure Scenario</strong> – Explain what should happen to a deployment when an automated test in the pipeline fails, and why that matters</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Version Control</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Core Workflow</strong> – Demonstrate a commit → branch → merge workflow on a real repository</li>
+            <li><input type="checkbox"> <strong>Why It Matters</strong> – Explain what problems version control solves for a team (history, collaboration, recovery) versus working without it</li>
+            <li><input type="checkbox"> <strong>Conflict Resolution</strong> – Resolve a merge conflict between two branches and explain what caused it</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <div class="mastery">
+        ✅ <strong>Overall Mastery</strong><br>
+        Compares software architectures and recommends one for a given scenario, applies design patterns (MVC, MVVM, component-based) appropriately, identifies and explains cross-cutting concerns, compares languages/paradigms/technology stacks, explains and diagrams a CI/CD pipeline, and demonstrates real version-control workflows including conflict resolution.
+    </div>
+</div>
+
+<div class="success-indicators">
+    <h2>Success Indicators</h2>
+    <p>Students are ready for advanced software engineering study when they can:</p>
+    <ul>
+        <li>Justify an architecture choice (monolith vs. tiered vs. microservices) for a specific project, not just define the terms</li>
+        <li>Recognize a cross-cutting concern in an unfamiliar codebase</li>
+        <li>Explain what a CI/CD pipeline would catch that manual testing alone might miss</li>
+        <li>Use version control as a normal part of their own workflow, not something reserved for group projects</li>
+    </ul>
+</div>
+
+<div class="final-note">
+    <p>This Software Engineering Certificate moves from "can I write a program" to "can I reason about how a real system is built, structured, and delivered" — the layer of practice above individual language skill.</p>
+</div>
+</body>
+</html>

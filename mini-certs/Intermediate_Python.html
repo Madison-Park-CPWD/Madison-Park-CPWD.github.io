@@ -133,8 +133,8 @@
 <h1>Intermediate Python Mini-Certificate</h1>
 
 <div class="certificate">
-    <p class="prerequisites"><strong>Prerequisites:</strong> Completion of Mini-Certificates 1–19 (Foundations through Functions)</p>
-    <p><strong>Final Goal:</strong> Students will write modular, reusable, and well-structured Python code using functional, object-oriented, and file-based programming techniques.</p>
+    <p class="prerequisites"><strong>Prerequisites:</strong> Completion of foundational Python topics through functions (Basic Python Mini-Certificate)</p>
+    <p><strong>Final Goal:</strong> Students will write modular, reusable, and well-structured Python code using functional, object-oriented, and file-based programming techniques, and reason about algorithms and code structure at a level beyond "does it work."</p>
 
     <h2>Learning Targets</h2>
     <div class="learning-targets">
@@ -147,6 +147,9 @@
             <li>Implement <strong>inheritance</strong> and use <code>super()</code> to extend parent behavior</li>
             <li>Customize object behavior with <strong>special methods</strong> like <code>__str__</code>, <code>__repr__</code>, and <code>__eq__</code></li>
             <li>Choose between <strong>functional</strong> and <strong>OOP</strong> approaches based on problem requirements</li>
+            <li>Write <strong>pseudocode</strong> to plan an algorithm before implementing it</li>
+            <li>Implement and compare <strong>sorting</strong> and <strong>searching</strong> algorithms</li>
+            <li>Apply <strong>separation of concerns</strong> to structure code so each function has one clear job</li>
         </ul>
     </div>
 
@@ -230,9 +233,49 @@
         </ul>
     </div>
 
+    <h3>Pseudocode Algorithms</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Pseudocode Translation</strong> – Convert 3+ written problem descriptions into clear pseudocode using standard conventions (INPUT, OUTPUT, IF/ELSE, LOOP)</li>
+            <li><input type="checkbox"> <strong>Algorithm-to-Code</strong> – Take a pseudocode algorithm and implement it as working Python code, verifying the two match step for step</li>
+            <li><input type="checkbox"> <strong>Plan Before You Code</strong> – For a new problem, write pseudocode first, then implement it — note what changed once you actually started coding</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Sorting Algorithms</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Bubble Sort</strong> – Implement bubble sort and trace through a small list by hand, step by step</li>
+            <li><input type="checkbox"> <strong>Selection Sort</strong> – Implement selection sort and compare its code structure and step count to bubble sort on the same list</li>
+            <li><input type="checkbox"> <strong>Built-in vs. Manual</strong> – Compare <code>sorted()</code>/<code>list.sort()</code> to your own implementation, and explain when you'd use a built-in sort vs. write your own</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Searching Algorithms</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Linear Search</strong> – Write a function that searches a list front-to-back, returning the index found or <code>-1</code></li>
+            <li><input type="checkbox"> <strong>Binary Search</strong> – Write binary search over a sorted list, and explain why the list has to be sorted first</li>
+            <li><input type="checkbox"> <strong>Comparison Counting</strong> – Count how many comparisons linear vs. binary search need on the same sorted list of 100+ items, and explain why binary search wins</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
+    <h3>Separation of Concerns</h3>
+    <div class="proof">
+        <ul>
+            <li><input type="checkbox"> <strong>Refactor a Monolith</strong> – Take a single long function that reads input, processes data, <em>and</em> prints output, and split it into 3 focused functions (e.g. <code>get_input()</code>, <code>process()</code>, <code>display_result()</code>)</li>
+            <li><input type="checkbox"> <strong>Responsibility Audit</strong> – For 3 functions you've already written, write a one-line description of "what this function's ONE job is" — flag any that are doing more than one thing</li>
+            <li><input type="checkbox"> <strong>Before/After</strong> – Explain what got easier to test, reuse, or debug after separating concerns in your refactor</li>
+            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
+        </ul>
+    </div>
+
     <div class="mastery">
         ✅ <strong>Overall Mastery</strong><br>
-        Demonstrates intermediate-level proficiency in Python by combining functional and object-oriented programming techniques. Creates reusable classes with proper initialization, methods, inheritance, and special methods. Uses lambda, list comprehensions, and built-in functions for clean, expressive code. Performs basic file I/O operations safely and efficiently. Understands when to use OOP vs functional approaches.
+        Demonstrates intermediate-level proficiency in Python by combining functional and object-oriented programming techniques. Creates reusable classes with proper initialization, methods, inheritance, and special methods. Uses lambda, list comprehensions, and built-in functions for clean, expressive code. Performs basic file I/O operations safely and efficiently. Plans algorithms with pseudocode before coding them, implements and compares sorting and searching algorithms, and structures code around separation of concerns. Understands when to use OOP vs functional approaches.
     </div>
 </div>
 
@@ -248,20 +291,23 @@
         <li>Choose between procedural, functional, and OOP styles based on problem context</li>
         <li>Debug object state and method calls using <code>print()</code> and <code>type()</code></li>
         <li>Explain the purpose of <code>self</code>, <code>super()</code>, and special methods in their own words</li>
+        <li>Plan an unfamiliar problem in pseudocode before writing any code</li>
+        <li>Explain why a given algorithm choice (e.g., binary search over linear search) matters for a specific problem</li>
+        <li>Split a tangled function into focused, single-responsibility pieces without being told how</li>
     </ul>
 </div>
 
 <div class="integration-notes">
     <h3>Integration Notes</h3>
     <ul>
-        <li><strong>Teach After:</strong> Functions (Mini-Cert 17–20) and basic data structures</li>
+        <li><strong>Teach After:</strong> Functions and basic data structures (lists, dicts)</li>
         <li><strong>Pair With:</strong> Final project work (e.g., building a student management system that reads/writes data to files)</li>
         <li><strong>Optional Extension:</strong> Introduce <code>@property</code>, <code>@staticmethod</code>, or <code>dataclass</code> for advanced learners</li>
     </ul>
 </div>
 
 <div class="final-note">
-    <p>This Intermediate Python Mini-Certificate serves as a bridge between foundational syntax and advanced application development, preparing students for real-world programming tasks and deeper study in Python-based frameworks. The addition of list comprehensions and basic file I/O enhances students' ability to process data efficiently and work with persistent storage.</p>
+    <p>This Intermediate Python Mini-Certificate serves as a bridge between foundational syntax and advanced application development, preparing students for real-world programming tasks and deeper study in Python-based frameworks. The addition of list comprehensions, basic file I/O, algorithmic thinking (pseudocode, sorting, searching), and separation of concerns enhances students' ability to process data efficiently, reason about code before writing it, and structure programs cleanly.</p>
 </div>
 </body>
 </html>

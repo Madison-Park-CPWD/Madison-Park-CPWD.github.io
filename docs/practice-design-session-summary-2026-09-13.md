@@ -876,3 +876,24 @@ recurs, capture the exact code + stdin content *before* clearing any
 state, and check the DevTools console immediately — this session only
 got the console-open request in after the original incident had already
 resolved.
+
+**2026-09-13 update, reported by the user**: this has now shown up
+multiple times, across multiple different students — so not the
+single-user fluke the "unreproduced" framing above suggested. Consistent
+pattern each time: nothing logged in the console (rules out an uncaught
+JS/Python exception being the cause, since both the pre-existing
+`console.error` inside `runOneTest`'s Python wrapper's crash path and the
+new belt-and-suspenders `console.error` added in the hardening pass above
+would have shown *something* if either were firing), and a plain browser
+reload clears it every time, with no special recovery steps needed (no
+localStorage clearing required, unlike the single-user session-7
+investigation above). Multi-user + reload-always-fixes-it + zero console
+output together point away from a code-level logic bug entirely and
+toward something more like a stuck/hung underlying browser or Pyodide
+resource (e.g. a WASM instance or in-flight fetch left in a bad state)
+that a fresh page load simply resets. Not yet root-caused. Next time it
+happens: before reloading, check whether *other* Pyodide-dependent
+actions on the same page (not just Run Code) are also affected, and try
+opening a second tab to the same exercise to see whether the second tab
+works while the first stays stuck (would confirm it's isolated to that
+one tab's Pyodide instance, not something shared/server-side).
