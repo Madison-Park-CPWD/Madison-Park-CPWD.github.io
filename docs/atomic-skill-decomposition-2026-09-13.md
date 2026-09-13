@@ -358,7 +358,7 @@ here thematically (both are about describing software structure).
 | 1 | Atomic | Define Model-View-Controller (MVC) and diagram how it separates data, display, and logic | Skill 25 | OK |
 | 2 | Atomic | Define Model-View-ViewModel (MVVM) and explain how it differs from MVC | Skill 25 ("such as" extension) | OK |
 | 3 | Atomic | Define the component-based design pattern (self-contained, reusable pieces) | Skill 25 ("such as" extension) | OK |
-| 4 | **Composite** | Compare MVC, MVVM, and component-based design, and explain when each is a good fit — combines rows 1–3 | *(existing)* | OK |
+| 4 | **Composite** | Find three common frameworks and identify what design patterns they use — combines rows 1–3 | *(existing, reworded per your request — reframed from abstract comparison to identifying patterns in real frameworks)* | OK |
 | 5 | Atomic | Draw a simple UML diagram showing how one class is composed of others | Skill 29 (**new — closes a previously open DESE gap**) | OK |
 
 ### "Cross-Cutting Concerns" (enrichment, no DESE skill number)
