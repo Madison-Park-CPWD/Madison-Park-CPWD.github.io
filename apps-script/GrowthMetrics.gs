@@ -13,7 +13,7 @@
 // pasting into the Apps Script editor — logged at the start of every run,
 // so the Execution log confirms exactly which version actually ran (this
 // file has no doGet() to check against directly, unlike Code.gs).
-const GROWTH_METRICS_VERSION = "2";
+const GROWTH_METRICS_VERSION = "4";
 
 // Update this if it's wrong — used to fetch unit/difficulty data live from
 // the deployed site rather than duplicating it here, so re-rating
@@ -29,8 +29,15 @@ const GROWTH_SCORES_HEADER = [
   "Weeks With Data", "Growth Score", "Computed At",
 ];
 
+// One row per (student, week) with all three metrics plus the growth
+// trend's input side by side — the shape Looker Studio (or any charting
+// tool) wants for a per-student time series with multiple lines. A blank
+// cell means that metric had no data that week, not zero.
 const WEEK_SCORES_SHEET_NAME = "WeekScores";
-const WEEK_SCORES_HEADER = ["Student", "Week Starting (Mon)", "Relative Performance (avg)", "Exercises This Week"];
+const WEEK_SCORES_HEADER = [
+  "Student", "Week Starting (Mon)", "Relative Performance (avg)",
+  "Grit (avg attempts)", "First-Attempt Success Rate", "Error-Reading (repeat-mistake rate)",
+];
 
 // How many weeks count as "early" and "recent" when computing the growth
 // trend — trailing N vs. leading N, shrinks automatically for students
@@ -53,7 +60,10 @@ function runGrowthMetrics() {
   Object.keys(grouped).forEach(function (student) {
     const exerciseGroups = grouped[student];
     const statsList = [];
-    const relativePerformances = [];
+    const relativePerformanceEvents = [];
+    const gritEvents = [];
+    const firstAttemptEvents = [];
+    const errorReadingEvents = [];
 
     Object.keys(exerciseGroups).forEach(function (exerciseKey) {
       const sortedAttempts = exerciseGroups[exerciseKey].slice().sort(function (a, b) {
@@ -76,14 +86,20 @@ function runGrowthMetrics() {
         }
         const rp = computeRelativePerformance(stats, expectedAttempts);
         if (rp !== null) {
-          relativePerformances.push({ firstPassTimestamp: stats.firstPassTimestamp, relativePerformance: rp });
+          relativePerformanceEvents.push({ timestamp: stats.firstPassTimestamp, value: rp });
         }
       }
+      if (stats.gritEvent) gritEvents.push(stats.gritEvent);
+      if (stats.firstAttemptEvent) firstAttemptEvents.push(stats.firstAttemptEvent);
+      errorReadingEvents.push.apply(errorReadingEvents, stats.errorReadingEvents);
     });
 
     const studentMetrics = computeStudentMetrics(statsList);
-    const weekScores = computeWeekScores(relativePerformances);
-    const growthScore = computeGrowthScore(weekScores, GROWTH_TREND_WINDOW_WEEKS);
+    const rpWeeks = bucketByWeek(relativePerformanceEvents);
+    const gritWeeks = bucketByWeek(gritEvents);
+    const firstAttemptWeeks = bucketByWeek(firstAttemptEvents);
+    const errorReadingWeeks = bucketByWeek(errorReadingEvents);
+    const growthScore = computeGrowthScore(rpWeeks, GROWTH_TREND_WINDOW_WEEKS);
 
     growthScoreRows.push([
       student,
@@ -92,13 +108,17 @@ function runGrowthMetrics() {
       studentMetrics.grit,
       studentMetrics.firstAttemptSuccessRate,
       studentMetrics.errorReadingRate,
-      weekScores.length,
+      rpWeeks.length,
       growthScore,
       computedAt,
     ]);
 
-    weekScores.forEach(function (w) {
-      weekScoreRows.push([student, w.week, w.score, w.count]);
+    const mergedWeeks = mergeWeeklySeries(rpWeeks, gritWeeks, firstAttemptWeeks, errorReadingWeeks);
+    mergedWeeks.forEach(function (w) {
+      weekScoreRows.push([
+        student, w.week, w.relativePerformance, w.grit,
+        w.firstAttemptSuccessRate, w.errorReadingRate,
+      ]);
     });
   });
 
@@ -191,7 +211,16 @@ function sameMistake(prevResults, currResults) {
     && sameArray(hadErrorPattern(prevResults), hadErrorPattern(currResults));
 }
 
-// attempts must already be sorted ascending by timestamp.
+// attempts must already be sorted ascending by timestamp. Besides the
+// aggregate stats (used for GrowthScores' single per-student numbers),
+// also emits timestamped events for each metric — gritEvent,
+// firstAttemptEvent, errorReadingEvents — so runGrowthMetrics() can
+// bucket every metric by week, not just relative_performance. Each
+// event's timestamp is the moment that specific signal actually
+// happened: grit at first-solve (same as relative_performance), first-
+// attempt success at the first attempt itself (meaningful whether or not
+// the exercise was ever solved), error-reading at the second attempt in
+// each consecutive-failure pair (when the "repeat" happened).
 function computeExerciseStats(attempts) {
   let firstPassIndex = -1;
   for (let i = 0; i < attempts.length; i++) {
@@ -204,6 +233,7 @@ function computeExerciseStats(attempts) {
 
   let sameMistakePairs = 0;
   let totalFailurePairs = 0;
+  const errorReadingEvents = [];
   for (let i = 1; i < attempts.length; i++) {
     if (!attempts[i - 1].passed && !attempts[i].passed) {
       // Skip pairs where either side has no real testResults data (e.g.
@@ -215,11 +245,21 @@ function computeExerciseStats(attempts) {
       const currHasData = attempts[i].testResults && attempts[i].testResults.length > 0;
       if (prevHasData && currHasData) {
         totalFailurePairs++;
-        if (sameMistake(attempts[i - 1].testResults, attempts[i].testResults)) {
-          sameMistakePairs++;
-        }
+        const same = sameMistake(attempts[i - 1].testResults, attempts[i].testResults);
+        if (same) sameMistakePairs++;
+        errorReadingEvents.push({ timestamp: attempts[i].timestamp, value: same ? 1 : 0 });
       }
     }
+  }
+
+  let gritEvent = null;
+  if (solved) {
+    gritEvent = { timestamp: firstPassTimestamp, value: attemptsTaken };
+  }
+
+  let firstAttemptEvent = null;
+  if (attempts.length > 0) {
+    firstAttemptEvent = { timestamp: attempts[0].timestamp, value: firstAttemptPassed ? 1 : 0 };
   }
 
   return {
@@ -230,6 +270,9 @@ function computeExerciseStats(attempts) {
     sameMistakePairs: sameMistakePairs,
     totalFailurePairs: totalFailurePairs,
     totalAttempts: attempts.length,
+    gritEvent: gritEvent,
+    firstAttemptEvent: firstAttemptEvent,
+    errorReadingEvents: errorReadingEvents,
   };
 }
 
@@ -292,20 +335,58 @@ function weekKey(isoTimestamp) {
   return utcDate.toISOString().slice(0, 10);
 }
 
-// solvedExercisesWithRP: [{ firstPassTimestamp, relativePerformance }].
-// Returns [{ week, score, count }] sorted ascending by week.
-function computeWeekScores(solvedExercisesWithRP) {
+// events: [{ timestamp, value }] — generic weekly bucketing, reused for
+// all four metrics (relative_performance, grit, first-attempt-success,
+// error-reading), not just the growth trend's input. Returns
+// [{ week, score, count }] sorted ascending by week.
+function bucketByWeek(events) {
   const byWeek = {};
-  solvedExercisesWithRP.forEach(function (e) {
-    const wk = weekKey(e.firstPassTimestamp);
+  events.forEach(function (e) {
+    const wk = weekKey(e.timestamp);
     if (!byWeek[wk]) byWeek[wk] = [];
-    byWeek[wk].push(e.relativePerformance);
+    byWeek[wk].push(e.value);
   });
   const weeks = Object.keys(byWeek).sort();
   return weeks.map(function (wk) {
     const vals = byWeek[wk];
     const sum = vals.reduce(function (a, b) { return a + b; }, 0);
     return { week: wk, score: sum / vals.length, count: vals.length };
+  });
+}
+
+// Turns [{ week, score, count }] into { week: score } for easy lookup.
+function weeklySeriesToMap(series) {
+  const map = {};
+  series.forEach(function (w) { map[w.week] = w.score; });
+  return map;
+}
+
+// Merges up to four independent weekly series (each metric has its own
+// data availability — a student might have relative_performance data for
+// a week but no error-reading pairs that week) into one row per week
+// that actually has data from *any* metric, with null for whichever
+// metric had none. This is what makes the wide WeekScores table possible
+// without forcing every metric to share the same weeks.
+function mergeWeeklySeries(rpWeeks, gritWeeks, firstAttemptWeeks, errorReadingWeeks) {
+  const rpMap = weeklySeriesToMap(rpWeeks);
+  const gritMap = weeklySeriesToMap(gritWeeks);
+  const faMap = weeklySeriesToMap(firstAttemptWeeks);
+  const erMap = weeklySeriesToMap(errorReadingWeeks);
+
+  const allWeeks = {};
+  [rpMap, gritMap, faMap, erMap].forEach(function (m) {
+    Object.keys(m).forEach(function (wk) { allWeeks[wk] = true; });
+  });
+  const weeks = Object.keys(allWeeks).sort();
+
+  return weeks.map(function (wk) {
+    return {
+      week: wk,
+      relativePerformance: (wk in rpMap) ? rpMap[wk] : null,
+      grit: (wk in gritMap) ? gritMap[wk] : null,
+      firstAttemptSuccessRate: (wk in faMap) ? faMap[wk] : null,
+      errorReadingRate: (wk in erMap) ? erMap[wk] : null,
+    };
   });
 }
 
@@ -422,9 +503,15 @@ function getOrCreateOutputSheet(name, header) {
   let sheet = ss.getSheetByName(name);
   if (!sheet) {
     sheet = ss.insertSheet(name);
-    sheet.getRange(1, 1, 1, header.length).setValues([header]);
-    sheet.setFrozenRows(1);
   }
+  // Always (re)write the header row, even for a sheet that already
+  // existed — otherwise a schema change (e.g. WeekScores widening from 4
+  // to 6 columns in v3) leaves a stale header mismatched against the
+  // actual data columns written below it, which is exactly what happened
+  // here: the sheet kept its old 4-column header while new 6-column data
+  // rows were written underneath. Idempotent to repeat every run.
+  sheet.getRange(1, 1, 1, header.length).setValues([header]);
+  sheet.setFrozenRows(1);
   return sheet;
 }
 
