@@ -30,48 +30,84 @@ default.
 Before starting: re-read this whole doc for any `Change` column cells no
 longer set to `OK`, and follow those instead of the defaults below.
 
-1. **Add standards references to the 8 pages** — per structural family:
-   - Family B (`Basic_HTML`, `Intermediate_HTML`, `Basic_Python`,
-     `Basic_SDLC`, `Intermediate_Python`): a small `<span class="standard-
-     ref">Standard N, Skill M</span>` under each matched `<h4>`, one shared
-     CSS rule reused across all 5 files.
-   - Family A (`Basic_CSS`, `Basic_JavaScript`, `Intermediate_JavaScript`):
-     same tag next to each matched `<h3>`(JS)/`<h4>`(CSS) heading.
+1. **Add standards references to all 12 pages** — subsumed into the
+   expanded to-do #3 below (the standards-ref tag is now a required part
+   of every atomic skill line, not a separate later pass).
 2. **Fix the 5 confirmed bugs** listed in "Bugs & inconsistencies found"
    above (invalid div nesting in `Basic_HTML.html`; the copy-pasted wrong
    demo-set in `Intermediate_HTML.html`; `Basic_CSS.html`'s off-by-one
-   prerequisites and non-functional `disabled` checkboxes; the dangling
-   "Mini-Cert 1-19"/"17-20" references).
-3. **Strip the skill sections down to skill statements only — supersedes
-   the original "collapse to one list" idea — but relocate, don't delete,
-   the demonstration-method content.** The student-progress Google Sheet
-   (see Part 4 below) is where teaching/assessment method per student is
-   actually tracked, so the certificate's skill-listing sections don't need
-   to describe demonstration methods inline. But the existing demo-method
-   ideas are genuinely useful brainstormed material worth keeping
-   somewhere, so: for every file (both families), remove the
-   `.demonstrations`/`.proof`/project-based content from *next to each
-   skill*, and instead consolidate all of it, once per file, into a
-   **"Possible Ways to Assess" section at the bottom of that same file** —
-   recommended over a separate instructor-only file because it's less
-   work (no new files, no cross-file linking) and there's already a direct
-   precedent for it: `Basic_HTML.html` already has an end-of-file
-   "Assessment Notes for Teachers" section in the same spot. Each skill in
-   the main body keeps just its statement/description + the standards-ref
-   tag + one short shared sentence (e.g. "This skill can be taught and
-   assessed in multiple ways — see the tracking sheet for how it's being
-   assessed for each student, and the 'Possible Ways to Assess' section
-   below for ideas."). Open to the separate-file approach instead if, on
-   reflection, keeping instructor-only content out of a student-facing
-   page matters enough to be worth the extra work — flagged as the default,
-   not a fixed decision.
+   prerequisites and non-functional `disabled` checkboxes). The 5th bug
+   (dangling Mini-Cert range references) is already fixed. The other 4
+   are all in files this to-do's rebuild will touch anyway — fold the fix
+   into that pass rather than doing it separately first.
+3. **Rebuild every cert page as an atomic, ordered, standards-tagged
+   checklist — expanded spec, confirmed 2026-09-13, supersedes the
+   original "strip to statements + move demo content" draft above.**
+   Full requirements:
+   - **Atomic**: every checklist item is the smallest distinct fact or
+     rule a student learns — the grain from the individual-skill recount
+     above (`Basic_HTML.html`'s 30 items), not the coarser "competency
+     area" grain most files currently use.
+   - **Build order**: when atomic skills combine into a higher-level
+     ability (knowing `<table>`/`<tr>`/`<th>`/`<td>` individually enables
+     "build a table"), the atomic skills are listed *before* the skill
+     that depends on them — reading top to bottom mirrors real learning
+     order.
+   - **Composite skills get their own checklist line** — confirmed
+     2026-09-13. Correctly combining atomic skills is itself a distinct,
+     separately-checkable ability (a student can know what `<table>`,
+     `<tr>`, `<th>`, `<td>` each do individually and still not assemble
+     them correctly) — not something that's automatically proven once the
+     atomic pieces are checked off.
+   - **Standards-ref tag on every item** — `<span class="standard-
+     ref">Standard N, Skill M</span>` (or equivalent), so every checklist
+     line is traceable to its DESE standard. One skill can map to more
+     than one standard row and vice versa — tag accordingly, don't force
+     1:1.
+   - **Readability is the actual design goal** — the whole point of this
+     rebuild is that a student can read the page and immediately
+     understand what they need to learn and in what order. Every
+     structural and CSS decision serves that.
+   - **One shared CSS across all 12 files**, confirmed 2026-09-13 — not
+     per-file bespoke styling. Each file gets its own accent/base color
+     (via CSS custom properties) so a student can tell at a glance which
+     certificate they're looking at, but the checklist layout, typography,
+     and readability rules are identical everywhere.
+   - **"Template to a tracking system" framing**: each atomic skill should
+     read as a stable, addressable unit — this doc's own DESE coverage
+     metric and the eventual Google Sheet alignment (Part 4) both depend
+     on being able to point at one specific skill reliably. Real stable
+     IDs are Part 4's job, not this pass's — but keep skill wording
+     specific and stable-ish (avoid vague catch-all phrasing) so Part 4
+     isn't fighting churn later.
+   - **Bottom section, for both students and teachers** — supersedes the
+     original "Possible Ways to Assess" / teacher-only framing. Same
+     mechanics (demonstration-method content moves out of next to each
+     skill, consolidated once per file at the bottom), but written to be
+     useful to a student figuring out what's expected of them, not just a
+     teacher grading it.
+   - **Scope: all 12 files**, not just the original 8. The 5 files built
+     this session (`Basic_SDLC`, `Basic_ITFundamentals`, `UX_Usability_
+     Accessibility`, `Software_Engineering`, `Project_Management`) are
+     currently at "competency area" grain, not atomic — bringing them to
+     this spec is genuinely new content authoring, not a reformat, since
+     they were never decomposed this finely in the first place.
+   - **Process for the 5 new files' atomic decomposition, proposed by
+     Claude, confirmed 2026-09-13**: a first-pass decomposition doc, same
+     review workflow as this whole crosswalk doc (a table per competency
+     area, `Change` column defaulting to `OK`) — not live edits to the
+     HTML files until reviewed and approved. *Not yet started.*
 4. **Resolve the conceptual-overlap redundancy candidates** per whatever
    the `Change` column says (merge, differentiate scope, or leave as-is).
-5. **Add every "no match" in-scope standards skill** as a new proficiency
-   in its matched file, following that file's existing template exactly
-   (see the two Standard 7 "Finding" rows and the Standard 5 gap cluster
-   in particular — version control, and the Python functions→lists→dicts→
-   try/except→scope hole between `Basic_Python` and `Intermediate_Python`).
+5. **Add every remaining "no match" in-scope standards skill** as a new
+   proficiency in its matched file. *Superseded by the DESE coverage
+   metric above* — that table's 36 NOT COVERED rows (24 genuine gaps + 12
+   deliberate exclusions) are the current, accurate version of this list;
+   the original text here (version control, the Python functions→try/
+   except bridge) is stale — both of those are already done. Still open:
+   the two Standard 7 "Finding" rows (Python functions→lists→dicts→
+   try/except→scope bridge unit, JS/Python polymorphism) — neither is
+   touched by the restructuring.
 6. ~~**Author new mini-cert content for the three previously-uncovered
    standards**~~ **SUPERSEDED 2026-09-13** by the "Restructuring plan v2"
    section above — done differently and much further than this original
@@ -104,11 +140,12 @@ longer set to `OK`, and follow those instead of the defaults below.
    infrastructure (server-side/API/database skills from Standard 8) gets
    called out separately as "needs new infrastructure, not just new
    content" and deprioritized.
-9. **Verify**: reload all 8 pages (+ the new file) in a browser after
-   edits — no visual breakage, nothing silently dropped from the collapsed
-   checklists, new mini-certs match the existing template exactly. For
-   every "covered" claim in the coverage doc, open the exact unit JSON and
-   confirm it actually teaches the claimed skill.
+9. **Verify**: reload all 12 pages in a browser after the to-do #3 rebuild
+   — no visual breakage, nothing silently dropped from the atomic
+   checklists, the shared CSS renders consistently across all 12 with
+   each file's own accent color showing correctly. For every "covered"
+   claim in the coverage doc, open the exact unit JSON and confirm it
+   actually teaches the claimed skill.
 
 ## To-Do: Part 4 — align the student-progress Google Sheet (depends on an Excel export)
 
