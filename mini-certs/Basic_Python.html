@@ -1,178 +1,162 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Python Certificate</title>
-    <link rel="stylesheet" href="../styles/base.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Basic Python Certificate</title>
+<link href="../styles/base.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
 <h1>Basic Python Certificate</h1>
-
 <div class="certificate">
-    <p class="prerequisites"><strong>Prerequisites:</strong> None</p>
-    <p><strong>Final Goal:</strong> Students will write clean, readable Python code using fundamental programming concepts and data types.</p>
-
-    <h2>Learning Targets</h2>
-    <div class="learning-targets">
-        <ul>
-            <li>Apply the principles of <em>The Zen of Python</em> to code structure and readability</li>
-            <li>Create and manipulate basic data types (strings, integers, floats, booleans)</li>
-            <li>Use variables and understand Python's dynamic typing system</li>
-            <li>Follow PEP 8 style guidelines for clean, readable code</li>
-            <li>Use <code>None</code> and understand identity vs equality (<code>is</code> vs <code>==</code>)</li>
-            <li>Write conditional logic using <code>if</code>, <code>elif</code>, and <code>else</code></li>
-            <li>Implement <code>for</code> and <code>while</code> loops for iteration</li>
-            <li>Understand truthiness and falsiness in boolean contexts</li>
-        </ul>
-    </div>
-
-    <h2>Proof</h2>
-    <p><em>Each checkbox represents a proof of understanding. Students must demonstrate proficiency through creation, explanation, or application.</em></p>
-
-    <h3>The Zen of Python & Code Philosophy</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Run and Recite</strong> – Execute <code>import this</code> in the Python interpreter and transcribe all 19 principles accurately</li>
-            <li><input type="checkbox"> <strong>Explain 8 Principles</strong> – Choose 8 lines (e.g., "Simple is better than complex") and write a 2–3 sentence explanation of their meaning in code</li>
-            <li><input type="checkbox"> <strong>Code Example for Each</strong> – For each of 8 explained principles, write a short code snippet that <em>follows</em> and one that <em>violates</em> the principle</li>
-            <li><input type="checkbox"> <strong>Refactor with Zen</strong> – Take a poorly written script and refactor it to align with at least 5 Zen principles, annotating changes</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Variables & Dynamic Typing</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Declare & Reassign</strong> – Create a variable and reassign it to <code>int</code>, <code>str</code>, <code>list</code>, and <code>bool</code>; explain why this is allowed in Python</li>
-            <li><input type="checkbox"> <strong>Type Inspection Lab</strong> – Use <code>type()</code> and <code>isinstance()</code> to verify types in 10+ scenarios with literals and variables</li>
-            <li><input type="checkbox"> <strong>Naming Practice</strong> – Write 10 variables using <code>snake_case</code>, avoiding invalid names (e.g., <code>class</code>, <code>1var</code>), and explain naming rules</li>
-            <li><input type="checkbox"> <strong>Dynamic Behavior Demo</strong> – Write a function that accepts any type and prints its type, proving dynamic typing in action</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Comments & PEP 8 Style</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Comment Use</strong> – Add meaningful inline and block comments to 5 scripts explaining logic flow</li>
-            <li><input type="checkbox"> <strong>PEP 8 Formatting</strong> – Format a messy script to follow PEP 8 (indentation, spacing, line length ≤79)</li>
-            <li><input type="checkbox"> <strong>Docstring Practice</strong> – Write docstrings for 3 functions using triple quotes and describe parameters/return values</li>
-            <li><input type="checkbox"> <strong>Style Audit</strong> – Use a linter (e.g., <code>pylint</code> or VS Code) to identify and fix 10+ PEP 8 violations in a provided script</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Strings</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>String Creation</strong> – Create strings using single, double, and triple quotes; explain use cases for each</li>
-            <li><input type="checkbox"> <strong>Indexing & Slicing</strong> – Access characters and substrings using <code>[ ]</code> and <code>[:]</code> in 8+ examples (positive/negative indices)</li>
-            <li><input type="checkbox"> <strong>Method Proficiency</strong> – Use <code>.upper()</code>, <code>.lower()</code>, <code>.strip()</code>, <code>.replace()</code>, <code>.split()</code> in real tasks (e.g., clean user input)</li>
-            <li><input type="checkbox"> <strong>f-String Practice</strong> – Use f-strings to insert variables into 6+ dynamic messages (e.g., <code>f"Hello {name}"</code>)</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Integers & Floats</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Integer Operations Lab</strong> – Perform <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, <code>**</code> in 10+ calculations with integers and floats</li>
-            <li><input type="checkbox"> <strong>Float Precision Workshop</strong> – Show a case where <code>0.1 + 0.2 != 0.3</code>, explain why, and use <code>round()</code> or <code>decimal</code> to fix</li>
-            <li><input type="checkbox"> <strong>Number Method Proficiency</strong> – Use <code>int()</code>, <code>float()</code>, <code>str()</code> to convert between types in 8+ input-handling cases</li>
-            <li><input type="checkbox"> <strong>Mathematical Validation</strong> – Create functions that verify number inputs and handle edge cases like non-numeric strings or <code>None</code></li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Booleans & Truthiness</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Boolean Creation Practice</strong> – Generate <code>True</code>/<code>False</code> using comparisons (e.g., <code>5 > 3</code>) and <code>bool()</code> conversion</li>
-            <li><input type="checkbox"> <strong>Truthiness Investigation</strong> – Document which values (<code>0</code>, <code>""</code>, <code>[]</code>, <code>None</code>, <code>1</code>, <code>"hello"</code>) evaluate to <code>True</code>/<code>False</code> in 12+ examples</li>
-            <li><input type="checkbox"> <strong>Logical Operators</strong> – Use <code>and</code>, <code>or</code>, <code>not</code> in 6+ compound conditions (e.g., <code>age >= 18 and has_id</code>)</li>
-            <li><input type="checkbox"> <strong>Short-Circuit Demo</strong> – Write code showing how <code>and</code>/<code>or</code> skip evaluation when possible (e.g., <code>safe_check and risky_operation()</code>)</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>None & Identity</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Use <code>None</code> Correctly</strong> – Assign <code>None</code> to indicate absence of value in 5+ functions (e.g., <code>find_user()</code> returns <code>None</code> if not found)</li>
-            <li><input type="checkbox"> <strong>Compare with <code>is</code></strong> – Use <code>is None</code> and <code>is not None</code> instead of <code>== None</code> in 8+ validation checks</li>
-            <li><input type="checkbox"> <strong>Identity vs Equality</strong> – Explain the difference between <code>is</code> and <code>==</code> using <code>id()</code> and examples (e.g., <code>[] == []</code> but <code>[] is []</code> is <code>False</code>)</li>
-            <li><input type="checkbox"> <strong>Function Return Analysis</strong> – Write a function that returns <code>None</code> implicitly and explain when this happens</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Branching (<code>if</code>, <code>elif</code>, <code>else</code>)</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Simple <code>if</code></strong> – Write 5 <code>if</code> statements for conditions like age check or login</li>
-            <li><input type="checkbox"> <strong>Chained <code>elif</code></strong> – Use <code>if/elif/else</code> to categorize data (e.g., grades A–F)</li>
-            <li><input type="checkbox"> <strong>Nested Conditions</strong> – Build a 2-level decision tree (e.g., "Is adult? → Does have license?")</li>
-            <li><input type="checkbox"> <strong>Input Validation</strong> – Prompt user and use <code>if</code> to reject invalid input (e.g., negative numbers)</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>For Loops</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Loop Over List</strong> – Print each item in a list of 10+ elements</li>
-            <li><input type="checkbox"> <strong>Loop Over String</strong> – Iterate through characters in a word and count vowels</li>
-            <li><input type="checkbox"> <strong><code>range()</code> Proficiency</strong> – Use <code>range(start, stop, step)</code> to generate sequences (e.g., even numbers 0–20)</li>
-            <li><input type="checkbox"> <strong>Loop with <code>enumerate()</code></strong> – Use <code>for i, val in enumerate(list)</code> to get index and value</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>While Loops</h3>
-    <div class="proof">
-        <ul class="proof-checkbox-list">
-            <li><input type="checkbox"> <strong>Counter Loop</strong> – Use <code>while counter < 10:</code> to count and print numbers</li>
-            <li><input type="checkbox"> <strong>User Input Loop</strong> – Repeat until user types "quit"</li>
-            <li><input type="checkbox"> <strong>Infinite Loop Prevention</strong> – Ensure loop variable updates to avoid infinite loops</li>
-            <li><input type="checkbox"> <strong>Validation Loop</strong> – Keep asking for input until valid (e.g., positive number)</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <div class="proficiency">
-        ✅ <strong>Overall Proficiency</strong><br>
+<p class="prerequisites"><strong>Prerequisites:</strong> None</p>
+<p><strong>Final Goal:</strong> Students will write clean, readable Python code using fundamental programming concepts and data types.</p>
+<h2>Learning Targets</h2>
+<div class="learning-targets">
+<ul>
+<li>Apply the principles of <em>The Zen of Python</em> to code structure and readability</li>
+<li>Create and manipulate basic data types (strings, integers, floats, booleans)</li>
+<li>Use variables and understand Python's dynamic typing system</li>
+<li>Follow PEP 8 style guidelines for clean, readable code</li>
+<li>Use <code>None</code> and understand identity vs equality (<code>is</code> vs <code>==</code>)</li>
+<li>Write conditional logic using <code>if</code>, <code>elif</code>, and <code>else</code></li>
+<li>Implement <code>for</code> and <code>while</code> loops for iteration</li>
+<li>Understand truthiness and falsiness in boolean contexts</li>
+</ul>
+</div>
+<h2>Proof</h2>
+<p><em>Each checkbox represents a proof of understanding. Students must demonstrate proficiency through creation, explanation, or application.</em></p>
+<h3>The Zen of Python &amp; Code Philosophy <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Run and Recite</strong> – Execute <code>import this</code> in the Python interpreter and transcribe all 19 principles accurately</li>
+<li><input type="checkbox"/> <strong>Explain 8 Principles</strong> – Choose 8 lines (e.g., "Simple is better than complex") and write a 2–3 sentence explanation of their meaning in code</li>
+<li><input type="checkbox"/> <strong>Code Example for Each</strong> – For each of 8 explained principles, write a short code snippet that <em>follows</em> and one that <em>violates</em> the principle</li>
+<li><input type="checkbox"/> <strong>Refactor with Zen</strong> – Take a poorly written script and refactor it to align with at least 5 Zen principles, annotating changes</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Variables &amp; Dynamic Typing <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Declare &amp; Reassign</strong> – Create a variable and reassign it to <code>int</code>, <code>str</code>, <code>list</code>, and <code>bool</code>; explain why this is allowed in Python</li>
+<li><input type="checkbox"/> <strong>Type Inspection Lab</strong> – Use <code>type()</code> and <code>isinstance()</code> to verify types in 10+ scenarios with literals and variables</li>
+<li><input type="checkbox"/> <strong>Naming Practice</strong> – Write 10 variables using <code>snake_case</code>, avoiding invalid names (e.g., <code>class</code>, <code>1var</code>), and explain naming rules</li>
+<li><input type="checkbox"/> <strong>Dynamic Behavior Demo</strong> – Write a function that accepts any type and prints its type, proving dynamic typing in action</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Comments &amp; PEP 8 Style <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Comment Use</strong> – Add meaningful inline and block comments to 5 scripts explaining logic flow</li>
+<li><input type="checkbox"/> <strong>PEP 8 Formatting</strong> – Format a messy script to follow PEP 8 (indentation, spacing, line length ≤79)</li>
+<li><input type="checkbox"/> <strong>Docstring Practice</strong> – Write docstrings for 3 functions using triple quotes and describe parameters/return values</li>
+<li><input type="checkbox"/> <strong>Style Audit</strong> – Use a linter (e.g., <code>pylint</code> or VS Code) to identify and fix 10+ PEP 8 violations in a provided script</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Strings <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>String Creation</strong> – Create strings using single, double, and triple quotes; explain use cases for each</li>
+<li><input type="checkbox"/> <strong>Indexing &amp; Slicing</strong> – Access characters and substrings using <code>[ ]</code> and <code>[:]</code> in 8+ examples (positive/negative indices)</li>
+<li><input type="checkbox"/> <strong>Method Proficiency</strong> – Use <code>.upper()</code>, <code>.lower()</code>, <code>.strip()</code>, <code>.replace()</code>, <code>.split()</code> in real tasks (e.g., clean user input)</li>
+<li><input type="checkbox"/> <strong>f-String Practice</strong> – Use f-strings to insert variables into 6+ dynamic messages (e.g., <code>f"Hello {name}"</code>)</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Integers &amp; Floats <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Integer Operations Lab</strong> – Perform <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, <code>**</code> in 10+ calculations with integers and floats</li>
+<li><input type="checkbox"/> <strong>Float Precision Workshop</strong> – Show a case where <code>0.1 + 0.2 != 0.3</code>, explain why, and use <code>round()</code> or <code>decimal</code> to fix</li>
+<li><input type="checkbox"/> <strong>Number Method Proficiency</strong> – Use <code>int()</code>, <code>float()</code>, <code>str()</code> to convert between types in 8+ input-handling cases</li>
+<li><input type="checkbox"/> <strong>Mathematical Validation</strong> – Create functions that verify number inputs and handle edge cases like non-numeric strings or <code>None</code></li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Booleans &amp; Truthiness <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Boolean Creation Practice</strong> – Generate <code>True</code>/<code>False</code> using comparisons (e.g., <code>5 &gt; 3</code>) and <code>bool()</code> conversion</li>
+<li><input type="checkbox"/> <strong>Truthiness Investigation</strong> – Document which values (<code>0</code>, <code>""</code>, <code>[]</code>, <code>None</code>, <code>1</code>, <code>"hello"</code>) evaluate to <code>True</code>/<code>False</code> in 12+ examples</li>
+<li><input type="checkbox"/> <strong>Logical Operators</strong> – Use <code>and</code>, <code>or</code>, <code>not</code> in 6+ compound conditions (e.g., <code>age &gt;= 18 and has_id</code>)</li>
+<li><input type="checkbox"/> <strong>Short-Circuit Demo</strong> – Write code showing how <code>and</code>/<code>or</code> skip evaluation when possible (e.g., <code>safe_check and risky_operation()</code>)</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>None &amp; Identity <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Use <code>None</code> Correctly</strong> – Assign <code>None</code> to indicate absence of value in 5+ functions (e.g., <code>find_user()</code> returns <code>None</code> if not found)</li>
+<li><input type="checkbox"/> <strong>Compare with <code>is</code></strong> – Use <code>is None</code> and <code>is not None</code> instead of <code>== None</code> in 8+ validation checks</li>
+<li><input type="checkbox"/> <strong>Identity vs Equality</strong> – Explain the difference between <code>is</code> and <code>==</code> using <code>id()</code> and examples (e.g., <code>[] == []</code> but <code>[] is []</code> is <code>False</code>)</li>
+<li><input type="checkbox"/> <strong>Function Return Analysis</strong> – Write a function that returns <code>None</code> implicitly and explain when this happens</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Branching (<code>if</code>, <code>elif</code>, <code>else</code>) <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Simple <code>if</code></strong> – Write 5 <code>if</code> statements for conditions like age check or login</li>
+<li><input type="checkbox"/> <strong>Chained <code>elif</code></strong> – Use <code>if/elif/else</code> to categorize data (e.g., grades A–F)</li>
+<li><input type="checkbox"/> <strong>Nested Conditions</strong> – Build a 2-level decision tree (e.g., "Is adult? → Does have license?")</li>
+<li><input type="checkbox"/> <strong>Input Validation</strong> – Prompt user and use <code>if</code> to reject invalid input (e.g., negative numbers)</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>For Loops <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Loop Over List</strong> – Print each item in a list of 10+ elements</li>
+<li><input type="checkbox"/> <strong>Loop Over String</strong> – Iterate through characters in a word and count vowels</li>
+<li><input type="checkbox"/> <strong><code>range()</code> Proficiency</strong> – Use <code>range(start, stop, step)</code> to generate sequences (e.g., even numbers 0–20)</li>
+<li><input type="checkbox"/> <strong>Loop with <code>enumerate()</code></strong> – Use <code>for i, val in enumerate(list)</code> to get index and value</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>While Loops <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul class="proof-checkbox-list">
+<li><input type="checkbox"/> <strong>Counter Loop</strong> – Use <code>while counter &lt; 10:</code> to count and print numbers</li>
+<li><input type="checkbox"/> <strong>User Input Loop</strong> – Repeat until user types "quit"</li>
+<li><input type="checkbox"/> <strong>Infinite Loop Prevention</strong> – Ensure loop variable updates to avoid infinite loops</li>
+<li><input type="checkbox"/> <strong>Validation Loop</strong> – Keep asking for input until valid (e.g., positive number)</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<div class="proficiency">
+        ✅ <strong>Overall Proficiency</strong><br/>
         Demonstrates foundational proficiency in Python by writing clean, readable code using basic data types, variables, and control flow. Applies <em>The Zen of Python</em> principles to code structure, uses proper naming and formatting, and implements conditional logic and iteration effectively.
     </div>
 </div>
-
 <div class="success-indicators">
-    <h2>Success Indicators</h2>
-    <p>Students are ready for intermediate Python when they can:</p>
-    <ul>
-        <li>Write clean, properly formatted code following PEP 8 and <em>The Zen of Python</em></li>
-        <li>Choose the right data type (string, int, float, bool) for the task and explain their choice</li>
-        <li>Control program flow using <code>if</code>, <code>for</code>, and <code>while</code> with proper logic and termination</li>
-        <li>Handle user input safely, validate data, and prevent crashes</li>
-        <li>Explain their code design, variable naming, and logic flow clearly</li>
-        <li>Use <code>type()</code> and <code>isinstance()</code> to check data types before processing</li>
-        <li>Debug systematically using <code>print()</code> and step-by-step reasoning</li>
-        <li>Demonstrate understanding of truthiness, dynamic typing, and object identity (<code>is</code> vs <code>==</code>)</li>
-    </ul>
+<h2>Success Indicators</h2>
+<p>Students are ready for intermediate Python when they can:</p>
+<ul>
+<li>Write clean, properly formatted code following PEP 8 and <em>The Zen of Python</em></li>
+<li>Choose the right data type (string, int, float, bool) for the task and explain their choice</li>
+<li>Control program flow using <code>if</code>, <code>for</code>, and <code>while</code> with proper logic and termination</li>
+<li>Handle user input safely, validate data, and prevent crashes</li>
+<li>Explain their code design, variable naming, and logic flow clearly</li>
+<li>Use <code>type()</code> and <code>isinstance()</code> to check data types before processing</li>
+<li>Debug systematically using <code>print()</code> and step-by-step reasoning</li>
+<li>Demonstrate understanding of truthiness, dynamic typing, and object identity (<code>is</code> vs <code>==</code>)</li>
+</ul>
 </div>
-
 <div class="integration-notes">
-    <h3>Integration Notes</h3>
-    <ul>
-        <li><strong>Teach After:</strong> Introduction to programming concepts</li>
-        <li><strong>Pair With:</strong> Simple projects like a number guessing game, quiz app, or text-based adventure</li>
-        <li><strong>Assessment:</strong> Use code reviews and debugging exercises to evaluate understanding</li>
-    </ul>
+<h3>Integration Notes</h3>
+<ul>
+<li><strong>Teach After:</strong> Introduction to programming concepts</li>
+<li><strong>Pair With:</strong> Simple projects like a number guessing game, quiz app, or text-based adventure</li>
+<li><strong>Assessment:</strong> Use code reviews and debugging exercises to evaluate understanding</li>
+</ul>
 </div>
-
 <div class="final-note">
-    <p>This Basic Python Certificate provides a solid foundation in Python programming fundamentals, preparing students for intermediate concepts like functions, data structures, and object-oriented programming. The structured progression ensures students build essential skills before advancing to more complex topics.</p>
+<p>This Basic Python Certificate provides a solid foundation in Python programming fundamentals, preparing students for intermediate concepts like functions, data structures, and object-oriented programming. The structured progression ensures students build essential skills before advancing to more complex topics.</p>
 </div>
 </body>
 </html>

@@ -222,6 +222,21 @@ input[type="text"],
     font-weight: 600;
 }
 
+.standard-tag {
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: normal;
+    color: var(--text-secondary);
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.15em 0.7em;
+    margin-left: 0.6em;
+    vertical-align: middle;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
 @media (max-width: 700px) {
     body {
         padding: 1.25rem 1rem 3rem;

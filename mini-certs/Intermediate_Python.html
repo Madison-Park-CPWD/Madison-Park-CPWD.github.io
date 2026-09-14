@@ -1,191 +1,174 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intermediate Python Mini-Certificate</title>
-    <link rel="stylesheet" href="../styles/base.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Intermediate Python Mini-Certificate</title>
+<link href="../styles/base.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
 <h1>Intermediate Python Mini-Certificate</h1>
-
 <div class="certificate">
-    <p class="prerequisites"><strong>Prerequisites:</strong> Completion of foundational Python topics through functions (Basic Python Mini-Certificate)</p>
-    <p><strong>Final Goal:</strong> Students will write modular, reusable, and well-structured Python code using functional, object-oriented, and file-based programming techniques, and reason about algorithms and code structure at a level beyond "does it work."</p>
-
-    <h2>Learning Targets</h2>
-    <div class="learning-targets">
-        <ul>
-            <li>Use <strong>lambda functions</strong> and <strong>built-in functions</strong> (<code>map</code>, <code>filter</code>, <code>sorted</code>) for functional programming</li>
-            <li>Apply <strong>list comprehensions</strong> to create lists concisely and efficiently</li>
-            <li>Perform <strong>basic file I/O</strong> operations including reading and writing text files</li>
-            <li>Define <strong>classes</strong> and create <strong>objects</strong> with <code>__init__</code> and instance attributes</li>
-            <li>Add <strong>methods</strong> that use <code>self</code> to manipulate object state</li>
-            <li>Implement <strong>inheritance</strong> and use <code>super()</code> to extend parent behavior</li>
-            <li>Customize object behavior with <strong>special methods</strong> like <code>__str__</code>, <code>__repr__</code>, and <code>__eq__</code></li>
-            <li>Choose between <strong>functional</strong> and <strong>OOP</strong> approaches based on problem requirements</li>
-            <li>Write <strong>pseudocode</strong> to plan an algorithm before implementing it</li>
-            <li>Implement and compare <strong>sorting</strong> and <strong>searching</strong> algorithms</li>
-            <li>Apply <strong>separation of concerns</strong> to structure code so each function has one clear job</li>
-        </ul>
-    </div>
-
-    <h2>Proof</h2>
-    <p><em>Each checkbox represents a proof of understanding. Students must demonstrate proficiency through creation, explanation, or application.</em></p>
-
-    <h3>Lambda & Built-in Functions</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Lambda Expression Proficiency</strong> – Write 5+ lambda functions (e.g., <code>lambda x: x*2</code>, <code>lambda s: s.upper()</code>) and use them in appropriate contexts</li>
-            <li><input type="checkbox"> <strong>Use with <code>map()</code> and <code>filter()</code></strong> – Apply <code>map()</code> and <code>filter()</code> with lambda to transform and filter a list (e.g., double numbers, extract evens)</li>
-            <li><input type="checkbox"> <strong>Built-in Function Lab</strong> – Use <code>len()</code>, <code>sum()</code>, <code>max()</code>, <code>min()</code>, <code>sorted()</code>, <code>type()</code>, and <code>isinstance()</code> in 10+ real-world data processing scenarios</li>
-            <li><input type="checkbox"> <strong>Functional Data Pipeline</strong> – Chain <code>map()</code>, <code>filter()</code>, and <code>sorted()</code> to process a list of dictionaries (e.g., student records) and extract filtered, sorted results</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>List Comprehensions</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Basic List Comprehension</strong> – Write list comprehensions to transform lists (e.g., <code>[x**2 for x in range(10)]</code>) in 8+ examples</li>
-            <li><input type="checkbox"> <strong>Conditional Filtering</strong> – Use <code>if</code> conditions in list comprehensions to filter elements (e.g., <code>[x for x in numbers if x % 2 == 0]</code>)</li>
-            <li><input type="checkbox"> <strong>Nested Comprehensions</strong> – Create nested list comprehensions for 2D data processing (e.g., flattening a matrix)</li>
-            <li><input type="checkbox"> <strong>String Processing</strong> – Use list comprehensions to process strings (e.g., extract vowels, convert to uppercase)</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Basic File I/O</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>File Reading</strong> – Open and read text files using <code>with open()</code> context manager, processing content line by line</li>
-            <li><input type="checkbox"> <strong>File Writing</strong> – Create and write to text files, handling both write and append modes safely</li>
-            <li><input type="checkbox"> <strong>Error Handling</strong> – Implement try/except blocks to handle <code>FileNotFoundError</code> and other I/O exceptions</li>
-            <li><input type="checkbox"> <strong>Data Processing Pipeline</strong> – Read data from a file, process it (e.g., filter, transform), and write results to a new file</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Classes & <code>__init__</code></h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Class Definition Practice</strong> – Define 3+ classes (e.g., <code>Student</code>, <code>BankAccount</code>, <code>Product</code>) using <code>class Name:</code> syntax with proper docstrings</li>
-            <li><input type="checkbox"> <strong><code>__init__</code> Method Implementation</strong> – Add a constructor that sets instance attributes (e.g., <code>self.name</code>, <code>self.balance</code>) from parameters</li>
-            <li><input type="checkbox"> <strong>Object Creation & Initialization</strong> – Instantiate objects with different data and verify attributes are set correctly</li>
-            <li><input type="checkbox"> <strong>Attribute Access & Modification</strong> – Print and modify instance attributes after creation, demonstrating object state</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Methods & <code>self</code></h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Instance Method Creation</strong> – Add methods that use <code>self</code> to access or modify object data (e.g., <code>account.deposit(100)</code>, <code>student.get_grade()</code>)</li>
-            <li><input type="checkbox"> <strong>Method Call & Behavior</strong> – Call methods on instances and verify correct behavior and state changes</li>
-            <li><input type="checkbox"> <strong><code>self</code> Understanding</strong> – Explain why <code>self</code> is required in method definitions and demonstrate that it refers to the instance</li>
-            <li><input type="checkbox"> <strong>Method Chaining (Optional)</strong> – Design methods that return <code>self</code> to enable chaining (e.g., <code>builder.set_name("Alice").set_age(25)</code>)</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Inheritance & <code>super()</code></h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Child Class Definition</strong> – Create a subclass (e.g., <code>SavingsAccount(BankAccount)</code>, <code>Teacher(Person)</code>) that inherits from a parent class</li>
-            <li><input type="checkbox"> <strong>Method Overriding</strong> – Redefine a parent method in the child class (e.g., <code>calculate_interest()</code>, <code>get_role()</code>)</li>
-            <li><input type="checkbox"> <strong><code>super()</code> Usage</strong> – Use <code>super().__init__()</code> to extend parent initialization and avoid code duplication</li>
-            <li><input type="checkbox"> <strong>Polymorphism Demonstration</strong> – Call the same method on different objects (parent and child) and show different behavior</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Special Methods (<code>__str__</code>, <code>__repr__</code>, <code>__eq__</code>)</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong><code>__str__</code> Implementation</strong> – Add <code>__str__</code> to return a human-readable string (e.g., <code>"Student: Alice, Grade: A"</code>)</li>
-            <li><input type="checkbox"> <strong><code>__repr__</code> Implementation</strong> – Add <code>__repr__</code> to return a detailed, unambiguous string for debugging (e.g., <code>"Student('Alice', 'A')"</code>)</li>
-            <li><input type="checkbox"> <strong>Print Object Behavior</strong> – Verify that <code>print(obj)</code> uses <code>__str__</code> and interactive mode uses <code>__repr__</code></li>
-            <li><input type="checkbox"> <strong><code>__eq__</code> Custom Comparison</strong> – Implement <code>__eq__</code> to define equality (e.g., two <code>Student</code> objects are equal if names match)</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Pseudocode Algorithms</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Pseudocode Translation</strong> – Convert 3+ written problem descriptions into clear pseudocode using standard conventions (INPUT, OUTPUT, IF/ELSE, LOOP)</li>
-            <li><input type="checkbox"> <strong>Algorithm-to-Code</strong> – Take a pseudocode algorithm and implement it as working Python code, verifying the two match step for step</li>
-            <li><input type="checkbox"> <strong>Plan Before You Code</strong> – For a new problem, write pseudocode first, then implement it — note what changed once you actually started coding</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Sorting Algorithms</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Bubble Sort</strong> – Implement bubble sort and trace through a small list by hand, step by step</li>
-            <li><input type="checkbox"> <strong>Selection Sort</strong> – Implement selection sort and compare its code structure and step count to bubble sort on the same list</li>
-            <li><input type="checkbox"> <strong>Built-in vs. Manual</strong> – Compare <code>sorted()</code>/<code>list.sort()</code> to your own implementation, and explain when you'd use a built-in sort vs. write your own</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Searching Algorithms</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Linear Search</strong> – Write a function that searches a list front-to-back, returning the index found or <code>-1</code></li>
-            <li><input type="checkbox"> <strong>Binary Search</strong> – Write binary search over a sorted list, and explain why the list has to be sorted first</li>
-            <li><input type="checkbox"> <strong>Comparison Counting</strong> – Count how many comparisons linear vs. binary search need on the same sorted list of 100+ items, and explain why binary search wins</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <h3>Separation of Concerns</h3>
-    <div class="proof">
-        <ul>
-            <li><input type="checkbox"> <strong>Refactor a Monolith</strong> – Take a single long function that reads input, processes data, <em>and</em> prints output, and split it into 3 focused functions (e.g. <code>get_input()</code>, <code>process()</code>, <code>display_result()</code>)</li>
-            <li><input type="checkbox"> <strong>Responsibility Audit</strong> – For 3 functions you've already written, write a one-line description of "what this function's ONE job is" — flag any that are doing more than one thing</li>
-            <li><input type="checkbox"> <strong>Before/After</strong> – Explain what got easier to test, reuse, or debug after separating concerns in your refactor</li>
-            <li><input type="checkbox"> <strong>Other:</strong> ________________________________</li>
-        </ul>
-    </div>
-
-    <div class="proficiency">
-        ✅ <strong>Overall Proficiency</strong><br>
+<p class="prerequisites"><strong>Prerequisites:</strong> Completion of foundational Python topics through functions (Basic Python Mini-Certificate)</p>
+<p><strong>Final Goal:</strong> Students will write modular, reusable, and well-structured Python code using functional, object-oriented, and file-based programming techniques, and reason about algorithms and code structure at a level beyond "does it work."</p>
+<h2>Learning Targets</h2>
+<div class="learning-targets">
+<ul>
+<li>Use <strong>lambda functions</strong> and <strong>built-in functions</strong> (<code>map</code>, <code>filter</code>, <code>sorted</code>) for functional programming</li>
+<li>Apply <strong>list comprehensions</strong> to create lists concisely and efficiently</li>
+<li>Perform <strong>basic file I/O</strong> operations including reading and writing text files</li>
+<li>Define <strong>classes</strong> and create <strong>objects</strong> with <code>__init__</code> and instance attributes</li>
+<li>Add <strong>methods</strong> that use <code>self</code> to manipulate object state</li>
+<li>Implement <strong>inheritance</strong> and use <code>super()</code> to extend parent behavior</li>
+<li>Customize object behavior with <strong>special methods</strong> like <code>__str__</code>, <code>__repr__</code>, and <code>__eq__</code></li>
+<li>Choose between <strong>functional</strong> and <strong>OOP</strong> approaches based on problem requirements</li>
+<li>Write <strong>pseudocode</strong> to plan an algorithm before implementing it</li>
+<li>Implement and compare <strong>sorting</strong> and <strong>searching</strong> algorithms</li>
+<li>Apply <strong>separation of concerns</strong> to structure code so each function has one clear job</li>
+</ul>
+</div>
+<h2>Proof</h2>
+<p><em>Each checkbox represents a proof of understanding. Students must demonstrate proficiency through creation, explanation, or application.</em></p>
+<h3>Lambda &amp; Built-in Functions <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Lambda Expression Proficiency</strong> – Write 5+ lambda functions (e.g., <code>lambda x: x*2</code>, <code>lambda s: s.upper()</code>) and use them in appropriate contexts</li>
+<li><input type="checkbox"/> <strong>Use with <code>map()</code> and <code>filter()</code></strong> – Apply <code>map()</code> and <code>filter()</code> with lambda to transform and filter a list (e.g., double numbers, extract evens)</li>
+<li><input type="checkbox"/> <strong>Built-in Function Lab</strong> – Use <code>len()</code>, <code>sum()</code>, <code>max()</code>, <code>min()</code>, <code>sorted()</code>, <code>type()</code>, and <code>isinstance()</code> in 10+ real-world data processing scenarios</li>
+<li><input type="checkbox"/> <strong>Functional Data Pipeline</strong> – Chain <code>map()</code>, <code>filter()</code>, and <code>sorted()</code> to process a list of dictionaries (e.g., student records) and extract filtered, sorted results</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>List Comprehensions <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Basic List Comprehension</strong> – Write list comprehensions to transform lists (e.g., <code>[x**2 for x in range(10)]</code>) in 8+ examples</li>
+<li><input type="checkbox"/> <strong>Conditional Filtering</strong> – Use <code>if</code> conditions in list comprehensions to filter elements (e.g., <code>[x for x in numbers if x % 2 == 0]</code>)</li>
+<li><input type="checkbox"/> <strong>Nested Comprehensions</strong> – Create nested list comprehensions for 2D data processing (e.g., flattening a matrix)</li>
+<li><input type="checkbox"/> <strong>String Processing</strong> – Use list comprehensions to process strings (e.g., extract vowels, convert to uppercase)</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Basic File I/O <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>File Reading</strong> – Open and read text files using <code>with open()</code> context manager, processing content line by line</li>
+<li><input type="checkbox"/> <strong>File Writing</strong> – Create and write to text files, handling both write and append modes safely</li>
+<li><input type="checkbox"/> <strong>Error Handling</strong> – Implement try/except blocks to handle <code>FileNotFoundError</code> and other I/O exceptions</li>
+<li><input type="checkbox"/> <strong>Data Processing Pipeline</strong> – Read data from a file, process it (e.g., filter, transform), and write results to a new file</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Classes &amp; <code>__init__</code> <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Class Definition Practice</strong> – Define 3+ classes (e.g., <code>Student</code>, <code>BankAccount</code>, <code>Product</code>) using <code>class Name:</code> syntax with proper docstrings</li>
+<li><input type="checkbox"/> <strong><code>__init__</code> Method Implementation</strong> – Add a constructor that sets instance attributes (e.g., <code>self.name</code>, <code>self.balance</code>) from parameters</li>
+<li><input type="checkbox"/> <strong>Object Creation &amp; Initialization</strong> – Instantiate objects with different data and verify attributes are set correctly</li>
+<li><input type="checkbox"/> <strong>Attribute Access &amp; Modification</strong> – Print and modify instance attributes after creation, demonstrating object state</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Methods &amp; <code>self</code> <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Instance Method Creation</strong> – Add methods that use <code>self</code> to access or modify object data (e.g., <code>account.deposit(100)</code>, <code>student.get_grade()</code>)</li>
+<li><input type="checkbox"/> <strong>Method Call &amp; Behavior</strong> – Call methods on instances and verify correct behavior and state changes</li>
+<li><input type="checkbox"/> <strong><code>self</code> Understanding</strong> – Explain why <code>self</code> is required in method definitions and demonstrate that it refers to the instance</li>
+<li><input type="checkbox"/> <strong>Method Chaining (Optional)</strong> – Design methods that return <code>self</code> to enable chaining (e.g., <code>builder.set_name("Alice").set_age(25)</code>)</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Inheritance &amp; <code>super()</code> <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Child Class Definition</strong> – Create a subclass (e.g., <code>SavingsAccount(BankAccount)</code>, <code>Teacher(Person)</code>) that inherits from a parent class</li>
+<li><input type="checkbox"/> <strong>Method Overriding</strong> – Redefine a parent method in the child class (e.g., <code>calculate_interest()</code>, <code>get_role()</code>)</li>
+<li><input type="checkbox"/> <strong><code>super()</code> Usage</strong> – Use <code>super().__init__()</code> to extend parent initialization and avoid code duplication</li>
+<li><input type="checkbox"/> <strong>Polymorphism Demonstration</strong> – Call the same method on different objects (parent and child) and show different behavior</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Special Methods (<code>__str__</code>, <code>__repr__</code>, <code>__eq__</code>) <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong><code>__str__</code> Implementation</strong> – Add <code>__str__</code> to return a human-readable string (e.g., <code>"Student: Alice, Grade: A"</code>)</li>
+<li><input type="checkbox"/> <strong><code>__repr__</code> Implementation</strong> – Add <code>__repr__</code> to return a detailed, unambiguous string for debugging (e.g., <code>"Student('Alice', 'A')"</code>)</li>
+<li><input type="checkbox"/> <strong>Print Object Behavior</strong> – Verify that <code>print(obj)</code> uses <code>__str__</code> and interactive mode uses <code>__repr__</code></li>
+<li><input type="checkbox"/> <strong><code>__eq__</code> Custom Comparison</strong> – Implement <code>__eq__</code> to define equality (e.g., two <code>Student</code> objects are equal if names match)</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Pseudocode Algorithms <span class="standard-tag">DESE Standard 5</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Pseudocode Translation</strong> – Convert 3+ written problem descriptions into clear pseudocode using standard conventions (INPUT, OUTPUT, IF/ELSE, LOOP)</li>
+<li><input type="checkbox"/> <strong>Algorithm-to-Code</strong> – Take a pseudocode algorithm and implement it as working Python code, verifying the two match step for step</li>
+<li><input type="checkbox"/> <strong>Plan Before You Code</strong> – For a new problem, write pseudocode first, then implement it — note what changed once you actually started coding</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Sorting Algorithms <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Bubble Sort</strong> – Implement bubble sort and trace through a small list by hand, step by step</li>
+<li><input type="checkbox"/> <strong>Selection Sort</strong> – Implement selection sort and compare its code structure and step count to bubble sort on the same list</li>
+<li><input type="checkbox"/> <strong>Built-in vs. Manual</strong> – Compare <code>sorted()</code>/<code>list.sort()</code> to your own implementation, and explain when you'd use a built-in sort vs. write your own</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Searching Algorithms <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Linear Search</strong> – Write a function that searches a list front-to-back, returning the index found or <code>-1</code></li>
+<li><input type="checkbox"/> <strong>Binary Search</strong> – Write binary search over a sorted list, and explain why the list has to be sorted first</li>
+<li><input type="checkbox"/> <strong>Comparison Counting</strong> – Count how many comparisons linear vs. binary search need on the same sorted list of 100+ items, and explain why binary search wins</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<h3>Separation of Concerns <span class="standard-tag">DESE Standard 7</span></h3>
+<div class="proof">
+<ul>
+<li><input type="checkbox"/> <strong>Refactor a Monolith</strong> – Take a single long function that reads input, processes data, <em>and</em> prints output, and split it into 3 focused functions (e.g. <code>get_input()</code>, <code>process()</code>, <code>display_result()</code>)</li>
+<li><input type="checkbox"/> <strong>Responsibility Audit</strong> – For 3 functions you've already written, write a one-line description of "what this function's ONE job is" — flag any that are doing more than one thing</li>
+<li><input type="checkbox"/> <strong>Before/After</strong> – Explain what got easier to test, reuse, or debug after separating concerns in your refactor</li>
+<li><input type="checkbox"/> <strong>Other:</strong> ________________________________</li>
+</ul>
+</div>
+<div class="proficiency">
+        ✅ <strong>Overall Proficiency</strong><br/>
         Demonstrates intermediate-level proficiency in Python by combining functional and object-oriented programming techniques. Creates reusable classes with proper initialization, methods, inheritance, and special methods. Uses lambda, list comprehensions, and built-in functions for clean, expressive code. Performs basic file I/O operations safely and efficiently. Plans algorithms with pseudocode before coding them, implements and compares sorting and searching algorithms, and structures code around separation of concerns. Understands when to use OOP vs functional approaches.
     </div>
 </div>
-
 <div class="success-indicators">
-    <h2>Success Indicators</h2>
-    <p>Students are ready for advanced Python (web frameworks, data science, automation) when they can:</p>
-    <ul>
-        <li>Design classes that model real-world entities with attributes and behaviors</li>
-        <li>Use inheritance to extend functionality and avoid code duplication</li>
-        <li>Customize object representation and comparison with special methods</li>
-        <li>Apply functional programming tools (<code>lambda</code>, <code>map</code>, <code>filter</code>, list comprehensions) to process data</li>
-        <li>Perform basic file reading and writing operations with proper error handling</li>
-        <li>Choose between procedural, functional, and OOP styles based on problem context</li>
-        <li>Debug object state and method calls using <code>print()</code> and <code>type()</code></li>
-        <li>Explain the purpose of <code>self</code>, <code>super()</code>, and special methods in their own words</li>
-        <li>Plan an unfamiliar problem in pseudocode before writing any code</li>
-        <li>Explain why a given algorithm choice (e.g., binary search over linear search) matters for a specific problem</li>
-        <li>Split a tangled function into focused, single-responsibility pieces without being told how</li>
-    </ul>
+<h2>Success Indicators</h2>
+<p>Students are ready for advanced Python (web frameworks, data science, automation) when they can:</p>
+<ul>
+<li>Design classes that model real-world entities with attributes and behaviors</li>
+<li>Use inheritance to extend functionality and avoid code duplication</li>
+<li>Customize object representation and comparison with special methods</li>
+<li>Apply functional programming tools (<code>lambda</code>, <code>map</code>, <code>filter</code>, list comprehensions) to process data</li>
+<li>Perform basic file reading and writing operations with proper error handling</li>
+<li>Choose between procedural, functional, and OOP styles based on problem context</li>
+<li>Debug object state and method calls using <code>print()</code> and <code>type()</code></li>
+<li>Explain the purpose of <code>self</code>, <code>super()</code>, and special methods in their own words</li>
+<li>Plan an unfamiliar problem in pseudocode before writing any code</li>
+<li>Explain why a given algorithm choice (e.g., binary search over linear search) matters for a specific problem</li>
+<li>Split a tangled function into focused, single-responsibility pieces without being told how</li>
+</ul>
 </div>
-
 <div class="integration-notes">
-    <h3>Integration Notes</h3>
-    <ul>
-        <li><strong>Teach After:</strong> Functions and basic data structures (lists, dicts)</li>
-        <li><strong>Pair With:</strong> Final project work (e.g., building a student management system that reads/writes data to files)</li>
-        <li><strong>Optional Extension:</strong> Introduce <code>@property</code>, <code>@staticmethod</code>, or <code>dataclass</code> for advanced learners</li>
-    </ul>
+<h3>Integration Notes</h3>
+<ul>
+<li><strong>Teach After:</strong> Functions and basic data structures (lists, dicts)</li>
+<li><strong>Pair With:</strong> Final project work (e.g., building a student management system that reads/writes data to files)</li>
+<li><strong>Optional Extension:</strong> Introduce <code>@property</code>, <code>@staticmethod</code>, or <code>dataclass</code> for advanced learners</li>
+</ul>
 </div>
-
 <div class="final-note">
-    <p>This Intermediate Python Mini-Certificate serves as a bridge between foundational syntax and advanced application development, preparing students for real-world programming tasks and deeper study in Python-based frameworks. The addition of list comprehensions, basic file I/O, algorithmic thinking (pseudocode, sorting, searching), and separation of concerns enhances students' ability to process data efficiently, reason about code before writing it, and structure programs cleanly.</p>
+<p>This Intermediate Python Mini-Certificate serves as a bridge between foundational syntax and advanced application development, preparing students for real-world programming tasks and deeper study in Python-based frameworks. The addition of list comprehensions, basic file I/O, algorithmic thinking (pseudocode, sorting, searching), and separation of concerns enhances students' ability to process data efficiently, reason about code before writing it, and structure programs cleanly.</p>
 </div>
 </body>
 </html>
