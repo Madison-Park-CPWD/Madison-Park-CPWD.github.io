@@ -1,0 +1,238 @@
+/* ---------------------------------------------------------------
+   Shared visual design for every mini-cert / checklist page.
+   Layers on top of ../styles/base.css (tokens, font, resets) — this
+   file only adds page layout and the certificate/checklist
+   components, so every page can look the same by linking both files
+   instead of carrying its own embedded <style> block.
+
+   Legacy class names from older certs (.checkbox-list, .master-cert,
+   .demonstrations, etc.) are styled here alongside the newer
+   .certificate/.proof family so no page's markup had to change —
+   only how it's styled.
+------------------------------------------------------------------*/
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+}
+
+h1, h2, h3, h4 {
+    color: var(--text-primary);
+}
+
+h1 {
+    text-align: center;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 0.5em;
+    margin-bottom: 1.5em;
+    font-size: 2em;
+}
+
+h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.3em;
+    margin-top: 2em;
+}
+
+h3 {
+    color: var(--accent);
+    margin-top: 1.3em;
+    font-size: 1.15em;
+}
+
+h4 {
+    margin: 1em 0 0.5em;
+}
+
+strong {
+    color: var(--text-primary);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2em 0;
+}
+
+/* ---- Certificate wrapper + note/callout boxes ---- */
+
+.certificate,
+.master-cert {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5em;
+    margin: 1.5em 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.master-cert {
+    text-align: center;
+    padding: 2em;
+}
+
+.master-cert h2 {
+    border: none;
+    margin-top: 0;
+    color: var(--accent);
+}
+
+.prerequisites,
+.prerequisite-note {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.75em;
+}
+
+.prerequisite-note {
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1em;
+    font-style: normal;
+}
+
+.learning-targets,
+.learning-goal {
+    background: rgba(140, 92, 0, 0.10);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+.learning-targets ul {
+    margin: 0.5em 0;
+    padding-left: 1.25em;
+}
+
+.proficiency {
+    background: rgba(47, 143, 91, 0.10);
+    border-left: 4px solid var(--ok);
+    border-radius: 6px;
+    padding: 1em;
+    margin: 1.25em 0;
+    font-weight: bold;
+}
+
+/* Plain, unboxed groupings — these sit inside an already-bordered
+   .certificate card (sometimes several per card, sometimes nested one
+   inside another), so giving each one its own border/background piles
+   up 2-3 colored border lines right next to each other. Structure them
+   with headings and spacing only; save the colored-box treatment for
+   the handful of true one-per-certificate callouts above/below. */
+.proficiency-standards,
+.proficiency-section,
+.standard-item,
+.demonstrations,
+.project-based {
+    margin: 1.25em 0;
+}
+
+.success-indicators,
+.integration-notes,
+.assessment-notes {
+    background: var(--bg-panel-raised);
+    border-left: 4px solid var(--accent-dim);
+    border-radius: 6px;
+    padding: 1.25em;
+    margin: 1.5em 0;
+}
+
+.success-indicators h2,
+.integration-notes h3 {
+    margin-top: 0;
+    color: var(--accent);
+    border: none;
+}
+
+.success-indicators ul {
+    padding-left: 1.25em;
+}
+
+.final-note,
+.footer {
+    text-align: center;
+    margin-top: 2.5em;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    border-top: 1px solid var(--border);
+    padding-top: 1em;
+}
+
+/* ---- Checklist / proof items ---- */
+
+/* Structural rule: works regardless of which container class (if any)
+   wraps the list, so it covers every file's convention at once. */
+li:has(> input[type="checkbox"]) {
+    list-style: none;
+    padding-left: 1.6em;
+    text-indent: -1.6em;
+    margin: 0.5em 0;
+}
+
+/* Class-based fallback for browsers without :has() support, matching
+   the same containers the older certs already used. */
+.proof ul,
+.proof-checkbox-list,
+.checkbox-list,
+.no-bullets {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.6em 0;
+}
+
+.proof li,
+.proof-checkbox-list li,
+.checkbox-list li {
+    list-style: none;
+    margin: 0.5em 0;
+    padding-left: 1.6em;
+    text-indent: -1.6em;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5em;
+    transform: scale(1.2);
+}
+
+input[type="text"],
+.other-input {
+    font-family: var(--font-body);
+    font-size: 1em;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    padding: 2px 5px;
+    color: var(--text-primary);
+}
+
+.nested-list {
+    margin-left: 1.25em;
+    margin-top: 0.5em;
+}
+
+.value {
+    font-weight: 600;
+}
+
+@media (max-width: 700px) {
+    body {
+        padding: 1.25rem 1rem 3rem;
+    }
+
+    .certificate,
+    .master-cert {
+        padding: 1.1em;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+}
