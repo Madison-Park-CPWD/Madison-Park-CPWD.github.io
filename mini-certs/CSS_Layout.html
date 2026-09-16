@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>CSS Layout Certificate</title>
+<link href="../styles/base.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<h1>CSS Layout Certificate</h1>
+<div class="prerequisite-note">
+<strong>Prerequisites:</strong> Students must complete the CSS Certificate before attempting CSS Layout.
+</div>
+<div class="certificate">
+    <h3 class="first-h3">CSS Flexbox <span class="standard-tag">DESE Standard 8</span></h3>
+    <ul class="checkbox-list">
+<li><input type="checkbox"/> Applies <code>display: flex</code> to a container to create a flex context</li>
+<li><input type="checkbox"/> Controls the main-axis direction with <code>flex-direction</code> (row, column, and their reverse variants)</li>
+<li><input type="checkbox"/> Enables multi-line wrapping with <code>flex-wrap</code></li>
+<li><input type="checkbox"/> Aligns items along the main axis with <code>justify-content</code></li>
+<li><input type="checkbox"/> Aligns items and wrapped lines along the cross axis with <code>align-items</code> and <code>align-content</code></li>
+<li><input type="checkbox"/> Controls how items grow and shrink to fill available space with <code>flex-grow</code> and <code>flex-shrink</code></li>
+<li><input type="checkbox"/> Sets an item's initial size with <code>flex-basis</code> (or the <code>flex</code> shorthand)</li>
+<li><input type="checkbox"/> Reorders items visually with the <code>order</code> property, independent of source order</li>
+<li><input type="checkbox"/> Overrides cross-axis alignment for a single item with <code>align-self</code></li>
+<li><input type="checkbox"/> Spaces items consistently using <code>gap</code> (rather than margins)</li>
+<li><input type="checkbox"/> Builds a common flex pattern (e.g. a horizontal nav bar, a centered element, or an equal-height card row) &mdash; pick one</li>
+</ul>
+    <h3>CSS Grid <span class="standard-tag">DESE Standard 8</span></h3>
+    <ul class="checkbox-list">
+<li><input type="checkbox"/> Applies <code>display: grid</code> to a container to create a grid context</li>
+<li><input type="checkbox"/> Defines explicit column and row tracks with <code>grid-template-columns</code> and <code>grid-template-rows</code></li>
+<li><input type="checkbox"/> Uses the <code>fr</code> unit to distribute available space proportionally between tracks</li>
+<li><input type="checkbox"/> Uses <code>repeat()</code> to avoid repeating identical track definitions</li>
+<li><input type="checkbox"/> Spaces grid tracks consistently using <code>gap</code> (<code>row-gap</code> and <code>column-gap</code>)</li>
+<li><input type="checkbox"/> Names layout regions with <code>grid-template-areas</code> and places items using <code>grid-area</code></li>
+<li><input type="checkbox"/> Places items by line number or span using <code>grid-column</code> and <code>grid-row</code></li>
+<li><input type="checkbox"/> Aligns content within grid cells using <code>justify-items</code> (row axis) and <code>align-items</code> (column axis)</li>
+<li><input type="checkbox"/> Aligns the grid tracks within the container using <code>justify-content</code> and <code>align-content</code></li>
+<li><input type="checkbox"/> Distinguishes explicit vs. implicit grid tracks and controls implicit sizing with <code>grid-auto-rows</code>/<code>grid-auto-columns</code></li>
+<li><input type="checkbox"/> Builds a responsive grid without media queries using <code>auto-fit</code>/<code>auto-fill</code> with <code>minmax()</code></li>
+<li><input type="checkbox"/> Builds a common grid pattern (e.g. a page layout with header/sidebar/main/footer, or a responsive image gallery) &mdash; pick one</li>
+</ul>
+    <h3>Responsive Design <span class="standard-tag">DESE Standard 8</span></h3>
+    <ul class="checkbox-list">
+<li><input type="checkbox"/> Includes the viewport meta tag (<code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code>) so mobile browsers render at actual device width</li>
+<li><input type="checkbox"/> Writes media queries using <code>@media</code> with <code>min-width</code>/<code>max-width</code> conditions</li>
+<li><input type="checkbox"/> Combines multiple conditions in a single media query using logical operators (<code>and</code>, comma for "or", <code>not</code>)</li>
+<li><input type="checkbox"/> Sets breakpoints based on where the content or layout breaks down, rather than targeting specific device widths</li>
+<li><input type="checkbox"/> Applies a mobile-first approach: base styles target small screens, <code>min-width</code> queries progressively add complexity for larger screens</li>
+<li><input type="checkbox"/> Uses relative units (<code>%</code>, <code>em</code>, <code>rem</code>, <code>vw</code>, <code>vh</code>) instead of fixed pixel values for responsive sizing</li>
+<li><input type="checkbox"/> Uses <code>clamp()</code>, <code>min()</code>, and <code>max()</code> for fluid sizing that adapts without needing extra breakpoints</li>
+<li><input type="checkbox"/> Tests and debugs layouts across breakpoints using the browser dev tools' device toolbar</li>
+</ul>
+    <h3>Choosing &amp; Combining Layout Systems <span class="standard-tag">DESE Standard 8</span></h3>
+    <ul class="checkbox-list">
+<li><input type="checkbox"/> Chooses appropriate layout methods (Flexbox vs. Grid) based on 1D vs. 2D layout needs</li>
+<li><input type="checkbox"/> Combines Flexbox and Grid in the same design for comprehensive layout solutions</li>
+</ul>
+</div>
+</body>
+</html>
