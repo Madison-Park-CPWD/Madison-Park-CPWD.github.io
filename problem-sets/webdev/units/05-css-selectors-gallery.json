@@ -1,0 +1,760 @@
+{
+  "id": "css-selectors-gallery",
+  "title": "CSS Selectors: Photo Gallery",
+  "reflection_prompt": "Now that you've done this three times, which selector type finally feels automatic?",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "css-selectors-gallery",
+      "title": "Color Every Paragraph",
+      "difficulty": 1,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>A photo gallery page has a header, a nav, two paragraphs, and a footer.</p>",
+        "<p>In the <strong>CSS</strong> panel, write a <strong>tag selector</strong> that gives every <code>&lt;p&gt;</code> element a <code>background-color</code> of <code>#ffe600</code>. Nothing else on the page should change.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<header id=\"site-header\">Photo Gallery</header>",
+          "<nav id=\"site-nav\">Nature | Portraits | Travel</nav>",
+          "<p id=\"para-1\">A collection of photos from around the world.</p>",
+          "<p id=\"para-2\">New photos added every month.</p>",
+          "<footer id=\"site-footer\">Gallery Footer</footer>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first paragraph is colored", "selector": "#para-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second paragraph is colored", "selector": "#para-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The header is untouched", "selector": "#site-header", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The nav is untouched", "selector": "#site-nav", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The footer is untouched", "selector": "#site-footer", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "css-selectors-gallery",
+      "title": "Strong, Not Emphasis",
+      "difficulty": 2,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>Two photo captions below each contain an <code>&lt;em&gt;</code> and a <code>&lt;strong&gt;</code> element.</p>",
+        "<p>Write a <strong>tag selector</strong> that gives every <code>&lt;strong&gt;</code> element (and only <code>&lt;strong&gt;</code>) a <code>background-color</code> of <code>#ffe600</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p>The caption says <em id=\"note-em\">golden hour</em> and <strong id=\"note-strong\">must credit photographer</strong>.</p>",
+          "<p>The caption says <em id=\"warn-em\">handle with care</em> and <strong id=\"warn-strong\">do not reprint</strong>.</p>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first strong is colored", "selector": "#note-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second strong is colored", "selector": "#warn-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The first em is untouched", "selector": "#note-em", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The second em is untouched", "selector": "#warn-em", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "css-selectors-gallery",
+      "title": "Spans at Every Depth",
+      "difficulty": 3,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>A <code>&lt;span&gt;</code> shows up at three different depths: inside a paragraph, inside a nav link, and inside a footer credit.</p>",
+        "<p>Write a <strong>tag selector</strong> that colors every <code>&lt;span&gt;</code> a <code>background-color</code> of <code>#ffe600</code>, no matter how deep it's nested.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p>This gallery has <span id=\"span-para\">twelve photos</span>.</p>",
+          "<nav>",
+          "  <a href=\"#\">Gallery</a>",
+          "  <a href=\"#\">About <span id=\"span-nav\">(new)</span></a>",
+          "</nav>",
+          "<footer>",
+          "  <p>Photos by <span id=\"span-footer\">Jordan Lee</span></p>",
+          "</footer>",
+          "<div id=\"plain-div\">No span here.</div>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph span is colored", "selector": "#span-para", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nav span is colored", "selector": "#span-nav", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The footer span is colored", "selector": "#span-footer", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The plain div is untouched", "selector": "#plain-div", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "css-selectors-gallery",
+      "title": "Feature One Photo",
+      "difficulty": 1,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>Three photos sit side by side. Only one has <code>id=\"featured\"</code>.</p>",
+        "<p>Write an <strong>ID selector</strong> that gives just that photo a <code>background-color</code> of <code>#ffe600</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"photo-a\">Mountain View</div>",
+          "<div id=\"featured\">Featured Photo: Sunset Beach</div>",
+          "<div id=\"photo-b\">City Skyline</div>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured photo is colored", "selector": "#featured", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo A is untouched", "selector": "#photo-a", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Photo B is untouched", "selector": "#photo-b", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "css-selectors-gallery",
+      "title": "Find the Featured Photo",
+      "difficulty": 2,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>The featured photo (<code>id=\"featured-photo\"</code>) is nested a couple of levels deep inside a category, alongside structurally identical cousin photos.</p>",
+        "<p>Write an <strong>ID selector</strong> that colors only <code>#featured-photo</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<section id=\"category-1\">",
+          "  <div class=\"group\">",
+          "    <div id=\"photo-1\">Forest Trail</div>",
+          "    <div id=\"photo-2\">River Bend</div>",
+          "  </div>",
+          "</section>",
+          "<section id=\"category-2\">",
+          "  <div class=\"group\">",
+          "    <div id=\"photo-3\">Desert Dunes</div>",
+          "    <div id=\"featured-photo\">Featured Photo: Waterfall</div>",
+          "  </div>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured photo is colored", "selector": "#featured-photo", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo 1 is untouched", "selector": "#photo-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Photo 2 is untouched", "selector": "#photo-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Photo 3 is untouched", "selector": "#photo-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "css-selectors-gallery",
+      "title": "Exactly One Photo",
+      "difficulty": 3,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>Three photos have very similar ids: <code>photo-1</code>, <code>photo-2</code>, and <code>photo-3</code>.</p>",
+        "<p>Write an <strong>ID selector</strong> that colors <code>#photo-2</code> only. Double-check the exact id.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"photo-1\">Forest Trail</div>",
+          "<div id=\"photo-2\">River Bend</div>",
+          "<div id=\"photo-3\">Desert Dunes</div>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Photo 2 is colored", "selector": "#photo-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo 1 is untouched", "selector": "#photo-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Photo 3 is untouched", "selector": "#photo-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "css-selectors-gallery",
+      "title": "One Class, Three Tags",
+      "difficulty": 1,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>Three elements of three different tags all share the class <code>highlight</code>: a paragraph, a list item, and a span.</p>",
+        "<p>Write a single <strong>class selector</strong> that colors all three at once, regardless of their tag or position.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p class=\"highlight\" id=\"p-highlight\">Photographer's pick.</p>",
+          "<ul>",
+          "  <li id=\"li-plain\">Regular photo</li>",
+          "  <li class=\"highlight\" id=\"li-highlight\">Award-winning photo</li>",
+          "</ul>",
+          "<footer>",
+          "  <span class=\"highlight\" id=\"span-highlight\">Editor's choice</span>",
+          "</footer>",
+          "<p id=\"p-plain\">Another regular caption.</p>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The highlighted paragraph is colored", "selector": "#p-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The highlighted list item is colored", "selector": "#li-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The highlighted span is colored", "selector": "#span-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The plain list item is untouched", "selector": "#li-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The plain paragraph is untouched", "selector": "#p-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "css-selectors-gallery",
+      "title": "Pick the Featured Photo",
+      "difficulty": 2,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>Three photos all share the class <code>photo</code>. One of them also has a second class, <code>featured</code>.</p>",
+        "<p>Write a <strong>class selector</strong> that colors only the featured photo — target the <code>featured</code> class.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"photo\" id=\"photo-1\">Lake View</div>",
+          "<div class=\"photo featured\" id=\"photo-2\">Lake View (Featured)</div>",
+          "<div class=\"photo\" id=\"photo-3\">Hillside</div>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured photo is colored", "selector": "#photo-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo 1 is untouched", "selector": "#photo-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Photo 3 is untouched", "selector": "#photo-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "css-selectors-gallery",
+      "title": "Photo vs. Photos",
+      "difficulty": 3,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>One of these three elements has the class <code>photos</code> instead of <code>photo</code> — easy to misread.</p>",
+        "<p>Write a <strong>class selector</strong> that colors only the elements with class <code>photo</code> (not <code>photos</code>).</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"photo\" id=\"photo-1\">Lake View</div>",
+          "<div class=\"photos\" id=\"photo-2\">Hillside Collection</div>",
+          "<div class=\"photo\" id=\"photo-3\">Valley</div>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Photo 1 is colored", "selector": "#photo-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo 3 is colored", "selector": "#photo-3", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo 2 (class \"photos\") is untouched", "selector": "#photo-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "css-selectors-gallery",
+      "title": "Captions Inside the Gallery",
+      "difficulty": 1,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p>A <code>&lt;section class=\"gallery\"&gt;</code> and an <code>&lt;aside&gt;</code> of related galleries each contain caption paragraphs.</p>",
+        "<p>Write a <strong>descendant selector</strong> that colors only the captions inside <code>#gallery-section</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<section class=\"gallery\" id=\"gallery-section\">",
+          "  <p id=\"article-p1\">A photo of the northern lights.</p>",
+          "  <p id=\"article-p2\">A photo of a starry sky.</p>",
+          "</section>",
+          "<aside id=\"aside\">",
+          "  <p id=\"aside-p1\">You might also like our desert gallery.</p>",
+          "</aside>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first caption is colored", "selector": "#article-p1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second caption is colored", "selector": "#article-p2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The aside paragraph is untouched", "selector": "#aside-p1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "css-selectors-gallery",
+      "title": "Three Levels Deep",
+      "difficulty": 2,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p>The target caption is nested three levels inside a <code>.content</code> section. A decoy tip sits outside that section entirely.</p>",
+        "<p>Write a <strong>descendant selector</strong> scoped to <code>.content</code> that colors the deeply nested caption.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"outer-decoy\">",
+          "  <p id=\"decoy-p\">A general photography tip.</p>",
+          "</div>",
+          "<section class=\"content\" id=\"content-section\">",
+          "  <div class=\"wrapper\">",
+          "    <div class=\"inner\">",
+          "      <p id=\"deep-p\">A deeply nested photo caption.</p>",
+          "    </div>",
+          "  </div>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The deeply nested caption is colored", "selector": "#deep-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The general tip is untouched", "selector": "#decoy-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "css-selectors-gallery",
+      "title": "The Right Sidebar",
+      "difficulty": 3,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p><code>#sidebar</code> and <code>#footer-box</code> each contain a note paragraph with the exact same tag.</p>",
+        "<p>Write a <strong>descendant selector</strong> that colors only the note inside <code>#sidebar</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"sidebar\">",
+          "  <p id=\"sidebar-p\">Favorites sidebar note.</p>",
+          "</div>",
+          "<div id=\"footer-box\">",
+          "  <p id=\"footer-p\">Footer credit note.</p>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The sidebar note is colored", "selector": "#sidebar-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The footer-box note is untouched", "selector": "#footer-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "13",
+      "source_unit": "css-selectors-gallery",
+      "title": "Direct Photos Only",
+      "difficulty": 1,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p><code>#photos-list</code> has three direct photo items. One of them lists related sub-photos in its own nested list.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>#photos-list &gt; li</code>) that colors only the three direct photos, leaving the related sub-photos untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul id=\"photos-list\">",
+          "  <li id=\"photo-item-1\">Mountain Sunrise</li>",
+          "  <li id=\"photo-item-2\">",
+          "    Coastal Cliffs",
+          "    <ul>",
+          "      <li id=\"related-photo-1\">Coastal Cliffs (wide shot)</li>",
+          "      <li id=\"related-photo-2\">Coastal Cliffs (close-up)</li>",
+          "    </ul>",
+          "  </li>",
+          "  <li id=\"photo-item-3\">Desert Sunset</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Photo item 1 is colored", "selector": "#photo-item-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo item 2 is colored", "selector": "#photo-item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Photo item 3 is colored", "selector": "#photo-item-3", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The wide shot sub-photo is untouched", "selector": "#related-photo-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The close-up sub-photo is untouched", "selector": "#related-photo-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "14",
+      "source_unit": "css-selectors-gallery",
+      "title": "Photos, Not Categories",
+      "difficulty": 2,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p>Two separate lists sit side by side: <code>.photos</code> and <code>.categories</code>.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>.photos &gt; li</code>) that colors only the photo items, leaving the category list untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul class=\"photos\" id=\"photos\">",
+          "  <li id=\"photo-1-item\">Sunrise</li>",
+          "  <li id=\"photo-2-item\">Sunset</li>",
+          "</ul>",
+          "<ul class=\"categories\" id=\"categories\">",
+          "  <li id=\"category-1-item\">Nature</li>",
+          "  <li id=\"category-2-item\">Travel</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Sunrise is colored", "selector": "#photo-1-item", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Sunset is colored", "selector": "#photo-2-item", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The Nature category is untouched", "selector": "#category-1-item", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The Travel category is untouched", "selector": "#category-2-item", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "15",
+      "source_unit": "css-selectors-gallery",
+      "title": "The Middle Tier",
+      "difficulty": 3,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p>This captions list is nested three levels deep. The \"immediate child\" relationship you need is at the <em>middle</em> tier: <code>#captions-list</code>'s direct captions, not the outer div or the inner detail list.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>#captions-list &gt; li</code>) that colors the two main captions only.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"outer\">",
+          "  <ul id=\"captions-list\">",
+          "    <li id=\"caption-item-1\">",
+          "      Golden hour on the coast",
+          "      <ul id=\"caption-1-details\">",
+          "        <li id=\"detail-credit\">Photo by J. Lee</li>",
+          "      </ul>",
+          "    </li>",
+          "    <li id=\"caption-item-2\">Blue hour over the mountains</li>",
+          "  </ul>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Caption 1 is colored", "selector": "#caption-item-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Caption 2 is colored", "selector": "#caption-item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The credit detail is untouched", "selector": "#detail-credit", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "16",
+      "source_unit": "css-selectors-gallery",
+      "title": "Right After the Heading",
+      "difficulty": 1,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>There are two section headings, \"Nature\" and \"Travel.\" The first is followed by one paragraph; the second is followed by two. A third paragraph stands alone with no heading before it.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>h2 + p</code>) that colors only the paragraph immediately after an <code>&lt;h2&gt;</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<h2 id=\"heading-1\">Nature</h2>",
+          "<p id=\"p-after-h1\">Landscapes and wildlife from around the world.</p>",
+          "<p id=\"p-standalone\">A note about photo licensing.</p>",
+          "<h2 id=\"heading-2\">Travel</h2>",
+          "<p id=\"p-after-h2-first\">Cityscapes from recent trips.</p>",
+          "<p id=\"p-after-h2-second\">Street photography from local markets.</p>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph after Nature is colored", "selector": "#p-after-h1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The first paragraph after Travel is colored", "selector": "#p-after-h2-first", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The standalone paragraph is untouched", "selector": "#p-standalone", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The second paragraph after Travel is untouched", "selector": "#p-after-h2-second", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "17",
+      "source_unit": "css-selectors-gallery",
+      "title": "Caption After the Figure",
+      "difficulty": 2,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>One <code>&lt;figcaption&gt;</code> comes right after a <code>&lt;figure&gt;</code>. Another comes after a paragraph instead.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>figure + figcaption</code>) that colors only the caption immediately following a figure.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<figure id=\"figure-1\"><img id=\"photo-img-1\" src=\"#\" alt=\"Mountain photo\"/></figure>",
+          "<figcaption id=\"caption-1\">A mountain landscape at sunrise.</figcaption>",
+          "<p id=\"divider\">A short gallery note.</p>",
+          "<figcaption id=\"orphan-caption\">A caption with no figure right before it.</figcaption>",
+          "<figure id=\"figure-2\"><img id=\"photo-img-2\" src=\"#\" alt=\"Beach photo\"/></figure>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The caption right after the first figure is colored", "selector": "#caption-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The orphan caption is untouched", "selector": "#orphan-caption", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "18",
+      "source_unit": "css-selectors-gallery",
+      "title": "The Featured Gallery",
+      "difficulty": 3,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>Both headings are <code>&lt;h2&gt;</code>, but only one has <code>class=\"section-title\"</code>. Each is followed by a paragraph.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>h2.section-title + p</code>) that colors only the paragraph after the featured heading.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<h2 class=\"section-title\" id=\"title-1\">Featured Gallery</h2>",
+          "<p id=\"p-after-title\">A paragraph right after the featured heading.</p>",
+          "<h2 id=\"title-2\">Recent Uploads</h2>",
+          "<p id=\"p-after-plain\">A paragraph right after the plain heading.</p>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph after the featured heading is colored", "selector": "#p-after-title", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The paragraph after the plain heading is untouched", "selector": "#p-after-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "19",
+      "source_unit": "css-selectors-gallery",
+      "title": "Everything Inside the Gallery",
+      "difficulty": 1,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p>A <code>.gallery</code> section contains a paragraph, a span, and a strong element (photo details). A sibling <code>.gallery2</code> contains its own paragraph and span.</p>",
+        "<p>Write a <strong>universal selector</strong> scoped to the gallery (<code>.gallery *</code>) that colors every element inside <code>.gallery</code>, regardless of tag.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<section class=\"gallery\" id=\"gallery\">",
+          "  <p id=\"gallery-p\">Taken in Iceland.</p>",
+          "  <span id=\"gallery-span\">2400 x 1600</span>",
+          "  <strong id=\"gallery-strong\">Canon EOS R5</strong>",
+          "</section>",
+          "<section class=\"gallery2\" id=\"gallery2\">",
+          "  <p id=\"gallery2-p\">Taken in Norway.</p>",
+          "  <span id=\"gallery2-span\">3000 x 2000</span>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your universal selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph in gallery is colored", "selector": "#gallery-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The span in gallery is colored", "selector": "#gallery-span", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The strong in gallery is colored", "selector": "#gallery-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The gallery itself is untouched", "selector": "#gallery", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The paragraph in gallery2 is untouched", "selector": "#gallery2-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The span in gallery2 is untouched", "selector": "#gallery2-span", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "20",
+      "source_unit": "css-selectors-gallery",
+      "title": "The Gallery Inside the Container",
+      "difficulty": 2,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p>A <code>.gallery</code> of this month's featured shots lives inside a <code>.container</code>. A second, decoy <code>.gallery</code> holding last year's archive sits outside the container entirely.</p>",
+        "<p>Write a <strong>universal selector</strong> chained after a descendant path (<code>.container .gallery *</code>) that colors everything inside the gallery that's inside the container.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"container\" id=\"container\">",
+          "  <section class=\"gallery\" id=\"inner-gallery\">",
+          "    <p id=\"inner-gallery-p\">This month's featured shots.</p>",
+          "    <span id=\"inner-gallery-span\">12 photos</span>",
+          "  </section>",
+          "</div>",
+          "<section class=\"gallery\" id=\"outside-gallery\">",
+          "  <p id=\"outside-gallery-p\">Last year's archive.</p>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your universal selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The nested gallery's paragraph is colored", "selector": "#inner-gallery-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nested gallery's span is colored", "selector": "#inner-gallery-span", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The outside gallery's paragraph is untouched", "selector": "#outside-gallery-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "21",
+      "source_unit": "css-selectors-gallery",
+      "title": "Direct Children of the Gallery",
+      "difficulty": 3,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p>A <code>.gallery</code> has a direct paragraph child and a direct div child. That div itself contains a nested span.</p>",
+        "<p>Write a <strong>universal child selector</strong> (<code>.gallery &gt; *</code>) that colors only the <em>direct</em> children of <code>.gallery</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<section class=\"gallery\" id=\"gallery\">",
+          "  <p id=\"direct-p\">Direct caption.</p>",
+          "  <div id=\"direct-div\">",
+          "    Photo credit:",
+          "    <span id=\"nested-span\">a nested credit that should stay untouched</span>.",
+          "  </div>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your universal child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The direct paragraph child is colored", "selector": "#direct-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The direct div child is colored", "selector": "#direct-div", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nested span is untouched", "selector": "#nested-span", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "22",
+      "source_unit": "css-selectors-gallery",
+      "title": "Photos in the Sidebar",
+      "difficulty": 1,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p><code>.photo</code> cards exist inside both <code>#main</code> and <code>#sidebar</code> (favorites).</p>",
+        "<p>Write a combined <strong>ID + descendant + class selector</strong> (<code>#sidebar .photo</code>) that colors only the photos inside the sidebar.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"main\">",
+          "  <div class=\"photo\" id=\"main-card-1\">Main Photo 1</div>",
+          "  <div class=\"photo\" id=\"main-card-2\">Main Photo 2</div>",
+          "</div>",
+          "<div id=\"sidebar\">",
+          "  <div class=\"photo\" id=\"sidebar-card-1\">Favorite Photo 1</div>",
+          "  <div class=\"photo\" id=\"sidebar-card-2\">Favorite Photo 2</div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Favorite photo 1 is colored", "selector": "#sidebar-card-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Favorite photo 2 is colored", "selector": "#sidebar-card-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Main photo 1 is untouched", "selector": "#main-card-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Main photo 2 is untouched", "selector": "#main-card-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "23",
+      "source_unit": "css-selectors-gallery",
+      "title": "The Active Category Tab",
+      "difficulty": 2,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p>A <code>.nav</code> of gallery categories has a tab with class <code>active</code>. A separate, unrelated <code>.list</code> also has an item with class <code>active</code>.</p>",
+        "<p>Write a combined <strong>descendant + compound selector</strong> (<code>.nav li.active</code>) that colors only the active tab inside <code>.nav</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul class=\"nav\" id=\"nav-list\">",
+          "  <li id=\"nav-item-1\">Nature</li>",
+          "  <li class=\"active\" id=\"nav-item-2\">Travel</li>",
+          "</ul>",
+          "<ul class=\"list\" id=\"other-list\">",
+          "  <li class=\"active\" id=\"other-item\">Portraits (unrelated list)</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The active tab is colored", "selector": "#nav-item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The non-active tab is untouched", "selector": "#nav-item-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The other list's active item is untouched", "selector": "#other-item", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "24",
+      "source_unit": "css-selectors-gallery",
+      "title": "Featured, and in the Sidebar",
+      "difficulty": 3,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p><code>#main</code> and <code>#sidebar</code> each contain a featured photo card and a plain one.</p>",
+        "<p>Write a three-part combined selector (<code>#sidebar .photo.featured</code>) that colors only the card that is both <em>featured</em> and inside the <em>sidebar</em>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"main\">",
+          "  <div class=\"photo featured\" id=\"main-featured-card\">Main Featured Photo</div>",
+          "  <div class=\"photo\" id=\"main-plain-card\">Main Plain Photo</div>",
+          "</div>",
+          "<div id=\"sidebar\">",
+          "  <div class=\"photo featured\" id=\"sidebar-featured-card\">Sidebar Featured Photo</div>",
+          "  <div class=\"photo\" id=\"sidebar-plain-card\">Sidebar Plain Photo</div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The sidebar's featured photo is colored", "selector": "#sidebar-featured-card", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The main section's featured photo is untouched", "selector": "#main-featured-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The main section's plain photo is untouched", "selector": "#main-plain-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The sidebar's plain photo is untouched", "selector": "#sidebar-plain-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    }
+  ]
+}

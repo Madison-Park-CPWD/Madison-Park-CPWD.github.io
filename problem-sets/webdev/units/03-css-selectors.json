@@ -1,0 +1,760 @@
+{
+  "id": "css-selectors",
+  "title": "CSS Selectors",
+  "reflection_prompt": "Which selector type gave you the most trouble, and why?",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "css-selectors",
+      "title": "Color Every Paragraph",
+      "difficulty": 1,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>The page below has a header, a nav, two paragraphs, and a footer.</p>",
+        "<p>In the <strong>CSS</strong> panel, write a <strong>tag selector</strong> that gives every <code>&lt;p&gt;</code> element a <code>background-color</code> of <code>#ffe600</code>. Nothing else on the page should change.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<header id=\"site-header\">Site Header</header>",
+          "<nav id=\"site-nav\">Home | About | Contact</nav>",
+          "<p id=\"para-1\">This is the first paragraph.</p>",
+          "<p id=\"para-2\">This is the second paragraph.</p>",
+          "<footer id=\"site-footer\">Site Footer</footer>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first paragraph is colored", "selector": "#para-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second paragraph is colored", "selector": "#para-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The header is untouched", "selector": "#site-header", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The nav is untouched", "selector": "#site-nav", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The footer is untouched", "selector": "#site-footer", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "css-selectors",
+      "title": "Strong, Not Emphasis",
+      "difficulty": 2,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>Two paragraphs below each contain an <code>&lt;em&gt;</code> and a <code>&lt;strong&gt;</code> element.</p>",
+        "<p>Write a <strong>tag selector</strong> that gives every <code>&lt;strong&gt;</code> element (and only <code>&lt;strong&gt;</code>) a <code>background-color</code> of <code>#ffe600</code>. Selection is by tag name, not by how bold the text looks.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p>A recipe note says <em id=\"note-em\">read carefully</em> and <strong id=\"note-strong\">do not skip steps</strong>.</p>",
+          "<p>A safety warning says <em id=\"warn-em\">handle gently</em> and <strong id=\"warn-strong\">wear gloves</strong>.</p>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first strong is colored", "selector": "#note-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second strong is colored", "selector": "#warn-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The first em is untouched", "selector": "#note-em", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The second em is untouched", "selector": "#warn-em", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "css-selectors",
+      "title": "Spans at Every Depth",
+      "difficulty": 3,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>A <code>&lt;span&gt;</code> element shows up at three different depths on this page: inside a paragraph, inside a nav link, and inside a footer credit.</p>",
+        "<p>Write a <strong>tag selector</strong> that colors every <code>&lt;span&gt;</code> a <code>background-color</code> of <code>#ffe600</code>, no matter how deep it's nested. The plain <code>&lt;div&gt;</code> at the bottom should stay untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p>Welcome to the site, <span id=\"span-para\">friend</span>.</p>",
+          "<nav>",
+          "  <a href=\"#\">Home</a>",
+          "  <a href=\"#\">About <span id=\"span-nav\">(new)</span></a>",
+          "</nav>",
+          "<footer>",
+          "  <p>Credits: <span id=\"span-footer\">Design Team</span></p>",
+          "</footer>",
+          "<div id=\"plain-div\">No span here.</div>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph span is colored", "selector": "#span-para", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nav span is colored", "selector": "#span-nav", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The footer span is colored", "selector": "#span-footer", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The plain div is untouched", "selector": "#plain-div", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "css-selectors",
+      "title": "Feature One Card",
+      "difficulty": 1,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>Three cards sit side by side. Only one has <code>id=\"featured\"</code>.</p>",
+        "<p>Write an <strong>ID selector</strong> that gives just that card a <code>background-color</code> of <code>#ffe600</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"card-a\">Card A</div>",
+          "<div id=\"featured\">Featured Card</div>",
+          "<div id=\"card-b\">Card B</div>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured card is colored", "selector": "#featured", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Card A is untouched", "selector": "#card-a", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Card B is untouched", "selector": "#card-b", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "css-selectors",
+      "title": "Find the Featured Card",
+      "difficulty": 2,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>This time the featured card (<code>id=\"featured-card\"</code>) is nested a couple of levels deep, alongside several structurally identical cousin cards.</p>",
+        "<p>Write an <strong>ID selector</strong> that colors only <code>#featured-card</code>. An ID selector works the same regardless of how deep the element is nested.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<section id=\"section-1\">",
+          "  <div class=\"group\">",
+          "    <div id=\"card-1\">Card 1</div>",
+          "    <div id=\"card-2\">Card 2</div>",
+          "  </div>",
+          "</section>",
+          "<section id=\"section-2\">",
+          "  <div class=\"group\">",
+          "    <div id=\"card-3\">Card 3</div>",
+          "    <div id=\"featured-card\">Featured Card</div>",
+          "  </div>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured card is colored", "selector": "#featured-card", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Card 1 is untouched", "selector": "#card-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Card 2 is untouched", "selector": "#card-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Card 3 is untouched", "selector": "#card-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "css-selectors",
+      "title": "Exactly One Card",
+      "difficulty": 3,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>Three cards have very similar ids: <code>card-1</code>, <code>card-2</code>, and <code>card-3</code>.</p>",
+        "<p>Write an <strong>ID selector</strong> that colors <code>#card-2</code> only. Double-check the exact id — it's easy to grab the wrong one.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"card-1\">Card 1</div>",
+          "<div id=\"card-2\">Card 2</div>",
+          "<div id=\"card-3\">Card 3</div>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Card 2 is colored", "selector": "#card-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Card 1 is untouched", "selector": "#card-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Card 3 is untouched", "selector": "#card-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "css-selectors",
+      "title": "One Class, Three Tags",
+      "difficulty": 1,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>Three elements of three different tags all share the class <code>highlight</code>: a paragraph, a list item, and a span.</p>",
+        "<p>Write a single <strong>class selector</strong> that colors all three at once, regardless of their tag or position.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p class=\"highlight\" id=\"p-highlight\">Important paragraph.</p>",
+          "<ul>",
+          "  <li id=\"li-plain\">Plain item</li>",
+          "  <li class=\"highlight\" id=\"li-highlight\">Highlighted item</li>",
+          "</ul>",
+          "<footer>",
+          "  <span class=\"highlight\" id=\"span-highlight\">Highlighted note</span>",
+          "</footer>",
+          "<p id=\"p-plain\">Plain paragraph.</p>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The highlighted paragraph is colored", "selector": "#p-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The highlighted list item is colored", "selector": "#li-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The highlighted span is colored", "selector": "#span-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The plain list item is untouched", "selector": "#li-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The plain paragraph is untouched", "selector": "#p-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "css-selectors",
+      "title": "Pick the Featured Card",
+      "difficulty": 2,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>Three cards all share the class <code>card</code>. One of them also has a second class, <code>featured</code>.</p>",
+        "<p>Write a <strong>class selector</strong> that colors only the featured card — target the <code>featured</code> class, not <code>card</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"card\" id=\"card-1\">Card 1</div>",
+          "<div class=\"card featured\" id=\"card-2\">Card 2 (Featured)</div>",
+          "<div class=\"card\" id=\"card-3\">Card 3</div>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured card is colored", "selector": "#card-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Card 1 is untouched", "selector": "#card-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Card 3 is untouched", "selector": "#card-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "css-selectors",
+      "title": "Card vs. Cards",
+      "difficulty": 3,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>One of these three elements has the class <code>cards</code> instead of <code>card</code> — easy to misread.</p>",
+        "<p>Write a <strong>class selector</strong> that colors only the elements with class <code>card</code> (not <code>cards</code>).</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"card\" id=\"card-1\">Card 1</div>",
+          "<div class=\"cards\" id=\"card-2\">Card 2</div>",
+          "<div class=\"card\" id=\"card-3\">Card 3</div>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Card 1 is colored", "selector": "#card-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Card 3 is colored", "selector": "#card-3", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Card 2 (class \"cards\") is untouched", "selector": "#card-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "css-selectors",
+      "title": "Paragraphs Inside the Article",
+      "difficulty": 1,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p>An <code>&lt;article&gt;</code> and an <code>&lt;aside&gt;</code> each contain paragraphs.</p>",
+        "<p>Write a <strong>descendant selector</strong> that colors only the paragraphs inside <code>#article</code>, leaving the aside's paragraph untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<article id=\"article\">",
+          "  <p id=\"article-p1\">Article paragraph one.</p>",
+          "  <p id=\"article-p2\">Article paragraph two.</p>",
+          "</article>",
+          "<aside id=\"aside\">",
+          "  <p id=\"aside-p1\">Aside paragraph.</p>",
+          "</aside>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first article paragraph is colored", "selector": "#article-p1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second article paragraph is colored", "selector": "#article-p2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The aside paragraph is untouched", "selector": "#aside-p1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "css-selectors",
+      "title": "Three Levels Deep",
+      "difficulty": 2,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p>The target paragraph is nested three levels inside a <code>.content</code> section. A decoy paragraph sits outside that section entirely.</p>",
+        "<p>Write a <strong>descendant selector</strong> scoped to <code>.content</code> that colors the deeply nested paragraph. A descendant selector matches at any distance, not just one level down.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"outer-decoy\">",
+          "  <p id=\"decoy-p\">Outside paragraph.</p>",
+          "</div>",
+          "<section class=\"content\" id=\"content-section\">",
+          "  <div class=\"wrapper\">",
+          "    <div class=\"inner\">",
+          "      <p id=\"deep-p\">Deeply nested paragraph.</p>",
+          "    </div>",
+          "  </div>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The deeply nested paragraph is colored", "selector": "#deep-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The outside paragraph is untouched", "selector": "#decoy-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "css-selectors",
+      "title": "The Right Sidebar",
+      "difficulty": 3,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p><code>#sidebar</code> and <code>#footer-box</code> each contain a paragraph with the exact same tag.</p>",
+        "<p>Write a <strong>descendant selector</strong> that colors only the paragraph inside <code>#sidebar</code> — picking the right ancestor matters, not just the right tag.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"sidebar\">",
+          "  <p id=\"sidebar-p\">Sidebar paragraph.</p>",
+          "</div>",
+          "<div id=\"footer-box\">",
+          "  <p id=\"footer-p\">Footer paragraph.</p>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The sidebar paragraph is colored", "selector": "#sidebar-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The footer-box paragraph is untouched", "selector": "#footer-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "13",
+      "source_unit": "css-selectors",
+      "title": "Direct Children Only",
+      "difficulty": 1,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p><code>#menu</code> has three direct <code>&lt;li&gt;</code> children. One of them contains its own nested list with two more <code>&lt;li&gt;</code> grandchildren.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>#menu &gt; li</code>) that colors only the three direct children, leaving the nested grandchildren untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul id=\"menu\">",
+          "  <li id=\"item-1\">Item 1</li>",
+          "  <li id=\"item-2\">",
+          "    Item 2",
+          "    <ul>",
+          "      <li id=\"sub-item-1\">Sub Item 1</li>",
+          "      <li id=\"sub-item-2\">Sub Item 2</li>",
+          "    </ul>",
+          "  </li>",
+          "  <li id=\"item-3\">Item 3</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Item 1 is colored", "selector": "#item-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Item 2 is colored", "selector": "#item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Item 3 is colored", "selector": "#item-3", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Sub Item 1 is untouched", "selector": "#sub-item-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Sub Item 2 is untouched", "selector": "#sub-item-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "14",
+      "source_unit": "css-selectors",
+      "title": "The Right List",
+      "difficulty": 2,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p>Two separate lists sit side by side: <code>.menu</code> and <code>.list</code>, each with its own top-level <code>&lt;li&gt;</code> items.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>.menu &gt; li</code>) that colors only the items in <code>.menu</code>. The right ancestor still matters even with a child selector.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul class=\"menu\" id=\"menu\">",
+          "  <li id=\"menu-item-1\">Menu Item 1</li>",
+          "  <li id=\"menu-item-2\">Menu Item 2</li>",
+          "</ul>",
+          "<ul class=\"list\" id=\"list\">",
+          "  <li id=\"list-item-1\">List Item 1</li>",
+          "  <li id=\"list-item-2\">List Item 2</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Menu Item 1 is colored", "selector": "#menu-item-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Menu Item 2 is colored", "selector": "#menu-item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "List Item 1 is untouched", "selector": "#list-item-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "List Item 2 is untouched", "selector": "#list-item-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "15",
+      "source_unit": "css-selectors",
+      "title": "The Middle Tier",
+      "difficulty": 3,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p>This list is nested three levels deep. The \"immediate child\" relationship you need is at the <em>middle</em> tier: <code>#mid-list</code>'s direct <code>&lt;li&gt;</code> children, not the outer div or the inner grandchild list.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>#mid-list &gt; li</code>) that colors <code>#mid-item-1</code> and <code>#mid-item-2</code> only.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"outer\">",
+          "  <ul id=\"mid-list\">",
+          "    <li id=\"mid-item-1\">",
+          "      Mid Item 1",
+          "      <ul id=\"inner-list\">",
+          "        <li id=\"inner-item-1\">Inner Item 1</li>",
+          "      </ul>",
+          "    </li>",
+          "    <li id=\"mid-item-2\">Mid Item 2</li>",
+          "  </ul>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Mid Item 1 is colored", "selector": "#mid-item-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Mid Item 2 is colored", "selector": "#mid-item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Inner Item 1 is untouched", "selector": "#inner-item-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "16",
+      "source_unit": "css-selectors",
+      "title": "Right After the Heading",
+      "difficulty": 1,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>There are two <code>&lt;h2&gt;</code> headings. The first is followed by one paragraph; the second is followed by two paragraphs. A third paragraph stands alone with no heading before it.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>h2 + p</code>) that colors only the paragraph that comes <em>immediately</em> after an <code>&lt;h2&gt;</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<h2 id=\"heading-1\">Section One</h2>",
+          "<p id=\"p-after-h1\">First paragraph after heading one.</p>",
+          "<p id=\"p-standalone\">A standalone paragraph with no heading before it.</p>",
+          "<h2 id=\"heading-2\">Section Two</h2>",
+          "<p id=\"p-after-h2-first\">First paragraph after heading two.</p>",
+          "<p id=\"p-after-h2-second\">Second paragraph after heading two.</p>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph after heading one is colored", "selector": "#p-after-h1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The first paragraph after heading two is colored", "selector": "#p-after-h2-first", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The standalone paragraph is untouched", "selector": "#p-standalone", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The second paragraph after heading two is untouched", "selector": "#p-after-h2-second", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "17",
+      "source_unit": "css-selectors",
+      "title": "Caption After the Photo",
+      "difficulty": 2,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>One <code>&lt;figcaption&gt;</code> comes right after an <code>&lt;img&gt;</code>. Another <code>&lt;figcaption&gt;</code> comes after a paragraph instead.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>img + figcaption</code>) that colors only the caption immediately following an image.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<img id=\"photo-1\" src=\"#\" alt=\"Photo one\"/>",
+          "<figcaption id=\"caption-1\">Caption for photo one.</figcaption>",
+          "<p id=\"divider\">A divider paragraph.</p>",
+          "<figcaption id=\"orphan-caption\">A caption with no image right before it.</figcaption>",
+          "<img id=\"photo-2\" src=\"#\" alt=\"Photo two\"/>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The caption right after photo one is colored", "selector": "#caption-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The orphan caption is untouched", "selector": "#orphan-caption", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "18",
+      "source_unit": "css-selectors",
+      "title": "The Featured Heading",
+      "difficulty": 3,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>Both headings are <code>&lt;h2&gt;</code>, but only one has <code>class=\"section-title\"</code>. Each is followed by a paragraph.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>h2.section-title + p</code>) that colors only the paragraph after the <em>featured</em> heading — the plain <code>&lt;h2&gt;</code>'s paragraph should stay untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<h2 class=\"section-title\" id=\"title-1\">Featured Section</h2>",
+          "<p id=\"p-after-title\">Paragraph right after the featured heading.</p>",
+          "<h2 id=\"title-2\">Plain Section</h2>",
+          "<p id=\"p-after-plain\">Paragraph right after the plain heading.</p>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph after the featured heading is colored", "selector": "#p-after-title", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The paragraph after the plain heading is untouched", "selector": "#p-after-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "19",
+      "source_unit": "css-selectors",
+      "title": "Everything Inside the Box",
+      "difficulty": 1,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p><code>.box</code> contains a paragraph, a span, and a strong element. A sibling <code>.box2</code> contains its own paragraph and span.</p>",
+        "<p>Write a <strong>universal selector</strong> scoped to the box (<code>.box *</code>) that colors every element inside <code>.box</code>, regardless of tag. <code>.box</code> itself and everything in <code>.box2</code> should stay untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"box\" id=\"box\">",
+          "  <p id=\"box-p\">Paragraph in box.</p>",
+          "  <span id=\"box-span\">Span in box.</span>",
+          "  <strong id=\"box-strong\">Strong in box.</strong>",
+          "</div>",
+          "<div class=\"box2\" id=\"box2\">",
+          "  <p id=\"box2-p\">Paragraph in box2.</p>",
+          "  <span id=\"box2-span\">Span in box2.</span>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your universal selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph in box is colored", "selector": "#box-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The span in box is colored", "selector": "#box-span", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The strong in box is colored", "selector": "#box-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The box itself is untouched", "selector": "#box", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The paragraph in box2 is untouched", "selector": "#box2-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The span in box2 is untouched", "selector": "#box2-span", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "20",
+      "source_unit": "css-selectors",
+      "title": "The Box Inside the Container",
+      "difficulty": 2,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p>A <code>.box</code> lives inside a <code>.container</code>. A second, decoy <code>.box</code> sits outside the container entirely.</p>",
+        "<p>Write a <strong>universal selector</strong> chained after a descendant path (<code>.container .box *</code>) that colors everything inside the box that's inside the container — the outside box's paragraph should stay untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"container\" id=\"container\">",
+          "  <div class=\"box\" id=\"inner-box\">",
+          "    <p id=\"inner-box-p\">Paragraph in nested box.</p>",
+          "    <span id=\"inner-box-span\">Span in nested box.</span>",
+          "  </div>",
+          "</div>",
+          "<div class=\"box\" id=\"outside-box\">",
+          "  <p id=\"outside-box-p\">Paragraph in outside box.</p>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your universal selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph in the nested box is colored", "selector": "#inner-box-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The span in the nested box is colored", "selector": "#inner-box-span", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The outside box's paragraph is untouched", "selector": "#outside-box-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "21",
+      "source_unit": "css-selectors",
+      "title": "Direct Children of the Box",
+      "difficulty": 3,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p><code>.box</code> has a direct paragraph child and a direct div child. That div itself contains a nested span.</p>",
+        "<p>Write a <strong>universal child selector</strong> (<code>.box &gt; *</code>) that colors only the <em>direct</em> children of <code>.box</code> — the nested span inside the div should stay untouched, since <code>*</code> still respects the <code>&gt;</code> combinator around it.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"box\" id=\"box\">",
+          "  <p id=\"direct-p\">Direct paragraph child.</p>",
+          "  <div id=\"direct-div\">",
+          "    Direct div child containing",
+          "    <span id=\"nested-span\">a nested span that should stay untouched</span>.",
+          "  </div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your universal child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The direct paragraph child is colored", "selector": "#direct-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The direct div child is colored", "selector": "#direct-div", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nested span is untouched", "selector": "#nested-span", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "22",
+      "source_unit": "css-selectors",
+      "title": "Cards in the Sidebar",
+      "difficulty": 1,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p><code>.card</code> elements exist inside both <code>#main</code> and <code>#sidebar</code>.</p>",
+        "<p>Write a combined <strong>ID + descendant + class selector</strong> (<code>#sidebar .card</code>) that colors only the cards inside the sidebar.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"main\">",
+          "  <div class=\"card\" id=\"main-card-1\">Main Card 1</div>",
+          "  <div class=\"card\" id=\"main-card-2\">Main Card 2</div>",
+          "</div>",
+          "<div id=\"sidebar\">",
+          "  <div class=\"card\" id=\"sidebar-card-1\">Sidebar Card 1</div>",
+          "  <div class=\"card\" id=\"sidebar-card-2\">Sidebar Card 2</div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Sidebar card 1 is colored", "selector": "#sidebar-card-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Sidebar card 2 is colored", "selector": "#sidebar-card-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Main card 1 is untouched", "selector": "#main-card-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Main card 2 is untouched", "selector": "#main-card-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "23",
+      "source_unit": "css-selectors",
+      "title": "The Active Nav Item",
+      "difficulty": 2,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p>A <code>.nav</code> list has an item with class <code>active</code>. A separate <code>.list</code> also has an item with class <code>active</code>.</p>",
+        "<p>Write a combined <strong>descendant + compound selector</strong> (<code>.nav li.active</code>) that colors only the active item inside <code>.nav</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul class=\"nav\" id=\"nav-list\">",
+          "  <li id=\"nav-item-1\">Home</li>",
+          "  <li class=\"active\" id=\"nav-item-2\">About</li>",
+          "</ul>",
+          "<ul class=\"list\" id=\"other-list\">",
+          "  <li class=\"active\" id=\"other-item\">Other Active Item</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The active nav item is colored", "selector": "#nav-item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The non-active nav item is untouched", "selector": "#nav-item-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The other list's active item is untouched", "selector": "#other-item", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "24",
+      "source_unit": "css-selectors",
+      "title": "Featured, and in the Sidebar",
+      "difficulty": 3,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p><code>#main</code> and <code>#sidebar</code> each contain a featured card and a plain card.</p>",
+        "<p>Write a three-part combined selector (<code>#sidebar .card.featured</code>) that colors only the card that is both <em>featured</em> and inside the <em>sidebar</em>. Every other card — plain or in the wrong section — should stay untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"main\">",
+          "  <div class=\"card featured\" id=\"main-featured-card\">Main Featured Card</div>",
+          "  <div class=\"card\" id=\"main-plain-card\">Main Plain Card</div>",
+          "</div>",
+          "<div id=\"sidebar\">",
+          "  <div class=\"card featured\" id=\"sidebar-featured-card\">Sidebar Featured Card</div>",
+          "  <div class=\"card\" id=\"sidebar-plain-card\">Sidebar Plain Card</div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The sidebar's featured card is colored", "selector": "#sidebar-featured-card", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The main section's featured card is untouched", "selector": "#main-featured-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The main section's plain card is untouched", "selector": "#main-plain-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The sidebar's plain card is untouched", "selector": "#sidebar-plain-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    }
+  ]
+}

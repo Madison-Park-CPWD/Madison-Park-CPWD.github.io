@@ -1,0 +1,760 @@
+{
+  "id": "css-selectors-recipes",
+  "title": "CSS Selectors: Recipe Box",
+  "reflection_prompt": "Which of these felt easier the second time around, compared to the first CSS Selectors unit?",
+  "exercises": [
+    {
+      "id": "01",
+      "source_unit": "css-selectors-recipes",
+      "title": "Color Every Paragraph",
+      "difficulty": 1,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>A recipe box page has a header, a nav, two paragraphs, and a footer.</p>",
+        "<p>In the <strong>CSS</strong> panel, write a <strong>tag selector</strong> that gives every <code>&lt;p&gt;</code> element a <code>background-color</code> of <code>#ffe600</code>. Nothing else on the page should change.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<header id=\"site-header\">Grandma's Recipe Box</header>",
+          "<nav id=\"site-nav\">Breakfast | Lunch | Dinner</nav>",
+          "<p id=\"para-1\">Welcome to my favorite recipes.</p>",
+          "<p id=\"para-2\">Updated every week with something new.</p>",
+          "<footer id=\"site-footer\">Recipe Box Footer</footer>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first paragraph is colored", "selector": "#para-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second paragraph is colored", "selector": "#para-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The header is untouched", "selector": "#site-header", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The nav is untouched", "selector": "#site-nav", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The footer is untouched", "selector": "#site-footer", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "02",
+      "source_unit": "css-selectors-recipes",
+      "title": "Strong, Not Emphasis",
+      "difficulty": 2,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>Two recipe notes below each contain an <code>&lt;em&gt;</code> and a <code>&lt;strong&gt;</code> element.</p>",
+        "<p>Write a <strong>tag selector</strong> that gives every <code>&lt;strong&gt;</code> element (and only <code>&lt;strong&gt;</code>) a <code>background-color</code> of <code>#ffe600</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p>The instructions say <em id=\"note-em\">simmer slowly</em> and <strong id=\"note-strong\">do not boil</strong>.</p>",
+          "<p>The warning says <em id=\"warn-em\">let it cool first</em> and <strong id=\"warn-strong\">use oven mitts</strong>.</p>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first strong is colored", "selector": "#note-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second strong is colored", "selector": "#warn-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The first em is untouched", "selector": "#note-em", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The second em is untouched", "selector": "#warn-em", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "03",
+      "source_unit": "css-selectors-recipes",
+      "title": "Spans at Every Depth",
+      "difficulty": 3,
+      "sidebar_tag": "Tag Selector",
+      "description": [
+        "<p>A <code>&lt;span&gt;</code> shows up at three different depths: inside a paragraph, inside a nav link, and inside a footer credit.</p>",
+        "<p>Write a <strong>tag selector</strong> that colors every <code>&lt;span&gt;</code> a <code>background-color</code> of <code>#ffe600</code>, no matter how deep it's nested.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p>This recipe serves <span id=\"span-para\">four people</span>.</p>",
+          "<nav>",
+          "  <a href=\"#\">Recipes</a>",
+          "  <a href=\"#\">About <span id=\"span-nav\">(updated)</span></a>",
+          "</nav>",
+          "<footer>",
+          "  <p>Recipe by <span id=\"span-footer\">Chef Ana</span></p>",
+          "</footer>",
+          "<div id=\"plain-div\">No span here.</div>"
+        ],
+        "css": [
+          "/* Write your tag selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph span is colored", "selector": "#span-para", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nav span is colored", "selector": "#span-nav", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The footer span is colored", "selector": "#span-footer", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The plain div is untouched", "selector": "#plain-div", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "04",
+      "source_unit": "css-selectors-recipes",
+      "title": "Feature One Recipe",
+      "difficulty": 1,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>Three recipes sit side by side. Only one has <code>id=\"featured\"</code>.</p>",
+        "<p>Write an <strong>ID selector</strong> that gives just that recipe a <code>background-color</code> of <code>#ffe600</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"recipe-a\">Pancakes</div>",
+          "<div id=\"featured\">Featured Recipe: Lasagna</div>",
+          "<div id=\"recipe-b\">Salad</div>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured recipe is colored", "selector": "#featured", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Recipe A is untouched", "selector": "#recipe-a", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Recipe B is untouched", "selector": "#recipe-b", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "05",
+      "source_unit": "css-selectors-recipes",
+      "title": "Find the Featured Recipe",
+      "difficulty": 2,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>The featured recipe (<code>id=\"featured-recipe\"</code>) is nested a couple of levels deep inside a category, alongside structurally identical cousin recipes.</p>",
+        "<p>Write an <strong>ID selector</strong> that colors only <code>#featured-recipe</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<section id=\"category-1\">",
+          "  <div class=\"group\">",
+          "    <div id=\"recipe-1\">Soup</div>",
+          "    <div id=\"recipe-2\">Bread</div>",
+          "  </div>",
+          "</section>",
+          "<section id=\"category-2\">",
+          "  <div class=\"group\">",
+          "    <div id=\"recipe-3\">Stew</div>",
+          "    <div id=\"featured-recipe\">Featured Recipe: Pie</div>",
+          "  </div>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured recipe is colored", "selector": "#featured-recipe", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Recipe 1 is untouched", "selector": "#recipe-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Recipe 2 is untouched", "selector": "#recipe-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Recipe 3 is untouched", "selector": "#recipe-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "06",
+      "source_unit": "css-selectors-recipes",
+      "title": "Exactly One Recipe",
+      "difficulty": 3,
+      "sidebar_tag": "ID Selector",
+      "description": [
+        "<p>Three recipes have very similar ids: <code>recipe-1</code>, <code>recipe-2</code>, and <code>recipe-3</code>.</p>",
+        "<p>Write an <strong>ID selector</strong> that colors <code>#recipe-2</code> only. Double-check the exact id.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"recipe-1\">Soup</div>",
+          "<div id=\"recipe-2\">Bread</div>",
+          "<div id=\"recipe-3\">Stew</div>"
+        ],
+        "css": [
+          "/* Write your ID selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Recipe 2 is colored", "selector": "#recipe-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Recipe 1 is untouched", "selector": "#recipe-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Recipe 3 is untouched", "selector": "#recipe-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "07",
+      "source_unit": "css-selectors-recipes",
+      "title": "One Class, Three Tags",
+      "difficulty": 1,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>Three elements of three different tags all share the class <code>highlight</code>: a paragraph, a list item, and a span.</p>",
+        "<p>Write a single <strong>class selector</strong> that colors all three at once, regardless of their tag or position.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<p class=\"highlight\" id=\"p-highlight\">Chef's favorite tip.</p>",
+          "<ul>",
+          "  <li id=\"li-plain\">Regular step</li>",
+          "  <li class=\"highlight\" id=\"li-highlight\">Important step</li>",
+          "</ul>",
+          "<footer>",
+          "  <span class=\"highlight\" id=\"span-highlight\">Best served warm</span>",
+          "</footer>",
+          "<p id=\"p-plain\">Another regular paragraph.</p>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The highlighted paragraph is colored", "selector": "#p-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The highlighted list item is colored", "selector": "#li-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The highlighted span is colored", "selector": "#span-highlight", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The plain list item is untouched", "selector": "#li-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The plain paragraph is untouched", "selector": "#p-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "08",
+      "source_unit": "css-selectors-recipes",
+      "title": "Pick the Featured Recipe",
+      "difficulty": 2,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>Three recipes all share the class <code>recipe</code>. One of them also has a second class, <code>featured</code>.</p>",
+        "<p>Write a <strong>class selector</strong> that colors only the featured recipe — target the <code>featured</code> class.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"recipe\" id=\"recipe-1\">Tacos</div>",
+          "<div class=\"recipe featured\" id=\"recipe-2\">Tacos Supreme (Featured)</div>",
+          "<div class=\"recipe\" id=\"recipe-3\">Burritos</div>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The featured recipe is colored", "selector": "#recipe-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Recipe 1 is untouched", "selector": "#recipe-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Recipe 3 is untouched", "selector": "#recipe-3", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "09",
+      "source_unit": "css-selectors-recipes",
+      "title": "Recipe vs. Recipes",
+      "difficulty": 3,
+      "sidebar_tag": "Class Selector",
+      "description": [
+        "<p>One of these three elements has the class <code>recipes</code> instead of <code>recipe</code> — easy to misread.</p>",
+        "<p>Write a <strong>class selector</strong> that colors only the elements with class <code>recipe</code> (not <code>recipes</code>).</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"recipe\" id=\"recipe-1\">Tacos</div>",
+          "<div class=\"recipes\" id=\"recipe-2\">Nachos</div>",
+          "<div class=\"recipe\" id=\"recipe-3\">Burritos</div>"
+        ],
+        "css": [
+          "/* Write your class selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Recipe 1 is colored", "selector": "#recipe-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Recipe 3 is colored", "selector": "#recipe-3", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Recipe 2 (class \"recipes\") is untouched", "selector": "#recipe-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "10",
+      "source_unit": "css-selectors-recipes",
+      "title": "Steps Inside the Article",
+      "difficulty": 1,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p>An <code>&lt;article&gt;</code> of cooking steps and an <code>&lt;aside&gt;</code> of related recipes each contain paragraphs.</p>",
+        "<p>Write a <strong>descendant selector</strong> that colors only the paragraphs inside <code>#article</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<article id=\"article\">",
+          "  <p id=\"article-p1\">Step one: chop vegetables.</p>",
+          "  <p id=\"article-p2\">Step two: saute until soft.</p>",
+          "</article>",
+          "<aside id=\"aside\">",
+          "  <p id=\"aside-p1\">You might also like our soup recipe.</p>",
+          "</aside>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The first step is colored", "selector": "#article-p1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The second step is colored", "selector": "#article-p2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The aside paragraph is untouched", "selector": "#aside-p1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "11",
+      "source_unit": "css-selectors-recipes",
+      "title": "Three Levels Deep",
+      "difficulty": 2,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p>The target step is nested three levels inside a <code>.content</code> section. A decoy tip sits outside that section entirely.</p>",
+        "<p>Write a <strong>descendant selector</strong> scoped to <code>.content</code> that colors the deeply nested step.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"outer-decoy\">",
+          "  <p id=\"decoy-p\">A general cooking tip.</p>",
+          "</div>",
+          "<section class=\"content\" id=\"content-section\">",
+          "  <div class=\"wrapper\">",
+          "    <div class=\"inner\">",
+          "      <p id=\"deep-p\">Deeply nested cooking step.</p>",
+          "    </div>",
+          "  </div>",
+          "</section>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The deeply nested step is colored", "selector": "#deep-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The general tip is untouched", "selector": "#decoy-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "12",
+      "source_unit": "css-selectors-recipes",
+      "title": "The Right Sidebar",
+      "difficulty": 3,
+      "sidebar_tag": "Descendant Selector",
+      "description": [
+        "<p><code>#sidebar</code> and <code>#footer-box</code> each contain a tip paragraph with the exact same tag.</p>",
+        "<p>Write a <strong>descendant selector</strong> that colors only the tip inside <code>#sidebar</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"sidebar\">",
+          "  <p id=\"sidebar-p\">Sidebar recipe tip.</p>",
+          "</div>",
+          "<div id=\"footer-box\">",
+          "  <p id=\"footer-p\">Footer recipe tip.</p>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your descendant selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The sidebar tip is colored", "selector": "#sidebar-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The footer-box tip is untouched", "selector": "#footer-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "13",
+      "source_unit": "css-selectors-recipes",
+      "title": "Direct Ingredients Only",
+      "difficulty": 1,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p><code>#ingredients-list</code> has three direct ingredient items. One of them lists substitute ingredients in its own nested list.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>#ingredients-list &gt; li</code>) that colors only the three direct ingredients, leaving the substitutes untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul id=\"ingredients-list\">",
+          "  <li id=\"ingredient-flour\">2 cups flour</li>",
+          "  <li id=\"ingredient-sugar\">",
+          "    1 cup sugar",
+          "    <ul>",
+          "      <li id=\"substitute-honey\">or honey</li>",
+          "      <li id=\"substitute-syrup\">or maple syrup</li>",
+          "    </ul>",
+          "  </li>",
+          "  <li id=\"ingredient-salt\">1 tsp salt</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Flour is colored", "selector": "#ingredient-flour", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Sugar is colored", "selector": "#ingredient-sugar", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Salt is colored", "selector": "#ingredient-salt", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The honey substitute is untouched", "selector": "#substitute-honey", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The maple syrup substitute is untouched", "selector": "#substitute-syrup", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "14",
+      "source_unit": "css-selectors-recipes",
+      "title": "Ingredients, Not Equipment",
+      "difficulty": 2,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p>Two separate lists sit side by side: <code>.ingredients</code> and <code>.equipment</code>.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>.ingredients &gt; li</code>) that colors only the ingredient items, leaving the equipment list untouched.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul class=\"ingredients\" id=\"ingredients\">",
+          "  <li id=\"flour-item\">Flour</li>",
+          "  <li id=\"sugar-item\">Sugar</li>",
+          "</ul>",
+          "<ul class=\"equipment\" id=\"equipment\">",
+          "  <li id=\"bowl-item\">Mixing Bowl</li>",
+          "  <li id=\"whisk-item\">Whisk</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Flour is colored", "selector": "#flour-item", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Sugar is colored", "selector": "#sugar-item", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The mixing bowl is untouched", "selector": "#bowl-item", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The whisk is untouched", "selector": "#whisk-item", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "15",
+      "source_unit": "css-selectors-recipes",
+      "title": "The Middle Tier",
+      "difficulty": 3,
+      "sidebar_tag": "Child Selector",
+      "description": [
+        "<p>This instructions list is nested three levels deep. The \"immediate child\" relationship you need is at the <em>middle</em> tier: <code>#instructions-list</code>'s direct steps, not the outer div or the inner detail list.</p>",
+        "<p>Write a <strong>child selector</strong> (<code>#instructions-list &gt; li</code>) that colors the two main steps only.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"outer\">",
+          "  <ul id=\"instructions-list\">",
+          "    <li id=\"instruction-step-1\">",
+          "      Preheat the oven",
+          "      <ul id=\"step-1-details\">",
+          "        <li id=\"detail-preheat\">Set to 350°F</li>",
+          "      </ul>",
+          "    </li>",
+          "    <li id=\"instruction-step-2\">Prepare the pan</li>",
+          "  </ul>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Step 1 is colored", "selector": "#instruction-step-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Step 2 is colored", "selector": "#instruction-step-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The preheat detail is untouched", "selector": "#detail-preheat", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "16",
+      "source_unit": "css-selectors-recipes",
+      "title": "Right After the Heading",
+      "difficulty": 1,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>There are two section headings, \"Ingredients\" and \"Instructions.\" The first is followed by one paragraph; the second is followed by two. A third paragraph stands alone with no heading before it.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>h2 + p</code>) that colors only the paragraph immediately after an <code>&lt;h2&gt;</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<h2 id=\"heading-1\">Ingredients</h2>",
+          "<p id=\"p-after-h1\">Gather everything before you start.</p>",
+          "<p id=\"p-standalone\">A general kitchen safety reminder.</p>",
+          "<h2 id=\"heading-2\">Instructions</h2>",
+          "<p id=\"p-after-h2-first\">Preheat the oven first.</p>",
+          "<p id=\"p-after-h2-second\">Then prepare the pan.</p>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph after Ingredients is colored", "selector": "#p-after-h1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The first paragraph after Instructions is colored", "selector": "#p-after-h2-first", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The standalone paragraph is untouched", "selector": "#p-standalone", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The second paragraph after Instructions is untouched", "selector": "#p-after-h2-second", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "17",
+      "source_unit": "css-selectors-recipes",
+      "title": "Caption After the Photo",
+      "difficulty": 2,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>One <code>&lt;figcaption&gt;</code> comes right after an <code>&lt;img&gt;</code> of the finished dish. Another comes after a paragraph instead.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>img + figcaption</code>) that colors only the caption immediately following an image.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<img id=\"photo-1\" src=\"#\" alt=\"Finished dish\"/>",
+          "<figcaption id=\"caption-1\">The finished dish, ready to serve.</figcaption>",
+          "<p id=\"divider\">A short serving suggestion.</p>",
+          "<figcaption id=\"orphan-caption\">A caption with no image right before it.</figcaption>",
+          "<img id=\"photo-2\" src=\"#\" alt=\"Ingredients laid out\"/>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The caption right after the finished dish photo is colored", "selector": "#caption-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The orphan caption is untouched", "selector": "#orphan-caption", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "18",
+      "source_unit": "css-selectors-recipes",
+      "title": "The Chef's Special",
+      "difficulty": 3,
+      "sidebar_tag": "Sibling Selector",
+      "description": [
+        "<p>Both headings are <code>&lt;h2&gt;</code>, but only one has <code>class=\"section-title\"</code>. Each is followed by a paragraph.</p>",
+        "<p>Write an <strong>adjacent sibling selector</strong> (<code>h2.section-title + p</code>) that colors only the paragraph after the special heading.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<h2 class=\"section-title\" id=\"title-1\">Chef's Special</h2>",
+          "<p id=\"p-after-title\">A paragraph right after the special heading.</p>",
+          "<h2 id=\"title-2\">Everyday Dinner</h2>",
+          "<p id=\"p-after-plain\">A paragraph right after the plain heading.</p>"
+        ],
+        "css": [
+          "/* Write your adjacent sibling selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph after the special heading is colored", "selector": "#p-after-title", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The paragraph after the plain heading is untouched", "selector": "#p-after-plain", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "19",
+      "source_unit": "css-selectors-recipes",
+      "title": "Everything Inside the Box",
+      "difficulty": 1,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p>A recipe info <code>.box</code> contains a paragraph, a span, and a strong element. A sibling <code>.box2</code> contains its own paragraph and span.</p>",
+        "<p>Write a <strong>universal selector</strong> scoped to the box (<code>.box *</code>) that colors every element inside <code>.box</code>, regardless of tag.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"box\" id=\"box\">",
+          "  <p id=\"box-p\">Prep time: 10 minutes.</p>",
+          "  <span id=\"box-span\">Serves 4.</span>",
+          "  <strong id=\"box-strong\">Easy difficulty.</strong>",
+          "</div>",
+          "<div class=\"box2\" id=\"box2\">",
+          "  <p id=\"box2-p\">Prep time: 30 minutes.</p>",
+          "  <span id=\"box2-span\">Serves 6.</span>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your universal selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The paragraph in box is colored", "selector": "#box-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The span in box is colored", "selector": "#box-span", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The strong in box is colored", "selector": "#box-strong", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The box itself is untouched", "selector": "#box", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The paragraph in box2 is untouched", "selector": "#box2-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The span in box2 is untouched", "selector": "#box2-span", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "20",
+      "source_unit": "css-selectors-recipes",
+      "title": "The Box Inside the Container",
+      "difficulty": 2,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p>A <code>.box</code> of today's featured recipe lives inside a <code>.container</code>. A second, decoy <code>.box</code> for an older recipe sits outside the container entirely.</p>",
+        "<p>Write a <strong>universal selector</strong> chained after a descendant path (<code>.container .box *</code>) that colors everything inside the box that's inside the container.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"container\" id=\"container\">",
+          "  <div class=\"box\" id=\"inner-box\">",
+          "    <p id=\"inner-box-p\">Today's featured recipe details.</p>",
+          "    <span id=\"inner-box-span\">30 minutes.</span>",
+          "  </div>",
+          "</div>",
+          "<div class=\"box\" id=\"outside-box\">",
+          "  <p id=\"outside-box-p\">An older recipe's details.</p>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your universal selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The nested box's paragraph is colored", "selector": "#inner-box-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nested box's span is colored", "selector": "#inner-box-span", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The outside box's paragraph is untouched", "selector": "#outside-box-p", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "21",
+      "source_unit": "css-selectors-recipes",
+      "title": "Direct Children of the Box",
+      "difficulty": 3,
+      "sidebar_tag": "Universal Selector",
+      "description": [
+        "<p>A recipe info <code>.box</code> has a direct paragraph child and a direct div child. That div itself contains a nested span.</p>",
+        "<p>Write a <strong>universal child selector</strong> (<code>.box &gt; *</code>) that colors only the <em>direct</em> children of <code>.box</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div class=\"box\" id=\"box\">",
+          "  <p id=\"direct-p\">Direct recipe note.</p>",
+          "  <div id=\"direct-div\">",
+          "    Serving suggestion:",
+          "    <span id=\"nested-span\">a nested note that should stay untouched</span>.",
+          "  </div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your universal child selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The direct paragraph child is colored", "selector": "#direct-p", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The direct div child is colored", "selector": "#direct-div", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The nested span is untouched", "selector": "#nested-span", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "22",
+      "source_unit": "css-selectors-recipes",
+      "title": "Recipes in the Sidebar",
+      "difficulty": 1,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p><code>.card</code> recipe cards exist inside both <code>#main</code> and <code>#sidebar</code>.</p>",
+        "<p>Write a combined <strong>ID + descendant + class selector</strong> (<code>#sidebar .card</code>) that colors only the cards inside the sidebar.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"main\">",
+          "  <div class=\"card\" id=\"main-card-1\">Main Recipe 1</div>",
+          "  <div class=\"card\" id=\"main-card-2\">Main Recipe 2</div>",
+          "</div>",
+          "<div id=\"sidebar\">",
+          "  <div class=\"card\" id=\"sidebar-card-1\">Sidebar Recipe 1</div>",
+          "  <div class=\"card\" id=\"sidebar-card-2\">Sidebar Recipe 2</div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "Sidebar recipe 1 is colored", "selector": "#sidebar-card-1", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Sidebar recipe 2 is colored", "selector": "#sidebar-card-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "Main recipe 1 is untouched", "selector": "#main-card-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "Main recipe 2 is untouched", "selector": "#main-card-2", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "23",
+      "source_unit": "css-selectors-recipes",
+      "title": "The Active Category Tab",
+      "difficulty": 2,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p>A <code>.nav</code> of recipe categories has a tab with class <code>active</code>. A separate, unrelated <code>.list</code> also has an item with class <code>active</code>.</p>",
+        "<p>Write a combined <strong>descendant + compound selector</strong> (<code>.nav li.active</code>) that colors only the active tab inside <code>.nav</code>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<ul class=\"nav\" id=\"nav-list\">",
+          "  <li id=\"nav-item-1\">Breakfast</li>",
+          "  <li class=\"active\" id=\"nav-item-2\">Lunch</li>",
+          "</ul>",
+          "<ul class=\"list\" id=\"other-list\">",
+          "  <li class=\"active\" id=\"other-item\">Dinner (unrelated list)</li>",
+          "</ul>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The active tab is colored", "selector": "#nav-item-2", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The non-active tab is untouched", "selector": "#nav-item-1", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The other list's active item is untouched", "selector": "#other-item", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    },
+    {
+      "id": "24",
+      "source_unit": "css-selectors-recipes",
+      "title": "Featured, and in the Sidebar",
+      "difficulty": 3,
+      "sidebar_tag": "Combining Selectors",
+      "description": [
+        "<p><code>#main</code> and <code>#sidebar</code> each contain a featured recipe card and a plain one.</p>",
+        "<p>Write a three-part combined selector (<code>#sidebar .card.featured</code>) that colors only the card that is both <em>featured</em> and inside the <em>sidebar</em>.</p>"
+      ],
+      "starter": {
+        "html": [
+          "<div id=\"main\">",
+          "  <div class=\"card featured\" id=\"main-featured-card\">Main Featured Recipe</div>",
+          "  <div class=\"card\" id=\"main-plain-card\">Main Plain Recipe</div>",
+          "</div>",
+          "<div id=\"sidebar\">",
+          "  <div class=\"card featured\" id=\"sidebar-featured-card\">Sidebar Featured Recipe</div>",
+          "  <div class=\"card\" id=\"sidebar-plain-card\">Sidebar Plain Recipe</div>",
+          "</div>"
+        ],
+        "css": [
+          "/* Write your combined selector rule here */"
+        ],
+        "js": []
+      },
+      "tests": [
+        { "description": "The sidebar's featured recipe is colored", "selector": "#sidebar-featured-card", "check": "style", "property": "background-color", "expected": "rgb(255, 230, 0)" },
+        { "description": "The main section's featured recipe is untouched", "selector": "#main-featured-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The main section's plain recipe is untouched", "selector": "#main-plain-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" },
+        { "description": "The sidebar's plain recipe is untouched", "selector": "#sidebar-plain-card", "check": "style", "property": "background-color", "expected": "rgba(0, 0, 0, 0)" }
+      ]
+    }
+  ]
+}
