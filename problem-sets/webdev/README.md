@@ -71,7 +71,7 @@ student's own tab for a script to reach.
          "id": "01",
          "source_unit": "your-unit-id",
          "title": "Exercise Title",
-         "sidebar_tag": "short tag shown in sidebar",
+         "sidebar_tag": "short concept label, not currently displayed (would spoil the answer in a sidebar list students can see ahead of time)",
          "description": ["<p>One line of HTML per array entry.</p>"],
          "starter": {
            "html": ["<!-- starter HTML -->"],

@@ -127,13 +127,6 @@ body {
   min-width: 1.4rem;
 }
 
-.sidebar-item .op {
-  margin-left: auto;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-faint);
-}
-
 .sidebar-item:hover { background: var(--bg-panel-raised); color: var(--text-primary); }
 
 .sidebar-item.active {

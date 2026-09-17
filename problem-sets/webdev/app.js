@@ -254,7 +254,6 @@ function renderSidebar() {
     btn.innerHTML = `
       <span class="idx">${solved.has(ex.id) ? "✓" : ex.id}</span>
       <span class="title">${ex.title}</span>
-      <span class="op">${ex.sidebar_tag}</span>
     `;
     btn.addEventListener("click", () => selectExercise(i));
     sidebarEl.appendChild(btn);
