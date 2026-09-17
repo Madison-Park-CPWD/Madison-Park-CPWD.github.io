@@ -265,9 +265,9 @@ function selectExercise(i) {
   currentIndex = i;
   const ex = currentExercises()[i];
   problemPanelEl.innerHTML = `<h2>${ex.id}. ${ex.title}</h2>${ex.description.join("\n")}`;
-  htmlEditorEl.value = loadDraft(ex.id, "html") || ex.starter.html.join("\n");
-  cssEditorEl.value = loadDraft(ex.id, "css") || ex.starter.css.join("\n");
-  jsEditorEl.value = loadDraft(ex.id, "js") || ex.starter.js.join("\n");
+  htmlEditorEl.value = loadDraft(ex.id, "html") ?? ex.starter.html.join("\n");
+  cssEditorEl.value = loadDraft(ex.id, "css") ?? ex.starter.css.join("\n");
+  jsEditorEl.value = loadDraft(ex.id, "js") ?? ex.starter.js.join("\n");
   consoleEl.innerHTML = `<div class="placeholder">Click "Run Tests" to check your solution against ${ex.tests.length} test case${ex.tests.length === 1 ? "" : "s"}.</div>`;
   renderSidebar();
   updatePreview();

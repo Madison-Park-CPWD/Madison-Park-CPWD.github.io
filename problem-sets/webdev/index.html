@@ -67,8 +67,13 @@
   <!-- Hidden — used only to run assertions against a fresh, isolated render
        per test case. Never shown; the visible preview above is a separate
        iframe so a student's own clicking around in it never affects a
-       test result. -->
-  <iframe id="test-frame" style="display:none" sandbox="allow-scripts allow-same-origin" title="Test runner (hidden)"></iframe>
+       test result. Positioned off-screen rather than display:none: Firefox
+       doesn't build a style/frame tree for a display:none iframe's
+       subdocument, so getComputedStyle() on elements inside it returns
+       initial values there regardless of what CSS the student wrote,
+       failing every "is colored" test. Staying in the render tree (just
+       off-screen) keeps computed styles correct in every browser. -->
+  <iframe id="test-frame" style="position:absolute; width:1px; height:1px; overflow:hidden; left:-9999px; top:-9999px;" sandbox="allow-scripts allow-same-origin" title="Test runner (hidden)" aria-hidden="true"></iframe>
 
   <div class="reflection-overlay" id="reflection-overlay">
     <div class="reflection-modal">

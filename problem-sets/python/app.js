@@ -271,7 +271,7 @@ function selectExercise(i) {
   currentIndex = i;
   const ex = currentExercises()[i];
   problemPanelEl.innerHTML = `<h2>${ex.id}. ${ex.title}</h2>${ex.description.join("\n")}`;
-  editorEl.value = loadDraft(ex.id) || ex.starter.join("\n");
+  editorEl.value = loadDraft(ex.id) ?? ex.starter.join("\n");
 
   // "Run Code" (raw-output preview) is only offered until the student's
   // first "Run Tests" click on this exercise — after that, grading has
