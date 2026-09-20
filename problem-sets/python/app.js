@@ -1,3 +1,30 @@
+// --- Debug logging. Everything is prefixed "[PyPractice]" so it can be filtered
+// in the console. Open the console (Cmd+Opt+J Chrome, Cmd+Opt+K Firefox,
+// Cmd+Opt+C Safari after enabling the Develop menu) and filter on that tag. ---
+const T0 = performance.now();
+function dlog(...args) {
+  console.log(`[PyPractice +${Math.round(performance.now() - T0)}ms]`, ...args);
+}
+function derr(...args) {
+  console.error(`[PyPractice +${Math.round(performance.now() - T0)}ms]`, ...args);
+}
+
+dlog("app.js loaded", {
+  userAgent: navigator.userAgent,
+  url: location.href,
+  readyState: document.readyState,
+  loadPyodideDefined: typeof loadPyodide,
+  crossOriginIsolated: window.crossOriginIsolated,
+  online: navigator.onLine,
+});
+
+window.addEventListener("error", (e) => {
+  derr("window error:", e.message, `${e.filename}:${e.lineno}:${e.colno}`, e.error);
+});
+window.addEventListener("unhandledrejection", (e) => {
+  derr("unhandled promise rejection:", e.reason, e.reason && e.reason.stack);
+});
+
 let pyodide = null;
 let currentUnitIndex = 0;
 let currentIndex = 0;
@@ -302,14 +329,31 @@ resetBtn.addEventListener("click", () => {
   }
 });
 
+function buttonState() {
+  return {
+    runCode: { disabled: runCodeBtn.disabled, text: runCodeBtn.textContent, display: runCodeBtn.style.display },
+    runTests: { disabled: runBtn.disabled, text: runBtn.textContent },
+    stdinBox: { display: stdinBoxEl.style.display, length: stdinBoxEl.value.length },
+  };
+}
+
 async function initPyodide() {
   statusText.textContent = "Loading Python…";
   statusDot.className = "status-dot loading";
-  pyodide = await loadPyodide();
+  dlog("initPyodide: starting. typeof loadPyodide =", typeof loadPyodide);
+  const t = performance.now();
+  try {
+    pyodide = await loadPyodide();
+  } catch (err) {
+    derr("initPyodide: loadPyodide() FAILED after", Math.round(performance.now() - t), "ms:", err, err && err.stack);
+    throw err;
+  }
+  dlog("initPyodide: loaded in", Math.round(performance.now() - t), "ms. version:", pyodide.version);
   statusText.textContent = "Python ready";
   statusDot.className = "status-dot ready";
   runBtn.disabled = false;
   runCodeBtn.disabled = false;
+  dlog("initPyodide: buttons enabled", buttonState());
 }
 
 // Runs `code` against a single test case's stdin, returns {stdout, error}.
@@ -318,6 +362,8 @@ async function initPyodide() {
 // so students see their own prompts, not by "Run Tests" grading, so this
 // never changes what a test's expected-output comparison sees.
 async function runOneTest(code, stdin, echoInput) {
+  dlog("runOneTest: start", { pyodideIsNull: pyodide === null, stdin, echoInput: !!echoInput, codeLength: code.length });
+  const tRun = performance.now();
   pyodide.globals.set("__student_code", code);
   pyodide.globals.set("__test_stdin", stdin);
   pyodide.globals.set("__echo_input", !!echoInput);
@@ -357,8 +403,10 @@ builtins.input = _old_input
 
 [_output.getvalue(), _error]
   `);
+  dlog("runOneTest: python returned after", Math.round(performance.now() - tRun), "ms", { resultType: typeof result, hasToJs: !!(result && result.toJs) });
   const [stdout, error] = result.toJs();
   result.destroy();
+  dlog("runOneTest: done", { stdout, error });
   return { stdout: stdout.replace(/\n$/, ""), error };
 }
 
@@ -370,6 +418,15 @@ builtins.input = _old_input
 async function runCode() {
   const code = editorEl.value;
   const stdin = stdinBoxEl.value;
+  const tCode = performance.now();
+  dlog("runCode: click received", {
+    ...buttonState(),
+    pyodideLoaded: pyodide !== null,
+    unit: UNITS[currentUnitIndex] && UNITS[currentUnitIndex].id,
+    exerciseIndex: currentIndex,
+    codeLength: code.length,
+    stdin,
+  });
   runCodeBtn.disabled = true;
   runBtn.disabled = true;
   runCodeBtn.textContent = "Running…";
@@ -382,6 +439,7 @@ async function runCode() {
   // it just silently skips whatever comes after the throwing line.
   try {
     const { stdout, error } = await runOneTest(code, stdin, true);
+    dlog("runCode: got result, rendering", { stdoutLength: stdout.length, hasError: !!error });
 
     if (stdout) {
       const outputBlock = document.createElement("div");
@@ -407,6 +465,7 @@ async function runCode() {
     // throws at the JS level (a genuine Pyodide-internal failure, not a
     // student code bug), show it instead of leaving the console blank.
     console.error("[python] Run Code failed unexpectedly:", err);
+    derr("runCode: THREW after", Math.round(performance.now() - tCode), "ms:", err, err && err.stack);
     const errorBlock = document.createElement("div");
     errorBlock.className = "error-trace";
     errorBlock.textContent = "Something went wrong running your code. Try again — if it keeps happening, let your teacher know.";
@@ -415,12 +474,21 @@ async function runCode() {
     runCodeBtn.disabled = false;
     runBtn.disabled = false;
     runCodeBtn.textContent = "Run Code";
+    dlog("runCode: finally — buttons restored after", Math.round(performance.now() - tCode), "ms", buttonState());
   }
 }
 
 async function runTests() {
   const ex = currentExercises()[currentIndex];
   const code = editorEl.value;
+  const tTests = performance.now();
+  dlog("runTests: click received", {
+    ...buttonState(),
+    pyodideLoaded: pyodide !== null,
+    unit: currentUnit().id,
+    exercise: ex.id,
+    tests: ex.tests.length,
+  });
   runBtn.disabled = true;
   runBtn.textContent = "Running…";
   runCodeBtn.disabled = true;
@@ -439,6 +507,7 @@ async function runTests() {
     const testResults = [];
     for (const test of ex.tests) {
       const stdinStr = test.stdin.join("\n");
+      dlog("runTests: running test", test);
       const { stdout, error } = await runOneTest(code, stdinStr);
       const actual = stdout.trim();
       // Most tests check for an exact match against `expected`. A few
@@ -453,6 +522,7 @@ async function runTests() {
         : actual === test.expected);
       if (!pass) allPass = false;
       if (error) hadCrash = true;
+      dlog("runTests: test result", { pass, usesContains, actual, expected: test.expected, expected_contains: test.expected_contains, error });
       testResults.push({ passed: pass, hadError: !!error });
 
       const row = document.createElement("div");
@@ -536,6 +606,7 @@ async function runTests() {
     // throws at the JS level (a genuine Pyodide-internal failure, not a
     // student code bug), show it instead of leaving the console blank.
     console.error("[python] Run Tests failed unexpectedly:", err);
+    derr("runTests: THREW after", Math.round(performance.now() - tTests), "ms:", err, err && err.stack);
     const errorBlock = document.createElement("div");
     errorBlock.className = "error-trace";
     errorBlock.textContent = "Something went wrong running your tests. Try again — if it keeps happening, let your teacher know.";
@@ -543,6 +614,7 @@ async function runTests() {
   } finally {
     runBtn.disabled = false;
     runBtn.textContent = "Run Tests";
+    dlog("runTests: finally — button restored after", Math.round(performance.now() - tTests), "ms", buttonState());
   }
 }
 
@@ -709,12 +781,16 @@ downloadBtn.addEventListener("click", downloadExport);
 
 runBtn.addEventListener("click", runTests);
 runCodeBtn.addEventListener("click", runCode);
+dlog("button listeners attached", { runBtnFound: !!runBtn, runCodeBtnFound: !!runCodeBtn, stdinBoxFound: !!stdinBoxEl, ...buttonState() });
 
 // Boot
 async function boot() {
+  dlog("boot: start");
   try {
     UNITS = await loadUnits();
+    dlog("boot: units loaded", UNITS.map(u => `${u.id} (${u.exercises.length})`));
   } catch (err) {
+    derr("boot: loadUnits failed:", err, err && err.stack);
     problemPanelEl.innerHTML = `<h2>Couldn't load exercises</h2><p>${escapeHtml(err.message)}</p><p>If you're opening this file directly from disk, run a local web server instead (e.g. <code>python3 -m http.server</code>) — browsers block fetching local files with <code>file://</code> URLs.</p>`;
     return;
   }
@@ -730,7 +806,7 @@ async function boot() {
   loadSolvedForUnit();
   renderSidebar();
   selectExercise(0);
-  initPyodide();
+  initPyodide().catch(err => derr("boot: initPyodide rejected — Run buttons will stay disabled:", err));
 
   renderStudentName();
   if (!getStudentName()) {
