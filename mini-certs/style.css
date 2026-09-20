@@ -243,6 +243,24 @@ input[type="text"],
     white-space: nowrap;
 }
 
+/* Per-item DESE traceability tag, trailing each checklist line. Same
+   pill look as .standard-tag (section-level) but sized for running
+   text, and wrapping-safe inside the hanging-indent <li>. */
+.standard-ref {
+    display: inline-block;
+    text-indent: 0;
+    font-size: 0.72em;
+    color: var(--text-secondary);
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.1em 0.6em;
+    margin-left: 0.4em;
+    vertical-align: baseline;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
 @media (max-width: 700px) {
     body {
         padding: 1.25rem 1rem 3rem;
