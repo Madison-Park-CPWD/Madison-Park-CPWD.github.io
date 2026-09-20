@@ -96,7 +96,23 @@ longer set to `OK`, and follow those instead of the defaults below.
      Claude, confirmed 2026-09-13**: a first-pass decomposition doc, same
      review workflow as this whole crosswalk doc (a table per competency
      area, `Change` column defaulting to `OK`) — not live edits to the
-     HTML files until reviewed and approved. *Not yet started.*
+     HTML files until reviewed and approved. *Done for the 5 new files
+     (rebuilt in commit `63b4aa7`, per-item standards tags added
+     2026-09-20).*
+   - **Still to do, added 2026-09-20 — decompose the 4 older certs that
+     are still in "skill heading + 4 demonstration checkboxes" format**
+     (`Basic_JavaScript`, `Intermediate_JavaScript`, `Basic_Python`,
+     `Intermediate_Python`, ~430 demonstration checkboxes) into atomic
+     skill statements, then rebuild the HTML and add per-item standards
+     tags (`Standard 7, Skill N`) like the other certs. Working doc, with
+     5 calibration slices drafted and awaiting your review:
+     `docs/atomic-skill-decomposition-js-python-2026-09-20.md`. Decisions
+     needed before scaling: reword style (drop counts, move them to the
+     bottom assessment section), whether to add the missing Python
+     functions/lists/dicts/try-except bridging cert in the same pass, and
+     one-file-at-a-time vs. all four. Also still open, separate from
+     this: per-cert accent colors and the bottom student/teacher
+     assessment section on every page.
 4. **Resolve the conceptual-overlap redundancy candidates** per whatever
    the `Change` column says (merge, differentiate scope, or leave as-is).
 5. **Add every remaining "no match" in-scope standards skill** as a new
